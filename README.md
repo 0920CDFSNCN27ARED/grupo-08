@@ -6,7 +6,7 @@ Desarrollar un outlet online para una marca en particular, a definir.
 ## **Segmentacion y mercado**
 Apuntamos a un mercado Outlet semi high-end, cuya principal audiencia van a ser hombres y mujeres de entre 20 y 35 años con un poder adquisitivo mediano y alto; uno de los aspectos beneficiosos de los outlets es el amplio espectro de audiencia, pudiendo atraer consumidores de pertenecientes al mercado low-cost, tanto como aquellos que buscan un mercado más high-end. Otros beneficios son el poder comercializar distintos tipos de marcas y no sesgarse a una solas, ofrecer productos atemporales y temporales, ediciones limitadas y una gran variedad de ofertas.
 
-## Referencias:
+## Referencias
 
 * [Zara](https://www.zara.com/ar/es/shop/cart-v2)
 * [Rapsodia](https://www.rapsodia.com.ar/checkout/cart)
