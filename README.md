@@ -23,9 +23,6 @@ Apuntamos a un mercado Outlet semi high-end, cuya principal audiencia van a ser 
 
 ## **Integrantes**
 
-<br> **Gaston Podesta**: <br>
-Insertar descripción
-
 <br> **Leandro Canton**: <br>
 Me llamo Leandro Canton, trabajo en un estudio contable hace 11 años y estoy aprendiendo pogramación porque hoy en día es muy útil y creo que puede ayudar en casi cualquier trabajo o emprendimiento.
 
