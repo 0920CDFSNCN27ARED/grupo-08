@@ -1,7 +1,7 @@
 ## Previsualizar
 ---
 
-Si queres previsualizar las imágenes al 100% en el navegador entra acá: [Lenny Previews](https://leandromuzzupappa.github.io/previews/) y seguí las siguientes instrucciones!
+Si queres previsualizar las imágenes al 100% en el navegador entra acá: <a href="https://leandromuzzupappa.github.io/previews/" target="_blank">Lenny Previews</a> y seguí las siguientes instrucciones!
 
 1. Descargate las imágenes
 2. Abrí el link
