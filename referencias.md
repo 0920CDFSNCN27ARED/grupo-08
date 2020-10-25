@@ -12,3 +12,9 @@
 * En la galería de productos la única forma de cerrar los filtros es usando scroll fuera de los filtros
 * El botón "volver" de la sección del carro de compras te lleva a la pagina principal en vez de a la página previa
 * Durante el proceso de pago no se puede ver el listado de productos del carro
+
+# Forever 21
+
+## Pros
+
+## Contras
