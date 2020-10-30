@@ -1,7 +1,7 @@
 /*
     [x] - Levantar servidor 
-        -- [] - Express
-    [] - Crear rutas
+        -- [x] - Express
+    [x] - Crear rutas
         -- [] - Crear modulos de rutas
         -- [] - Crear controlador de rutas
     [] - Crear directorios
@@ -12,6 +12,15 @@
 const express = require("express");
 const app = express();
 
-app.listen(3000, function(){
-    console.log("Escuchando el puerto 3000");
-})
+const PORT = 3000;
+app.listen(PORT, () => {
+    console.log("Escuchando el puerto "+ PORT);
+});
+
+app.get("/", (req, res) => {
+    res.send("cualquier cosa");
+});
+
+app.get("*", (req, res) => {
+    res.send("404");
+});
