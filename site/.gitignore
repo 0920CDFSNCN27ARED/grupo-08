@@ -1,0 +1,8 @@
+# Editables
+*.xd
+
+# Varios
+.DS_Store
+
+# Directorios
+node_modules/
