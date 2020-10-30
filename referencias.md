@@ -52,9 +52,3 @@
 * No queda claro cuales son los filtros activos en la galería de productos
 * En la ficha de productos está la opción de seleccionar el talle de "productos relacionados" pero funciona mal
 * La pagina en general no responde muy rápido
-
-# Forever 21
-
-## Pros
-
-## Contras

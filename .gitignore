@@ -3,3 +3,6 @@
 
 # Varios
 .DS_Store
+
+# Directorios
+/node_modules
