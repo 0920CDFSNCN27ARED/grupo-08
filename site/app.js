@@ -4,8 +4,8 @@
     [x] - Crear rutas
         -- [x] - Crear modulos de rutas
         -- [x] - Crear controlador de rutas
-    [] - Crear directorios
-        -- [] - Archivos estaticos
+    [x] - Crear directorios
+        -- [x] - Archivos estaticos
     [x] - Crear vistas
 */
 
@@ -17,7 +17,10 @@ app.listen(PORT, () => {
     console.log("Escuchando el puerto "+ PORT);
 });
 
+const staticFiles = express.static("public");
+
 // Rutas
 const mainRoutes = require("./routes/mainRoutes");
 
+app.use(staticFiles)
 app.use(mainRoutes)
