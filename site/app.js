@@ -6,7 +6,7 @@
         -- [x] - Crear controlador de rutas
     [] - Crear directorios
         -- [] - Archivos estaticos
-    [] - Crear vistas
+    [x] - Crear vistas
 */
 
 const express = require("express");
