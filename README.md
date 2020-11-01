@@ -32,5 +32,12 @@ Soy *Leandro Muzzupappa*, me gradué como diseñador multimedia y me especialic�
 <br> **Martin Zeballos**: <br>
 Insertar descripción
 
-## **Tablero de trabajo en Trello**
+<br><br>
+
+# Links útiles
+
+### **Tablero de trabajo en Trello**
 https://trello.com/b/KMbYCxzJ/0920-grupo08-lo-que-quieran
+
+### **Diseño**
+[Wireframes -- editables](https://xd.adobe.com/view/cdc44122-a87f-4b28-72a3-cb3c9dacecd3-bbf5/screen/93e4c968-19e3-421a-9769-db74776a588f/specs/)
