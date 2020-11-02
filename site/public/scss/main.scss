@@ -1,0 +1,27 @@
+@import './__variables.scss';
+@import './__mixins.scss';
+
+// Sections
+@import './__header.scss';
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: $opensans;
+    font-size: 16px;
+    //background: $gray1;
+
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
