@@ -1,0 +1,86 @@
+
+body {
+    background: $gray4;
+}
+
+footer {
+    background: $white;
+    text-align: center;
+    padding: 2rem 3rem;
+    border-top: 1px solid $gray1;
+    margin-top: 1rem;
+}
+
+#footer_newsletter {
+    color: $gray2;
+
+    h2 {
+        font-family: $montserrat;
+        @include font-size(28);
+        text-transform: uppercase;
+        margin-bottom: 1rem;
+    }
+    p {
+        width: 100%;
+        max-width: 500px;
+        @include font-size(12);
+        margin: 0 auto;
+    }
+
+    span {
+        @include font-size(10);
+        font-style: italic;
+    }
+}
+
+#form_suscription {
+    width: 100%;
+    max-width: 500px;
+    margin: 2rem auto .2rem auto;
+    position: relative;
+    input {
+        width: 100%;
+        padding: .5rem 2rem .5rem 1rem;
+        border: 0;
+        border-bottom: 1px solid $gray2;
+        @include font-size(12);
+
+    }
+
+    button {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 2rem;
+        height: 100%;
+        border: 0;
+        background: 0;
+    }
+    
+}
+
+#footer_menu, .footer_rrss {
+    width: 100%;
+    max-width: 500px;
+    margin: 2rem auto;
+
+    ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        li {
+            margin: .2rem .5rem;
+            a {
+                @include font-size(12);
+                color: $gray2;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    footer {
+        padding: 2rem 1rem;
+    }
+}

@@ -3,10 +3,12 @@
 
 // Sections
 @import './__header.scss';
+@import './__footer.scss';
 
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
