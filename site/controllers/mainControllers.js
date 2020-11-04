@@ -4,10 +4,14 @@ const getPath = (filePath) => {
 }
 
 const mainControllers = {
-    inicio : (req, res) => {
+    inicio: (req, res) => {
         res.sendFile(getPath("../views/index.html"));
     },
-    notFound : (req, res) => {
+    galeria_productos: (req, res) => {
+        res.sendFile(getPath('../views/galeria-productos.html'));
+    },
+
+    notFound: (req, res) => {
         res.send("404");
     },
 }

@@ -5,6 +5,8 @@ const routes = express.Router();
 const mainControllers = require("../controllers/mainControllers")
 
 routes.get("/", mainControllers.inicio);
+routes.get("/galeria", mainControllers.galeria_productos)
+
 routes.get("*", mainControllers.notFound);
 
 
