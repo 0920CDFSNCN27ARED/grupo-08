@@ -1,0 +1,137 @@
+main {
+    position: relative;
+}
+
+#toolbar {
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    background: $white;
+    position: sticky;
+    top: 5rem;
+
+    .toolbar_wrapper {
+        display: flex;
+    }
+
+    #breadcrumb {
+        ul {
+            display: flex;
+            li {
+                margin-right: .3rem;
+
+                a, &::after {
+                    @include font-size(12);
+                    font-weight: 400;
+                    color: $gray2;
+                }
+
+                &:not(:last-child)::after {
+                    content: '/';
+                }
+
+                &:hover a, &:last-child a {
+                    color: $gray3;
+                }
+
+            }
+        }
+    }
+
+    #order {
+        color: $gray3;
+        @include font-size(12);
+    
+        h4 {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+
+            &::after {
+                content: '';
+                //display: inline-block;
+                width: 20px;
+                height: 20px;
+                background: url('../images/flechita-abajo.svg') center center no-repeat;
+                background-size: 12px;
+                @include transition(.2s);
+            }
+
+            &:hover {
+                &::after {
+                    transform: rotate(-180deg);
+                }
+                .order-container {
+                    opacity: 1;
+                    pointer-events: all;
+                    top: 1.2rem;
+
+                }
+            }
+        }
+
+        .order-container {
+            opacity: 0;
+            pointer-events: none;
+            @include transition(.2s);
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, 0);
+            text-align: center;
+            border: 1px solid $gray1;
+            border-top: 0;
+            background: $white;
+            padding: .5rem 1rem;
+            display: block;
+            width: 150px;
+            @include shadow(0px, 10px, 20px, $black, .05);
+
+            li {
+                margin: .3rem 0;
+                a {
+                    color: $gray2;
+                }
+                
+                &.active a, a:hover {
+                    color: $gray3;
+                }
+                
+            }
+            
+        }
+
+
+    }
+
+    #gallery_views {
+        display: flex;
+        @include font-size(12);
+        margin-left: 2rem;
+
+        p {
+            margin-right: .5rem;
+            color: $gray3;
+        }
+        ul {
+            display: flex;
+
+            li {
+                cursor: pointer;
+                color: $gray2;
+
+                &:not(:last-child)::after {
+                    content: '|';
+                    color: $gray2;
+
+                }
+
+                &:hover, &.active {
+                    color: $gray3;
+                }
+            }
+        }
+    }
+
+}

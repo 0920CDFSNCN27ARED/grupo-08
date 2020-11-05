@@ -12,13 +12,16 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-weight: 400;
+
+    &:focus {
+        outline: none;
+    }
 }
 
 body {
     font-family: $opensans;
     font-size: 16px;
-    //background: $gray1;
-
 }
 
 ul {
@@ -29,4 +32,10 @@ ul {
 
 a {
     text-decoration: none;
+}
+
+img {
+    width: 100%;
+    border: 0;
+    display: block;
 }
