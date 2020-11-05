@@ -9,6 +9,7 @@ main {
     background: $white;
     position: sticky;
     top: 5rem;
+    z-index: 10;
 
     .toolbar_wrapper {
         display: flex;
@@ -131,6 +132,137 @@ main {
                     color: $gray3;
                 }
             }
+        }
+    }
+
+}
+
+.catalog_category_view {
+    main {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 1rem 2rem;
+        
+    }
+
+}
+
+#filter {
+    width: 250px;
+    padding: 2rem 1rem;
+    border: 1px solid $gray1;
+    background: $white;
+    position: sticky;
+    top: 9rem;
+    margin-right: 1rem;
+    z-index: 10;
+}
+
+#catalog_gallery {
+    width: calc(100% - 250px - 1rem);
+    display: grid;
+    column-gap: 2rem;
+    row-gap: 2rem;
+
+    &.col-4 {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+    &.col-3 {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    &.col-2 {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
+.product {
+    border: 1px solid transparent;
+    @include transition(.2s);
+    overflow: hidden;
+
+    .product_photos {
+        position: relative;
+
+        div[class*="swiper_"] {
+            position: absolute;
+            top: 60%;
+            transform: translateY(-50%);
+            z-index: 20;
+            svg {
+                width: 30px;
+                .a,
+                .b {
+                    fill: none;
+                }
+
+                .b {
+                    stroke: $white;
+                    stroke-linecap: round;
+                    stroke-linejoin: round;
+                }
+            }
+        }
+        .swiper_prev {
+            left: 0;
+        }
+        .swiper_next {
+            right: 0;
+        }
+    }
+    .product_info {
+        padding: .5rem;
+        background: $white;
+        a {
+            @include font-size(14);
+            color: $gray3;
+            width: 100%;
+        }
+        h4 {
+            font-weight: 700;
+        }
+
+    }
+
+    &:hover {
+        @include shadow(0px, 10px, 20px, $black, .05);
+    }
+}
+
+
+@media screen and (max-width: 1000px) {
+    #toolbar {
+        top: 4rem;
+    }
+    #filter {
+        width: 100%;
+        margin-bottom: 1rem;
+        margin-right: 0;
+        top: 7rem;
+        border: 0;
+        
+    }
+    #catalog_gallery {
+        width: 100%;
+    }
+
+}
+
+@media screen and (max-width: 720px) {
+    #catalog_gallery {
+        &.col-4 {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+    }
+
+}
+
+@media screen and (max-width: 500px) {
+    #catalog_gallery {
+        &.col-4 {
+            grid-template-columns: 1fr 1fr;
         }
     }
 
