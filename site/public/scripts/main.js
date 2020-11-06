@@ -45,6 +45,21 @@ if (catalog_view) {
                     </h3>
                     <p>$2.835</p>
                 </a>
+                <div class="quickshop">
+                        
+                    <div class="quickshop_colors">
+                        <span id="${id}_color1" class="q_color selected"></span>
+                        <span id="${id}_color2" class="q_color"></span>
+                        <span id="${id}_color3" class="q_color"></span>
+                    </div>
+                    <div class="quickshop_sizes">
+                        <span id="${id}_t1" class="q_size selected">T1</span>
+                        <span id="${id}_t2" class="q_size">T2</span>
+                        <span id="${id}_t3" class="q_size">T3</span>
+                    </div>
+                    <button id="q_add_to_cart">Agregar al carrito</button>
+                    
+                </div>
             </div>
         </article>`;
 
