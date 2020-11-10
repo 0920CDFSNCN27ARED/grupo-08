@@ -163,44 +163,78 @@
             </ul>
         </div>
 
-        <div class="toolbar_wrapper">
-            <div id="order">
-                <h4>
-                    Ordenar por
-
-                    <ul class="order-container">
-                        <li>
-                            <a href="#asc-desc">Menor precio</a>
-                        </li>
-                        <li>
-                            <a href="#desc-asc">Mayor precio</a>
-                        </li>
-                    </ul>
-                </h4>
-                
-            </div>
-
-            <div id="gallery_views">
-                <p>Ver</p>
-                <ul>
-                    <li>
-                        <span class="change_view" data-cols="2">2</span>
-                    </li>
-                    <li>
-                        <span class="change_view" data-cols="3">3</span>
-                    </li>
-                    <li class="active">
-                        <span class="change_view" data-cols="4">4</span>
-                    </li>
-                </ul>
-            </div>
+        <div id="gallery_views">
+            <p>Ver</p>
+            <ul>
+                <li>
+                    <span class="change_view" data-cols="2">2</span>
+                </li>
+                <li>
+                    <span class="change_view" data-cols="3">3</span>
+                </li>
+                <li class="active">
+                    <span class="change_view" data-cols="4">4</span>
+                </li>
+            </ul>
         </div>
     </div>
 
     <main>
         
-        <div id="filter">
-            <h4>Filtros</h4>
+        <div id="filters">
+            <h4>FILTROS</h4>
+
+            <ul>
+                <li id="atributo_ordenar" class="filter">
+                    <p>Ordenar <span>+</span></p>
+                    <div class="filter_submenu">
+                        <ol>
+                            <li>
+                                
+                            </li>
+                        </ol>
+                    </div>
+                </li>
+
+                <li id="atributo_tipo_de_producto" class="filter">
+                    <p>Tipo de producto <span>-</span></p>
+                    <div class="filter_submenu">
+                        <ol>
+                            <li>
+                                Subcat 1
+                            </li>
+                            <li>
+                                Subcat 2
+                            </li>
+                            <li>
+                                Subcat 3
+                            </li>
+                        </ol>
+                    </div>
+                </li>
+
+                <li id="atributo_colores" class="filter">
+                    <p>Colores <span>-</span></p>
+                    <div id="" class="filter_submenu">
+                        <ol>
+                            <li class="filter_colors">
+                                <span id="atributo_colores-blanco"></span>
+                                Blanco
+                            </li>
+                            <li class="filter_colors active">
+                                <span id="atributo_colores-blanco"></span>
+                                Negro
+                            </li>
+                            <li class="filter_colors">
+                                <span id="atributo_colores-blanco"></span>
+                                Azul
+                            </li>
+                        </ol>
+                    </div>
+                </li>
+                
+            </ul>
+
         </div>
         <div id="catalog_gallery" class="col-4">
             

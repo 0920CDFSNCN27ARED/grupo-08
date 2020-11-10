@@ -11,10 +11,6 @@ main {
     top: 5rem;
     z-index: 10;
 
-    .toolbar_wrapper {
-        display: flex;
-    }
-
     #breadcrumb {
         ul {
             display: flex;
@@ -149,7 +145,7 @@ main {
 
 }
 
-#filter {
+#filters {
     width: 250px;
     padding: 2rem 1rem;
     border: 1px solid $gray1;
@@ -158,6 +154,74 @@ main {
     top: 9rem;
     margin-right: 1rem;
     z-index: 10;
+    color: $gray3;
+    @include font-size(12);
+    font-family: $opensans;
+
+    h4, p {
+        width: 100%;
+        letter-spacing: .69px;
+        display: flex;
+        justify-content: space-between;
+        &, span {
+            font-weight: 700;
+        }
+    }
+
+    h4 {
+        text-transform: uppercase;
+        margin-bottom: 1rem;
+    }
+
+    p {
+        cursor: pointer;
+        margin-bottom: .5rem;
+        &:hover {
+            color: $gray4;
+        }
+    }
+
+    .filter {
+        margin-bottom: 1rem;
+    }
+
+    .filter_submenu {
+        ol {
+            list-style: none;
+            padding-left: .5rem;
+            li {
+                margin-bottom: .5rem;
+                cursor: pointer;
+                &:hover {
+                    color: $gray4;
+                }
+            }
+        }
+
+        .filter_colors {
+            display: flex;
+            align-items: center;
+
+            span {
+                width: 20px;
+                height: 20px;
+                background: $gray1;
+                margin-right: .5rem;
+                border: 1px solid $gray3;
+            }
+
+            &.active {
+                color: $gray4;
+                font-weight: 700;
+                span {
+                    border: 1px solid $black;
+                }
+                
+            }
+        }
+
+    }
+    
 }
 
 #catalog_gallery {
@@ -326,14 +390,24 @@ main {
 
 @media screen and (max-width: 1000px) {
     #toolbar {
-        top: 4rem;
+        top: 4.5rem;
+        border: 1px solid red;
     }
-    #filter {
-        width: 100%;
-        margin-bottom: 1rem;
-        margin-right: 0;
-        top: 7rem;
-        border: 0;
+    #filters {
+        top: 6rem;
+        right: 50%;
+        transform: translate(50%);
+        padding: 0;
+        border: 1px solid blue;
+
+        h4 {
+            margin: 0 auto;
+            justify-content: center;
+        }
+
+        ul {
+            display: none;
+        }
         
     }
     #catalog_gallery {
@@ -343,6 +417,16 @@ main {
 }
 
 @media screen and (max-width: 720px) {
+    #toolbar {
+        #breadcrumb {
+            display: none;
+        }
+        #gallery_views {
+            margin-left: 0;
+            @include font-size(14);
+        }
+    }
+
     #catalog_gallery {
         &.col-4 {
             grid-template-columns: 1fr 1fr 1fr;
@@ -352,6 +436,11 @@ main {
 }
 
 @media screen and (max-width: 500px) {
+    #toolbar {
+        display: none;
+
+    }
+
     #catalog_gallery {
         &.col-4 {
             grid-template-columns: 1fr 1fr;
