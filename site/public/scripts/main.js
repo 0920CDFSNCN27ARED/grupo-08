@@ -11,11 +11,11 @@ if (catalog_view) {
                 <a href="#link_to_product">
                     <div class="swiper-container">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide"><img src="../public/images/catalog/category/img_producto-1.png" alt="nombre_producto"></div>
-                            <div class="swiper-slide"><img src="../public/images/catalog/category/img_producto-2.png" alt="nombre_producto"></div>
-                            <div class="swiper-slide"><img src="../public/images/catalog/category/img_producto-3.png" alt="nombre_producto"></div>
-                            <div class="swiper-slide"><img src="../public/images/catalog/category/img_producto-4.png" alt="nombre_producto"></div>
-                            <div class="swiper-slide"><img src="../public/images/catalog/category/img_producto-5.png" alt="nombre_producto"></div>
+                            <div class="swiper-slide"><img src="/images/catalog/category/img_producto-1.png" alt="nombre_producto"></div>
+                            <div class="swiper-slide"><img src="/images/catalog/category/img_producto-2.png" alt="nombre_producto"></div>
+                            <div class="swiper-slide"><img src="/images/catalog/category/img_producto-3.png" alt="nombre_producto"></div>
+                            <div class="swiper-slide"><img src="/images/catalog/category/img_producto-4.png" alt="nombre_producto"></div>
+                            <div class="swiper-slide"><img src="/images/catalog/category/img_producto-5.png" alt="nombre_producto"></div>
                         </div>
 
                         <div class="swiper_prev">

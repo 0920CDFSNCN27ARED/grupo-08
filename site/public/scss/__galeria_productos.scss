@@ -8,7 +8,7 @@ main {
     justify-content: space-between;
     background: $white;
     position: sticky;
-    top: 5rem;
+    top: 4.5rem;
     z-index: 10;
 
     #breadcrumb {
@@ -33,73 +33,6 @@ main {
 
             }
         }
-    }
-
-    #order {
-        color: $gray3;
-        @include font-size(12);
-    
-        h4 {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            position: relative;
-
-            &::after {
-                content: '';
-                //display: inline-block;
-                width: 20px;
-                height: 20px;
-                background: url('../images/flechita-abajo.svg') center center no-repeat;
-                background-size: 12px;
-                @include transition(.2s);
-            }
-
-            &:hover {
-                &::after {
-                    transform: rotate(-180deg);
-                }
-                .order-container {
-                    opacity: 1;
-                    pointer-events: all;
-                    top: 1.2rem;
-
-                }
-            }
-        }
-
-        .order-container {
-            opacity: 0;
-            pointer-events: none;
-            @include transition(.2s);
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translate(-50%, 0);
-            text-align: center;
-            border: 1px solid $gray1;
-            border-top: 0;
-            background: $white;
-            padding: .5rem 1rem;
-            display: block;
-            width: 150px;
-            @include shadow(0px, 10px, 20px, $black, .05);
-
-            li {
-                margin: .3rem 0;
-                a {
-                    color: $gray2;
-                }
-                
-                &.active a, a:hover {
-                    color: $gray3;
-                }
-                
-            }
-            
-        }
-
-
     }
 
     #gallery_views {
@@ -131,6 +64,19 @@ main {
         }
     }
 
+    #toolbar_filters-open {
+        display: none;
+        border: none;
+        background: none;
+        text-transform: uppercase;
+        font-family: $opensans;
+        font-weight: 700;
+        @include font-size(12);
+        color: $gray3;
+        letter-spacing: .69px;
+        cursor: pointer;
+    }
+
 }
 
 .catalog_category_view {
@@ -147,7 +93,7 @@ main {
 
 #filters {
     width: 250px;
-    padding: 2rem 1rem;
+    padding: 2rem 1rem 5rem;
     border: 1px solid $gray1;
     background: $white;
     position: sticky;
@@ -157,6 +103,22 @@ main {
     color: $gray3;
     @include font-size(12);
     font-family: $opensans;
+
+    #filters-close {
+        display: none;
+        position: fixed;
+        bottom: 1rem;
+        left: 50%;
+        transform: translateX(-50%);
+        border: 1px solid $gray1;
+        border-radius: 4rem;
+        @include font-size(20);
+        font-weight: 300;
+        color: $gray3;
+        padding: 1rem 1.4rem;
+        @include shadow(0px, 5px, 20px, $gray1, 1)
+        
+    }
 
     h4, p {
         width: 100%;
@@ -390,23 +352,29 @@ main {
 
 @media screen and (max-width: 1000px) {
     #toolbar {
-        top: 4.5rem;
-        border: 1px solid red;
-    }
-    #filters {
-        top: 6rem;
-        right: 50%;
-        transform: translate(50%);
-        padding: 0;
-        border: 1px solid blue;
-
-        h4 {
-            margin: 0 auto;
-            justify-content: center;
+        #toolbar_filters-open {
+            display: block;
         }
+    }
 
-        ul {
-            display: none;
+    #filters {
+        display: none;
+
+        &.opened {
+            display: block;
+            position: fixed;
+            top: unset;
+            bottom: 0;
+            left: 0;
+            z-index: 100;
+            width: 100%;
+            height: 90vh;
+            @include font-size(16);
+            overflow-y: scroll;
+            
+            #filters-close {
+                display: block;
+            }
         }
         
     }
@@ -436,10 +404,6 @@ main {
 }
 
 @media screen and (max-width: 500px) {
-    #toolbar {
-        display: none;
-
-    }
 
     #catalog_gallery {
         &.col-4 {
