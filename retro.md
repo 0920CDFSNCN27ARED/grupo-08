@@ -1,7 +1,7 @@
 # Retrospectivas
 
 ## Sprint 1
-<table width="100%" border="1px" cellspacing="0" cellpadding="0" style="border-collapse: collapse; border: 1px solid #dfe2e5; width: 100%; max-width: 1920px;">
+<table width="100%" cellspacing="0" cellpadding="0">
     <tbody>
         <tr>
             <th width="200">
