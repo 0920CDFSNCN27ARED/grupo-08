@@ -10,6 +10,9 @@ const mainControllers = {
     galeria_productos: (req, res) => {
         res.sendFile(getPath('../views/galeria-productos.html'));
     },
+    ficha_producto: (req, res) => {
+        res.sendFile(getPath('../views/ficha-producto.html'));
+    },
 
     notFound: (req, res) => {
         res.send("404");
