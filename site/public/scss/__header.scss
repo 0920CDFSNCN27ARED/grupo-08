@@ -18,6 +18,7 @@ header {
     padding: 1rem 4rem;
     border-bottom: 1px solid $gray2;
     background: $white;
+    z-index: 100;
 
     .logo {
         h1 {
