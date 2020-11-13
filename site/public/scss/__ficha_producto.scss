@@ -33,33 +33,33 @@
     }
 
     .product_head {
-        display: flex;
-        margin-bottom: 1rem;
-
-        h1, h3 {
-            @include font-size(18);
-        }
+        margin-bottom: 2rem;
 
         .product_name {
-            width: 65%;
+            @include font-size(20);
+            margin-bottom: .5rem;
         }
         .product_price {
-            width: 35%;
             text-align: right;
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-between;
+            justify-content: flex-start;
+            @include font-size(16);
 
         }
 
         .regular_price, .special_price, .percent_off {
             font-weight: 700;
+            color: $gray4;
         }
 
+        .special_price {
+            margin: 0 1rem;
+        }
         .percent_off {
             // De momento no me gusta como queda
             // A nivel diseño
-            display: none !important;
+            //display: none !important;
         }
         
         .discount {
@@ -69,18 +69,14 @@
                 &:before {
                     content: '';
                     position: absolute;
-                    top: 50%;
+                    top: 1rem;
                     left: 50%;
-                    transform: translate(-50%, -50%) rotate(-15deg);
+                    transform: translate(-50%, 0) rotate(-15deg);
                     display: block;
                     width: 110%;
                     height: 1px;
                     background: $black;
                 }
-            }
-
-            .percent_off {
-                margin-left: auto;
             }
 
         }
@@ -91,7 +87,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 1rem;
+        margin-bottom: 2rem;
 
         h4 {
             @include font-size(14);          
@@ -131,7 +127,7 @@
     }
 
     .product_attribute_sizes {
-        margin-bottom: 1rem;
+        margin-bottom: 2rem;
         
         select {
             width: 100%;
@@ -143,7 +139,7 @@
     .product_cart_buttons {
         display: flex;
         justify-content: space-between;
-        margin-bottom: 1rem; 
+        margin-bottom: 4rem; 
 
         #add_to_cart {
             width: 100%;
