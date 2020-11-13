@@ -5,5 +5,202 @@
 .product_card {
     display: flex;
     
+    .product_images {
+        width: 65%;
+    }
+    .product_details {
+        width: 35%;
+        padding: 1rem 2rem;
+    }
 
+}
+
+.product_images {
+    img {
+        width: 100%;
+
+    }
+
+}
+
+.product_details {
+    position: sticky;
+    top: 5rem;
+    height: 100%;
+
+    &, a { 
+        color: $gray3;
+    }
+
+    .product_head {
+        display: flex;
+        margin-bottom: 1rem;
+
+        h1, h3 {
+            @include font-size(18);
+        }
+
+        .product_name {
+            width: 65%;
+        }
+        .product_price {
+            width: 35%;
+            text-align: right;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+
+        }
+
+        .regular_price, .special_price, .percent_off {
+            font-weight: 700;
+        }
+
+        .percent_off {
+            // De momento no me gusta como queda
+            // A nivel diseño
+            display: none !important;
+        }
+        
+        .discount {
+            .regular_price {
+                font-weight: 400;
+                position: relative;
+                &:before {
+                    content: '';
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%) rotate(-15deg);
+                    display: block;
+                    width: 110%;
+                    height: 1px;
+                    background: $black;
+                }
+            }
+
+            .percent_off {
+                margin-left: auto;
+            }
+
+        }
+
+    }
+
+    .product_attribute_color {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+
+        h4 {
+            @include font-size(14);          
+        }
+
+        .colors_wrapper {
+            width: 50%;
+    
+        }
+
+        .colors_options {
+            display: flex;
+
+            .color {
+                margin: .2rem;
+                padding: 2px;
+                border: 1px solid $gray1;
+                cursor: pointer;
+
+                span {
+                    display: block;
+                    width: 1rem;
+                    height: 1rem;
+                    background: $gray2;
+                }
+
+                &.selected, &:hover {
+                    border: 1px solid $black;
+                    span {
+                        background: $gray4;
+                    }
+                }
+            }
+        
+        }
+
+    }
+
+    .product_attribute_sizes {
+        margin-bottom: 1rem;
+        
+        select {
+            width: 100%;
+            @include font-size(14);
+        }
+
+    }
+
+    .product_cart_buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1rem; 
+
+        #add_to_cart {
+            width: 100%;
+        }
+        #add_to_wishlist {
+            width: 4rem;
+            margin-left: 1rem;
+
+            svg {
+                .a {
+                    fill: none;
+                    stroke: $white;
+                    stroke-linecap: round;
+                    stroke-linejoin: round;
+                    stroke-width: 2px;
+                }
+            }
+
+            &.added_to_wishlist {
+                svg .a{
+                    fill: red;
+                    stroke: red;
+                }
+
+            }
+        }
+
+        button {
+            border: 0;
+            background: $gray5;
+            color: $white;
+            @include font-size(14);
+            font-weight: 700;
+            padding: .8rem;
+            cursor: pointer;
+
+            &:hover {
+                background: $black;
+                @include shadow(0px, 10px, 20px, $gray5, .1);
+
+            }
+            &:active {
+                background: $gray4;
+
+            }
+
+        }
+
+    }
+
+    .product_info_wrapper {
+        a {
+            @include font-size(14);
+            &:hover {
+                color: $gray4;
+            }
+        }
+
+    }
 }
