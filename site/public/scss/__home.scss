@@ -129,6 +129,41 @@
     
     .product_small{
     }
+}
+
+@media screen and (max-width: 1000px) {
+    .home {
+        padding: 1rem;
+
+        .category_group {
+            flex-direction: column;
+            width: 100%;
+            margin-bottom: 40px;
+        }
+
+        .category_wrapper {
+            display: block;
+            width: 100%;
+            margin-bottom: 40px;
+        }
+
+        .category_small {
+            display: block;
+            width: 100%;
+            margin-bottom: 40px;
+        }
+
+        .product_wrapper {
+            display: block;
+            width: 100%;
+        }
+
+        .product_group {
+            flex-direction: column;
+            width: 100%;
+            margin-bottom: 40px;
+        }
 
 
+    }
 }
