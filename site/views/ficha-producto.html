@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ficha de producto</title>
 
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="../public/css/main.min.css">
 
@@ -152,9 +155,17 @@
         <article id="product_id" class="product_card">
 
             <div class="product_images">
-                <img src="../public/images/catalog/category/img_producto-4.png" alt="">
-                <img src="../public/images/catalog/category/img_producto-5.png" alt="">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"><img src="../public/images/catalog/category/img_producto-4.png" alt=""></div>
+                        <div class="swiper-slide"><img src="../public/images/catalog/category/img_producto-5.png" alt=""></div>
+                        <div class="swiper-slide"><img src="../public/images/catalog/category/img_producto-1.png" alt=""></div>
+                    </div>
+
+                    <div class="swiper-pagination"></div>
+                </div>
             </div>
+
             <div class="product_details">
 
                 <div class="product_head">
@@ -196,11 +207,11 @@
                 <div class="product_attribute_sizes">
                     <select name="talles" id="talles" value="">
                         <option value="default">Selecciona tu talle</option>
-                        <option value="xs">xs</option>
-                        <option value="s">s</option>
-                        <option value="m">m</option>
-                        <option value="l">l</option>
-                        <option value="xl">xl</option>
+                        <option value="XS">XS</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
                     </select>
                 </div>
 
@@ -315,5 +326,8 @@
     </footer>
     <!-- Footer fin -->
 
+    <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="../public/scripts/main.js"></script>
 </body>
 </html>

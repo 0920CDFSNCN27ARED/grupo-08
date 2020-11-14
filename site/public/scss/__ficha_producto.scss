@@ -6,24 +6,30 @@
     display: flex;
     
     .product_images {
-        width: 65%;
+        width: 70%;
     }
     .product_details {
-        width: 35%;
-        padding: 1rem 2rem;
+        width: 30%;
     }
 
 }
 
 .product_images {
-    img {
-        width: 100%;
+    position: relative;
 
+    .swiper-pagination {
+        display: none;
+        top: 0;
+        right: 0;
+        text-align: left;
+        .swiper-pagination-bullet {
+            background: $white;
+        }
     }
-
 }
 
 .product_details {
+    padding: 1rem 2rem;
     position: sticky;
     top: 5rem;
     height: 100%;
@@ -56,10 +62,9 @@
         .special_price {
             margin: 0 1rem;
         }
-        .percent_off {
-            // De momento no me gusta como queda
-            // A nivel diseño
-            //display: none !important;
+
+        .special_price, .percent_off {
+            display: none;
         }
         
         .discount {
@@ -77,6 +82,10 @@
                     height: 1px;
                     background: $black;
                 }
+            }
+
+            .special_price, .percent_off {
+                display: block;
             }
 
         }
@@ -199,4 +208,43 @@
         }
 
     }
+}
+
+@media screen and (max-width: 1000px) {
+    .product_card {
+        flex-direction: column;
+
+        .product_images, .product_details {
+            width: 100%;
+        }
+    }
+
+    .product_images {
+        .swiper-wrapper {
+            height: calc(100vh - 6rem);
+        }
+        .swiper-pagination {
+            display: block;
+        }
+
+    }
+    
+    .product_details {
+        padding: 1rem .5rem;
+
+        .product_info_wrapper {
+            text-align: center;
+
+            a {
+                display: block;
+                margin-bottom: .5rem;
+                padding: .5rem 0;
+            }
+
+            .product_info_action:not(:last-child) {
+                border-bottom: 1px solid $gray1;
+            }
+        }
+    }
+
 }
