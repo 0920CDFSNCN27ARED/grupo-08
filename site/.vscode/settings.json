@@ -1,4 +1,16 @@
 {
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[scss]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
     "editor.formatOnSave": true,
     "editor.tabSize": 4,
     "easycompile.sass": {
@@ -7,6 +19,5 @@
         "outExt": ".min.css",
         "compress": true,
         "sourceMap": true
-
-    },
+    }
 }
