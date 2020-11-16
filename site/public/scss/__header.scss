@@ -1,6 +1,6 @@
 #banner_top {
     background: $black;
-    padding: .5rem 2rem;
+    padding: 0.5rem 2rem;
     text-align: center;
     p {
         color: $white;
@@ -31,12 +31,13 @@ header {
     #menu {
         ul {
             display: flex;
-            
+
             li a {
-                padding: .5rem;
-                margin: 0rem .5rem;
+                padding: 0.5rem;
+                margin: 0rem 0.3rem;
                 color: $gray3;
                 text-transform: uppercase;
+                @include font-size(14);
 
                 &:hover {
                     color: $gray5;
@@ -70,17 +71,16 @@ header {
                 }
             }
         }
-
     }
-    
+
     #menu_links {
         ul {
             display: flex;
             align-items: center;
 
             li {
-                padding: .5rem;
-                margin-left: .5rem;
+                padding: 0.5rem;
+                margin-left: 0.5rem;
             }
         }
 
@@ -90,61 +90,66 @@ header {
 
         #links__search {
             svg {
-                .cls-1, .cls-3 {
+                .cls-1,
+                .cls-3 {
                     fill: none;
-                  }
-            
-                  .cls-1 {
-                    stroke: #8395a7;
-                  }
-            
-                  .cls-2 {
-                    stroke: none;
-                  }
+                }
 
+                .cls-1 {
+                    stroke: #8395a7;
+                }
+
+                .cls-2 {
+                    stroke: none;
+                }
             }
         }
 
         #links__my_account {
             svg {
-                .cls-1, .cls-2, .cls-4 {
+                .cls-1,
+                .cls-2,
+                .cls-4 {
                     fill: none;
-                  }
-            
-                  .cls-1 {
+                }
+
+                .cls-1 {
                     stroke: #8395a7;
-                  }
-            
-                  .cls-3, .cls-5 {
+                }
+
+                .cls-3,
+                .cls-5 {
                     stroke: none;
-                  }
-            
-                  .cls-5 {
+                }
+
+                .cls-5 {
                     fill: #8395a7;
-                  }
+                }
             }
         }
 
         #links__cart {
             svg {
-                .cls-1, .cls-2, .cls-5 {
+                .cls-1,
+                .cls-2,
+                .cls-5 {
                     fill: none;
-                  }
-            
-                  .cls-2 {
+                }
+
+                .cls-2 {
                     stroke: #8395a7;
-                  }
-            
-                  .cls-3, .cls-4 {
+                }
+
+                .cls-3,
+                .cls-4 {
                     stroke: none;
-                  }
-            
-                  .cls-4 {
+                }
+
+                .cls-4 {
                     fill: #8395a7;
-                  }
+                }
             }
         }
-
     }
 
     // Boton menu mobile
@@ -158,14 +163,11 @@ header {
             width: 32px;
             height: 2px;
             background: $gray3;
-            margin: .5rem 0;
+            margin: 0.5rem 0;
             border-radius: 1rem;
         }
     }
-
-
 }
-
 
 @media screen and (max-width: 1000px) {
     header {
@@ -185,10 +187,16 @@ header {
                 margin-left: 0rem;
             }
 
-            #links__search, #links__my_account {
+            #links__search,
+            #links__my_account {
                 display: none;
             }
         }
 
+        .logo {
+            h1 {
+                @include font-size(24);
+            }
+        }
     }
 }
