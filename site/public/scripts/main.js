@@ -22,7 +22,7 @@ if (catalog_view) {
         
             
             <div class="product_photos">
-                <a href="#link_to_product">
+                <a href="/ficha/#product_${id}">
                     <div class="swiper-container">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide"><img src="/images/catalog/category/img_producto-1.png" alt="nombre_producto"></div>
