@@ -1,367 +1,448 @@
 <!DOCTYPE html>
 <html lang="es" class="home">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="/css/styles.css">
-    <link rel="stylesheet" href="/css/main.min.css">
-</head>
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/main.min.css" />
+  </head>
 
-<body>
-
+  <body>
+    <!-- Header inicio -->
     <div id="banner_top">
-        <p>Lorem ipsum, dolor sit amet consectetur</p>
-    </div>
-
-    <div id="banner_top">
-        <p>Lorem ipsum, dolor sit amet consectetur</p>
+      <p>Lorem ipsum, dolor sit amet consectetur</p>
     </div>
 
     <header>
+      <button id="menu_mobile--btn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
 
-        <button id="menu_mobile--btn">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        
-        <div class="logo">
-            <a href="#">
-                <h1>LOGO</h1>
+      <div class="logo">
+        <a href="/">
+          <h1>LOGO</h1>
+        </a>
+      </div>
+
+      <nav id="menu">
+        <ul>
+          <li class="menu__desplegable">
+            <a href="/galeria/#categoria-1">categoria 1</a>
+
+            <div class="contenido_submenu">
+              <ul>
+                <li>
+                  <a href="/galeria/#subcat-1">Cat1_Subcat 1</a>
+                </li>
+                <li>
+                  <a href="/galeria/#subcat-1">Cat1_Subcat 2</a>
+                </li>
+                <li>
+                  <a href="/galeria/#subcat-1">Cat1_Subcat 3</a>
+                </li>
+                <li>
+                  <a href="/galeria/#subcat-1">Cat1_Subcat 4</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <a href="/galeria/#categoria-1">categoria 2</a>
+          </li>
+          <li>
+            <a href="/galeria/#categoria-1">categoria 3</a>
+          </li>
+          <li class="menu__desplegable">
+            <a href="/galeria/#categoria-1">categoria 4</a>
+
+            <div class="contenido_submenu">
+              <ul>
+                <li>
+                  <a href="/galeria/#subcat-1">Cat4_Subcat 1</a>
+                </li>
+                <li>
+                  <a href="/galeria/#subcat-1">Cat4_Subcat 2</a>
+                </li>
+                <li>
+                  <a href="/galeria/#subcat-1">Cat4_Subcat 3</a>
+                </li>
+                <li>
+                  <a href="/galeria/#subcat-1">Cat4_Subcat 4</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <a href="/galeria/#categoria-1">categoria 5</a>
+          </li>
+        </ul>
+      </nav>
+
+      <div id="menu_links">
+        <ul>
+          <li>
+            <a href="#search" id="links__search">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 16.717 16.717"
+              >
+                <g id="header-search_icon" transform="translate(-877.2 -111.7)">
+                  <g id="icono-buscar" transform="translate(-1229.8 -338.3)">
+                    <g
+                      id="Ellipse_2"
+                      data-name="Ellipse 2"
+                      class="cls-1"
+                      transform="translate(2107 450)"
+                    >
+                      <circle class="cls-2" cx="6.932" cy="6.932" r="6.932" />
+                      <circle class="cls-3" cx="6.932" cy="6.932" r="6.432" />
+                    </g>
+                    <line
+                      id="Line_3"
+                      data-name="Line 3"
+                      class="cls-1"
+                      x2="5"
+                      y2="5"
+                      transform="translate(2118.364 461.364)"
+                    />
+                  </g>
+                </g>
+              </svg>
             </a>
-        </div>
-
-        <nav id="menu">
-            <ul>
-
-                <li class="menu__desplegable">
-                    <a href="#categoria-1">categoria 1</a>
-
-                    <div class="contenido_submenu">
-                        <ul>
-                            <li>
-                                <a href="#subcat-1">Cat1_Subcat 1</a>
-                            </li>
-                            <li>
-                                <a href="#subcat-1">Cat1_Subcat 2</a>
-                            </li>
-                            <li>
-                                <a href="#subcat-1">Cat1_Subcat 3</a>
-                            </li>
-                            <li>
-                                <a href="#subcat-1">Cat1_Subcat 4</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li>
-                    <a href="#categoria-1">categoria 2</a>
-                </li>
-                <li>
-                    <a href="#categoria-1">categoria 3</a>
-                </li>
-                <li class="menu__desplegable">
-                    <a href="#categoria-1">categoria 4</a>
-
-                    <div class="contenido_submenu">
-                        <ul>
-                            <li>
-                                <a href="#subcat-1">Cat4_Subcat 1</a>
-                            </li>
-                            <li>
-                                <a href="#subcat-1">Cat4_Subcat 2</a>
-                            </li>
-                            <li>
-                                <a href="#subcat-1">Cat4_Subcat 3</a>
-                            </li>
-                            <li>
-                                <a href="#subcat-1">Cat4_Subcat 4</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li>
-                    <a href="#categoria-1">categoria 5</a>
-                </li>
-
-            </ul>
-        </nav>
-
-        <div id="menu_links">
-            <ul>
-                <li>
-                    <a href="#search" id="links__search">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16.717 16.717">
-                            <g id="header-search_icon" transform="translate(-877.2 -111.7)">
-                              <g id="icono-buscar" transform="translate(-1229.8 -338.3)">
-                                <g id="Ellipse_2" data-name="Ellipse 2" class="cls-1" transform="translate(2107 450)">
-                                  <circle class="cls-2" cx="6.932" cy="6.932" r="6.932"/>
-                                  <circle class="cls-3" cx="6.932" cy="6.932" r="6.432"/>
-                                </g>
-                                <line id="Line_3" data-name="Line 3" class="cls-1" x2="5" y2="5" transform="translate(2118.364 461.364)"/>
-                              </g>
-                            </g>
-                        </svg>
-                    </a>
-                </li>
-                <li>
-                    <a href="#my-account" id="links__my_account">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16.001 20">
-                            <g id="header-user_icon" transform="translate(-838.999 -110)">
-                              <g id="icono-usuario" transform="translate(-1347 -339.449)">
-                                <g id="Ellipse_3" data-name="Ellipse 3" class="cls-1" transform="translate(2189 449.449)">
-                                  <circle class="cls-3" cx="5" cy="5" r="5"/>
-                                  <circle class="cls-4" cx="5" cy="5" r="4.5"/>
-                                </g>
-                                <g id="Path_24" data-name="Path 24" class="cls-2" transform="translate(2186 461.899)">
-                                  <path class="cls-3" d="M8,0a7.762,7.762,0,0,1,8,7.5c0-.011-16.119.119-16,0A7.762,7.762,0,0,1,8,0Z"/>
-                                  <path class="cls-5" d="M 7.999996185302734 1.000003814697266 C 4.49144172668457 1.000003814697266 1.577479362487793 3.409412860870361 1.076176643371582 6.539883613586426 C 1.61374568939209 6.545950412750244 2.454409599304199 6.550613880157471 3.768815994262695 6.550613880157471 C 6.857706069946289 6.550613880157471 11.15395641326904 6.525563716888428 13.72088623046875 6.510593891143799 C 14.17647933959961 6.507936477661133 14.58093166351318 6.505577087402344 14.9179105758667 6.503711223602295 C 14.40015602111816 3.390745639801025 11.49512195587158 1.000003814697266 7.999996185302734 1.000003814697266 M 7.999996185302734 3.814697265625e-06 C 12.41827583312988 3.814697265625e-06 15.99999618530273 3.357863903045654 15.99999618530273 7.500003814697266 C 15.99993419647217 7.499521732330322 15.97068786621094 7.499295234680176 15.91509532928467 7.499295234680176 C 15.07672882080078 7.499295234680176 8.204732894897461 7.55061674118042 3.768816947937012 7.55061674118042 C 1.564613342285156 7.55061674118042 -0.03794479370117188 7.537944793701172 -3.814697265625e-06 7.500003814697266 C -3.814697265625e-06 3.357863903045654 3.58172607421875 3.814697265625e-06 7.999996185302734 3.814697265625e-06 Z"/>
-                                </g>
-                              </g>
-                            </g>
-                        </svg>
-                    </a>
-                </li>
-                <li>
-                    <a href="#cart" id="links__cart">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 20">
-                            <g id="header-cart_icon" transform="translate(-907 -109)">
-                              <g id="icono-bolsa" transform="translate(-1435 -339.095)">
-                                <g id="Path_25" data-name="Path 25" class="cls-1" transform="translate(2345.654 448.095)">
-                                  <path class="cls-3" d="M4,0C7.689,0,8,3.293,8,5.9c.023.028-7.985.068-8,0C0,3.293.311,0,4,0Z"/>
-                                  <path class="cls-4" d="M 3.999999046325684 1.000001907348633 C 2.739169120788574 1.000001907348633 1.974889278411865 1.430771827697754 1.521879196166992 2.396751642227173 C 1.184659957885742 3.115817308425903 1.061374664306641 4.028289794921875 1.019600868225098 4.929722785949707 C 1.430490016937256 4.933590412139893 2.028666019439697 4.936491966247559 2.898379325866699 4.936491966247559 C 4.436203479766846 4.936491966247559 6.009880065917969 4.927745819091797 6.979860305786133 4.918222427368164 C 6.937572479248047 4.020526885986328 6.813906669616699 3.112764835357666 6.478119373321533 2.396751642227173 C 6.02510929107666 1.430771827697754 5.260828971862793 1.000001907348633 3.999999046325684 1.000001907348633 M 3.999999046325684 1.9073486328125e-06 C 7.689349174499512 1.9073486328125e-06 7.999999046325684 3.292721748352051 7.999999046325684 5.899121761322021 C 8.013957977294922 5.915587425231934 5.193633556365967 5.936487197875977 2.898378849029541 5.936487197875977 C 1.329530239105225 5.936487197875977 0.006267547607421875 5.926730155944824 -9.5367431640625e-07 5.899121761322021 C -9.5367431640625e-07 3.292721748352051 0.3106493949890137 1.9073486328125e-06 3.999999046325684 1.9073486328125e-06 Z"/>
-                                </g>
-                                <g id="Rectangle_94" data-name="Rectangle 94" class="cls-2" transform="translate(2342 453.095)">
-                                  <rect class="cls-3" width="15" height="15" rx="1"/>
-                                  <rect class="cls-5" x="0.5" y="0.5" width="14" height="14" rx="0.5"/>
-                                </g>
-                                <path id="Path_26" data-name="Path 26" class="cls-2" d="M2346.507,453.712v3.294" transform="translate(-0.195 -0.289)"/>
-                                <path id="Path_27" data-name="Path 27" class="cls-2" d="M2346.507,453.712v3.294" transform="translate(6.502 -0.289)"/>
-                              </g>
-                            </g>
-                          </svg>
-                          
-                    </a>
-                </li>
-            </ul>
-        </div>
-
+          </li>
+          <li>
+            <a href="#my-account" id="links__my_account">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16.001 20">
+                <g id="header-user_icon" transform="translate(-838.999 -110)">
+                  <g id="icono-usuario" transform="translate(-1347 -339.449)">
+                    <g
+                      id="Ellipse_3"
+                      data-name="Ellipse 3"
+                      class="cls-1"
+                      transform="translate(2189 449.449)"
+                    >
+                      <circle class="cls-3" cx="5" cy="5" r="5" />
+                      <circle class="cls-4" cx="5" cy="5" r="4.5" />
+                    </g>
+                    <g
+                      id="Path_24"
+                      data-name="Path 24"
+                      class="cls-2"
+                      transform="translate(2186 461.899)"
+                    >
+                      <path
+                        class="cls-3"
+                        d="M8,0a7.762,7.762,0,0,1,8,7.5c0-.011-16.119.119-16,0A7.762,7.762,0,0,1,8,0Z"
+                      />
+                      <path
+                        class="cls-5"
+                        d="M 7.999996185302734 1.000003814697266 C 4.49144172668457 1.000003814697266 1.577479362487793 3.409412860870361 1.076176643371582 6.539883613586426 C 1.61374568939209 6.545950412750244 2.454409599304199 6.550613880157471 3.768815994262695 6.550613880157471 C 6.857706069946289 6.550613880157471 11.15395641326904 6.525563716888428 13.72088623046875 6.510593891143799 C 14.17647933959961 6.507936477661133 14.58093166351318 6.505577087402344 14.9179105758667 6.503711223602295 C 14.40015602111816 3.390745639801025 11.49512195587158 1.000003814697266 7.999996185302734 1.000003814697266 M 7.999996185302734 3.814697265625e-06 C 12.41827583312988 3.814697265625e-06 15.99999618530273 3.357863903045654 15.99999618530273 7.500003814697266 C 15.99993419647217 7.499521732330322 15.97068786621094 7.499295234680176 15.91509532928467 7.499295234680176 C 15.07672882080078 7.499295234680176 8.204732894897461 7.55061674118042 3.768816947937012 7.55061674118042 C 1.564613342285156 7.55061674118042 -0.03794479370117188 7.537944793701172 -3.814697265625e-06 7.500003814697266 C -3.814697265625e-06 3.357863903045654 3.58172607421875 3.814697265625e-06 7.999996185302734 3.814697265625e-06 Z"
+                      />
+                    </g>
+                  </g>
+                </g>
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a href="#cart" id="links__cart">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 20">
+                <g id="header-cart_icon" transform="translate(-907 -109)">
+                  <g id="icono-bolsa" transform="translate(-1435 -339.095)">
+                    <g
+                      id="Path_25"
+                      data-name="Path 25"
+                      class="cls-1"
+                      transform="translate(2345.654 448.095)"
+                    >
+                      <path
+                        class="cls-3"
+                        d="M4,0C7.689,0,8,3.293,8,5.9c.023.028-7.985.068-8,0C0,3.293.311,0,4,0Z"
+                      />
+                      <path
+                        class="cls-4"
+                        d="M 3.999999046325684 1.000001907348633 C 2.739169120788574 1.000001907348633 1.974889278411865 1.430771827697754 1.521879196166992 2.396751642227173 C 1.184659957885742 3.115817308425903 1.061374664306641 4.028289794921875 1.019600868225098 4.929722785949707 C 1.430490016937256 4.933590412139893 2.028666019439697 4.936491966247559 2.898379325866699 4.936491966247559 C 4.436203479766846 4.936491966247559 6.009880065917969 4.927745819091797 6.979860305786133 4.918222427368164 C 6.937572479248047 4.020526885986328 6.813906669616699 3.112764835357666 6.478119373321533 2.396751642227173 C 6.02510929107666 1.430771827697754 5.260828971862793 1.000001907348633 3.999999046325684 1.000001907348633 M 3.999999046325684 1.9073486328125e-06 C 7.689349174499512 1.9073486328125e-06 7.999999046325684 3.292721748352051 7.999999046325684 5.899121761322021 C 8.013957977294922 5.915587425231934 5.193633556365967 5.936487197875977 2.898378849029541 5.936487197875977 C 1.329530239105225 5.936487197875977 0.006267547607421875 5.926730155944824 -9.5367431640625e-07 5.899121761322021 C -9.5367431640625e-07 3.292721748352051 0.3106493949890137 1.9073486328125e-06 3.999999046325684 1.9073486328125e-06 Z"
+                      />
+                    </g>
+                    <g
+                      id="Rectangle_94"
+                      data-name="Rectangle 94"
+                      class="cls-2"
+                      transform="translate(2342 453.095)"
+                    >
+                      <rect class="cls-3" width="15" height="15" rx="1" />
+                      <rect
+                        class="cls-5"
+                        x="0.5"
+                        y="0.5"
+                        width="14"
+                        height="14"
+                        rx="0.5"
+                      />
+                    </g>
+                    <path
+                      id="Path_26"
+                      data-name="Path 26"
+                      class="cls-2"
+                      d="M2346.507,453.712v3.294"
+                      transform="translate(-0.195 -0.289)"
+                    />
+                    <path
+                      id="Path_27"
+                      data-name="Path 27"
+                      class="cls-2"
+                      d="M2346.507,453.712v3.294"
+                      transform="translate(6.502 -0.289)"
+                    />
+                  </g>
+                </g>
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </div>
     </header>
+    <!-- Header fin -->
 
     <section class="home_slider">
-        <div class="slider_slide">
-            <h1 id="title">ESTE ES UN TITULO SIN DISEÑO</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, quis.</p>
-            <a id="cta" href="#">Descubrí el CTA</a>
-        </div>
-        <div class="banner_img">
-            <a href="#" title="banner img">
-                <img src="/images/home/banner_img.png" alt="">
-            </a>
-        </div>
+      <div class="slider_slide">
+        <h1 id="title">ESTE ES UN TITULO SIN DISEÑO</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae,
+          quis.
+        </p>
+        <a id="cta" href="#">Descubrí el CTA</a>
+      </div>
+      <div class="banner_img">
+        <a href="#" title="banner img">
+          <img src="/images/home/banner_img.png" alt="" />
+        </a>
+      </div>
     </section>
 
     <main>
+      <div class="banner_promo">
+        <a href="" title="">
+          <img src="/images/home/banner-promo-1.png" alt="banner promo 1" />
+        </a>
+      </div>
 
-        <div class="banner_promo">
-            <a href="" title="">
-                <img src="/images/home/banner-promo-1.png" alt="banner promo 1">
+      <section class="category_group">
+        <div class="category_wrapper">
+          <article class="category category_large">
+            <a href="#categoria_1">
+              <div class="category_img">
+                <img
+                  src="/images/home/01.svg"
+                  alt="categoria 1"
+                  title="categoria 1"
+                />
+                <h4>CATEGORIA 1</h4>
+              </div>
             </a>
+          </article>
+        </div>
+        <div class="category_wrapper">
+          <article class="category category_double">
+            <div>
+              <h4>Banner Texto</h4>
+            </div>
+          </article>
+          <article class="category category_small">
+            <a href="#categoria_2">
+              <div class="category_img">
+                <img
+                  src="/images/home/02.svg"
+                  alt="categoria_2"
+                  title="categoria_2"
+                />
+                <h4>CATEGORIA 2</h4>
+              </div>
+            </a>
+          </article>
+          <article class="category category_small">
+            <a href="#categoria_3">
+              <div class="category_img">
+                <img
+                  src="/images//home/03.svg"
+                  alt="categoria_3"
+                  title="categoria_3"
+                />
+                <h4>CATEGORIA 3</h4>
+              </div>
+            </a>
+          </article>
+        </div>
+      </section>
+
+      <div class="banner_promo">
+        <a href="" title="">
+          <img src="/images/home/banner-promo-2.png" alt="banner promo 2" />
+        </a>
+      </div>
+
+      <section class="product_group">
+        <div class="product_wrapper">
+          <article class="home_product product_small">
+            <a href="#product">
+              <div class="product">
+                <img
+                  src="/images/catalog/category/img_producto-chico.png"
+                  alt="producto_1"
+                  title="producto_1"
+                />
+                <div class="product_info">
+                  <p class="product_name">Producto 1</p>
+                  <h4 class="price">$2.900</h4>
+                </div>
+              </div>
+            </a>
+          </article>
+          <article class="home_product product_small">
+            <a href="#product">
+              <div class="product">
+                <img
+                  src="/images/catalog/category/img_producto-chico.png"
+                  alt="producto_2"
+                  title="producto_2"
+                />
+                <div class="product_info">
+                  <p class="product_name">Producto 2</p>
+                  <h4 class="price">$4.690</h4>
+                </div>
+              </div>
+            </a>
+          </article>
         </div>
 
-        <section class="category_group">
-
-            <div class="category_wrapper">
-                <article class="category category_large">
-                    <a href="#categoria_1">
-                        <div class="category_img">
-                            <img src="/images/home/01.svg" alt="categoria 1" title="categoria 1">
-                            <h4>CATEGORIA 1</h4>
-                        </div>
-                    </a>
-                </article>
-            </div>
-            <div class="category_wrapper">
-                <article class="category category_double">
-                    <div>
-                        <h4>Banner Texto</h4>
-                    </div>
-                </article>
-                <article class="category category_small">
-                    <a href="#categoria_2">
-                        <div class="category_img">
-                            <img src="/images/home/02.svg" alt="categoria_2" title="categoria_2">
-                            <h4>CATEGORIA 2</h4>
-                        </div>
-                    </a>
-                </article>
-                <article class="category category_small">
-                    <a href="#categoria_3">
-                        <div class="category_img">
-                            <img src="/images//home/03.svg" alt="categoria_3" title="categoria_3">
-                            <h4>CATEGORIA 3</h4>
-                        </div>
-                    </a>
-                </article>
-            </div>
-
-        </section>
-
-        <div class="banner_promo">
-            <a href="" title="">
-                <img src="/images/home/banner-promo-2.png" alt="banner promo 2">
+        <div class="product_wrapper">
+          <article class="home_product product_large">
+            <a href="#product">
+              <div class="product">
+                <img
+                  src="/images/catalog/category/img_producto-5.png"
+                  alt="producto_5"
+                  title="producto_5"
+                />
+                <div class="product_info">
+                  <p class="product_name">Producto 5</p>
+                  <h4 class="price">$10.200</h4>
+                </div>
+              </div>
             </a>
+          </article>
         </div>
 
-        <section class="product_group">
-
-            <div class="product_wrapper">
-                <article class="home_product product_small">
-                    <a href="#product">
-                        <div class="product">
-                            <img src="/images/catalog/category/img_producto-chico.png" alt="producto_1"
-                                title="producto_1">
-                            <div class="product_info">
-                                <p class="product_name">Producto 1</p>
-                                <h4 class="price">$2.900</h4>
-                            </div>
-                        </div>
-                    </a>
-                </article>
-                <article class="home_product product_small">
-                    <a href="#product">
-                        <div class="product">
-                            <img src="/images/catalog/category/img_producto-chico.png" alt="producto_2"
-                                title="producto_2">
-                            <div class="product_info">
-                                <p class="product_name">Producto 2</p>
-                                <h4 class="price">$4.690</h4>
-                            </div>
-                        </div>
-                    </a>
-                </article>
-            </div>
-
-            <div class="product_wrapper">
-                <article class="home_product product_large">
-                    <a href="#product">
-                        <div class="product">
-                            <img src="/images/catalog/category/img_producto-5.png" alt="producto_5" title="producto_5">
-                            <div class="product_info">
-                                <p class="product_name">Producto 5</p>
-                                <h4 class="price">$10.200</h4>
-                            </div>
-                        </div>
-                    </a>
-                </article>
-            </div>
-
-            <div class="product_wrapper">
-                <article class="home_product product_small">
-                    <a href="#product">
-                        <div class="product">
-                            <img src="/images/catalog/category/img_producto-chico.png" alt="producto_3"
-                                title="producto_3">
-                            <div class="product_info">
-                                <p class="product_name">Producto 3</p>
-                                <h4 class="price">$1.060</h4>
-                            </div>
-                        </div>
-                    </a>
-                </article>
-                <article class="home_product product_small">
-                    <a href="#product">
-                        <div class="product">
-                            <img src="/images/catalog/category/img_producto-chico.png" alt="producto_4"
-                                title="producto_4">
-                            <div class="product_info">
-                                <p class="product_name">Producto 4</p>
-                                <h4 class="price">$2.900</h4>
-                            </div>
-                        </div>
-                    </a>
-                </article>
-            </div>
-
-
-        </section>
-
+        <div class="product_wrapper">
+          <article class="home_product product_small">
+            <a href="#product">
+              <div class="product">
+                <img
+                  src="/images/catalog/category/img_producto-chico.png"
+                  alt="producto_3"
+                  title="producto_3"
+                />
+                <div class="product_info">
+                  <p class="product_name">Producto 3</p>
+                  <h4 class="price">$1.060</h4>
+                </div>
+              </div>
+            </a>
+          </article>
+          <article class="home_product product_small">
+            <a href="#product">
+              <div class="product">
+                <img
+                  src="/images/catalog/category/img_producto-chico.png"
+                  alt="producto_4"
+                  title="producto_4"
+                />
+                <div class="product_info">
+                  <p class="product_name">Producto 4</p>
+                  <h4 class="price">$2.900</h4>
+                </div>
+              </div>
+            </a>
+          </article>
+        </div>
+      </section>
     </main>
 
     <footer>
+      <section id="footer_newsletter">
+        <h2>join our newsletter</h2>
+        <p>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet
+          eligendi at minus explicabo laboriosam esse veniam ex, necessitatibus
+        </p>
 
-        <section id="footer_newsletter">
-            <h2>join our newsletter</h2>
-            <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet eligendi at minus explicabo laboriosam
-                esse veniam ex, necessitatibus
-            </p>
+        <form action="#" id="form_suscription">
+          <input
+            type="email"
+            name="footer_newsletter"
+            id="footer_newsletter"
+            placeholder="Correo electrónico"
+          />
+          <button type="submit" id="footer_newsletter--send">-></button>
+        </form>
+        <span>Lorem ipsum dolor sit amet consectetur</span>
+      </section>
 
-            <form action="#" id="form_suscription">
-                <input type="email" name="footer_newsletter" id="footer_newsletter" placeholder="Correo electrónico">
-                <button type="submit" id="footer_newsletter--send">
-                    ->
-                </button>
-            </form>
-            <span>Lorem ipsum dolor sit amet consectetur</span>
-        </section>
+      <nav id="footer_menu">
+        <ul>
+          <li>
+            <a href="#link1">Categoria 1</a>
+          </li>
+          <li>
+            <a href="#link2">Categoria 2</a>
+          </li>
+          <li>
+            <a href="#link3">Categoria 3</a>
+          </li>
+          <li>
+            <a href="#link4">Categoria 4</a>
+          </li>
+          <li>
+            <a href="#link5">Categoria 5</a>
+          </li>
+          <li>
+            <a href="#link6">Categoria 6</a>
+          </li>
+          <li>
+            <a href="#link7">Categoria 7</a>
+          </li>
+          <li>
+            <a href="#link8">Categoria 8</a>
+          </li>
+          <li>
+            <a href="#link9">Categoria 9</a>
+          </li>
+          <li>
+            <a href="#link10">Categoria 10</a>
+          </li>
+        </ul>
+      </nav>
 
-        <nav id="footer_menu">
-            <ul>
-                <li>
-                    <a href="#link1">Categoria 1</a>
-                </li>
-                <li>
-                    <a href="#link2">Categoria 2</a>
-                </li>
-                <li>
-                    <a href="#link3">Categoria 3</a>
-                </li>
-                <li>
-                    <a href="#link4">Categoria 4</a>
-                </li>
-                <li>
-                    <a href="#link5">Categoria 5</a>
-                </li>
-                <li>
-                    <a href="#link6">Categoria 6</a>
-                </li>
-                <li>
-                    <a href="#link7">Categoria 7</a>
-                </li>
-                <li>
-                    <a href="#link8">Categoria 8</a>
-                </li>
-                <li>
-                    <a href="#link9">Categoria 9</a>
-                </li>
-                <li>
-                    <a href="#link10">Categoria 10</a>
-                </li>
-            </ul>
-        </nav>
-
-        <div class="footer_rrss">
-            <ul>
-                <li>
-                    <a href="#fb">Facebook</a>
-                </li>
-                <li>
-                    <a href="#ig">Instagram</a>
-                </li>
-                <li>
-                    <a href="#yt">Youtube</a>
-                </li>
-            </ul>
-        </div>
-
+      <div class="footer_rrss">
+        <ul>
+          <li>
+            <a href="#fb">Facebook</a>
+          </li>
+          <li>
+            <a href="#ig">Instagram</a>
+          </li>
+          <li>
+            <a href="#yt">Youtube</a>
+          </li>
+        </ul>
+      </div>
     </footer>
-
-</body>
-
+  </body>
 </html>
