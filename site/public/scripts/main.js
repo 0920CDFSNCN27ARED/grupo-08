@@ -1,3 +1,13 @@
+function esMobile() {
+    return window.matchMedia("(max-width: 720px)").matches;
+}
+function esTables() {
+    return window.matchMedia("(min-width: 721px) and (max-width: 999px)").matches;
+}
+function esDesktop() {
+    return window.matchMedia("(min-width: 1000px)").matches;
+}
+
 // GALERIA DE PRODUCTOS
 const catalog_view = document.querySelector('.catalog_category_view');
 if (catalog_view) {
@@ -103,3 +113,25 @@ if (catalog_view) {
 
 }
 
+// FICHA PRODUCTO
+const catalog_product_view = document.querySelector('.catalog_product_view');
+if(catalog_product_view) {
+    let swiper_photos_el = catalog_product_view.querySelector('.swiper-container');
+
+    let swiper_photos = new Swiper( swiper_photos_el, {
+        loop: true,
+        pagination: {
+            el: '.swiper-pagination',
+        },
+        breakpoints: {
+            1000: {
+                loop: false,
+                slidesPerView: 2,
+                slidesPerGroup: 2,
+                slidesPerColumn: 10,
+                slidesPerColumnFill: 'row',
+            },
+        }
+
+    } )
+}
