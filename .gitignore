@@ -1,5 +1,9 @@
 # Editables
 *.xd
+*.ai
+*.psd
+*.figma
+*.sketch
 
 # Varios
 .DS_Store
