@@ -5,10 +5,11 @@
 @import "./__header.scss";
 @import "./__footer.scss";
 @import "./__home.scss";
+@import "__slider_featured_products.scss";
 
 // Pages
-@import './__galeria_productos.scss';
-@import './__ficha_producto.scss';
+@import "./__galeria_productos.scss";
+@import "./__ficha_producto.scss";
 
 * {
   margin: 0;
