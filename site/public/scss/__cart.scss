@@ -1,0 +1,30 @@
+.checkout_cart {
+  main h1 {
+    @include font-size(24);
+    font-weight: 700;
+    color: $gray3;
+    margin: 3rem 1rem 2rem;
+    padding: 0 1rem;
+    border-bottom: 1px solid $gray2;
+  }
+
+  .cart {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .cart_products,
+  .cart_details {
+    border: 1px solid $gray2;
+    padding: 1rem;
+    margin: 0rem 1rem;
+  }
+
+  .cart_products {
+    width: 60%;
+  }
+  .cart_details {
+    width: 40%;
+  }
+}
