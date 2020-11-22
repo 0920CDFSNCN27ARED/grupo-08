@@ -16,6 +16,9 @@ const mainControllers = {
   login: (req, res) => {
     res.sendFile(getPath("../views/login.html"));
   },
+  registro: (req, res) => {
+    res.sendFile(getPath("../views/register.html"));
+  },
 
   notFound: (req, res) => {
     res.send("404");
