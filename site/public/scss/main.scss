@@ -5,11 +5,12 @@
 @import "./__header.scss";
 @import "./__footer.scss";
 @import "./__home.scss";
-@import "__slider_featured_products.scss";
+@import "./__slider_featured_products.scss";
 
 // Pages
 @import "./__galeria_productos.scss";
 @import "./__ficha_producto.scss";
+@import "./__cart.scss";
 @import "./__login.scss";
 @import "./__register.scss";
 
@@ -51,3 +52,49 @@ img {
   height: 2000px;
   background: gray;
 }
+
+.dnone {
+  display: none;
+}
+
+.remove_button {
+    border: 0px;
+    padding: .3rem .3rem .2rem;
+    background: $white;
+    cursor: pointer;
+    @include transition(.2s);
+  
+    .a {
+      fill: $gray3;
+    }
+  
+    &:hover {
+      .a {
+        fill: red;
+      }
+    }
+    &:active {
+      .a {
+        fill: $black;
+      }
+    }
+  
+  }
+
+  .button_main_action {
+    border: 0;
+    background: $gray5;
+    color: $white;
+    @include font-size(14);
+    font-weight: 700;
+    padding: 0.8rem;
+    cursor: pointer;
+
+    &:hover {
+      background: $black;
+      @include shadow(0px, 10px, 20px, $gray5, 0.1);
+    }
+    &:active {
+      background: $gray4;
+    }
+  }

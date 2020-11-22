@@ -5,6 +5,9 @@ const routes = express.Router();
 const mainControllers = require("../controllers/mainControllers");
 
 routes.get("/", mainControllers.inicio);
+routes.get("/galeria", mainControllers.galeria_productos)
+routes.get("/ficha", mainControllers.ficha_producto)
+routes.get("/carrito", mainControllers.cart)
 routes.get("/galeria", mainControllers.galeria_productos);
 routes.get("/ficha", mainControllers.ficha_producto);
 routes.get("/login", mainControllers.login);
