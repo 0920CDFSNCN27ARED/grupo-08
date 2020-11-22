@@ -13,6 +13,9 @@ const mainControllers = {
   ficha_producto: (req, res) => {
     res.sendFile(getPath("../views/ficha-producto.html"));
   },
+  cart: (req, res) => {
+    res.sendFile(getPath("../views/carrito.html"));
+  },
 
   notFound: (req, res) => {
     res.send("404");

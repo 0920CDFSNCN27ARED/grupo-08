@@ -171,24 +171,6 @@
         }
       }
     }
-
-    button {
-      border: 0;
-      background: $gray5;
-      color: $white;
-      @include font-size(14);
-      font-weight: 700;
-      padding: 0.8rem;
-      cursor: pointer;
-
-      &:hover {
-        background: $black;
-        @include shadow(0px, 10px, 20px, $gray5, 0.1);
-      }
-      &:active {
-        background: $gray4;
-      }
-    }
   }
 
   .product_info_wrapper {
