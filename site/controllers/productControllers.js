@@ -1,10 +1,10 @@
 const productControllers = {
     gallery: (req, res) => {
-        res.render('products_gallery');
+        res.render('pages/products_gallery');
     },
 
     details: (req, res) => {
-        res.render('product_details');
+        res.render('pages/product_details');
     },
 };
 

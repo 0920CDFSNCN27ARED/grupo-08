@@ -1,6 +1,6 @@
 const mainControllers = {
     index: (req, res) => {
-        res.render('index');
+        res.render('pages/index');
     },
 
     notFound: (req, res) => {
