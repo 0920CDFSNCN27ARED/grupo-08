@@ -11,6 +11,7 @@ app.use(staticFiles);
 // Cargar rutas
 const mainRoutes = require("./routes/mainRoutes");
 const productsRoutes = require("./routes/productsRoutes");
+const checkoutRoutes = require("./routes/checkoutRoutes");
 
 // Middlewares
 
@@ -19,4 +20,5 @@ const productsRoutes = require("./routes/productsRoutes");
 // Levantar rutas
 
 app.use("/catalogo", productsRoutes);
+app.use("/checkout", checkoutRoutes);
 app.use("/", mainRoutes);

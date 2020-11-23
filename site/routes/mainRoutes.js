@@ -6,8 +6,6 @@ const mainControllers = require("../controllers/mainControllers");
 
 routes.get("/", mainControllers.inicio);
 
-routes.get("/carrito", mainControllers.cart);
-
 routes.get("/login", mainControllers.login);
 routes.get("/register", mainControllers.registro);
 
