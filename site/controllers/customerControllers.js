@@ -5,11 +5,11 @@ const getPath = (filePath) => {
 
 const customerControllers = {
     login: (req, res) => {
-        res.sendFile(getPath('../views/login.html'));
+        res.render('login');
     },
 
     register: (req, res) => {
-        res.sendFile(getPath('../views/register.html'));
+        res.render('register');
     },
 };
 

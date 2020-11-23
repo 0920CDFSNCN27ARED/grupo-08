@@ -24,6 +24,6 @@ const customerRoutes = require('./routes/customerRoutes');
 // Levantar rutas
 
 app.use('/catalogo', productRoutes);
-app.use('/cliente', customerRoutes);
+app.use('/clientes', customerRoutes);
 app.use('/checkout', checkoutRoutes);
 app.use('/', mainRoutes);

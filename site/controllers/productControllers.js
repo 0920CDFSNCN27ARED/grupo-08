@@ -1,15 +1,10 @@
-const path = require('path');
-const getPath = (filePath) => {
-    return path.resolve(__dirname, filePath);
-};
-
 const productControllers = {
     gallery: (req, res) => {
-        res.sendFile(getPath('../views/galeria-productos.html'));
+        res.render('products_gallery');
     },
 
     details: (req, res) => {
-        res.sendFile(getPath('../views/ficha-producto.html'));
+        res.render('product_details');
     },
 };
 

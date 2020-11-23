@@ -1,11 +1,6 @@
-const path = require('path');
-const getPath = (filePath) => {
-    return path.resolve(__dirname, filePath);
-};
-
 const mainControllers = {
-    inicio: (req, res) => {
-        res.sendFile(getPath('../views/index.html'));
+    index: (req, res) => {
+        res.render('index');
     },
 
     notFound: (req, res) => {

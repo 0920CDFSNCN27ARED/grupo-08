@@ -1,10 +1,10 @@
-const express = require("express");
+const express = require('express');
 const routes = express.Router();
 
 // Controllers
-const mainControllers = require("../controllers/mainControllers");
+const mainControllers = require('../controllers/mainControllers');
 
-routes.get("/", mainControllers.inicio);
-routes.get("*", mainControllers.notFound);
+routes.get('/', mainControllers.index);
+routes.get('*', mainControllers.notFound);
 
 module.exports = routes;

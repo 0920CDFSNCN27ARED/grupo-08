@@ -5,7 +5,7 @@ const getPath = (filePath) => {
 
 const checkoutControllers = {
     cart: (req, res) => {
-        res.sendFile(getPath('../views/carrito.html'));
+        res.render('cart');
     },
 };
 
