@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es" class="home">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/main.min.css" />
+  </head>
+
+  <body>
+    <%- include("./_header") %>
+
+    <section class="home_slider">
+      <div class="slider_slide">
+        <h1 id="title">ESTE ES UN TITULO SIN DISEÑO</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae,
+          quis.
+        </p>
+        <a id="cta" href="#">Descubrí el CTA</a>
+      </div>
+      <div class="banner_img">
+        <a href="#" title="banner img">
+          <img src="/images/home/banner_img.png" alt="" />
+        </a>
+      </div>
+    </section>
+
+    <main>
+      <div class="banner_promo">
+        <a href="" title="">
+          <img src="/images/home/banner-promo-1.png" alt="banner promo 1" />
+        </a>
+      </div>
+
+      <section class="category_group">
+        <div class="category_wrapper">
+          <article class="category category_large">
+            <a href="#categoria_1">
+              <div class="category_img">
+                <img
+                  src="/images/home/01.svg"
+                  alt="categoria 1"
+                  title="categoria 1"
+                />
+                <h4>CATEGORIA 1</h4>
+              </div>
+            </a>
+          </article>
+        </div>
+        <div class="category_wrapper">
+          <article class="category category_double">
+            <div>
+              <h4>Banner Texto</h4>
+            </div>
+          </article>
+          <article class="category category_small">
+            <a href="#categoria_2">
+              <div class="category_img">
+                <img
+                  src="/images/home/02.svg"
+                  alt="categoria_2"
+                  title="categoria_2"
+                />
+                <h4>CATEGORIA 2</h4>
+              </div>
+            </a>
+          </article>
+          <article class="category category_small">
+            <a href="#categoria_3">
+              <div class="category_img">
+                <img
+                  src="/images//home/03.svg"
+                  alt="categoria_3"
+                  title="categoria_3"
+                />
+                <h4>CATEGORIA 3</h4>
+              </div>
+            </a>
+          </article>
+        </div>
+      </section>
+
+      <div class="banner_promo">
+        <a href="" title="">
+          <img src="/images/home/banner-promo-2.png" alt="banner promo 2" />
+        </a>
+      </div>
+
+      <section class="product_group">
+        <div class="product_wrapper">
+          <article class="home_product product_small">
+            <a href="#product">
+              <div class="product">
+                <img
+                  src="/images/catalog/category/img_producto-chico.png"
+                  alt="producto_1"
+                  title="producto_1"
+                />
+                <div class="product_info">
+                  <p class="product_name">Producto 1</p>
+                  <h4 class="price">$2.900</h4>
+                </div>
+              </div>
+            </a>
+          </article>
+          <article class="home_product product_small">
+            <a href="#product">
+              <div class="product">
+                <img
+                  src="/images/catalog/category/img_producto-chico.png"
+                  alt="producto_2"
+                  title="producto_2"
+                />
+                <div class="product_info">
+                  <p class="product_name">Producto 2</p>
+                  <h4 class="price">$4.690</h4>
+                </div>
+              </div>
+            </a>
+          </article>
+        </div>
+
+        <div class="product_wrapper">
+          <article class="home_product product_large">
+            <a href="#product">
+              <div class="product">
+                <img
+                  src="/images/catalog/category/img_producto-5.png"
+                  alt="producto_5"
+                  title="producto_5"
+                />
+                <div class="product_info">
+                  <p class="product_name">Producto 5</p>
+                  <h4 class="price">$10.200</h4>
+                </div>
+              </div>
+            </a>
+          </article>
+        </div>
+
+        <div class="product_wrapper">
+          <article class="home_product product_small">
+            <a href="#product">
+              <div class="product">
+                <img
+                  src="/images/catalog/category/img_producto-chico.png"
+                  alt="producto_3"
+                  title="producto_3"
+                />
+                <div class="product_info">
+                  <p class="product_name">Producto 3</p>
+                  <h4 class="price">$1.060</h4>
+                </div>
+              </div>
+            </a>
+          </article>
+          <article class="home_product product_small">
+            <a href="#product">
+              <div class="product">
+                <img
+                  src="/images/catalog/category/img_producto-chico.png"
+                  alt="producto_4"
+                  title="producto_4"
+                />
+                <div class="product_info">
+                  <p class="product_name">Producto 4</p>
+                  <h4 class="price">$2.900</h4>
+                </div>
+              </div>
+            </a>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <%- include("_footer") %>
+  </body>
+</html>

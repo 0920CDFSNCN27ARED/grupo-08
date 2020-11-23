@@ -5,22 +5,22 @@ const getPath = (filePath) => {
 
 const mainControllers = {
   inicio: (req, res) => {
-    res.sendFile(getPath("../views/index.html"));
+    res.render("index");
   },
   galeria_productos: (req, res) => {
-    res.sendFile(getPath("../views/galeria-productos.html"));
+    res.render("galeria-productos");
   },
   ficha_producto: (req, res) => {
-    res.sendFile(getPath("../views/ficha-producto.html"));
+    res.render("ficha-producto");
   },
   cart: (req, res) => {
-    res.sendFile(getPath("../views/carrito.html"));
+    res.render("carrito");
   },
   login: (req, res) => {
-    res.sendFile(getPath("../views/login.html"));
+    res.render("login");
   },
   registro: (req, res) => {
-    res.sendFile(getPath("../views/register.html"));
+    res.render("register");
   },
 
   notFound: (req, res) => {

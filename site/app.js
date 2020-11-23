@@ -12,9 +12,20 @@
 const express = require("express");
 const app = express();
 
+const path = require("path");
+app.set("views", path.resolve(__dirname, "views"));
+app.set("view engine", "ejs");
+
+//var http = require("http");
+//var port = normalizePort(process.env.PORT || "3000");
+//app.set("port", port);
+
+//var server = http.createServer(app);
+//server.listen(port);
+
 const PORT = 3000;
 app.listen(PORT, () => {
-    console.log("Escuchando el puerto "+ PORT);
+  console.log("Escuchando el puerto " + PORT);
 });
 
 const staticFiles = express.static("public");
@@ -22,5 +33,5 @@ const staticFiles = express.static("public");
 // Rutas
 const mainRoutes = require("./routes/mainRoutes");
 
-app.use(staticFiles)
-app.use(mainRoutes)
+app.use(staticFiles);
+app.use(mainRoutes);

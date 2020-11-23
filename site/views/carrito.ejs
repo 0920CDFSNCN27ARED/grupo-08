@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es" class="checkout_cart">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carrito</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/main.min.css" />
+  </head>
+
+  <body>
+    <%- include("./_header") %>
+
+    <main>
+      <h1>
+        Mi bolsa
+        <a onclick="window.location.href = document.referrer"
+          >Continuar comprando</a
+        >
+      </h1>
+
+      <section class="cart">
+        <div class="cart_products">
+          <!--  -->
+          <!--  -->
+          <table
+            id="cart_product__idproduct"
+            class="cart_products_table"
+            border="0"
+            cellspacing="0"
+            cellpadding="0"
+          >
+            <tr>
+              <td>Producto</td>
+              <td>Descripción</td>
+              <td>Precio unitario</td>
+              <td>Cantidad</td>
+              <td>Subtotal</td>
+              <td>Quitar</td>
+            </tr>
+            <tr>
+              <td class="product_image">
+                <img
+                  src="/images/catalog/category/img_producto-4.png"
+                  alt="nombre_producto"
+                />
+              </td>
+              <td class="product_description">
+                <h4 class="product_name">Camisa blanca</h4>
+                <div class="product_info">
+                  <h5>Color:</h5>
+                  <p>Blanco</p>
+                </div>
+                <div class="product_info">
+                  <h5>Talle:</h5>
+                  <p>L</p>
+                </div>
+              </td>
+              <td class="product_single_price">
+                <p>$96.260</p>
+              </td>
+              <td class="product_quantity">
+                <div>
+                  <button class="quantity_increment">+</button>
+                  <p id="current_quantity">1</p>
+                  <button class="quantity_decrement">-</button>
+                </div>
+              </td>
+              <td class="product_subtotal">
+                <p>$91.200</p>
+              </td>
+              <td class="product_remove">
+                <button
+                  class="remove_product remove_button"
+                  title="Quitar producto de la bolsa"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 12 12"
+                  >
+                    <path
+                      class="a"
+                      d="M19.5,8.709,18.291,7.5,13.5,12.291,8.709,7.5,7.5,8.709,12.291,13.5,7.5,18.291,8.709,19.5,13.5,14.709,18.291,19.5,19.5,18.291,14.709,13.5Z"
+                      transform="translate(-7.5 -7.5)"
+                    />
+                  </svg>
+                </button>
+              </td>
+            </tr>
+          </table>
+          <!--  -->
+          <!--  -->
+        </div>
+        <div class="cart_details">
+          <div class="details_discount">
+            <h2>¿Tenés un código de descuento?</h2>
+            <input
+              type="text"
+              name="discount_code_input"
+              id="discount_code_input"
+              placeholder="Ingresa un código promocional"
+              class=""
+            />
+            <div class="details_discount_messages">
+              <ul>
+                <li>Descuento agregado!</li>
+                <li>El codigo ingresado no es válido</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="details_subtotal">
+            <ul>
+              <li>
+                Nombre de descuento
+                <span id="discount_id" class="discount_added">
+                  $2000
+                  <button class="remove_button" title="Quitar descuento">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="12"
+                      height="12"
+                      viewBox="0 0 12 12"
+                    >
+                      <path
+                        class="a"
+                        d="M19.5,8.709,18.291,7.5,13.5,12.291,8.709,7.5,7.5,8.709,12.291,13.5,7.5,18.291,8.709,19.5,13.5,14.709,18.291,19.5,19.5,18.291,14.709,13.5Z"
+                        transform="translate(-7.5 -7.5)"
+                      />
+                    </svg>
+                  </button>
+                </span>
+              </li>
+              <li>
+                Subtotal productos
+                <span id="products_subtotal">$91.200</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="details_total">
+            <h4>
+              Total general: <span id="details_total_total">$91.000</span>
+            </h4>
+          </div>
+
+          <div class="details_buy">
+            <button id="proceed_checkout" class="button_main_action">
+              Completar compra
+            </button>
+          </div>
+
+          <div class="details_share_cart">
+            <p>
+              Ayuda a que elijan tu regalo, comparti tu bolsa de compras y
+              disfrutalo!
+            </p>
+            <button class="button_main_action">Quiero que me lo regalen</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Slider Recomendados inicio -->
+    <aside class="slider_featured_products">
+      <h2>Productos recomendados</h2>
+      <div class="swiper-container">
+        <div class="swiper-wrapper"></div>
+      </div>
+    </aside>
+    <!-- Slider Recomendados fin -->
+
+    <%- include("_footer") %>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="/scripts/main.js"></script>
+  </body>
+</html>
