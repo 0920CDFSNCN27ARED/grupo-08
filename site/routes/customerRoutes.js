@@ -1,9 +1,9 @@
-const express = require("express");
+const express = require('express');
 const routes = express.Router();
 
-const mainControllers = require("../controllers/mainControllers");
+const customerControllers = require('../controllers/customerControllers');
 
-routes.get("/login", mainControllers.login);
-routes.get("/registro", mainControllers.registro);
+routes.get('/login', customerControllers.login);
+routes.get('/registro', customerControllers.register);
 
 module.exports = routes;
