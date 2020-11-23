@@ -1,10 +1,9 @@
 const express = require("express");
 const routes = express.Router();
 
-// Controllers
 const mainControllers = require("../controllers/mainControllers");
 
-routes.get("/", mainControllers.inicio);
-routes.get("*", mainControllers.notFound);
+routes.get("/login", mainControllers.login);
+routes.get("/registro", mainControllers.registro);
 
 module.exports = routes;

@@ -12,6 +12,7 @@ app.use(staticFiles);
 const mainRoutes = require("./routes/mainRoutes");
 const productsRoutes = require("./routes/productsRoutes");
 const checkoutRoutes = require("./routes/checkoutRoutes");
+const customerRoutes = require("./routes/customerRoutes");
 
 // Middlewares
 
@@ -20,5 +21,6 @@ const checkoutRoutes = require("./routes/checkoutRoutes");
 // Levantar rutas
 
 app.use("/catalogo", productsRoutes);
+app.use("/cliente", customerRoutes);
 app.use("/checkout", checkoutRoutes);
 app.use("/", mainRoutes);
