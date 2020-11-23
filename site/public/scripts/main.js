@@ -13,16 +13,16 @@ const catalog_view = document.querySelector('.catalog_category_view');
 if (catalog_view) {
     const getRandomID = () =>
         Math.random()
-            .toString(36)
+            .toString(20)
             .replace(/[^a-z]+/g, '')
             .substr(0, 5);
 
-    let productTemplate = (id) => `
+    const productTemplate = (id) => `
         <article id="product_${id}" class="product">
         
             
             <div class="product_photos">
-                <a href="/ficha/#product_${id}">
+                <a href="/producto/product_${id}">
                     <div class="swiper-container">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide"><img src="/images/catalog/category/img_producto-1.png" alt="nombre_producto"></div>
@@ -50,6 +50,7 @@ if (catalog_view) {
                         </div>
                     
                     </div>
+                    
                 </a>
             </div>
             <div class="product_info">
@@ -59,7 +60,7 @@ if (catalog_view) {
                     </h3>
                     <p>$2.835</p>
                 </a>
-                <div class="quickshop">
+                <div class="quickshop dnone">
                         
                     <div class="quickshop_colors">
                         <span id="${id}_color1" class="q_color selected"></span>
@@ -77,14 +78,17 @@ if (catalog_view) {
             </div>
         </article>`;
 
-    let products_container = document.querySelector('#catalog_gallery');
-    let cantidad_productos = 20;
+    let products_container = document.querySelector('.col-4');
+    let cantidad_productos = 6;
+
     for (let i = 0; i < cantidad_productos; i++) {
         products_container.innerHTML += productTemplate(getRandomID());
     }
 
     let product_list = document.querySelectorAll('.product');
-    if (product_list.length > 0 || product_list !== undefined) {
+    console.log(product_list);
+
+    if (product_list.length > 0) {
         product_list.forEach((product) => {
             let swiper_photos_el = product.querySelector('.swiper-container');
 
