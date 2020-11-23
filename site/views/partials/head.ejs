@@ -1,7 +1,11 @@
 <head>
+    <% const defaultTitle = 'SuperTienda'; const defualtDesc = 'SuperDescripcion'; %>
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>aaaa</title>
+    <title><%= pageTitle ? pageTitle : defaultTitle %></title>
+
+    <meta name="description" content="<%= pageDescription ? pageDescription : defualtDesc %>" />
 
     <!-- Swiper js -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
