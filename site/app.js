@@ -23,7 +23,10 @@ const customerRoutes = require('./routes/customerRoutes');
 
 // Levantar rutas
 
-app.use('/catalogo', productRoutes);
+app.use('/', mainRoutes);
+app.use('/c', productRoutes);
 app.use('/clientes', customerRoutes);
 app.use('/checkout', checkoutRoutes);
-app.use('/', mainRoutes);
+app.use((req, res, next) => {
+    res.render('pages/not_found');
+});

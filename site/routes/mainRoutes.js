@@ -5,6 +5,5 @@ const routes = express.Router();
 const mainControllers = require('../controllers/mainControllers');
 
 routes.get('/', mainControllers.index);
-routes.get('*', mainControllers.notFound);
 
 module.exports = routes;

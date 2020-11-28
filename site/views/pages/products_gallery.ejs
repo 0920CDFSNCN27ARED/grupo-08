@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="es" class="catalog_category_view pepito">
-    <%- include('../partials/head', {pageTitle: pageTitle, pageDescription: pageDescription}) %>
+    <head>
+        <% pageTitle = locals.title !== undefined ? title : 'Categoría' %> <%-
+        include('../partials/head') %>
+    </head>
 
     <body>
         <%- include('../partials/header') %>

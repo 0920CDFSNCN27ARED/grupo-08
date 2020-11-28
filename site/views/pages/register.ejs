@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="es" class="login">
-    <%- include('../partials/head') %>
+    <head>
+        <% pageTitle = locals.title !== undefined ? title : 'Registrarse' %> <%-
+        include('../partials/head') %>
+    </head>
 
     <body>
         <%- include('../partials/header') %>

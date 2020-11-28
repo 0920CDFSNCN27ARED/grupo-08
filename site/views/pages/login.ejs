@@ -3,7 +3,10 @@
     <%- include('../partials/head') %>
 
     <body>
-        <%- include('../partials/header') %>
+        <head>
+            <% pageTitle = locals.title !== undefined ? title : 'Iniciar sesión' %> <%-
+            include('../partials/head') %>
+        </head>
 
         <main class="login_page">
             <section class="login_section login_register_section">
