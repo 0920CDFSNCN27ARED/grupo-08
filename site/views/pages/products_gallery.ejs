@@ -1,19 +1,29 @@
 <!DOCTYPE html>
 <html lang="es" class="catalog_category_view pepito">
     <head>
-        <% pageTitle = locals.title !== undefined ? title : 'Categoría' %> <%-
-        include('../partials/head') %>
+        <% pageTitle = locals.title !== undefined ? title : 'Categoría' %>
+        
+        <%- include('../partials/head') %>
+
+        <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     </head>
 
     <body>
         <%- include('../partials/header') %>
 
         <div id="banner_categoria_id" class="banner_top_categoria">
-            <img
-                src="/images/catalog/category/banner_categoria.png"
-                alt="nombre_categoria"
-                title="nombre_categoria"
-            />
+            <%- include('../components/sliders/slider_full/index', { 
+                sliderID: 'slider_home',
+                sliderHome_banners: [
+                    {
+                        slideID: 1,
+                        slideImgURL: '/images/catalog/category/banner_categoria.png',
+                        slideImgURL_mobile: '/images/catalog/category/banner_categoria.png',
+                    },
+                ]
+            }) 
+        %>
         </div>
 
         <div id="toolbar">

@@ -87,6 +87,13 @@ main {
         align-items: flex-start;
         padding: 1rem 2rem;
     }
+
+    .slider_full {
+    
+        .swiper-container {
+            height: auto;
+        }
+    }
 }
 
 #filters {

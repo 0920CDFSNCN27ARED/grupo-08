@@ -4,15 +4,18 @@
 // Sections
 @import "./__header.scss";
 @import "./__footer.scss";
-@import "./__home.scss";
 @import "./__slider_featured_products.scss";
 
 // Pages
+@import "./__home.scss";
 @import "./__galeria_productos.scss";
 @import "./__ficha_producto.scss";
 @import "./__cart.scss";
 @import "./__login.scss";
 @import "./__register.scss";
+
+// Components
+@import "./__slider_full.scss";
 
 * {
   margin: 0;

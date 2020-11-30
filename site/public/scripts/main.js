@@ -1,11 +1,37 @@
 function esMobile() {
     return window.matchMedia('(max-width: 720px)').matches;
 }
-function esTables() {
+function esTablet() {
     return window.matchMedia('(min-width: 721px) and (max-width: 999px)').matches;
 }
 function esDesktop() {
     return window.matchMedia('(min-width: 1000px)').matches;
+}
+
+// Header
+const header = document.querySelector('header');
+window.addEventListener('scroll', () => window.scrollY > 80 ? header.classList.add('compacto') : header.classList.remove('compacto'))
+
+// HOME
+const home_view = document.querySelector('.home_view');
+if(home_view) {
+    const sliderImages = home_view.querySelectorAll('.slider_full_images');
+
+    function switchSliderImageOnMobile(obj) {
+        let imageSrc = obj.getAttribute('src');
+        let imageSrcMobile = imageSrc.replace('--desktop', '--mobile');
+
+        obj.setAttribute('src', imageSrcMobile);
+        console.log(obj)
+    }
+
+    if( esTablet() || esMobile() ) {
+        sliderImages.forEach( image => {
+            switchSliderImageOnMobile(image);
+        })
+    }
+
+
 }
 
 // GALERIA DE PRODUCTOS
@@ -247,3 +273,4 @@ if (slider_featured_products) {
         },
     });
 }
+
