@@ -1,22 +1,24 @@
-@import './__variables.scss';
-@import './__mixins.scss';
-
-// Sections
-@import './__header.scss';
-@import './__footer.scss';
-@import './__slider_featured_products.scss';
+// Settings
+@import './settings/__variables.scss';
+@import './settings/__mixins.scss';
 
 // Pages
-@import './__home.scss';
-@import './__galeria_productos.scss';
-@import './__ficha_producto.scss';
-@import './__cart.scss';
-@import './__login.scss';
-@import './__register.scss';
+@import './pages/__home.scss';
+@import './pages/__galeria_productos.scss';
+@import './pages/__ficha_producto.scss';
+@import './pages/__cart.scss';
+@import './pages/__login.scss';
+@import './pages/__register.scss';
+
+// Partials
+@import './partials/__header.scss';
+@import './partials/__footer.scss';
 
 // Components
-@import './__banner_top.scss';
-@import './__slider_full.scss';
+@import './components/__slider_featured_products.scss';
+@import './components/__banner_top.scss';
+@import './components/__slider_full.scss';
+@import './components/__banner_promo_wide.scss';
 
 * {
     margin: 0;

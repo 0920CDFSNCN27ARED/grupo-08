@@ -43,11 +43,15 @@
         %>
 
         <main>
-            <div class="banner_promo">
-                <a href="" title="">
-                    <img src="/images/home/banner-promo-1.png" alt="banner promo 1" />
-                </a>
-            </div>
+            <%- include('../components/banners/banner_promocional_wide/index', 
+                    {
+                        bannerID: 'banner_promocional_1',
+                        bannerImg: '/images/banners/home_banner_promocional_1/tituloblack_1920x200FINAL4.jpg',
+                        bannerAlt: 'Nombre del banner',
+                        bannerLink: '#bannerpromocional1',
+                    }
+                )
+            %> 
 
             <section class="category_group">
                 <div class="category_wrapper">
@@ -97,11 +101,15 @@
                 </div>
             </section>
 
-            <div class="banner_promo">
-                <a href="" title="">
-                    <img src="/images/home/banner-promo-2.png" alt="banner promo 2" />
-                </a>
-            </div>
+            <%- include('../components/banners/banner_promocional_wide/index', 
+                    {
+                        bannerID: 'banner_promocional_2',
+                        bannerImg: '/images/banners/home_banner_promocional_2/titulo1_1920x200_3.jpg',
+                        bannerAlt: 'Nombre del banner 2',
+                        bannerLink: '#bannerpromocional2',
+                    }
+                )
+            %> 
 
             <section class="product_group">
                 <div class="product_wrapper">

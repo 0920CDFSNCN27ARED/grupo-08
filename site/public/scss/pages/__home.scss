@@ -1,9 +1,4 @@
 .home_view {
-    main{
-        width:100%;
-        max-width: 1200px;
-        margin: 0 auto;
-    }
     .slider_slide {
         text-align: center;
         display: flex;
@@ -12,14 +7,14 @@
         justify-content: space-between;
         border-bottom: 1px solid #c8d6e5;
         background: #fff;
-        color: #8395a7
+        color: #8395a7;
     }
 
     #title {
         font-size: 40px;
         text-align: center;
         width: 90%;
-        padding: 50px 0px
+        padding: 50px 0px;
     }
 
     #cta {
@@ -30,25 +25,25 @@
         background-color: white;
         // x y spread autline color
         // 0 5 20       0     rgba(0,0,0,.2)
-        box-shadow: 0 4px 20px 0 rgba(0, 0, 0, .2);
+        box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2);
         margin: 20px;
     }
 
-    .banner_promo{
+    .banner_promo {
         padding: 1rem;
         margin: auto;
         margin-top: 20px;
         margin-bottom: 20px;
     }
 
-    .category_group{
+    .category_group {
         display: flex;
         justify-content: space-between;
         padding: 1rem;
         margin: auto;
     }
 
-    .category_wrapper{
+    .category_wrapper {
         width: 48%;
         display: flex;
         flex-wrap: wrap;
@@ -56,48 +51,48 @@
         align-content: space-between;
     }
 
-    .category{
+    .category {
         width: 100%;
     }
 
-    .category_img{
+    .category_img {
         position: relative;
         width: 100%;
     }
 
-    .category_img > h4{
+    .category_img > h4 {
         position: absolute;
         bottom: 8px;
         left: 16px;
-        color: #8395A7;
+        color: #8395a7;
         font-weight: bold;
     }
 
-    .category_double{
+    .category_double {
         border: 1px solid $gray4;
         height: 240px;
     }
 
-    .category_small{
-        width:48%;
+    .category_small {
+        width: 48%;
     }
 
-    .product_group{
+    .product_group {
         display: flex;
         justify-content: space-between;
         padding: 1rem;
         margin: auto;
     }
 
-    .product_wrapper{
+    .product_wrapper {
         width: 32%;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
         align-content: space-between;
     }
-    
-    .product{
+
+    .product {
         position: relative;
         width: 100%;
     }
@@ -113,10 +108,9 @@
         color: #8395a7;
     }
 
-    .product_name{
+    .product_name {
         margin-right: 10px;
     }
-
 }
 
 @media screen and (max-width: 1000px) {
@@ -156,7 +150,5 @@
         .banner_promo {
             margin: 0px;
         }
-
-
     }
 }
