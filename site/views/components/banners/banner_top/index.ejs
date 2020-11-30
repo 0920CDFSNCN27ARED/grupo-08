@@ -1,3 +1,9 @@
-<div id="banner_top">
-    <p>Lorem ipsum, dolor sit amet consectetur</p>
+<% banner_top = { 
+    msg: 'Free shipping en compras superiores a $10.000 - <a href="#">Ver más</a>',
+    background: '#000000' 
+    } 
+%>
+
+<div id="banner_top" <%- banner_top.background.length > 2 ? `style="background: ${banner_top.background}"` : '' %> >
+    <p><%- banner_top.msg %></p>
 </div>
