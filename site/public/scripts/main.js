@@ -10,11 +10,13 @@ function esDesktop() {
 
 // Header
 const header = document.querySelector('header');
-window.addEventListener('scroll', () => window.scrollY > 80 ? header.classList.add('compacto') : header.classList.remove('compacto'))
+window.addEventListener('scroll', () =>
+    window.scrollY > 80 ? header.classList.add('compacto') : header.classList.remove('compacto')
+);
 
 // HOME
 const home_view = document.querySelector('.home_view');
-if(home_view) {
+if (home_view) {
     const sliderImages = home_view.querySelectorAll('.slider_full_images');
 
     function switchSliderImageOnMobile(obj) {
@@ -22,16 +24,14 @@ if(home_view) {
         let imageSrcMobile = imageSrc.replace('--desktop', '--mobile');
 
         obj.setAttribute('src', imageSrcMobile);
-        console.log(obj)
+        console.log(obj);
     }
 
-    if( esTablet() || esMobile() ) {
-        sliderImages.forEach( image => {
+    if (esTablet() || esMobile()) {
+        sliderImages.forEach((image) => {
             switchSliderImageOnMobile(image);
-        })
+        });
     }
-
-
 }
 
 // GALERIA DE PRODUCTOS
@@ -48,7 +48,7 @@ if (catalog_view) {
         
             
             <div class="product_photos">
-                <a href="/producto/product_${id}">
+                <a href="/c/producto/product_${id}">
                     <div class="swiper-container">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide"><img src="/images/catalog/category/img_producto-1.png" alt="nombre_producto"></div>
@@ -273,4 +273,3 @@ if (slider_featured_products) {
         },
     });
 }
-
