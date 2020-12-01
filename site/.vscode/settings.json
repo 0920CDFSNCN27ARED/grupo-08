@@ -1,6 +1,6 @@
 {
     "easycompile.sass": {
-        "main": ["main.scss", "~/../main.scss"],
+        "main": ["main.scss"],
         "out": "./../css/",
         "outExt": ".min.css",
         "compress": true,

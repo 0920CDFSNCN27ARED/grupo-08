@@ -53,53 +53,46 @@
                 )
             %> 
 
-            <section class="category_group">
-                <div class="category_wrapper">
-                    <article class="category category_large">
-                        <a href="#categoria_1">
-                            <div class="category_img">
-                                <img
-                                    src="/images/home/01.svg"
-                                    alt="categoria 1"
-                                    title="categoria 1"
-                                />
-                                <h4>CATEGORIA 1</h4>
-                            </div>
-                        </a>
-                    </article>
-                </div>
-                <div class="category_wrapper">
-                    <article class="category category_double">
-                        <div>
-                            <h4>Banner Texto</h4>
-                        </div>
-                    </article>
-                    <article class="category category_small">
-                        <a href="#categoria_2">
-                            <div class="category_img">
-                                <img
-                                    src="/images/home/02.svg"
-                                    alt="categoria_2"
-                                    title="categoria_2"
-                                />
-                                <h4>CATEGORIA 2</h4>
-                            </div>
-                        </a>
-                    </article>
-                    <article class="category category_small">
-                        <a href="#categoria_3">
-                            <div class="category_img">
-                                <img
-                                    src="/images//home/03.svg"
-                                    alt="categoria_3"
-                                    title="categoria_3"
-                                />
-                                <h4>CATEGORIA 3</h4>
-                            </div>
-                        </a>
-                    </article>
-                </div>
-            </section>
+            <%- include('../partials/category_group_4.ejs', 
+                    {
+                        bannerID: 'category_group_4_categories',
+                        isReverse: false,
+                        categories_list: [
+                            {
+                                bannerID: 0,
+                                bannerImg: '/images/banners/home_group_1/banner_0.jpg',
+                                bannerTitle: 'Categoria grande',
+                                bannerLink: '#categoria_1',
+                            },
+                            {
+                                bannerID: 1,
+                                bannerImg: '/images/banners/home_group_1/banner_1.jpg',
+                                bannerTitle: 'Categoria 1',
+                                bannerLink: '#categoria_1',
+                            },
+                            {
+                                bannerID: 2,
+                                bannerImg: '/images/banners/home_group_1/banner_2.jpg',
+                                bannerTitle: 'Categoria 2',
+                                bannerLink: '#categoria_1',
+                            },
+                            {
+                                bannerID: 3,
+                                bannerImg: '/images/banners/home_group_1/banner_3.jpg',
+                                bannerTitle: 'Categoria 3',
+                                bannerLink: '#categoria_1',
+                            },
+                            {
+                                catID: 4,
+                                bannerImg: '/images/banners/home_group_1/banner_4.jpg',
+                                bannerTitle: 'Categoria 4',
+                                bannerLink: '#categoria_1',
+                            }
+                        ]
+                        
+                    }
+                )
+            %> 
 
             <%- include('../components/banners/banner_promocional_wide/index', 
                     {
