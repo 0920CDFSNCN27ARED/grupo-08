@@ -1,0 +1,33 @@
+<!-- 
+    Los banners recibirian el product id y el mismo seria utilizado
+    para traer la informacion correspondiente del producto
+    - imagen
+    - nombre
+    - precio
+    - url
+
+ -->
+
+<% 
+    console.log(featured_products[0]);
+%> 
+
+<section class="product_group">
+    <% for(let i = 0; i < featured_products.length; i++) { %> 
+
+        <% if(i === 0) { %>
+            <%- include('../components/banners/banner_square/index', {
+                item: featured_products[i],
+                isLarge: true
+            })  %> 
+
+        <% } else { %>
+            <%- include('../components/banners/banner_square/index', {
+                item: featured_products[i],
+            })  %> 
+
+        <% } %>   
+        
+
+    <% } %> 
+</section>

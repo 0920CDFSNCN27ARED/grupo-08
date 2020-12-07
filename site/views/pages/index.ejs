@@ -10,10 +10,11 @@
     </head>
 
     <body>
+        
         <%- include('../components/banners/banner_top/index') %>
         <%- include('../partials/header') %>
 
-        <!--  -->
+        <!-- Slider -->
         <%- include('../components/sliders/slider_full/index', { 
                 sliderID: 'slider_home',
                 sliderHome_banners: [
@@ -43,6 +44,7 @@
         %>
 
         <main>
+            <!-- Banner promo 1 -->
             <%- include('../components/banners/banner_promocional_wide/index', 
                     {
                         bannerID: 'banner_promocional_1',
@@ -53,47 +55,49 @@
                 )
             %> 
 
-            <%- include('../partials/category_group_4.ejs', 
+            <!-- Featured Categories -->
+            <%- include('../layouts/items_group_4.ejs', 
                     {
                         bannerID: 'category_group_4_categories',
                         isReverse: false,
                         categories_list: [
                             {
-                                bannerID: 0,
-                                bannerImg: '/images/banners/home_group_1/banner_0.jpg',
-                                bannerTitle: 'Categoria grande',
-                                bannerLink: '#categoria_1',
+                                itemID: 0,
+                                itemImage: '/images/banners/home_group_1/banner_0.jpg',
+                                itemTitle: 'Categoria grande',
+                                itemLink: '#categoria_1',
                             },
                             {
-                                bannerID: 1,
-                                bannerImg: '/images/banners/home_group_1/banner_1.jpg',
-                                bannerTitle: 'Categoria 1',
-                                bannerLink: '#categoria_1',
+                                itemID: 1,
+                                itemImage: '/images/banners/home_group_1/banner_1.jpg',
+                                itemTitle: 'Categoria 1',
+                                itemLink: '#categoria_1',
                             },
                             {
-                                bannerID: 2,
-                                bannerImg: '/images/banners/home_group_1/banner_2.jpg',
-                                bannerTitle: 'Categoria 2',
-                                bannerLink: '#categoria_1',
+                                itemID: 2,
+                                itemImage: '/images/banners/home_group_1/banner_2.jpg',
+                                itemTitle: 'Categoria 2',
+                                itemLink: '#categoria_1',
                             },
                             {
-                                bannerID: 3,
-                                bannerImg: '/images/banners/home_group_1/banner_3.jpg',
-                                bannerTitle: 'Categoria 3',
-                                bannerLink: '#categoria_1',
+                                itemID: 3,
+                                itemImage: '/images/banners/home_group_1/banner_3.jpg',
+                                itemTitle: 'Categoria 3',
+                                itemLink: '#categoria_1',
                             },
                             {
-                                catID: 4,
-                                bannerImg: '/images/banners/home_group_1/banner_4.jpg',
-                                bannerTitle: 'Categoria 4',
-                                bannerLink: '#categoria_1',
+                                itemID: 4,
+                                itemImage: '/images/banners/home_group_1/banner_4.jpg',
+                                itemTitle: 'Categoria 4',
+                                itemLink: '#categoria_1',
                             }
                         ]
                         
                     }
                 )
             %> 
-
+            
+            <!-- Banner promo 2 -->
             <%- include('../components/banners/banner_promocional_wide/index', 
                     {
                         bannerID: 'banner_promocional_2',
@@ -104,91 +108,52 @@
                 )
             %> 
 
-            <section class="product_group">
-                <div class="product_wrapper">
-                    <article class="home_product product_small">
-                        <a href="#product">
-                            <div class="product">
-                                <img
-                                    src="/images/catalog/category/img_producto-chico.png"
-                                    alt="producto_1"
-                                    title="producto_1"
-                                />
-                                <div class="product_info">
-                                    <p class="product_name">Producto 1</p>
-                                    <h4 class="price">$2.900</h4>
-                                </div>
-                            </div>
-                        </a>
-                    </article>
-                    <article class="home_product product_small">
-                        <a href="#product">
-                            <div class="product">
-                                <img
-                                    src="/images/catalog/category/img_producto-chico.png"
-                                    alt="producto_2"
-                                    title="producto_2"
-                                />
-                                <div class="product_info">
-                                    <p class="product_name">Producto 2</p>
-                                    <h4 class="price">$4.690</h4>
-                                </div>
-                            </div>
-                        </a>
-                    </article>
-                </div>
+            <!-- Featured products -->
+            <%- include('../layouts/items_group_5.ejs', 
+                    {
+                        bannerID: 'featured_products_5',
+                        featured_products: [
+                            {
+                                itemID: 10,
+                                itemImage: '/images/banners/home_group_1/banner_0.jpg',
+                                itemTitle: 'VESTIDO SOULFUL',
+                                itemPrice: '13.800',
+                                itemLink: '/producto/10',
+                            },
+                            {
+                                itemID: 22,
+                                itemImage: '/images/banners/home_group_1/banner_0.jpg',
+                                itemTitle: 'TOP SUNLIGHT',
+                                itemPrice: '6.100',
+                                itemLink: '/producto/22',
+                            },
+                            {
+                                itemID: 23,
+                                itemImage: '/images/banners/home_group_1/banner_0.jpg',
+                                itemTitle: 'SHORT TRULY',
+                                itemPrice: '5.600',
+                                itemLink: '/producto/23',
+                            },
+                            {
+                                itemID: 24,
+                                itemImage: '/images/banners/home_group_1/banner_0.jpg',
+                                itemTitle: 'TOP TRULY',
+                                itemPrice: '4.800',
+                                itemLink: '/producto/24',
+                            },
+                            {
+                                itemID: 21,
+                                itemImage: '/images/banners/home_group_1/banner_0.jpg',
+                                itemTitle: 'TOP SUNLIGHT NARANJA',
+                                itemPrice: '6.100',
+                                itemLink: '/producto/22',
+                            },
 
-                <div class="product_wrapper">
-                    <article class="home_product product_large">
-                        <a href="#product">
-                            <div class="product">
-                                <img
-                                    src="/images/catalog/category/img_producto-5.png"
-                                    alt="producto_5"
-                                    title="producto_5"
-                                />
-                                <div class="product_info">
-                                    <p class="product_name">Producto 5</p>
-                                    <h4 class="price">$10.200</h4>
-                                </div>
-                            </div>
-                        </a>
-                    </article>
-                </div>
-
-                <div class="product_wrapper">
-                    <article class="home_product product_small">
-                        <a href="#product">
-                            <div class="product">
-                                <img
-                                    src="/images/catalog/category/img_producto-chico.png"
-                                    alt="producto_3"
-                                    title="producto_3"
-                                />
-                                <div class="product_info">
-                                    <p class="product_name">Producto 3</p>
-                                    <h4 class="price">$1.060</h4>
-                                </div>
-                            </div>
-                        </a>
-                    </article>
-                    <article class="home_product product_small">
-                        <a href="#product">
-                            <div class="product">
-                                <img
-                                    src="/images/catalog/category/img_producto-chico.png"
-                                    alt="producto_4"
-                                    title="producto_4"
-                                />
-                                <div class="product_info">
-                                    <p class="product_name">Producto 4</p>
-                                    <h4 class="price">$2.900</h4>
-                                </div>
-                            </div>
-                        </a>
-                    </article>
-                </div>
-            </section>
+                        ]
+                        
+                    }
+                ) 
+            %> 
         </main>
 
         <%- include('../partials/footer') %>    

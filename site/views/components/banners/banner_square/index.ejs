@@ -1,12 +1,16 @@
-<article id="<%= banner.bannerID %> " class="category">
-    <a href="<%= banner.bannerLink %>">
+<article id="<%= item.itemID %> " class="category">
+    <a href="<%= item.itemLink %>">
         <div class="category_img">
             <img
-                src="<%= banner.bannerImg %>"
-                alt="<%= banner.bannerTitle %>"
-                title="<%= banner.bannerTitle %>"
+                src="<%= item.itemImage %>"
+                alt="<%= item.itemTitle %>"
+                title="<%= item.itemTitle %>"
             />
-            <h4><%= banner.bannerTitle %> </h4>
+            <h4>
+                <%= item.itemTitle %>
+                <%- typeof item.itemPrice !== 'undefined' ? `<span>${item.itemPrice}</span>` : '' %>
+                <%- typeof isLarge !== 'undefined' ? `<span>si</span>` : '' %>  
+            </h4>
         </div>
     </a>
 </article>
