@@ -1,0 +1,37 @@
+.banner_items_group_5 {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    grid-template-areas: 
+        "sm_top_left    lg sm_top_right"
+        "sm_bottom_left .  sm_bottom_right"
+    ;
+
+    article {
+        // Banner grande
+        &:nth-child(1) {
+            grid-area: lg;
+        }
+        &:nth-child(2) {
+            grid-area: sm_top_left;
+        }
+        &:nth-child(3) {
+            grid-area: sm_bottom_left;
+        }
+        &:nth-child(4) {
+            grid-area: sm_top_right;
+        }
+        &:nth-child(5) {
+            grid-area: sm_bottom_right;
+        }
+
+    }
+    
+    
+
+
+}
