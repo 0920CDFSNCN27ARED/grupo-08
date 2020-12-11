@@ -36,7 +36,7 @@ if (home_view) {
 
 // GALERIA DE PRODUCTOS
 const catalog_view = document.querySelector('.catalog_category_view');
-if (catalog_view) {
+if (catalog_view == 2) {
     const getRandomID = () =>
         Math.random()
             .toString(20)
