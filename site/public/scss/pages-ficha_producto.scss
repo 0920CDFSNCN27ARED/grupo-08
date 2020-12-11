@@ -1,13 +1,13 @@
 .catalog_product_view {
 }
 
-.product_card {
+.product_details {
   display: flex;
 
   .product_images {
     width: 70%;
   }
-  .product_details {
+  .product_info {
     width: 30%;
   }
 }
@@ -26,7 +26,7 @@
   }
 }
 
-.product_details {
+.product_info {
   padding: 1rem 2rem;
   position: sticky;
   top: 5rem;
@@ -188,7 +188,7 @@
     flex-direction: column;
 
     .product_images,
-    .product_details {
+    .product_info {
       width: 100%;
     }
   }
@@ -202,7 +202,7 @@
     }
   }
 
-  .product_details {
+  .product_info {
     padding: 1rem 0.5rem;
 
     .product_info_wrapper {

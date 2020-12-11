@@ -97,32 +97,39 @@
                 </ul>
             </div>
             <div id="catalog_gallery" class="col-4">
-                <%- include('../components/product_card/index', 
-                    {
-                        product: {
-                            id: 1,
-                            sku: '11114320070i',
-                            name: 'Vestido soulful',
-                            price: '13.800',
-                            discount: '',
-                            colors: ['negro'],
-                            sizes: ['xs', 's', 'm', 'l', 'xl'],
-                            images: [
-                                '/images/catalog/products/11114320070i/producto00000.jpg',
-                                '/images/catalog/products/11114320070i/producto00001.jpg',
-                                '/images/catalog/products/11114320070i/producto00002.jpg',
-                                '/images/catalog/products/11114320070i/producto00003.jpg',
-                                '/images/catalog/products/11114320070i/producto00004.jpg',
-                                '/images/catalog/products/11114320070i/producto00005.jpg',
-                                '/images/catalog/products/11114320070i/producto00006.jpg',
-                                '/images/catalog/products/11114320070i/producto00007.jpg'
-                            ],
-                            'product_details': 'Esto es una descripcion'
-                            
-                        }
+                
+                <% for( let i = 0; i < 7; i++ ) { %>
+                
+                    <%- include('../components/product_card/index', 
+                        {
+                            product: {
+                                id: 1,
+                                sku: '11114320070i',
+                                name: 'Vestido soulful',
+                                price: '13.800',
+                                discount: '',
+                                colors: ['negro'],
+                                sizes: ['xs', 's', 'm', 'l', 'xl'],
+                                images: [
+                                    '/images/catalog/products/11114320070i/producto00000.jpg',
+                                    '/images/catalog/products/11114320070i/producto00001.jpg',
+                                    '/images/catalog/products/11114320070i/producto00002.jpg',
+                                    '/images/catalog/products/11114320070i/producto00003.jpg',
+                                    '/images/catalog/products/11114320070i/producto00004.jpg',
+                                    '/images/catalog/products/11114320070i/producto00005.jpg',
+                                    '/images/catalog/products/11114320070i/producto00006.jpg',
+                                    '/images/catalog/products/11114320070i/producto00007.jpg'
+                                ],
+                                'product_details': 'Esto es una descripcion'
+                                
+                            }
 
-                    }
-                ) %>
+                        }
+                    ) %>
+
+                <% } %>
+
+                
             </div>
         </main>
 
