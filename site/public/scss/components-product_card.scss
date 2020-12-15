@@ -1,0 +1,143 @@
+.product_card {
+    border: 1px solid transparent;
+    @include transition(0.2s);
+    overflow: hidden;
+    position: relative;
+
+    .product_photos {
+        position: relative;
+    }
+
+    div[class*='swiper_'] {
+        position: absolute;
+        top: 40%;
+        transform: translateY(-50%);
+        z-index: 999;
+        cursor: pointer;
+        svg {
+            width: 30px;
+            .a,
+            .b {
+                fill: none;
+            }
+
+            .b {
+                stroke: $white;
+                stroke-linecap: round;
+                stroke-linejoin: round;
+            }
+        }
+    }
+    .swiper_prev {
+        left: 0;
+    }
+    .swiper_next {
+        right: 0;
+    }
+
+    .product_info {
+        padding: 0.5rem;
+        background: $white;
+        @include font-size(14);
+        color: $gray3;
+        width: 100%;
+        h3 {
+            font-weight: 700;
+            color: $gray4;
+        }
+    }
+
+    &:hover {
+        @include shadow(0px, 10px, 20px, $black, 0.05);
+    }
+}
+
+// Quickshop
+.quickshop {
+    position: absolute;
+    bottom: 15%;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 0;
+    padding: 0.3rem 1rem;
+    background: transparentize($white, 0.1);
+    z-index: 10;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    @include font-size(12);
+    overflow: hidden;
+    //border: 1px solid red;
+    opacity: 0;
+    //@include transition(.2s);
+    transition: linear 0.1s;
+
+    .quickshop_colors {
+        width: 45%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        .q_color {
+            width: 1.2rem;
+            height: 1.2rem;
+            border: 1px solid $gray2;
+            margin: 0.2rem;
+            cursor: pointer;
+            opacity: 0.5;
+            &.selected,
+            &:hover {
+                opacity: 1;
+                border: 1px solid $gray3;
+            }
+        }
+
+        span[id*='_color1'] {
+            background: #fcb928;
+        }
+        span[id*='_color2'] {
+            background: #dd0e1b;
+        }
+        span[id*='_color3'] {
+            background: #4872ea;
+        }
+    }
+
+    .quickshop_sizes {
+        .q_size {
+            color: $gray3;
+            cursor: pointer;
+
+            &.selected,
+            &:hover {
+                color: $black;
+                font-weight: 700;
+            }
+        }
+    }
+
+    #q_add_to_cart {
+        margin-top: 1rem;
+        width: 100%;
+        padding: 0.5rem 0rem;
+        text-align: center;
+        background: $gray4;
+        border: 0;
+        color: $white;
+        cursor: pointer;
+
+        &:hover {
+            background: $black;
+        }
+        &:active {
+            background: $gray4;
+        }
+    }
+
+    &:hover {
+        padding: 1rem 1rem;
+        height: auto;
+        opacity: 1;
+    }
+}

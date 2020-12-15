@@ -98,9 +98,7 @@
             </div>
             <div id="catalog_gallery" class="col-4">
                 
-                <% for( let i = 0; i < 7; i++ ) { %>
-                
-                    <%- include('../components/product_card/index', 
+                <%- include('../components/product_card/index', 
                         {
                             product: {
                                 id: 1,
@@ -125,11 +123,8 @@
                             }
 
                         }
-                    ) %>
-
-                <% } %>
-
-                
+                    ) 
+                %>
             </div>
         </main>
 
@@ -137,6 +132,5 @@
 
         <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
         <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-        <script src="/scripts/main.js"></script>
     </body>
 </html>
