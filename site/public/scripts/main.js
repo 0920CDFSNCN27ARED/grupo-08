@@ -11,7 +11,7 @@ function esDesktop() {
 // Header
 const header = document.querySelector('header');
 window.addEventListener('scroll', () =>
-    window.scrollY > 80 ? header.classList.add('compacto') : header.classList.remove('compacto')
+    window.scrollY > 33 ? header.classList.add('compacto') : header.classList.remove('compacto')
 );
 
 // HOME
