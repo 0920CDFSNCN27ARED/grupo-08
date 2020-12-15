@@ -1,0 +1,248 @@
+header {
+    position: fixed;
+    width: 100%;
+    top: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 4rem;
+    z-index: 100;
+    @include transition(0.1s);
+    a {
+        color: $white;
+    }
+
+    .logo {
+        h1 {
+            font-family: $montserrat;
+            @include font-size(36);
+        }
+    }
+
+    #menu {
+        ul {
+            display: flex;
+
+            li a {
+                padding: 0.5rem;
+                margin: 0rem 0.3rem;
+                text-transform: uppercase;
+                @include font-size(14);
+
+                &:hover {
+                    color: $gray5;
+                }
+            }
+        }
+
+        .menu__desplegable {
+            &:hover {
+                .contenido_submenu {
+                    display: block;
+                }
+            }
+        }
+
+        .contenido_submenu {
+            display: none;
+            position: absolute;
+            top: 3.5rem;
+            left: 0;
+            width: 100%;
+            padding: 1rem 0;
+            border-bottom: 1px solid $gray2;
+            background: $white;
+
+            ul {
+                justify-content: center;
+
+                li a {
+                    text-transform: capitalize;
+                    color: $black;
+                }
+            }
+        }
+    }
+
+    #menu_links {
+        ul {
+            display: flex;
+            align-items: center;
+
+            li {
+                padding: 0.5rem;
+                margin-left: 0.5rem;
+            }
+        }
+
+        svg {
+            width: 20px;
+        }
+
+        #links__search {
+            svg {
+                .cls-1,
+                .cls-3 {
+                    fill: none;
+                }
+
+                .cls-1 {
+                    stroke: $white;
+                }
+
+                .cls-2 {
+                    stroke: none;
+                }
+            }
+        }
+
+        #links__my_account {
+            svg {
+                .cls-1,
+                .cls-2,
+                .cls-4 {
+                    fill: none;
+                }
+
+                .cls-1 {
+                    stroke: $white;
+                }
+
+                .cls-3,
+                .cls-5 {
+                    stroke: none;
+                }
+
+                .cls-5 {
+                    fill: $white;
+                }
+            }
+        }
+
+        #links__cart {
+            svg {
+                .cls-1,
+                .cls-2,
+                .cls-5 {
+                    fill: none;
+                }
+
+                .cls-2 {
+                    stroke: $white;
+                }
+
+                .cls-3,
+                .cls-4 {
+                    stroke: none;
+                }
+
+                .cls-4 {
+                    fill: $white;
+                }
+            }
+        }
+    }
+
+    // Boton menu mobile
+    #menu_mobile--btn {
+        display: none;
+        border: 0;
+        background: none;
+        cursor: pointer;
+
+        span {
+            display: block;
+            width: 32px;
+            height: 2px;
+            background: $gray3;
+            margin: 0.5rem 0;
+            border-radius: 1rem;
+        }
+    }
+
+    &.compacto {
+        position: fixed;
+        top: 0;
+    }
+
+    &:hover,
+    &.compacto {
+        background: $white;
+        a {
+            color: $black;
+        }
+
+        #menu_links {
+            #links__search {
+                svg {
+                    .cls-1 {
+                        stroke: $gray5;
+                    }
+                }
+            }
+
+            #links__my_account {
+                svg {
+                    .cls-1 {
+                        stroke: $gray5;
+                    }
+                    .cls-5 {
+                        fill: $gray5;
+                    }
+                }
+            }
+
+            #links__cart {
+                svg {
+                    .cls-2 {
+                        stroke: $gray5;
+                    }
+
+                    .cls-4 {
+                        fill: $gray5;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Paginas que requieren el header compacto de entrada
+.catalog_category_view,
+.catalog_product_view {
+    header {
+        @extend .compacto;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    header {
+        padding: 1rem;
+
+        #menu_mobile--btn {
+            display: block;
+        }
+
+        #menu {
+            display: none;
+        }
+
+        #menu_links {
+            ul li {
+                padding: 0rem;
+                margin-left: 0rem;
+            }
+
+            #links__search,
+            #links__my_account {
+                display: none;
+            }
+        }
+
+        .logo {
+            h1 {
+                @include font-size(24);
+            }
+        }
+    }
+}

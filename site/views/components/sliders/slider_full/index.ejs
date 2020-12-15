@@ -1,0 +1,74 @@
+<!-- 
+    inicialmente levanta un array de objetos con los banners de cada slide.
+
+    Estos slides deberian de contener:
+    - titulo
+    - bajada
+    - link
+    - texto cta
+    - imagen url
+
+    el componente a su vez deberia de recibir un id que haga referencia a de donde viene
+    
+ -->
+
+<section id="<%= sliderID %>" class="slider_full">
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+
+            <% for( let i = 0; i < sliderHome_banners.length; i++ ) { %>
+                <% if (sliderHome_banners[i].slideID) { %> 
+                    <div class="swiper-slide">
+
+                        <% if (sliderHome_banners[i].slideLink) { %>
+                            <a href="<%= sliderHome_banners[i].slideLink %>">
+                        <% } %>
+                        
+
+                                <% if (sliderHome_banners[i].slideCtaText) { %>
+                                    <div class="slider_wrapper">
+                                        <h1 class="slider_title"><%= sliderHome_banners[i].slideTitle %> </h1>
+                                        <h4 class="slider_content"><%= sliderHome_banners[i].slideContent %> </h4>
+                                        <a href="<%= sliderHome_banners[i].slideLink %>" class="slider_cta button_main_action">
+                                            <%= sliderHome_banners[i].slideCtaText %>
+                                        </a>
+                                    </div>
+                                <% } %>
+
+                                <img src="<%= sliderHome_banners[i].slideImgURL %>" alt="Slider home" class="slider_full_images">
+
+                        <% if (sliderHome_banners[i].slideLink) { %>
+                            </a>
+                        <% } %>
+                    </div>
+                <% } %>
+            <% } %>
+
+        </div>
+
+        <% if (sliderHome_banners.length > 1) { %>
+            <div class="swiper-pagination"></div>
+
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        <% } %>
+        
+    </div>
+</section>
+
+<script>
+    const slider_full = document.querySelector('#<%= sliderID %>');
+    const slider_full_slides = slider_full.querySelectorAll('.swiper-slide');
+
+    let swiper_photos = new Swiper( slider_full.querySelector('.swiper-container'), {
+        loop: slider_full_slides.length > 1 ? true : false,
+        slidesPerView: 1,
+        pagination: {
+            el: '.swiper-pagination',
+        },
+        navigation: {
+            nextEl: slider_full.querySelector('.swiper-button-next'),
+            prevEl: slider_full.querySelector('.swiper-button-prev'),
+        },
+    });
+</script>

@@ -1,27 +1,21 @@
 {
-  "easycompile.sass": {
-    "main": ["main.scss"],
-    "out": "./../css/",
-    "outExt": ".min.css",
-    "compress": true,
-    "sourceMap": true
-  },
-  "[html]": {
+    "easycompile.sass": {
+        "main": ["main.scss"],
+        "out": "./../css/",
+        "outExt": ".min.css",
+        "compress": true,
+        "sourceMap": true
+    },
+    /*   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[scss]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "editor.formatOnSave": true,
-  "prettier.tabWidth": 4,
-  "prettier.semi": true,
-  "prettier.singleQuote": true,
-  "prettier.printWidth": 100,
-  "prettier.requireConfig": true
+  }, */
+    "[scss]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
 }

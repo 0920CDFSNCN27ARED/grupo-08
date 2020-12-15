@@ -1,0 +1,117 @@
+.home_view {
+    /* .category_group {
+        display: flex;
+        justify-content: space-between;
+        padding: 1rem;
+        margin: auto;
+    }
+
+    .category_wrapper {
+        width: 48%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-content: space-between;
+    }
+
+    .category {
+        width: 100%;
+    }
+
+    .category_img {
+        position: relative;
+        width: 100%;
+    }
+
+    .category_img > h4 {
+        position: absolute;
+        bottom: 8px;
+        left: 16px;
+        color: #8395a7;
+        font-weight: bold;
+    }
+
+    .category_double {
+        border: 1px solid $gray4;
+        height: 240px;
+    }
+
+    .category_small {
+        width: 48%;
+    } */
+
+    .product_group {
+        display: flex;
+        justify-content: space-between;
+        padding: 1rem;
+        margin: auto;
+    }
+
+    .product_wrapper {
+        width: 32%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-content: space-between;
+    }
+
+    .product {
+        position: relative;
+        width: 100%;
+    }
+
+    .product_info {
+        position: absolute;
+        bottom: 9px;
+        padding: 10px;
+        background-color: white;
+        width: 95%;
+        display: flex;
+        left: 2.5%;
+        color: #8395a7;
+    }
+
+    .product_name {
+        margin-right: 10px;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .home {
+        .category_group {
+            flex-direction: column;
+            width: 100%;
+            margin-bottom: 40px;
+            margin: auto;
+        }
+
+        .category_wrapper {
+            display: block;
+            width: 100%;
+        }
+
+        .category {
+            display: block;
+            width: 100%;
+            padding: 1rem 0rem;
+        }
+
+        .product_wrapper {
+            display: block;
+            width: 100%;
+        }
+
+        .home_product {
+            padding: 1rem 0rem;
+        }
+
+        .product_group {
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .banner_promo {
+            margin: 0px;
+        }
+    }
+}

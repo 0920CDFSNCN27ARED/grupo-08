@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es" class="home_view">
+    <head>
+        <% pageTitle = locals.title !== undefined ? title : 'Tienda Home' %> 
+        
+        <%- include('../partials/head') %>
+
+        <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    </head>
+
+    <body>
+        
+        <%- include('../components/banners/banner_top/index') %>
+        <%- include('../partials/header') %>
+
+        <!-- Slider -->
+        <%- include('../components/sliders/slider_full/index', { 
+                sliderID: 'slider_home',
+                sliderHome_banners: [
+                    {
+                        slideID: 1,
+                        slideLink: '#linkcito1',
+                        slideImgURL: '/images/sliders/slider_home/img1--desktop.jpg',
+                        slideImgURL_mobile: '/images/sliders/slider_home/img1--mobile.jpg',
+                    },
+                    {
+                        slideID: 2,
+                        slideTitle: 'Este titulo es el 2',
+                        slideContent: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quaerat vitae, beatae sequi molestias est animi deleniti architecto quo voluptatibus assumenda error ipsam labore dolorum, porro reiciendis amet corporis! Velit, quis.',
+                        slideCtaText: 'Ir ahora',
+                        slideLink: '#linkcito2',
+                        slideImgURL: '/images/sliders/slider_home/img3--desktop.png',
+                        slideImgURL_mobile: '/images/sliders/slider_home/img3--mobile.png',
+                    },
+                    {
+                        slideID: 3,
+                        slideLink: '#linkcito3',
+                        slideImgURL: '/images/sliders/slider_home/img2--desktop.jpg',
+                        slideImgURL_mobile: '/images/sliders/slider_home/img2--mobile.jpg',
+                    },
+                ]
+            }) 
+        %>
+
+        <main>
+            <!-- Banner promo 1 -->
+            <%- include('../components/banners/banner_promocional_wide/index', 
+                    {
+                        bannerID: 'banner_promocional_1',
+                        bannerImg: '/images/banners/home_banner_promocional_1/tituloblack_1920x200FINAL4.jpg',
+                        bannerAlt: 'Nombre del banner',
+                        bannerLink: '#bannerpromocional1',
+                    }
+                )
+            %> 
+
+            <!-- Featured Categories -->
+            <%- include('../layouts/items_group_4.ejs', 
+                    {
+                        bannerID: 'category_group_4_categories',
+                        isReverse: false,
+                        categories_list: [
+                            {
+                                itemID: 0,
+                                itemImage: '/images/banners/home_group_1/banner_0.jpg',
+                                itemTitle: 'Categoria grande',
+                                itemLink: '/c/categoria/camperas',
+                            },
+                            {
+                                itemID: 1,
+                                itemImage: '/images/banners/home_group_1/banner_1.jpg',
+                                itemTitle: 'Categoria 1',
+                                itemLink: '/c/categoria/chaquetas',
+                            },
+                            {
+                                itemID: 2,
+                                itemImage: '/images/banners/home_group_1/banner_2.jpg',
+                                itemTitle: 'Categoria 2',
+                                itemLink: '/c/categoria/jeans',
+                            },
+                            {
+                                itemID: 3,
+                                itemImage: '/images/banners/home_group_1/banner_3.jpg',
+                                itemTitle: 'Categoria 3',
+                                itemLink: '/c/categoria/remeras',
+                            },
+                            {
+                                itemID: 4,
+                                itemImage: '/images/banners/home_group_1/banner_4.jpg',
+                                itemTitle: 'Categoria 4',
+                                itemLink: '/c/categoria/abrigos',
+                            }
+                        ]
+                        
+                    }
+                )
+            %> 
+            
+            <!-- Banner promo 2 -->
+            <%- include('../components/banners/banner_promocional_wide/index', 
+                    {
+                        bannerID: 'banner_promocional_2',
+                        bannerImg: '/images/banners/home_banner_promocional_2/titulo1_1920x200_3.jpg',
+                        bannerAlt: 'Nombre del banner 2',
+                        bannerLink: '#bannerpromocional2',
+                    }
+                )
+            %> 
+
+            <!-- Featured products -->
+            <%- include('../layouts/items_group_5.ejs', 
+                    {
+                        bannerID: 'featured_products_5',
+                        featured_products: [
+                            {
+                                itemID: 10,
+                                itemImage: '/images/catalog/products/vestido_soulful.jpg',
+                                itemTitle: 'VESTIDO SOULFUL',
+                                itemPrice: '13.800',
+                                itemLink: '/c/producto/product_10',
+                            },
+                            {
+                                itemID: 22,
+                                itemImage: '/images/catalog/products/top_sunlight_naranja.jpg',
+                                itemTitle: 'Top sunkught naranja',
+                                itemPrice: '6.100',
+                                itemLink: '/c/producto/product_22',
+                            },
+                            {
+                                itemID: 23,
+                                itemImage: '/images/catalog/products/short_truly.jpg',
+                                itemTitle: 'Short truly',
+                                itemPrice: '5.600',
+                                itemLink: '/c/producto/product_24',
+                            },
+                            {
+                                itemID: 24,
+                                itemImage: '/images/catalog/products/top_truly.jpg',
+                                itemTitle: 'Top truly',
+                                itemPrice: '4.800',
+                                itemLink: '/c/producto/product_25',
+                            },
+                            {
+                                itemID: 21,
+                                itemImage: '/images/catalog/products/top_sunlight_amarillo.jpg',
+                                itemTitle: 'Top sunkught amarillo',
+                                itemPrice: '6.100',
+                                itemLink: '/c/producto/product_23',
+                            },
+
+                        ]
+                        
+                    }
+                ) 
+            %> 
+        </main>
+
+        <%- include('../partials/footer') %>    
+    </body>
+</html>

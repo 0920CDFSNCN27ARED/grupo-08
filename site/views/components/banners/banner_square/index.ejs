@@ -1,0 +1,16 @@
+<article id="<%= item.itemID %> " class="category <%- typeof isLarge !== 'undefined' ? 'category_large' : '' %>  ">
+    <a href="<%= item.itemLink %>">
+        <div class="category_img">
+            <img
+                src="<%= item.itemImage %>"
+                alt="<%= item.itemTitle %>"
+                title="<%= item.itemTitle %>"
+            />
+            <h4 class="category_text">
+                <%= item.itemTitle %>
+                <%- typeof item.itemPrice !== 'undefined' ? `<span>$${item.itemPrice}</span>` : '' %>
+                <%- typeof isLarge !== 'undefined' ? `<span>si</span>` : '' %>  
+            </h4>
+        </div>
+    </a>
+</article>

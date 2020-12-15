@@ -1,0 +1,105 @@
+.banner_items_group_5 {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    grid-template-areas:
+        'sm_top_left    lg sm_top_right'
+        'sm_bottom_left .  sm_bottom_right';
+
+    article {
+        position: relative;
+        @include transition(0.2s);
+
+        // Banner grande
+        &:nth-child(1) {
+            grid-area: lg;
+        }
+        &:nth-child(2) {
+            grid-area: sm_top_left;
+        }
+        &:nth-child(3) {
+            grid-area: sm_bottom_left;
+        }
+        &:nth-child(4) {
+            grid-area: sm_top_right;
+        }
+        &:nth-child(5) {
+            grid-area: sm_bottom_right;
+        }
+
+        &:hover {
+            @include shadow(0px, 5px, 20px, $gray2, 0.8);
+        }
+    }
+
+    .category_large {
+        position: absolute;
+        width: 100%;
+        height: 203%;
+        overflow: hidden;
+        img {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 220%;
+        }
+    }
+
+    .category_text {
+        position: absolute;
+        bottom: 0.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: calc(100% - 1rem);
+        background: $white;
+        padding: 0.5rem 1rem;
+        color: $gray3;
+        span {
+            font-weight: 700;
+            color: $gray4;
+        }
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .banner_items_group_5 {
+        padding: 1rem;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-areas:
+            'lg             lg'
+            'sm_top_left    sm_top_right'
+            'sm_bottom_left sm_bottom_right';
+
+        article {
+            @include shadow(0px, 5px, 20px, $gray1, 0.8);
+        }
+
+        .category_large {
+            position: relative;
+            height: auto;
+            overflow: auto;
+            img {
+                position: relative;
+                top: 0;
+                left: 0;
+                transform: translateX(0);
+                width: 100%;
+            }
+        }
+
+        .category_text {
+            position: relative;
+            bottom: 0;
+            left: 0;
+            transform: translateX(0);
+            width: 100%;
+            @include font-size(12);
+        }
+    }
+}

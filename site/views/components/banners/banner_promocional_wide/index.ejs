@@ -1,0 +1,14 @@
+<% if (bannerID) { %>
+    <div id="<%= bannerID %> " class="banner_promo_wide">
+
+        <% if (bannerLink) { %>
+            <a href="<%= bannerLink %> " title="<%= bannerAlt %> ">
+        <% } %>
+                <img src="<%= bannerImg %> " alt="<%= bannerAlt %> " />
+        <% if (bannerLink) { %>
+            </a>
+        <% } %>
+ 
+    </div>
+ 
+<% } %>

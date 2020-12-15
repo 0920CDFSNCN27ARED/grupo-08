@@ -1,0 +1,17 @@
+<section id="<%= bannerID %> " class="banner_category_group">
+    
+    <div class="category_wrapper">
+        <%- include('../components/banners/banner_square/index', {
+            item: categories_list[0],
+        })  %> 
+    </div>
+    <div class="category_wrapper">
+        <% for( let i = 1; i < categories_list.length; i++ ) { %>
+            <%- include('../components/banners/banner_square/index', {
+                item: categories_list[i],
+            })  %> 
+
+        <% } %>
+
+    </div>
+</section>

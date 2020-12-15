@@ -1,26 +1,32 @@
-/*
-    [x] - Levantar servidor 
-        -- [x] - Express
-    [x] - Crear rutas
-        -- [x] - Crear modulos de rutas
-        -- [x] - Crear controlador de rutas
-    [x] - Crear directorios
-        -- [x] - Archivos estaticos
-    [x] - Crear vistas
-*/
-
-const express = require("express");
+const express = require('express');
 const app = express();
 
 const PORT = 3000;
-app.listen(PORT, () => {
-    console.log("Escuchando el puerto "+ PORT);
+app.listen(PORT, () => console.log('Escuchando el puerto ' + PORT));
+
+// Configuraciones express
+app.set('view engine', 'ejs');
+
+// Archivos estaticos
+const staticFiles = express.static('public');
+app.use(staticFiles);
+
+// Cargar rutas
+const mainRoutes = require('./routes/mainRoutes');
+const productRoutes = require('./routes/productRoutes');
+const checkoutRoutes = require('./routes/checkoutRoutes');
+const customerRoutes = require('./routes/customerRoutes');
+
+// Middlewares
+
+// CORS
+
+// Levantar rutas
+
+app.use('/', mainRoutes);
+app.use('/c', productRoutes);
+app.use('/clientes', customerRoutes);
+app.use('/checkout', checkoutRoutes);
+app.use((req, res, next) => {
+    res.render('pages/not_found');
 });
-
-const staticFiles = express.static("public");
-
-// Rutas
-const mainRoutes = require("./routes/mainRoutes");
-
-app.use(staticFiles)
-app.use(mainRoutes)

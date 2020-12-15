@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es" class="login">
+    <head>
+        <% pageTitle = locals.title !== undefined ? title : 'Registrarse' %> <%-
+        include('../partials/head') %>
+    </head>
+
+    <body>
+        <%- include('../partials/header') %>
+
+        <main class="register_page">
+            <h2>Datos Personales</h2>
+            <form action="#" method="get">
+                <section id="nombre_completo" class="register_section">
+                    <div class="subsection">
+                        <label for="name">Nombre</label>
+                        <input
+                            class="width_100"
+                            type="text"
+                            name="name"
+                            id="name"
+                            placeholder="Ingresar nombre"
+                        />
+                    </div>
+                    <div class="subsection">
+                        <label for="surname">Apellido</label>
+                        <input
+                            class="width_100"
+                            type="text"
+                            name="surname"
+                            id="surname"
+                            placeholder="Ingresar apellido"
+                        />
+                    </div>
+                </section>
+                <section id="email" class="register_section">
+                    <div class="subsection">
+                        <label for="email">Email</label>
+                        <input
+                            class="width_100"
+                            type="email"
+                            name="email"
+                            id="email"
+                            placeholder="Ingresar email"
+                        />
+                    </div>
+                    <div class="subsection">
+                        <label for="email_confirm">Confirmar email</label>
+                        <input
+                            class="width_100"
+                            type="email"
+                            name="email_confirm"
+                            id="email_confirm"
+                            placeholder="Repetir email"
+                        />
+                    </div>
+                </section>
+                <section id="password" class="register_section">
+                    <div class="subsection">
+                        <label for="password">Contraseña</label>
+                        <input
+                            class="width_100"
+                            type="password"
+                            name="password"
+                            id="password"
+                            placeholder="Ingresar contraseña"
+                        />
+                    </div>
+                    <div class="subsection">
+                        <label for="password_confirm">Confirmar contraseña</label>
+                        <input
+                            class="width_100"
+                            type="password"
+                            name="password_confirm"
+                            id="password_confirm"
+                            placeholder="Repetir contraseña"
+                        />
+                    </div>
+                </section>
+                <section class="register_section">
+                    <div id="birth" class="subsection">
+                        <div id="birth_date">
+                            <label for="birth_date">Fecha de nacimiento</label><br />
+                            <input
+                                type="date"
+                                name="birth_date"
+                                id="birth_date"
+                                placeholder="dd / mm / aa"
+                                class="width_100"
+                            />
+                        </div>
+                        <div id="gender">
+                            <label for="gender">Género</label><br />
+                            <select name="gender" id="gender" value="" class="width_100">
+                                <option value="default">Selecciona género</option>
+                                <option value="M">Másculino</option>
+                                <option value="F">Femenino</option>
+                                <option value="C">Crustáceo</option>
+                            </select>
+                        </div>
+                    </div>
+                </section>
+                <section id="terms" class="register_section">
+                    <div class="subsection">
+                        <input type="checkbox" name="terms" id="terms" />
+                        <p id="accept_terms" style="display: inline">
+                            Acepto términos y condiciones
+                        </p>
+                        <br />
+                        <p id="mandatory_msg">* Todos los campos son obligatorios</p>
+                    </div>
+                </section>
+                <section class="register_section">
+                    <div class="subsection">
+                        <button type="submit">REGISTRARME</button>
+                    </div>
+                </section>
+            </form>
+        </main>
+
+        <footer>
+            <section id="footer_newsletter">
+                <h2>join our newsletter</h2>
+                <p>
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet eligendi at
+                    minus explicabo laboriosam esse veniam ex, necessitatibus
+                </p>
+
+                <form action="#" id="form_suscription">
+                    <input
+                        type="email"
+                        name="footer_newsletter"
+                        id="footer_newsletter"
+                        placeholder="Correo electrónico"
+                    />
+                    <button type="submit" id="footer_newsletter--send">-></button>
+                </form>
+                <span>Lorem ipsum dolor sit amet consectetur</span>
+            </section>
+
+            <nav id="footer_menu">
+                <ul>
+                    <li>
+                        <a href="#link1">Categoria 1</a>
+                    </li>
+                    <li>
+                        <a href="#link2">Categoria 2</a>
+                    </li>
+                    <li>
+                        <a href="#link3">Categoria 3</a>
+                    </li>
+                    <li>
+                        <a href="#link4">Categoria 4</a>
+                    </li>
+                    <li>
+                        <a href="#link5">Categoria 5</a>
+                    </li>
+                    <li>
+                        <a href="#link6">Categoria 6</a>
+                    </li>
+                    <li>
+                        <a href="#link7">Categoria 7</a>
+                    </li>
+                    <li>
+                        <a href="#link8">Categoria 8</a>
+                    </li>
+                    <li>
+                        <a href="#link9">Categoria 9</a>
+                    </li>
+                    <li>
+                        <a href="#link10">Categoria 10</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="footer_rrss">
+                <ul>
+                    <li>
+                        <a href="#fb">Facebook</a>
+                    </li>
+                    <li>
+                        <a href="#ig">Instagram</a>
+                    </li>
+                    <li>
+                        <a href="#yt">Youtube</a>
+                    </li>
+                </ul>
+            </div>
+        </footer>
+
+        <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+        <script src="/scripts/main.js"></script>
+    </body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es" class="login">
+    <%- include('../partials/head') %>
+
+    <body>
+        <head>
+            <% pageTitle = locals.title !== undefined ? title : 'Iniciar sesión' %> <%-
+            include('../partials/head') %>
+        </head>
+
+        <main class="login_page">
+            <section class="login_section login_register_section">
+                <h2>Nuevos clientes</h2>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, velit sit
+                    laudantium labore adipisci nulla tempora dolor neque quas culpa?
+                </p>
+                <a href="#register">
+                    <button id="register_button">REGISTRARSE</button>
+                </a>
+            </section>
+
+            <section class="login_section login_login_section">
+                <form action="/" method="POST">
+                    <h2>Iniciar sesión</h2>
+                    <p>Si tenés una cuenta registrada, ingresá tus datos</p>
+                    <input type="email" name="mail" id="mail" placeholder="Correo electrónico" />
+                    <input type="password" name="password" id="password" placeholder="Contraseña" />
+                    <button type="submit" id="login_button">INGRESAR</button>
+                </form>
+
+                <hr />
+
+                <a href="#facebook_login">
+                    <button>INGRESAR CON FACEBOOK</button>
+                </a>
+
+                <a href="#google_login">
+                    <button>INGRESAR CON GOOGLE</button>
+                </a>
+            </section>
+        </main>
+
+        <%- include('../partials/footer') %>
+
+        <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+        <script src="/scripts/main.js"></script>
+    </body>
+</html>
