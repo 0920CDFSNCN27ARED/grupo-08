@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" class="catalog_category_view pepito">
+<html lang="es" class="catalog_category_view">
     <head>
         <% pageTitle = locals.title !== undefined ? title : 'Categoría' %> <%-
         include('../partials/head') %>
@@ -18,35 +18,7 @@
             '/images/catalog/category/banner_categoria.png', }, ] }) %>
         </div>
 
-        <div id="toolbar">
-            <div id="breadcrumb">
-                <ul>
-                    <li>
-                        <a href="#link">Categoria padre</a>
-                    </li>
-                    <li class="current">
-                        <a href="#link">Categoria hija</a>
-                    </li>
-                </ul>
-            </div>
-
-            <button id="toolbar_filters-open">Filtros</button>
-
-            <div id="gallery_views">
-                <p>Ver</p>
-                <ul>
-                    <li>
-                        <span class="change_view" data-cols="2">2</span>
-                    </li>
-                    <li>
-                        <span class="change_view" data-cols="3">3</span>
-                    </li>
-                    <li class="active">
-                        <span class="change_view" data-cols="4">4</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
+        <%- include('../components/toolbar/index')  %> 
 
         <main>
             <div id="filters" class="">
@@ -96,6 +68,7 @@
                     </li>
                 </ul>
             </div>
+
             <div id="catalog_gallery" class="col-4">
                 
                 <%- include('../components/product_card/index', 
