@@ -12,10 +12,13 @@ header {
         color: $white;
     }
 
-    .logo {
-        h1 {
-            font-family: $montserrat;
-            @include font-size(36);
+    .logo_container {
+        width: 120px;
+    }
+
+    #logo {
+        path {
+            fill: $white;
         }
     }
 
@@ -170,6 +173,12 @@ header {
         background: $white;
         a {
             color: $black;
+        }
+
+        #logo {
+            path {
+                fill: $black;
+            }
         }
 
         #menu_links {
