@@ -16,6 +16,7 @@ const mainRoutes = require('./routes/mainRoutes');
 const productRoutes = require('./routes/productRoutes');
 const checkoutRoutes = require('./routes/checkoutRoutes');
 const customerRoutes = require('./routes/customerRoutes');
+const adminRoutes = require('./routes/admin/adminRoutes');
 
 // Middlewares
 
@@ -27,6 +28,10 @@ app.use('/', mainRoutes);
 app.use('/c', productRoutes);
 app.use('/clientes', customerRoutes);
 app.use('/checkout', checkoutRoutes);
+
+// Admin routes
+app.use('/admin', adminRoutes);
+
 app.use((req, res, next) => {
     res.render('pages/not_found');
 });

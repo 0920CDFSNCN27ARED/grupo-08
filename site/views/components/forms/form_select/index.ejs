@@ -1,0 +1,33 @@
+<!-- 
+    name        = 
+    idSelector  =
+    label       =
+    options     = []
+-->
+
+<div class="form_row">
+    <% if (label) { %>
+        <label for="<%= name %>" class="form_label"><%= label %> </label>
+    <% } %>
+    <select 
+        id="<%= locals.idSelector !== undefined ? idSelector : name %>" 
+        name="<%= name %>" 
+        <%= is_required ? 'required' : '' %> 
+    >
+        <option value="">Seleccionar</option>
+        <% for( let i = 0; i < options.length; i++ ) { %>
+            <%  
+                 function handleString(string) {
+                    const replaceAll = (str, oldStr, newStr) => str.split(oldStr).join(newStr);
+                    let str = replaceAll(string, ' ', '_').toLowerCase();
+                
+                    return str;
+                }
+            %> 
+
+            <option value="<%= handleString(options[i]); %>"> <%= options[i] %>  </option>
+
+        <% } %>
+
+    </select>
+</div>

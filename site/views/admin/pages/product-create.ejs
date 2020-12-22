@@ -1,0 +1,66 @@
+<h1>Crear productos</h1>
+
+<!-- 
+    -   product_id
+    -   name
+    -   price
+    -   discount
+    -   colors
+    -   sizes
+    -   images
+    -   is_active
+
+
+-->
+
+<form action="POST">
+
+    <%- include('../../components/forms/form_select/index', {
+        is_required: true,
+        label: 'Estado',
+        name: 'is_active',
+        options: [
+            'Habilitado',
+            'Deshabilitado',
+            'Esto es un test'
+        ]
+    }) %> 
+
+    <%- include('../../components/forms/form_input/index', {
+        is_required: true,
+        label: 'Nombre',
+        type: 'text',
+        name: 'product_name',
+        placeholder: 'Ingrese el nombre del producto'
+    }) %> 
+
+    <%- include('../../components/forms/form_input/index', {
+        is_required: true,
+        label: 'Precio',
+        type: 'number',
+        name: 'product_price',
+        placeholder: 'Ingrese el precio sin $'
+    }) %> 
+
+    <%- include('../../components/forms/form_input/index', {
+        is_required: true,
+        label: 'Talles (separados por comas)',
+        type: 'text',
+        name: 'product_sizes',
+        placeholder: 'Ingrese los talles separados por comas'
+    }) %> 
+
+    <%- include('../../components/forms/form_select/index', {
+        is_required: true,
+        label: 'Categoria',
+        name: 'product_category',
+        options: [
+            'Remeras',
+            'Pantalones',
+            'Buzos'
+        ]
+    }) %> 
+
+    <button type="submit">enviar</button>
+
+</form>

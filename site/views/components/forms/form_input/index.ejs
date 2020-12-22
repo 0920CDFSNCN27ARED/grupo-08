@@ -1,0 +1,22 @@
+<!-- 
+    type    = 
+    name    = 
+    id      =
+    label   =
+    placeholder =  
+
+-->
+
+<div class="form_row">
+    <% if (label) { %>
+        <label for="<%= name %>" class="form_label"><%= label %> </label>
+    <% } %>
+    <input 
+        type="<%= type %> " 
+        id="<%= locals.idSelector !== undefined ? idSelector : name %>" 
+        name="<%= name %>" 
+        class="form_input" 
+        placeholder="<%= placeholder %>"
+        <%= is_required ? 'required' : '' %> 
+    >
+</div>
