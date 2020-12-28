@@ -5,10 +5,9 @@ const routes = express.Router();
 const catalogRoutes = require('./catalogRoutes');
 
 routes.get('/', (req, res) => {
-    res.send('Admin');
+    res.render('admin/pages/index');
 });
 
 routes.use('/c', catalogRoutes);
-
 
 module.exports = routes;

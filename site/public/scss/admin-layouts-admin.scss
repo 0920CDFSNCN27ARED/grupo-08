@@ -1,0 +1,11 @@
+html[layout='admin'] {
+    body {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+
+    main {
+        margin-left: 2rem;
+    }
+}
