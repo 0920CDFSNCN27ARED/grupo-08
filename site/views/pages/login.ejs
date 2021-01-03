@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="es" class="login">
-    <%- include('../partials/head') %>
+    <head>
+        <% pageTitle = locals.title !== undefined ? title : 'Iniciar sesión' %>
+        <%-include('../partials/head') %>
+    </head>
 
     <body>
-        <head>
-            <% pageTitle = locals.title !== undefined ? title : 'Iniciar sesión' %> <%-
-            include('../partials/head') %>
-        </head>
-
+        <%-include('../partials/header') %>
+        
         <main class="login_page">
             <section class="login_section login_register_section">
                 <h2>Nuevos clientes</h2>

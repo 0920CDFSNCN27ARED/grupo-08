@@ -1,5 +1,7 @@
 const express = require('express');
 const app = express();
+const session = require('express-session');
+const methodOverride = require('method-override');
 
 const PORT = 3000;
 app.listen(PORT, () => console.log('Escuchando el puerto ' + PORT));
