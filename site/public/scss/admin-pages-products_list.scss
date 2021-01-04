@@ -1,0 +1,143 @@
+.products_list {
+    main {
+        width: calc(100% - 250px - 4rem);
+    }
+
+    .content_header {
+        margin: 1rem 0rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #products_list_component {
+        .products_pagination {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            @include font-size(12);
+        }
+    }
+
+    .products_table {
+        table {
+            width: 100%;
+            border-collapse: collapse;
+
+            td {
+                text-align: center;
+            }
+
+            .table_spacing {
+                height: 1rem;
+            }
+
+            img {
+                max-width: 130px;
+            }
+        }
+
+        .products_table_header,
+        .products_table_filter,
+        .products_table_product {
+            > td {
+                /* 
+                    child - value
+                    1 - image
+                    2 - pid
+                    3 - product name
+                    4 - price
+                    5 - special price
+                    6 - stock
+                    7 - status
+                    8 - action
+                */
+
+                &:nth-child(1) {
+                    width: 10%;
+                }
+                &:nth-child(2),
+                &:nth-child(4),
+                &:nth-child(5),
+                &:nth-child(8) {
+                    width: 10%;
+                }
+                &:nth-child(3) {
+                    width: 30%;
+                    text-align: left;
+                    padding-left: 0.8rem;
+                }
+                &:nth-child(6) {
+                    width: 7%;
+                }
+                &:nth-child(7) {
+                    width: 13%;
+                }
+            }
+        }
+
+        .products_table_header {
+            background: $gray4;
+            color: $white;
+            @include font-size(12);
+            font-weight: 700;
+            text-transform: uppercase;
+            th {
+                padding: 0.5rem;
+            }
+        }
+
+        .products_table_filter {
+            background: $gray1;
+            > td {
+                padding: 0.8rem 0;
+                text-align: center;
+                vertical-align: top;
+            }
+
+            input {
+                width: calc(100% - 0.5rem);
+                padding: 0.5rem 0.2rem;
+                margin-bottom: 0.5rem;
+            }
+            select {
+                width: calc(100% - 0.5rem);
+            }
+        }
+
+        .products_table_product {
+            position: relative;
+            border: 2rem solid transparent;
+            border-left-width: 1rem;
+            border-right-width: 1rem;
+            &::after {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 0;
+                transform: translateY(-50%);
+
+                width: calc(100% - 0.5rem - 2px);
+                // 100% y le saco el borde del after y la mitad del borde del padre
+
+                height: calc(100% - 1rem);
+                border: 1px solid $gray1;
+                z-index: 222;
+                @include transition(0.2s);
+                pointer-events: none;
+            }
+
+            &:hover {
+                &::after {
+                    border: 1px solid $gray2;
+                    @include shadow(0px, 10px, 20px, $gray1, 0.7);
+                }
+            }
+
+            @include font-size(12);
+        }
+    }
+}

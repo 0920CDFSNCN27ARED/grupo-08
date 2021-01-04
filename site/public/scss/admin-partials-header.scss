@@ -4,6 +4,8 @@ header {
     height: 100vh;
     padding: 1rem;
     border: 1px solid $gray1;
+    position: sticky;
+    top: 0;
 
     #logo {
         margin-bottom: 1rem;
