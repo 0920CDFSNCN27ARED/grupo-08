@@ -167,3 +167,23 @@ if (slider_featured_products) {
         },
     });
 }
+
+// ADMIN CREATE PRODUCT
+const products_create_view = document.querySelector('.products_create_view');
+if (products_create_view) {
+    function changeTab(currentObj, target) {
+        let formTab, formTabBtn;
+
+        // Oculto todos los tabs
+        formTab = document.querySelectorAll('.form_tab');
+        formTab.forEach((tab) => tab.classList.add('dnone'));
+
+        // Remuevo active class en todos los btns
+        formTabBtn = document.querySelectorAll('.form_tab_btn');
+        formTabBtn.forEach((btn) => btn.classList.remove('active'));
+
+        // Muestro el tab actual y agrego active class al btn
+        document.querySelector(`#${target}`).classList.remove('dnone');
+        currentObj.classList.add('active');
+    }
+}

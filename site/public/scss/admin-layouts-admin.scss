@@ -7,5 +7,14 @@ html[layout='admin'] {
 
     main {
         margin-left: 2rem;
+        width: calc(100% - 250px - 4rem);
+    }
+
+    .content_header {
+        margin: 1rem 0rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
     }
 }

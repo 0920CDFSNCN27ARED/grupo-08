@@ -6,7 +6,7 @@ routes.get('/productos/', (req, res) => {
 });
 
 routes.get('/productos/crear', (req, res) => {
-    res.render('products-list');
+    res.render('admin/pages/products-create');
 });
 
 routes.get('/productos/:id', (req, res) => {

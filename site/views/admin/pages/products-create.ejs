@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="es" class="products_create_view" layout="admin">
+<head>
+    <% pageTitle = locals.title !== undefined ? title : 'Crear producto' %> 
+    
+    <%- include('../partials/head') %>
+</head>
+<body>
+    <%- include('../partials/header.ejs')  %> 
+
+    <main>
+
+        <section class="content_header">
+
+            <h1>Crear producto</h1>
+
+            <a href="/admin/c/productos" class="button_main_action">
+                Volver
+            </a>
+
+        </section>
+
+        <section class="content_form">
+            
+            <form id="product_create_form" action="POST">
+
+                <div class="form_header">
+                    <h4>Información del producto</h4>
+                    <ul>
+                        <li>
+                            <a class="form_tab_btn active" onclick="changeTab(this, 'tab_data')">Datos producto</a>
+                        </li>
+                        <li>
+                            <a class="form_tab_btn" onclick="changeTab(this, 'tab_attributes')">Colores, talles y stock</a>
+                        </li>
+                        <li>
+                            <a class="form_tab_btn" onclick="changeTab(this, 'tab_imagenes')">Imagenes</a>
+                        </li>
+                        <li>
+                            <a class="form_tab_btn" onclick="changeTab(this, 'tab_categories')">Categorias</a>
+                        </li>
+                        <li>
+                            <a class="form_tab_btn" onclick="changeTab(this, 'tab_related_products')">Productos relacionados</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="form_tab" id="tab_data">
+                    <div class="form_data">
+
+                        <!-- 
+                            Estado
+
+                            Nombre
+                            Sku visible (timestamp + nombre)
+                            
+                            Descripcion corta
+                            Composicion
+                            Cuidado
+
+                            Imagenes
+
+                            Precio
+                            Precio especial
+                            Precio especial desde fecha
+                            Precio especial hasta fecha
+
+                            Marca
+                            Tipo de producto
+                            Tabla de talles
+                        -->
+                    
+                        <%- include('../../components/forms/form_select/index', {
+                            is_required: true,
+                            label: 'Estado',
+                            name: 'is_active',
+                            options: [
+                                'Habilitado',
+                                'Deshabilitado',
+                                'Esto es un test'
+                            ]
+                        }) %> 
+
+                        <%- include('../../components/forms/form_select/index', {
+                            is_required: true,
+                            label: 'Tipo de producto',
+                            name: 'tipo_de_producto',
+                            options: [
+                                'Abrigos',
+                                'Remeras',
+                                'Pantaloes',
+                                'Zapatos'
+                            ]
+                        }) %> 
+
+                        <%- include('../../components/forms/form_select/index', {
+                            is_required: true,
+                            label: 'Tabla de talles',
+                            name: 'tabla_de_talles',
+                            options: [
+                                'Prendas superiores',
+                                'Prendas inferiores',
+                                'Calzado'
+                            ]
+                        }) %> 
+
+                        <%- include('../../components/forms/form_select/index', {
+                            is_required: true,
+                            label: 'Marca',
+                            name: 'marca',
+                            options: [
+                                'Alaska',
+                                'Felix',
+                                'Zara'
+                            ]
+                        }) %> 
+            
+                        <%- include('../../components/forms/form_input/index', {
+                            is_required: true,
+                            label: 'Nombre',
+                            type: 'text',
+                            name: 'product_name',
+                            placeholder: 'Ingrese el nombre del producto'
+                        }) %> 
+
+                        <%- include('../../components/forms/form_input/index', {
+                            is_required: true,
+                            label: 'SKU visible',
+                            type: 'text',
+                            name: 'sku_visible',
+                            placeholder: 'El sku se generará automaticamente con el dia y el nombre del producto'
+                        }) %> 
+
+                        <%- include('../../components/forms/form_input/index', {
+                            is_required: true,
+                            label: 'Precio',
+                            type: 'number',
+                            name: 'product_price',
+                            placeholder: 'Ingrese el precio sin $'
+                        }) %> 
+
+                        <%- include('../../components/forms/form_input/index', {
+                            is_required: false,
+                            label: 'Precio especial',
+                            type: 'number',
+                            name: 'product_price_special',
+                            placeholder: 'Ingrese el precio sin $'
+                        }) %> 
+
+                        <%- include('../../components/forms/form_input/index', {
+                            is_required: false,
+                            label: 'Precio especial desde fecha',
+                            type: 'text',
+                            name: 'product_price_special_desde',
+                            placeholder: 'Ejemplo 2021-01-02 00:00:00'
+                        }) %> 
+
+                        <%- include('../../components/forms/form_input/index', {
+                            is_required: false,
+                            label: 'Precio especial hasta fecha',
+                            type: 'text',
+                            name: 'product_price_special_hasta',
+                            placeholder: 'Ejemplo 2021-01-20 23:59:59'
+                        }) %> 
+            
+                        <%- include('../../components/forms/form_input/index', {
+                            is_required: true,
+                            label: 'Talles (separados por comas)',
+                            type: 'text',
+                            name: 'product_sizes',
+                            placeholder: 'Ingrese los talles separados por comas'
+                        }) %> 
+            
+                        <%- include('../../components/forms/form_select/index', {
+                            is_required: true,
+                            label: 'Categoria',
+                            name: 'product_category',
+                            options: [
+                                'Remeras',
+                                'Pantalones',
+                                'Buzos'
+                            ]
+                        }) %> 
+
+                        <%- include('../../components/forms/form_input/index', {
+                            is_required: false,
+                            label: 'Descripcion corta',
+                            type: 'text',
+                            name: 'descripcion_corta',
+                            placeholder: ''
+                        }) %>
+
+                        <%- include('../../components/forms/form_input/index', {
+                            is_required: false,
+                            label: 'Composicion',
+                            type: 'text',
+                            name: 'composicion',
+                            placeholder: ''
+                        }) %>
+
+                        <%- include('../../components/forms/form_input/index', {
+                            is_required: false,
+                            label: 'Cuidado',
+                            type: 'text',
+                            name: 'cuidado',
+                            placeholder: ''
+                        }) %>
+
+                    </div>
+    
+                </div>
+
+                <div class="form_tab dnone" id="tab_attributes">
+
+                    <!-- 
+                        Tendria que crear en la db una tabla con todos los colores y traerlos en un select aca,
+                        luego al seleccionar un option genera el html con la tabla y los datos de la tabla de talles elegida anteriormente
+                        - en caso de que no haya seleccionado el tipo de tabla mostrar un texto que diga que la seleccione
+
+                        Esta tabla de talles generada se tendria que vincular al color elegido y habria que crear una tabla nueva
+                        con el id del color elegido, y los talles junto con el stock
+
+                        Tambien esta tabla se tiene que guardar en el producto
+                    -->
+                    <div class="form_data">
+                        <%- include('../../components/forms/form_select/index', {
+                            is_required: true,
+                            label: 'Agregar Color',
+                            name: 'agregar_color',
+                            options: [
+                                'Blanco',
+                                'Negro',
+                                'Rojo'
+                            ]
+                        }) %> 
+    
+                        <h4>
+                            Tenes que seleccionar un tipo de tabla en la pestaña Datos de producto
+                        </h4>
+    
+                        <div class="tablita talles_calzado">
+                            <h4>Calzado</h4>
+                            <table width="100%" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <th>
+                                       Talles 
+                                    </th>
+                                    <th>
+                                        35
+                                    </th>
+                                    <th>
+                                        35.5
+                                    </th>
+                                    <th>
+                                        36
+                                    </th>
+                                    <th>
+                                        36.5
+                                    </th>
+                                    <th>
+                                        37
+                                    </th>
+                                    <th>
+                                        37.5
+                                    </th>
+                                    <th>
+                                        38
+                                    </th>
+                                    <th>
+                                        38.5
+                                    </th>
+                                    <th>
+                                        39
+                                    </th>
+                                    <th>
+                                        39.5
+                                    </th>
+                                    <th>
+                                        40
+                                    </th>
+                                    <th>
+                                        40.5
+                                    </th>
+                                    <th>
+                                        41
+                                    </th>
+                                    <th>
+                                        41.5
+                                    </th>
+                                    <th>
+                                        42
+                                    </th>
+                                    <th>
+                                        42.5
+                                    </th>
+                                    <th>
+                                        43
+                                    </th>
+                                    <th>
+                                        43.5
+                                    </th>
+                                    <th>
+                                        44
+                                    </th>
+                                    <th>
+                                        44.5
+                                    </th>
+                                    <th>
+                                        45
+                                    </th>
+                                    <th>
+                                        45.5
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Color stock
+                                    </td>
+                                    <td>
+                                        <input type="number" name="stock_for_size_35" id="stock_for_size_35" placeholder="0" value="0">
+                                    </td>
+                                    <td>
+                                        <input type="number" name="stock_for_size_35.5" id="stock_for_size_35.5" placeholder="0" value="0">
+                                    </td>
+                                    <td>
+                                        <input type="number" name="stock_for_size_36" id="stock_for_size_36" placeholder="0" value="0">
+                                    </td>
+                                    <td>
+                                        <input type="number" name="stock_for_size_36.5" id="stock_for_size_36.5" placeholder="0" value="0">
+                                    </td>
+                                    <td>
+                                        <input type="number" name="stock_for_size_37" id="stock_for_size_37" placeholder="0" value="0">
+                                    </td>
+                                    <td>
+                                        <input type="number" name="stock_for_size_37.5" id="stock_for_size_37.5" placeholder="0" value="0">
+                                    </td>
+                                    <td>
+                                        <input type="number" name="stock_for_size_38" id="stock_for_size_38" placeholder="0" value="0">
+                                    </td>
+                                    <td>
+                                        <input type="number" name="stock_for_size_38.5" id="stock_for_size_38.5" placeholder="0" value="0">
+                                    </td>
+                                    <td>
+                                        <input type="number" name="stock_for_size_39" id="stock_for_size_39" placeholder="0" value="0">
+                                    </td>
+                                    <td>
+                                        <input type="number" name="stock_for_size_39.5" id="stock_for_size_39.5" placeholder="0" value="0">
+                                    </td>
+                                    <td>
+                                        <input type="number" name="stock_for_size_40" id="stock_for_size_40" placeholder="0" value="0">
+                                    </td>
+                                    <td>
+                                        <input type="number" name="stock_for_size_40.5" id="stock_for_size_40.5" placeholder="0" value="0">
+                                    </td>
+                                    <td>
+                                        <input type="number" name="stock_for_size_41" id="stock_for_size_41" placeholder="0" value="0">
+                                    </td>
+                                    <td>
+                                        <input type="number" name="stock_for_size_41.5" id="stock_for_size_41.5" placeholder="0" value="0">
+                                    </td>
+                                    <td>
+                                        <input type="number" name="stock_for_size_42" id="stock_for_size_42" placeholder="0" value="0">
+                                    </td>
+                                    <td>
+                                        <input type="number" name="stock_for_size_42.5" id="stock_for_size_42.5" placeholder="0" value="0">
+                                    </td>
+                                    <td>
+                                        <input type="number" name="stock_for_size_43" id="stock_for_size_43" placeholder="0" value="0">
+                                    </td>
+                                    <td>
+                                        <input type="number" name="stock_for_size_43.5" id="stock_for_size_43.5" placeholder="0" value="0">
+                                    </td>
+                                    <td>
+                                        <input type="number" name="stock_for_size_44" id="stock_for_size_44" placeholder="0" value="0">
+                                    </td>
+                                    <td>
+                                        <input type="number" name="stock_for_size_44.5" id="stock_for_size_44.5" placeholder="0" value="0">
+                                    </td>
+                                    <td>
+                                        <input type="number" name="stock_for_size_45" id="stock_for_size_45" placeholder="0" value="0">
+                                    </td>
+                                    <td>
+                                        <input type="number" name="stock_for_size_45.5" id="stock_for_size_45.5" placeholder="0" value="0">
+                                    </td>
+                                </tr>
+                            </table>
+    
+                        </div>
+    
+                        <div class="tablita talles_prendas_sup">
+                            <h4>Prendas superiores</h4>
+                            <table width="100%" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <th>
+                                       Talles 
+                                    </th>
+                                    <th>
+                                        xxs
+                                    </th>
+                                    <th>
+                                        xs
+                                    </th>
+                                    <th>
+                                        s
+                                    </th>
+                                    <th>
+                                        m
+                                    </th>
+                                    <th>
+                                        l
+                                    </th>
+                                    <th>
+                                        xl
+                                    </th>
+                                    <th>
+                                        xxl
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Color stock
+                                    </td>
+                                    <td>
+                                        <input type="number" name="stock_for_prenda_sup_xxs" id="stock_for_prenda_sup_xxs" placeholder="0" value="0">
+                                    </td>
+                                    <td>
+                                        <input type="number" name="stock_for_prenda_sup_xs" id="stock_for_prenda_sup_xs" placeholder="0" value="0">
+                                    </td>
+                                    <td>
+                                        <input type="number" name="stock_for_prenda_sup_s" id="stock_for_prenda_sup_s" placeholder="0" value="0">
+                                    </td>
+                                    <td>
+                                        <input type="number" name="stock_for_prenda_sup_m" id="stock_for_prenda_sup_m" placeholder="0" value="0">
+                                    </td>
+                                    <td>
+                                        <input type="number" name="stock_for_prenda_sup_l" id="stock_for_prenda_sup_l" placeholder="0" value="0">
+                                    </td>
+                                    <td>
+                                        <input type="number" name="stock_for_prenda_sup_xl" id="stock_for_prenda_sup_xl" placeholder="0" value="0">
+                                    </td>
+                                    <td>
+                                        <input type="number" name="stock_for_prenda_sup_xxl" id="stock_for_prenda_sup_xxl" placeholder="0" value="0">
+                                    </td>
+                                </tr>
+                            </table>
+    
+                        </div>
+    
+                        <div class="tablita talles_prendas_sup">
+                            <h4>Prendas inferiores</h4>
+                            <table width="100%" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <th>
+                                       Talles 
+                                    </th>
+                                    <th>
+                                        36
+                                    </th>
+                                    <th>
+                                        38
+                                    </th>
+                                    <th>
+                                        40
+                                    </th>
+                                    <th>
+                                        42
+                                    </th>
+                                    <th>
+                                        44
+                                    </th>
+                                    <th>
+                                        46
+                                    </th>
+                                    <th>
+                                        48
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Color stock
+                                    </td>
+                                    <td>
+                                        <input type="number" name="stock_for_prenda_inferior_36" id="stock_for_prenda_inferior_36" placeholder="0" value="0">
+                                    </td>
+                                    <td>
+                                        <input type="number" name="stock_for_prenda_inferior_38" id="stock_for_prenda_inferior_38" placeholder="0" value="0">
+                                    </td>
+                                    <td>
+                                        <input type="number" name="stock_for_prenda_inferior_40" id="stock_for_prenda_inferior_40" placeholder="0" value="0">
+                                    </td>
+                                    <td>
+                                        <input type="number" name="stock_for_prenda_inferior_42" id="stock_for_prenda_inferior_42" placeholder="0" value="0">
+                                    </td>
+                                    <td>
+                                        <input type="number" name="stock_for_prenda_inferior_44" id="stock_for_prenda_inferior_44" placeholder="0" value="0">
+                                    </td>
+                                    <td>
+                                        <input type="number" name="stock_for_prenda_inferior_46" id="stock_for_prenda_inferior_46" placeholder="0" value="0">
+                                    </td>
+                                    <td>
+                                        <input type="number" name="stock_for_prenda_inferior_48" id="stock_for_prenda_inferior_48" placeholder="0" value="0">
+                                    </td>
+                                </tr>
+                            </table>
+    
+                        </div>
+
+                    </div>
+                    
+                </div>
+                <div class="form_tab dnone" id="tab_imagenes">
+                    <div class="form_data">
+                    
+                        <div class="form_row">
+                            <label for="files">Cargar imagenes</label>
+                            <input type="file" id="files" name="files" multiple><br><br>
+                        </div>
+
+                    </div>
+                    <div class="form_images">
+                        <!--
+                            Cuando cargo las imagenes desde el form
+                            las guardo en un array con keys
+                            id
+                            name
+                            url
+    
+                            cuando queiera borrrarlas elimino el id del array
+                         -->
+                        <div id="form_images_card_id_1" class="form_images_card">
+                            <img src="https://via.placeholder.com/100x150/f1c40f/333" alt="image_name" class="form_images_card_image">
+                            <span class="form_images_card_name">LANDING-CAMPA_A-SS21-02.jpg</span>
+                            <button class="form_images_card_delete button_main_action">Borrar</button>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="form_tab dnone" id="tab_categories"><h1>tab_categories</h1></div>
+                <div class="form_tab dnone" id="tab_related_products"><h1>tab_related_products</h1></div>
+                
+                <button type="submit" id="product_create_form_submit_btn" class="button_main_action">Guardar producto</button>
+    
+            </form>
+
+        </section>
+
+        <!-- 
+            -   product_id
+            -   name
+            -   price
+            -   discount
+            -   colors
+            -   sizes
+            -   images
+            -   is_active
+
+
+        -->
+
+        
+    </main>
+
+    <%- include('../partials/footer.ejs')  %> 
+</body>
+</html>

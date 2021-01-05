@@ -30,6 +30,24 @@ img {
     display: block;
 }
 
+input {
+    // Chrome, Safari, Edge, Opera
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    // Firefox
+    &[type='number'] {
+        -moz-appearance: textfield;
+    }
+}
+
+button {
+    cursor: pointer;
+}
+
 .large {
     display: block;
     width: 100%;
@@ -38,7 +56,7 @@ img {
 }
 
 .dnone {
-    display: none;
+    display: none !important;
 }
 
 .remove_button {
