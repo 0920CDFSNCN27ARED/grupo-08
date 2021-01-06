@@ -126,6 +126,10 @@
     }
 
     #tab_data {
+        input[name='sku_visible'] {
+            pointer-events: none;
+            background: $gray1;
+        }
     }
 
     #tab_attributes {
