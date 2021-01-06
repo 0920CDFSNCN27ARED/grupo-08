@@ -40,11 +40,12 @@
                             <a class="form_tab_btn" onclick="changeTab(this, 'tab_categories')">Categorias</a>
                         </li>
                         <li>
-                            <a class="form_tab_btn" onclick="changeTab(this, 'tab_related_products')">Productos relacionados</a>
+                            <a class="form_tab_btn" disabled onclick="changeTab(this, 'tab_related_products')">Productos relacionados</a>
                         </li>
                     </ul>
                 </div>
 
+                <!-- Datos producto -->
                 <div class="form_tab" id="tab_data">
                     <div class="form_data">
 
@@ -90,7 +91,8 @@
                                 'Remeras',
                                 'Pantaloes',
                                 'Zapatos'
-                            ]
+                            ],
+                            event: ['onchange', `handleSkuVisible(this,'sku_visible')`]
                         }) %> 
 
                         <%- include('../../components/forms/form_select/index', {
@@ -98,9 +100,9 @@
                             label: 'Tabla de talles',
                             name: 'tabla_de_talles',
                             options: [
-                                'Prendas superiores',
-                                'Prendas inferiores',
-                                'Calzado'
+                                'Tabla talles XXS - XXL',
+                                'Tabla talles 36 - 48',
+                                'Tabla talles calzado 35 - 45.5'
                             ]
                         }) %> 
 
@@ -112,7 +114,8 @@
                                 'Alaska',
                                 'Felix',
                                 'Zara'
-                            ]
+                            ],
+                            event: ['onchange', `handleSkuVisible(this,'sku_visible')`]
                         }) %> 
             
                         <%- include('../../components/forms/form_input/index', {
@@ -120,15 +123,17 @@
                             label: 'Nombre',
                             type: 'text',
                             name: 'product_name',
-                            placeholder: 'Ingrese el nombre del producto'
+                            placeholder: 'Ingrese el nombre del producto',
+                            event: ['onkeyup', `handleSkuVisible(this,'sku_visible')`]
                         }) %> 
 
                         <%- include('../../components/forms/form_input/index', {
                             is_required: true,
+                            disabled: true,
                             label: 'SKU visible',
                             type: 'text',
                             name: 'sku_visible',
-                            placeholder: 'El sku se generará automaticamente con el dia y el nombre del producto'
+                            placeholder: 'El sku se generará automaticamente con la marca, el tipo de producto y el nombre'
                         }) %> 
 
                         <%- include('../../components/forms/form_input/index', {
@@ -162,25 +167,6 @@
                             name: 'product_price_special_hasta',
                             placeholder: 'Ejemplo 2021-01-20 23:59:59'
                         }) %> 
-            
-                        <%- include('../../components/forms/form_input/index', {
-                            is_required: true,
-                            label: 'Talles (separados por comas)',
-                            type: 'text',
-                            name: 'product_sizes',
-                            placeholder: 'Ingrese los talles separados por comas'
-                        }) %> 
-            
-                        <%- include('../../components/forms/form_select/index', {
-                            is_required: true,
-                            label: 'Categoria',
-                            name: 'product_category',
-                            options: [
-                                'Remeras',
-                                'Pantalones',
-                                'Buzos'
-                            ]
-                        }) %> 
 
                         <%- include('../../components/forms/form_input/index', {
                             is_required: false,
@@ -210,6 +196,7 @@
     
                 </div>
 
+                <!-- Colores, talles y stock -->
                 <div class="form_tab dnone" id="tab_attributes">
 
                     <!-- 
@@ -224,7 +211,7 @@
                     -->
                     <div class="form_data">
                         <%- include('../../components/forms/form_select/index', {
-                            is_required: true,
+                            is_required: false,
                             label: 'Agregar Color',
                             name: 'agregar_color',
                             options: [
@@ -508,6 +495,8 @@
                     </div>
                     
                 </div>
+
+                <!-- Imagenes -->
                 <div class="form_tab dnone" id="tab_imagenes">
                     <div class="form_data">
                     
@@ -535,7 +524,215 @@
                         
                     </div>
                 </div>
-                <div class="form_tab dnone" id="tab_categories"><h1>tab_categories</h1></div>
+
+                <!-- Categoria -->
+                <div class="form_tab dnone" id="tab_categories">
+                    <div class="form_data">
+                        <h4>Categorias del producto</h4>
+
+                        <% 
+                            let categories = [
+                                
+                                {
+                                    id: 1,
+                                    name: 'Eshop',
+                                    subcategories: [
+                                        {
+                                            id: 2,
+                                            name: 'coleccionss21',
+                                            subcategories: [
+                                                {
+                                                    id: 3,
+                                                    name: 'remeras',
+                                                },
+                                                {
+                                                    id: 4,
+                                                    name: 'camisas',
+                                                },
+                                                {
+                                                    id: 5,
+                                                    name: 'sweaters',
+                                                },
+                                                {
+                                                    id: 6,
+                                                    name: 'pantalones',
+                                                },
+                                                {
+                                                    id: 7,
+                                                    name: 'vestidos',
+                                                },
+                                            ],
+                                        },
+                                        {
+                                            id: 8,
+                                            name: 'denim',
+                                            subcategories: [
+                                                {
+                                                    id: 9,
+                                                    name: 'jeans',
+                                                },
+                                                {
+                                                    id: 10,
+                                                    name: 'vestidos',
+                                                },
+                                                {
+                                                    id: 11,
+                                                    name: 'camperas',
+                                                },
+                                                {
+                                                    id: 12,
+                                                    name: 'camisas',
+                                                },
+                                            ],
+                                        },
+                                        {
+                                            id: 13,
+                                            name: 'accesorios',
+                                            subcategories: [
+                                                {
+                                                    id: 14,
+                                                    name: 'calzado',
+                                                    subcategories: [
+                                                        {
+                                                            id: 9,
+                                                            name: 'zapatillas',
+                                                        },
+                                                        {
+                                                            id: 10,
+                                                            name: 'botas',
+                                                        },
+                                                        {
+                                                            id: 11,
+                                                            name: 'zapatos',
+                                                        },
+                                                    ],
+                                                },
+                                                {
+                                                    id: 15,
+                                                    name: 'carteras',
+                                                },
+                                                {
+                                                    id: 16,
+                                                    name: 'cinturones',
+                                                },
+                                            ]
+                                        },
+                                        {
+                                            id: 17,
+                                            name: 'playa',
+                                        }
+                                    ]
+
+                                },
+                                {
+                                    id: 18,
+                                    name: 'hotsale',
+                                    subcategories: [
+                                        {
+                                            id: 19,
+                                            name: 'remeras',
+                                        },
+                                        {
+                                            id: 20,
+                                            name: 'camisas',
+                                        },
+                                        {
+                                            id: 21,
+                                            name: 'vestiods',
+                                        },
+                                        {
+                                            id: 22,
+                                            name: 'denim',
+                                        },
+                                        {
+                                            id: 23,
+                                            name: 'pantalones',
+                                        },  
+                                    ]
+                                },
+
+                                {
+                                    id: 24,
+                                    name: 'blackfriday',
+                                },
+                                {
+                                    id: 25,
+                                    name: 'cybermonday',
+                                }
+                                
+                            ]
+                        %> 
+
+                        <ul>
+                        <% for( let i = 0; i < categories.length; i++ ) { %>
+                            <li>
+                                <input 
+                                    type  = "checkbox" 
+                                    name  = "<%=  categories[i].name + categories[i].id %>" 
+                                    id    = "<%=  categories[i].name + categories[i].id %>" 
+                                    value = "<%= categories[i].id %>"
+                                >
+                                <label for="<%=  categories[i].name + categories[i].id %>" >
+                                    <%=  categories[i].name %> <i>(<%= categories[i].id %> )</i> 
+                                </label>
+
+                                <!-- Checkeo si tiene subcategorias -->
+                                <% 
+                                    if (categories[i].subcategories) { 
+                                        let subcats = categories[i].subcategories; 
+                                %>
+                                        <ul style="margin-left: 1.5rem;">
+                                            <% for( let i = 0; i < subcats.length; i++ ) { %>
+                                                <li>
+                                                    <input 
+                                                        type  = "checkbox" 
+                                                        name  = "<%=  subcats[i].name + subcats[i].id %>" 
+                                                        id    = "<%=  subcats[i].name + subcats[i].id %>"
+                                                        value = "<%= subcats[i].id %>"
+                                                    >
+                                                    <label for="<%=  subcats[i].name + subcats[i].id %>">
+                                                        <%=  subcats[i].name %> <i>(<%= subcats[i].id %> )</i> 
+                                                    </label>
+
+                                                    <!-- Checkeo si tiene sub subcategorias -->
+                                                    <% 
+                                                        if (subcats[i].subcategories) { 
+                                                            let subsubcats = subcats[i].subcategories; 
+                                                    %>
+                                                            <ul style="margin-left: 1.5rem;">
+                                                                <% for( let i = 0; i < subsubcats.length; i++ ) { %>
+                                                                    <li>
+                                                                        <input 
+                                                                            type  = "checkbox" 
+                                                                            name  = "<%=  subsubcats[i].name + subsubcats[i].id %>" 
+                                                                            id    = "<%=  subsubcats[i].name + subsubcats[i].id %>"
+                                                                            value = "<%= subsubcats[i].id %>"
+                                                                        >
+                                                                        <label for="<%=  subsubcats[i].name + subsubcats[i].id %>">
+                                                                            <%=  subsubcats[i].name %> <i>(<%= subsubcats[i].id %> )</i> 
+                                                                        </label>
+
+                                                                    </li>
+
+                                                                <% } %>
+                                                            </ul>
+                                                    <% } %>
+
+                                                </li>
+
+                                            <% } %>
+                                        </ul>
+                                <% } %>
+
+                            </li>
+                            
+                        <% } %>
+                        </ul>
+
+                    </div>
+                </div>
+
+                <!-- Producto relacionados -->
                 <div class="form_tab dnone" id="tab_related_products"><h1>tab_related_products</h1></div>
                 
                 <button type="submit" id="product_create_form_submit_btn" class="button_main_action">Guardar producto</button>

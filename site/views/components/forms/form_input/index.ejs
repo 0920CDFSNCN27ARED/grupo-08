@@ -12,11 +12,19 @@
         <label for="<%= name %>" class="form_label"><%= label %> </label>
     <% } %>
     <input 
-        type="<%= type %> " 
+        type="<%= type %>" 
         id="<%= locals.idSelector !== undefined ? idSelector : name %>" 
         name="<%= name %>" 
         class="form_input" 
         placeholder="<%= placeholder %>"
         <%= is_required ? 'required' : '' %> 
+
+        <% if (locals.disabled !== undefined) { %>
+         disabled
+        <% } %>
+
+        <% if (locals.event !== undefined) { %>
+            <%= event[0] %>="<%= event[1] %>"
+        <% } %>
     >
 </div>

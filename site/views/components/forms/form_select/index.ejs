@@ -12,7 +12,15 @@
     <select 
         id="<%= locals.idSelector !== undefined ? idSelector : name %>" 
         name="<%= name %>" 
-        <%= is_required ? 'required' : '' %> 
+        <%= is_required ? 'required' : '' %>
+        
+        <% if (locals.disabled !== undefined) { %>
+        disabled
+        <% } %>
+
+        <% if (locals.event !== undefined) { %>
+            <%= event[0] %>="<%= event[1] %>"
+        <% } %>
     >
         <option value="">Seleccionar</option>
         <% for( let i = 0; i < options.length; i++ ) { %>

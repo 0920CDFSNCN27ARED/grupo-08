@@ -186,4 +186,47 @@ if (products_create_view) {
         document.querySelector(`#${target}`).classList.remove('dnone');
         currentObj.classList.add('active');
     }
+
+    function handleSkuVisible(currEl, targetElement) {
+        let target = document.querySelector(`#${targetElement}`);
+        let arrTargetVal = target.value.split('-');
+
+        // El sku visible se compone por marca - tipo prod - nombre
+        let [marca, tipoProducto, nombre] = ['marca', 'tipo_de_producto', 'nombre'];
+
+        if (target.value) {
+            console.log('entre');
+            marca = arrTargetVal[0];
+            tipoProducto = arrTargetVal[1];
+            nombre = arrTargetVal[2];
+        }
+
+        switch (currEl.getAttribute('name')) {
+            case 'marca':
+                marca = formatString(currEl.value);
+                break;
+
+            case 'tipo_de_producto':
+                tipoProducto = formatString(currEl.value);
+                break;
+
+            case 'product_name':
+                nombre = formatString(currEl.value);
+                break;
+
+            default:
+                break;
+        }
+
+        function formatString(str) {
+            return str
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .toLowerCase()
+                .replaceAll(' ', '_');
+        }
+
+        // Devuelvo el sku visible
+        target.value = `${marca}-${tipoProducto}-${nombre}`;
+    }
 }
