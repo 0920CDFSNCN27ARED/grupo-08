@@ -14,7 +14,7 @@
 
             <h1>Crear producto</h1>
 
-            <a href="/admin/c/productos" class="button_main_action">
+            <a href="/admin/c/productos/" class="button_main_action">
                 Volver
             </a>
 
@@ -22,7 +22,7 @@
 
         <section class="content_form">
             
-            <form id="product_create_form" action="POST">
+            <form id="product_create_form" action="/admin/c/productos/creado" method="POST" enctype="multipart/form-data">
 
                 <div class="form_header">
                     <h4>Información del producto</h4>
@@ -410,10 +410,8 @@
                                 </label>
 
                                 <!-- Checkeo si tiene subcategorias -->
-                                <% 
-                                    if (categories[i].subcategories) { 
-                                        let subcats = categories[i].subcategories; 
-                                %>
+                                <% if (categories[i].subcategories) { %>
+                                        <% let subcats = categories[i].subcategories;  %> 
                                         <ul style="margin-left: 1.5rem;">
                                             <% for( let i = 0; i < subcats.length; i++ ) { %>
                                                 <li>
@@ -428,10 +426,8 @@
                                                     </label>
 
                                                     <!-- Checkeo si tiene sub subcategorias -->
-                                                    <% 
-                                                        if (subcats[i].subcategories) { 
-                                                            let subsubcats = subcats[i].subcategories; 
-                                                    %>
+                                                    <% if (subcats[i].subcategories) { %>
+                                                            <% subsubcats = subcats[i].subcategories; %>
                                                             <ul style="margin-left: 1.5rem;">
                                                                 <% for( let i = 0; i < subsubcats.length; i++ ) { %>
                                                                     <li>

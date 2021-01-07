@@ -1,35 +1,34 @@
 const express = require('express');
-const app = express();
+const methodOverride = require('method-override');
 
+// SETTINGS
+const app = express();
 const PORT = 3000;
 app.listen(PORT, () => console.log('Escuchando el puerto ' + PORT));
-
-// Configuraciones express
 app.set('view engine', 'ejs');
 
-// Archivos estaticos
-const staticFiles = express.static('public');
-app.use(staticFiles);
+// Middlewares
+app.use(express.static('public'));
+app.use(methodOverride('_method'));
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
-// Cargar rutas
+// Load Routes
 const mainRoutes = require('./routes/mainRoutes');
 const productRoutes = require('./routes/productRoutes');
 const checkoutRoutes = require('./routes/checkoutRoutes');
 const customerRoutes = require('./routes/customerRoutes');
+
+// Admin
 const adminRoutes = require('./routes/admin/adminRoutes');
 
-// Middlewares
-
-// CORS
-
-// Levantar rutas
-
+// Routes
 app.use('/', mainRoutes);
 app.use('/c', productRoutes);
 app.use('/clientes', customerRoutes);
 app.use('/checkout', checkoutRoutes);
 
-// Admin routes
+// Admin
 app.use('/admin', adminRoutes);
 
 app.use((req, res, next) => {
