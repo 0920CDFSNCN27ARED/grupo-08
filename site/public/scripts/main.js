@@ -545,4 +545,70 @@ if (products_create_view) {
             }
         }
     }
+
+    // Muestro imagenes al subir
+    let filesArray = [];
+
+    // Valido la api de file
+    if (window.File && window.FileList && window.FileReader) {
+        let filesInput = document.querySelector('#form_files_upload');
+
+        filesInput.addEventListener('change', (e) => {
+            let files, output;
+
+            files = e.target.files; // el FileList
+            output = document.querySelector('#form_preview_files');
+
+            for (let i = 0; i < files.length; i++) {
+                let file = files[i];
+                let fr = new FileReader();
+
+                fr.addEventListener('load', function (e) {
+                    let image = e.target;
+
+                    let templateCard = `
+                        <div id="${file.name}" class="form_images_card">
+                            <img src="${image.result}" alt="${file.name}" class="form_images_card_image">
+                            <span class="form_images_card_name">${file.name}</span>
+                            <button class="form_images_card_delete button_main_action" onclick="removeCurrentFile('${file.name}')">Borrar</button>
+                        </div>
+                    `;
+
+                    output.innerHTML += templateCard;
+                    filesArray.push(file);
+                });
+
+                fr.readAsDataURL(file);
+            }
+        });
+    } else {
+        alert('El navegador no soporta la API FILE');
+    }
+
+    function removeCurrentFile(target) {
+        // Remuevo la imagen del array
+        let deletedFileIndex = filesArray.findIndex((file) => file.name === target);
+        filesArray.splice(deletedFileIndex, 1);
+
+        // Remuevo la imagen del front
+        document.querySelector(`[id*="${target}"]`).remove();
+
+        console.log(filesArray);
+    }
+
+    // guardar producto
+    let guardarProdBtn = document.querySelector('#product_create_form_submit_btn');
+    let form = document.querySelector('#product_create_form');
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        let res = await fetch('/admin/c/productos/creado', {
+            method: 'POST',
+            body: new FormData(form),
+        });
+
+        console.log('lenny');
+        let result = await response.json();
+        console.log(result);
+    });
 }

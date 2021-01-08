@@ -46,7 +46,7 @@
                 </div>
 
                 <!-- Datos producto -->
-                <div class="form_tab" id="tab_data">
+                <div class="form_tab dnone" id="tab_data">
                     <div class="form_data">
 
                         <!-- 
@@ -230,16 +230,16 @@
                 </div>
 
                 <!-- Imagenes -->
-                <div class="form_tab dnone" id="tab_imagenes">
+                <div class="form_tab" id="tab_imagenes">
                     <div class="form_data">
                     
                         <div class="form_row">
-                            <label for="files">Cargar imagenes</label>
-                            <input type="file" id="files" name="files" multiple><br><br>
+                            <label for="form_files_upload">Cargar imagenes</label>
+                            <input type="file" id="form_files_upload" name="form_files_upload" multiple><br><br>
                         </div>
 
                     </div>
-                    <div class="form_images">
+                    <div class="form_images" id="form_preview_files">
                         <!--
                             Cuando cargo las imagenes desde el form
                             las guardo en un array con keys
@@ -249,11 +249,11 @@
     
                             cuando queiera borrrarlas elimino el id del array
                          -->
-                        <div id="form_images_card_id_1" class="form_images_card">
+                        <!-- <div id="form_images_card_id_1" class="form_images_card">
                             <img src="https://via.placeholder.com/100x150/f1c40f/333" alt="image_name" class="form_images_card_image">
                             <span class="form_images_card_name">LANDING-CAMPA_A-SS21-02.jpg</span>
                             <button class="form_images_card_delete button_main_action">Borrar</button>
-                        </div>
+                        </div> -->
                         
                     </div>
                 </div>
@@ -401,9 +401,9 @@
                             <li>
                                 <input 
                                     type  = "checkbox" 
-                                    name  = "<%=  categories[i].name + categories[i].id %>" 
+                                    name  = "categoria" 
                                     id    = "<%=  categories[i].name + categories[i].id %>" 
-                                    value = "<%= categories[i].id %>"
+                                    value = "<%=  categories[i].name %>"
                                 >
                                 <label for="<%=  categories[i].name + categories[i].id %>" >
                                     <%=  categories[i].name %> <i>(<%= categories[i].id %> )</i> 
@@ -417,9 +417,9 @@
                                                 <li>
                                                     <input 
                                                         type  = "checkbox" 
-                                                        name  = "<%=  subcats[i].name + subcats[i].id %>" 
+                                                        name  = "categoria" 
                                                         id    = "<%=  subcats[i].name + subcats[i].id %>"
-                                                        value = "<%= subcats[i].id %>"
+                                                        value = "<%=  subcats[i].name %>"
                                                     >
                                                     <label for="<%=  subcats[i].name + subcats[i].id %>">
                                                         <%=  subcats[i].name %> <i>(<%= subcats[i].id %> )</i> 
@@ -433,9 +433,9 @@
                                                                     <li>
                                                                         <input 
                                                                             type  = "checkbox" 
-                                                                            name  = "<%=  subsubcats[i].name + subsubcats[i].id %>" 
+                                                                            name  = "categoria" 
                                                                             id    = "<%=  subsubcats[i].name + subsubcats[i].id %>"
-                                                                            value = "<%= subsubcats[i].id %>"
+                                                                            value = "<%=  subsubcats[i].name %>"
                                                                         >
                                                                         <label for="<%=  subsubcats[i].name + subsubcats[i].id %>">
                                                                             <%=  subsubcats[i].name %> <i>(<%= subsubcats[i].id %> )</i> 
