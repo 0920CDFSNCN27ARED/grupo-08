@@ -19,7 +19,7 @@ const catalogControllers = require('../../controllers/admin/catalogControllers')
 // Routes
 routes.get('/productos', catalogControllers.getAll);
 routes.get('/productos/crear', catalogControllers.create);
-routes.post('/productos/creado', upload.any(), catalogControllers.created);
+routes.post('/productos/crear', upload.any(), catalogControllers.created);
 
 routes.get('/productos/:id', (req, res) => {
     res.render('products-list');

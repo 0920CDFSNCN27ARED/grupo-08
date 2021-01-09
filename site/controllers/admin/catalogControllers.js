@@ -25,23 +25,29 @@ const catalogControllers = {
         };
 
         const product = {
-            is_active: req.body.is_active,
-            tipo_de_producto: req.body.tipo_de_producto,
-            tabla_de_talles: req.body.tabla_de_talles,
-            marca: req.body.marca,
-            product_name: req.body.product_name,
-            sku_visible: req.body.sku_visible,
-            product_price: req.body.product_price,
-            product_price_special: req.body.product_price_special,
-            product_price_special_desde: req.body.product_price_special_desde,
-            product_price_special_hasta: req.body.product_price_special_hasta,
-            descripcion_corta: req.body.descripcion_corta,
-            composicion: req.body.composicion,
-            cuidado: req.body.cuidado,
-            color: req.body.agregar_color,
-            stock_talle: req.body.stock_talle,
-            categorias: req.body.categorias,
-            imagenes: handleImages(req.files),
+            is_active: req.body.is_active ? req.body.is_active : '',
+            tipo_de_producto: req.body.tipo_de_producto ? req.body.tipo_de_producto : '',
+            tabla_de_talles: req.body.tabla_de_talles ? req.body.tabla_de_talles : '',
+            marca: req.body.marca ? req.body.marca : '',
+            product_name: req.body.product_name ? req.body.product_name : '',
+            sku_visible: req.body.sku_visible ? req.body.sku_visible : '',
+            product_price: req.body.product_price ? req.body.product_price : 0,
+            product_price_special: req.body.product_price_special
+                ? req.body.product_price_special
+                : 0,
+            product_price_special_desde: req.body.product_price_special_desde
+                ? req.body.product_price_special_desde
+                : '',
+            product_price_special_hasta: req.body.product_price_special_hasta
+                ? req.body.product_price_special_hasta
+                : '',
+            descripcion_corta: req.body.descripcion_corta ? req.body.descripcion_corta : '',
+            composicion: req.body.composicion ? req.body.composicion : '',
+            cuidado: req.body.cuidado ? req.body.cuidado : '',
+            color: req.body.agregar_color ? req.body.agregar_color : '',
+            stock_talles: req.body.stock_talle ? req.body.stock_talle : [],
+            categorias: req.body.categorias ? req.body.categorias : [],
+            imagenes: handleImages(req.files) ? handleImages(req.files) : [],
         };
 
         /* let mockProd = {
@@ -65,14 +71,15 @@ const catalogControllers = {
         }; */
 
         // Traigo los productos
-        //const allProducts = readJsonFile('../db/producs.json');
+        const allProducts = readJsonFile('../db/producs.json');
 
         // pusheo el producto
-        //allProducts.push(product);
+        allProducts.push(product);
 
         // Guardo todos los productos
-        //writeJsonFile(allProducts, '../db/producs.json');
-        res.redirect('/');
+        writeJsonFile(allProducts, '../db/producs.json');
+        //res.redirect(200, '/');
+        res.send({ status: 200 });
     },
 };
 

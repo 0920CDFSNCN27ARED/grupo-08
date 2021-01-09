@@ -600,27 +600,20 @@ if (products_create_view) {
         console.log(filesArray);
     }
 
-    // guardar producto
+    // Guardar producto
     let guardarProdBtn = document.querySelector('#product_create_form_submit_btn');
     let form = document.querySelector('#product_create_form');
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         var FD = new FormData(form);
         FD.append('imagenes', filesArray);
 
-        //console.log(FD.getAll('form_files_upload'));
-
-        /* for (let [k, v] of FD.entries()) {
-            if (k === 'form_files_upload') {
-                //console.log(`key: ${k} --> value: ${v}`);
-                console.log(k);
-                console.log(v);
+        createProduct('/admin/c/productos/crear', FD).then((res) => {
+            if (res.status === 200) {
+                console.log(res);
+                location.href = '/admin/c/productos';
             }
-        } */
-
-        createProduct('/admin/c/productos/creado', FD).then((response) => {
-            console.log(response);
         });
     });
 
