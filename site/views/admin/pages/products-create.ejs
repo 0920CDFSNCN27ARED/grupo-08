@@ -40,7 +40,7 @@
                             <a class="form_tab_btn" onclick="changeTab(this, 'tab_categories')">Categorias</a>
                         </li>
                         <li>
-                            <a class="form_tab_btn" disabled onclick="changeTab(this, 'tab_related_products')">Productos relacionados</a>
+                            <a class="form_tab_btn dnone" disabled onclick="changeTab(this, 'tab_related_products')">Productos relacionados</a>
                         </li>
                     </ul>
                 </div>
@@ -401,7 +401,7 @@
                             <li>
                                 <input 
                                     type  = "checkbox" 
-                                    name  = "categoria" 
+                                    name  = "categorias" 
                                     id    = "<%=  categories[i].name + categories[i].id %>" 
                                     value = "<%=  categories[i].name %>"
                                 >
@@ -417,7 +417,7 @@
                                                 <li>
                                                     <input 
                                                         type  = "checkbox" 
-                                                        name  = "categoria" 
+                                                        name  = "categorias" 
                                                         id    = "<%=  subcats[i].name + subcats[i].id %>"
                                                         value = "<%=  subcats[i].name %>"
                                                     >
@@ -433,7 +433,7 @@
                                                                     <li>
                                                                         <input 
                                                                             type  = "checkbox" 
-                                                                            name  = "categoria" 
+                                                                            name  = "categorias" 
                                                                             id    = "<%=  subsubcats[i].name + subsubcats[i].id %>"
                                                                             value = "<%=  subsubcats[i].name %>"
                                                                         >

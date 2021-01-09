@@ -171,6 +171,19 @@
                 @include font-size(12);
             }
         }
+
+        .talles_calzado {
+            table {
+                th,
+                td {
+                    @include font-size(10);
+
+                    &:first-child {
+                        width: 80px;
+                    }
+                }
+            }
+        }
     }
 
     #tab_categories {

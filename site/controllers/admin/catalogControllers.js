@@ -1,3 +1,6 @@
+const writeJsonFile = require('../../helpers/writeJsonFile');
+const readJsonFile = require('../../helpers/readJsonFile');
+
 const catalogControllers = {
     getAll: (req, res, next) => {
         res.render('admin/pages/products-list');
@@ -6,7 +9,20 @@ const catalogControllers = {
         res.render('admin/pages/products-create');
     },
     created: (req, res) => {
-        console.log('controller', req);
+        console.log('==========================================');
+        console.log('==========================================');
+
+        const handleImages = (obj) => {
+            let arrImagesNames = [];
+
+            let images = obj;
+            images.forEach((image) => {
+                let originalName = image.originalname;
+                arrImagesNames.push(`/${originalName[0]}/${originalName[1]}/${originalName}`);
+            });
+
+            return arrImagesNames;
+        };
 
         const product = {
             is_active: req.body.is_active,
@@ -14,6 +30,7 @@ const catalogControllers = {
             tabla_de_talles: req.body.tabla_de_talles,
             marca: req.body.marca,
             product_name: req.body.product_name,
+            sku_visible: req.body.sku_visible,
             product_price: req.body.product_price,
             product_price_special: req.body.product_price_special,
             product_price_special_desde: req.body.product_price_special_desde,
@@ -22,21 +39,40 @@ const catalogControllers = {
             composicion: req.body.composicion,
             cuidado: req.body.cuidado,
             color: req.body.agregar_color,
-            stock_talle: {
-                stock_for_prenda_sup_xxs: req.body.stock_for_prenda_sup_xxs,
-                stock_for_prenda_sup_xs: req.body.stock_for_prenda_sup_xs,
-                stock_for_prenda_sup_s: req.body.stock_for_prenda_sup_s,
-                stock_for_prenda_sup_m: req.body.stock_for_prenda_sup_m,
-                stock_for_prenda_sup_l: req.body.stock_for_prenda_sup_l,
-                stock_for_prenda_sup_xl: req.body.stock_for_prenda_sup_xl,
-                stock_for_prenda_sup_xxl: req.body.stock_for_prenda_sup_xxl,
-                stock_for_prenda_sup_xxl: req.body.stock_for_prenda_sup_xxl,
-            },
-            categorias: {},
+            stock_talle: req.body.stock_talle,
+            categorias: req.body.categorias,
+            imagenes: handleImages(req.files),
         };
 
-        console.log('fin');
-        console.log('----------------------------');
+        /* let mockProd = {
+            id: Date.now(),
+            is_active: 'habilitado',
+            tipo_de_producto: 'remeras',
+            tabla_de_talles: 'tabla_talles_xxs_al_xxl',
+            marca: 'zara',
+            product_name: 'Remera hombre mickey',
+            sku_visible: 'zara-remeras-remera_hombre_mickey',
+            product_price: '22',
+            product_price_special: '11',
+            product_price_special_desde: '2021:01:10 00:00:00',
+            product_price_special_hasta: '2021:01:18 23:59:59',
+            descripcion_corta: 'Esto es una descripcion corta',
+            composicion: 'Esta es la composicion',
+            cuidado: 'Estos son los cuidados a tener',
+            agregar_color: '',
+            categorias: ['Eshop', 'coleccionss21', 'remeras'],
+            imagenes: handleImages(req.files),
+        }; */
+
+        // Traigo los productos
+        //const allProducts = readJsonFile('../db/producs.json');
+
+        // pusheo el producto
+        //allProducts.push(product);
+
+        // Guardo todos los productos
+        //writeJsonFile(allProducts, '../db/producs.json');
+        res.redirect('/');
     },
 };
 

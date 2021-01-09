@@ -21,18 +21,6 @@ function handleUploadImage(req, file) {
     basePath = getAbsolutePath('../public/images/catalog/products');
     finalPath = basePath + '/' + fileName[0] + '/' + fileName[1];
 
-    //console.log(fileName);
-    // Valido si existe el directorio, si no, lo creo
-    /* fs.ensureDir(finalPath)
-        .then(() => {
-            console.log('Creado');
-        })
-        .catch((err) => {
-            console.log('DIR :: el error es: ' + err);
-        }); */
-
-    // Tengo que usar ensureDirSync porque multer busca
-    // El directorio antes de que termine de crearlo
     fs.ensureDirSync(finalPath, (err) => {
         if (err) throw err;
 

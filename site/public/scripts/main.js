@@ -313,70 +313,70 @@ if (products_create_view) {
                             Color stock
                         </td>
                         <td>
-                            <input type="number" name="stock_for_size_35" id="stock_for_size_35" placeholder="0" value="0">
+                            <input type="number"  name="stock_talle"  id="stock_talle"  placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number" name="stock_for_size_35.5" id="stock_for_size_35.5" placeholder="0" value="0">
+                            <input type="number"  name="stock_talle"  id="stock_talle"  placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number" name="stock_for_size_36" id="stock_for_size_36" placeholder="0" value="0">
+                            <input type="number"  name="stock_talle"  id="stock_talle"  placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number" name="stock_for_size_36.5" id="stock_for_size_36.5" placeholder="0" value="0">
+                            <input type="number"  name="stock_talle"  id="stock_talle"  placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number" name="stock_for_size_37" id="stock_for_size_37" placeholder="0" value="0">
+                            <input type="number"  name="stock_talle"  id="stock_talle"  placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number" name="stock_for_size_37.5" id="stock_for_size_37.5" placeholder="0" value="0">
+                            <input type="number"  name="stock_talle"  id="stock_talle"  placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number" name="stock_for_size_38" id="stock_for_size_38" placeholder="0" value="0">
+                            <input type="number"  name="stock_talle"  id="stock_talle"  placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number" name="stock_for_size_38.5" id="stock_for_size_38.5" placeholder="0" value="0">
+                            <input type="number"  name="stock_talle"  id="stock_talle"  placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number" name="stock_for_size_39" id="stock_for_size_39" placeholder="0" value="0">
+                            <input type="number"  name="stock_talle"  id="stock_talle"  placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number" name="stock_for_size_39.5" id="stock_for_size_39.5" placeholder="0" value="0">
+                            <input type="number"  name="stock_talle"  id="stock_talle"  placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number" name="stock_for_size_40" id="stock_for_size_40" placeholder="0" value="0">
+                            <input type="number"  name="stock_talle"  id="stock_talle"  placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number" name="stock_for_size_40.5" id="stock_for_size_40.5" placeholder="0" value="0">
+                            <input type="number"  name="stock_talle"  id="stock_talle"  placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number" name="stock_for_size_41" id="stock_for_size_41" placeholder="0" value="0">
+                            <input type="number"  name="stock_talle"  id="stock_talle"  placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number" name="stock_for_size_41.5" id="stock_for_size_41.5" placeholder="0" value="0">
+                            <input type="number"  name="stock_talle"  id="stock_talle"  placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number" name="stock_for_size_42" id="stock_for_size_42" placeholder="0" value="0">
+                            <input type="number"  name="stock_talle"  id="stock_talle"  placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number" name="stock_for_size_42.5" id="stock_for_size_42.5" placeholder="0" value="0">
+                            <input type="number"  name="stock_talle"  id="stock_talle"  placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number" name="stock_for_size_43" id="stock_for_size_43" placeholder="0" value="0">
+                            <input type="number"  name="stock_talle"  id="stock_talle"  placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number" name="stock_for_size_43.5" id="stock_for_size_43.5" placeholder="0" value="0">
+                            <input type="number"  name="stock_talle"  id="stock_talle"  placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number" name="stock_for_size_44" id="stock_for_size_44" placeholder="0" value="0">
+                            <input type="number"  name="stock_talle"  id="stock_talle"  placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number" name="stock_for_size_44.5" id="stock_for_size_44.5" placeholder="0" value="0">
+                            <input type="number"  name="stock_talle"  id="stock_talle"  placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number" name="stock_for_size_45" id="stock_for_size_45" placeholder="0" value="0">
+                            <input type="number"  name="stock_talle"  id="stock_talle"  placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number" name="stock_for_size_45.5" id="stock_for_size_45.5" placeholder="0" value="0">
+                            <input type="number"  name="stock_talle"  id="stock_talle"  placeholder="0" value="0">
                         </td>
                     </tr>
                 </table>
@@ -418,25 +418,25 @@ if (products_create_view) {
                             Color stock
                         </td>
                         <td>
-                            <input type="number" name="stock_for_prenda_inferior_36" id="stock_for_prenda_inferior_36" placeholder="0" value="0">
+                            <input type="number" name="stock_talle" id="stock_talle" placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number" name="stock_for_prenda_inferior_38" id="stock_for_prenda_inferior_38" placeholder="0" value="0">
+                            <input type="number" name="stock_talle" id="stock_talle" placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number" name="stock_for_prenda_inferior_40" id="stock_for_prenda_inferior_40" placeholder="0" value="0">
+                            <input type="number" name="stock_talle" id="stock_talle" placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number" name="stock_for_prenda_inferior_42" id="stock_for_prenda_inferior_42" placeholder="0" value="0">
+                            <input type="number" name="stock_talle" id="stock_talle" placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number" name="stock_for_prenda_inferior_44" id="stock_for_prenda_inferior_44" placeholder="0" value="0">
+                            <input type="number" name="stock_talle" id="stock_talle" placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number" name="stock_for_prenda_inferior_46" id="stock_for_prenda_inferior_46" placeholder="0" value="0">
+                            <input type="number" name="stock_talle" id="stock_talle" placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number" name="stock_for_prenda_inferior_48" id="stock_for_prenda_inferior_48" placeholder="0" value="0">
+                            <input type="number" name="stock_talle" id="stock_talle" placeholder="0" value="0">
                         </td>
                     </tr>
                 </table>
@@ -478,25 +478,25 @@ if (products_create_view) {
                             Color stock
                         </td>
                         <td>
-                            <input type="number" name="stock_for_prenda_sup_xxs" id="stock_for_prenda_sup_xxs" placeholder="0" value="0">
+                            <input type="number" name="stock_talle" id="stock_talle" placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number" name="stock_for_prenda_sup_xs" id="stock_for_prenda_sup_xs" placeholder="0" value="0">
+                            <input type="number" name="stock_talle" id="stock_talle" placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number" name="stock_for_prenda_sup_s" id="stock_for_prenda_sup_s" placeholder="0" value="0">
+                            <input type="number" name="stock_talle" id="stock_talle" placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number" name="stock_for_prenda_sup_m" id="stock_for_prenda_sup_m" placeholder="0" value="0">
+                            <input type="number" name="stock_talle" id="stock_talle" placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number" name="stock_for_prenda_sup_l" id="stock_for_prenda_sup_l" placeholder="0" value="0">
+                            <input type="number" name="stock_talle" id="stock_talle" placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number" name="stock_for_prenda_sup_xl" id="stock_for_prenda_sup_xl" placeholder="0" value="0">
+                            <input type="number" name="stock_talle" id="stock_talle" placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number" name="stock_for_prenda_sup_xxl" id="stock_for_prenda_sup_xxl" placeholder="0" value="0">
+                            <input type="number" name="stock_talle" id="stock_talle" placeholder="0" value="0">
                         </td>
                     </tr>
                 </table>
@@ -547,14 +547,14 @@ if (products_create_view) {
     }
 
     // Muestro imagenes al subir
+    let filesInput = document.querySelector('#form_files_upload');
     let filesArray = [];
 
     // Valido la api de file
     if (window.File && window.FileList && window.FileReader) {
-        let filesInput = document.querySelector('#form_files_upload');
-
         filesInput.addEventListener('change', (e) => {
             let files, output;
+            console.log('onchange', filesInput.files);
 
             files = e.target.files; // el FileList
             output = document.querySelector('#form_preview_files');
@@ -588,10 +588,14 @@ if (products_create_view) {
     function removeCurrentFile(target) {
         // Remuevo la imagen del array
         let deletedFileIndex = filesArray.findIndex((file) => file.name === target);
-        filesArray.splice(deletedFileIndex, 1);
+        //filesArray.splice(deletedFileIndex, 1);
+
+        alert(
+            `Funcionalidad de prueba, no funciona!\n\nEl archivo ${filesArray[deletedFileIndex].name} fue removido.`
+        );
 
         // Remuevo la imagen del front
-        document.querySelector(`[id*="${target}"]`).remove();
+        //document.querySelector(`[id*="${target}"]`).remove();
 
         console.log(filesArray);
     }
@@ -599,16 +603,33 @@ if (products_create_view) {
     // guardar producto
     let guardarProdBtn = document.querySelector('#product_create_form_submit_btn');
     let form = document.querySelector('#product_create_form');
-    form.addEventListener('submit', async (e) => {
+    form.addEventListener('submit', (e) => {
         e.preventDefault();
 
-        let res = await fetch('/admin/c/productos/creado', {
+        var FD = new FormData(form);
+        FD.append('imagenes', filesArray);
+
+        //console.log(FD.getAll('form_files_upload'));
+
+        /* for (let [k, v] of FD.entries()) {
+            if (k === 'form_files_upload') {
+                //console.log(`key: ${k} --> value: ${v}`);
+                console.log(k);
+                console.log(v);
+            }
+        } */
+
+        createProduct('/admin/c/productos/creado', FD).then((response) => {
+            console.log(response);
+        });
+    });
+
+    async function createProduct(url = '', data = {}) {
+        const res = await fetch(url, {
             method: 'POST',
-            body: new FormData(form),
+            body: data,
         });
 
-        console.log('lenny');
-        let result = await response.json();
-        console.log(result);
-    });
+        return res.json();
+    }
 }
