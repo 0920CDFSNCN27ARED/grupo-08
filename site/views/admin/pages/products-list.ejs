@@ -135,32 +135,18 @@
                     <tr><td class="table_spacing" colspan="8"></td></tr>
 
                     <!-- Producto -->
-                    <tr class="products_table_product">
-                        <td>
-                            <img src="https://via.placeholder.com/80x130/f1c40f/333" alt="nombre producto">
-                        </th>
-                        <td>
-                            476064
-                        </th>
-                        <td>
-                            Nombre producto
-                        </th>
-                        <td>
-                            $99.999
-                        </th>
-                        <td>
-                            $99.999
-                        </th>
-                        <td>
-                            99999
-                        </th>
-                        <td>
-                            Deshabilitado
-                        </th>
-                        <td>
-                            <a href="/admin/c/productos/476064/edit">Editar</a>
-                        </th>
-                    </tr>
+
+                    <% for( let i = 0; i < products.length; i++ ) { %>
+                        <%- include('../../components/products/rowTable/index', {
+                            clases: ['products_table_product'],
+                            //idAttr: '',
+                            events: [],
+                            action: {
+                                name: 'Editar',
+                            },
+                            ...products[i]
+                        }) %> 
+                    <% } %>
                     
                 </table>
 

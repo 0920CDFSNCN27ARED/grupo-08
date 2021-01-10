@@ -5,22 +5,27 @@
     options     = []
 -->
 
+<% 
+    const exists = locals._exists;
+%> 
+
 <div class="form_row">
-    <% if (label) { %>
+    <% if (exists(label)) { %>
         <label for="<%= name %>" class="form_label"><%= label %> </label>
     <% } %>
     <select 
-        id="<%= locals.idSelector !== undefined ? idSelector : name %>" 
+        id="<%= exists(locals.idSelector) ? idSelector : name %>" 
         name="<%= name %>" 
-        <%= is_required ? 'required' : '' %>
+        <%= exists(is_required) ? 'required' : '' %>
         
-        <% if (locals.disabled !== undefined) { %>
+        <% if (exists(locals.disabled)) { %>
         disabled
         <% } %>
 
-        <% if (locals.event !== undefined) { %>
+        <% if (exists(locals.event)) { %>
             <%= event[0] %>="<%= event[1] %>"
         <% } %>
+
     >
         <option value="">Seleccionar</option>
         <% for( let i = 0; i < options.length; i++ ) { %>
@@ -31,9 +36,20 @@
                 
                     return str;
                 }
-            %> 
+                
 
-            <option value="<%= handleString(options[i]); %>"> <%= options[i] %>  </option>
+            %> 
+            <option 
+                value="<%= handleString(`${options[i].name}`); %>"
+                <% if (exists(locals.default_option) ) { 
+                        if(locals.default_option === handleString(`${options[i].name}`)){ %>
+                            selected="selected"
+                <%      }
+                   } 
+                %>
+            >
+                <%= options[i].name %>  
+            </option>
 
         <% } %>
 

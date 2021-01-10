@@ -8,7 +8,7 @@
         margin-bottom: 2rem;
         position: relative;
 
-        #product_create_form_submit_btn {
+        button[type='submit'] {
             position: fixed;
             bottom: 1rem;
             left: 50%;
@@ -200,6 +200,12 @@
             label {
                 cursor: pointer;
             }
+        }
+    }
+
+    #tab_imagenes {
+        h4 {
+            @include font-size(12);
         }
     }
 }

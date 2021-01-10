@@ -8,21 +8,64 @@
 <body>
     <%- include('../partials/header.ejs')  %> 
 
+
     <main>
+
+        <% 
+            const exists = locals._exists;
+            let {
+                id,
+                status,
+                tipo_de_producto,
+                tabla_de_talles,
+                marca,
+                product_name,
+                sku_visible,
+                product_price,
+                product_price_special,
+                product_price_special_desde,
+                product_price_special_hasta,
+                descripcion_corta,
+                composicion,
+                cuidado,
+                color,
+                stock_talles,
+                categorias,
+                imagenes} = exists(locals.product) ? product : {};
+        %> 
 
         <section class="content_header">
 
-            <h1>Crear producto</h1>
+            <h1>
+                <%= 
+                    exists(id)
+                        ? product_name
+                        : 'Crear producto'
+                 %> 
+            </h1>
 
-            <a href="/admin/c/productos/" class="button_main_action">
-                Volver
-            </a>
+            <div class="content_header_navigation">
+                <% if (exists(locals.product)) { %>
+                    <a href="/admin/c/productos/<%= id %>/delete?_method=DELETE" id="product_create_form_delete_btn" class="button_main_action error">
+                        Borrar producto
+                    </a>
+                <% } %>
+    
+                <a href="/admin/c/productos/" class="button_main_action">
+                    Volver
+                </a>
+            </div>
+            
 
         </section>
 
         <section class="content_form">
             
-            <form id="product_create_form" action="/admin/c/productos/creado" method="POST" enctype="multipart/form-data">
+            <form id="product_create_form" method="POST"  enctype="multipart/form-data">
+                
+                <% if (exists(id)) { %>
+                    <input type="hidden" name="id" value="<%= id %>">
+                <% } %>
 
                 <div class="form_header">
                     <h4>Información del producto</h4>
@@ -74,12 +117,16 @@
                         <%- include('../../components/forms/form_select/index', {
                             is_required: true,
                             label: 'Estado',
-                            name: 'is_active',
+                            name: 'status',
                             options: [
-                                'Habilitado',
-                                'Deshabilitado',
-                                'Esto es un test'
-                            ]
+                                {
+                                    name: 'Habilitado',
+                                },
+                                {
+                                    name: 'Deshabilitado',
+                                },
+                            ],
+                            default_option: exists(status) ? status : false,
                         }) %> 
 
                         <%- include('../../components/forms/form_select/index', {
@@ -87,12 +134,21 @@
                             label: 'Tipo de producto',
                             name: 'tipo_de_producto',
                             options: [
-                                'Abrigos',
-                                'Remeras',
-                                'Pantaloes',
-                                'Zapatos'
+                                {
+                                    name: 'Abrigos'
+                                },
+                                {
+                                    name: 'Remeras'
+                                },
+                                {
+                                    name: 'Pantaloes'
+                                },
+                                {
+                                    name: 'Zapatos'
+                                },
                             ],
-                            event: ['onchange', `handleSkuVisible(this,'sku_visible')`]
+                            event: ['onchange', `handleSkuVisible(this,'sku_visible')`],
+                            default_option: exists(tipo_de_producto) ? tipo_de_producto : false,
                         }) %> 
 
                         <%- include('../../components/forms/form_select/index', {
@@ -100,11 +156,25 @@
                             label: 'Tabla de talles',
                             name: 'tabla_de_talles',
                             options: [
-                                'Tabla talles XXS al XXL',
-                                'Tabla talles 36 al 48',
-                                'Tabla talles calzado 35 al 45'
+                                {
+                                    name: 'Tabla talles XXS al XXL'
+                                },
+                                {
+                                    name: 'Tabla talles 36 al 48'
+                                },
+                                {
+                                    name: 'Tabla talles calzado 35 al 45'
+                                },
                             ],
-                            event: ['onchange', `handleTablaTalles(this, 'tab_attributes')`]
+                            event: [
+                                'onclick', 
+                                `handleTablaTalles(
+                                    this, 
+                                    'tab_attributes', 
+                                    ${exists(stock_talles) ? [stock_talles] : ''})
+                                `
+                            ],
+                            default_option: exists(tabla_de_talles) ? tabla_de_talles : false,
                         }) %> 
 
                         <%- include('../../components/forms/form_select/index', {
@@ -112,11 +182,18 @@
                             label: 'Marca',
                             name: 'marca',
                             options: [
-                                'Alaska',
-                                'Felix',
-                                'Zara'
+                                {
+                                    name: 'Alaska'
+                                },
+                                {
+                                    name: 'Felix'
+                                },
+                                {
+                                    name: 'Zara'
+                                },
                             ],
-                            event: ['onchange', `handleSkuVisible(this,'sku_visible')`]
+                            event: ['onchange', `handleSkuVisible(this,'sku_visible')`],
+                            default_option: exists(marca) ? marca : false,
                         }) %> 
             
                         <%- include('../../components/forms/form_input/index', {
@@ -125,7 +202,8 @@
                             type: 'text',
                             name: 'product_name',
                             placeholder: 'Ingrese el nombre del producto',
-                            event: ['onkeyup', `handleSkuVisible(this,'sku_visible')`]
+                            event: ['onkeyup', `handleSkuVisible(this,'sku_visible')`],
+                            default_value: exists(product_name) ? product_name : false,
                         }) %> 
 
                         <%- include('../../components/forms/form_input/index', {
@@ -133,7 +211,8 @@
                             label: 'SKU visible',
                             type: 'text',
                             name: 'sku_visible',
-                            placeholder: 'El sku se generará automaticamente con la marca, el tipo de producto y el nombre'
+                            placeholder: 'El sku se generará automaticamente con la marca, el tipo de producto y el nombre',
+                            default_value: exists(sku_visible) ? sku_visible : false,
                         }) %> 
 
                         <%- include('../../components/forms/form_input/index', {
@@ -141,7 +220,9 @@
                             label: 'Precio',
                             type: 'number',
                             name: 'product_price',
-                            placeholder: 'Ingrese el precio sin $'
+                            placeholder: 'Ingrese el precio sin $',
+                            default_value: exists(product_price) ? product_price : false,
+
                         }) %> 
 
                         <%- include('../../components/forms/form_input/index', {
@@ -149,7 +230,8 @@
                             label: 'Precio especial',
                             type: 'number',
                             name: 'product_price_special',
-                            placeholder: 'Ingrese el precio sin $'
+                            placeholder: 'Ingrese el precio sin $',
+                            default_value: exists(product_price_special) ? product_price_special : false,
                         }) %> 
 
                         <%- include('../../components/forms/form_input/index', {
@@ -157,7 +239,8 @@
                             label: 'Precio especial desde fecha',
                             type: 'text',
                             name: 'product_price_special_desde',
-                            placeholder: 'Ejemplo 2021-01-02 00:00:00'
+                            placeholder: 'Ejemplo 2021-01-02 00:00:00',
+                            default_value: exists(product_price_special_desde) ? product_price_special_desde : false,
                         }) %> 
 
                         <%- include('../../components/forms/form_input/index', {
@@ -165,7 +248,8 @@
                             label: 'Precio especial hasta fecha',
                             type: 'text',
                             name: 'product_price_special_hasta',
-                            placeholder: 'Ejemplo 2021-01-20 23:59:59'
+                            placeholder: 'Ejemplo 2021-01-20 23:59:59',
+                            default_value: exists(product_price_special_hasta) ? product_price_special_hasta : false,
                         }) %> 
 
                         <%- include('../../components/forms/form_input/index', {
@@ -173,7 +257,8 @@
                             label: 'Descripcion corta',
                             type: 'text',
                             name: 'descripcion_corta',
-                            placeholder: ''
+                            placeholder: '',
+                            default_value: exists(descripcion_corta) ? descripcion_corta : false,
                         }) %>
 
                         <%- include('../../components/forms/form_input/index', {
@@ -181,7 +266,8 @@
                             label: 'Composicion',
                             type: 'text',
                             name: 'composicion',
-                            placeholder: ''
+                            placeholder: '',
+                            default_value: exists(composicion) ? composicion : false,
                         }) %>
 
                         <%- include('../../components/forms/form_input/index', {
@@ -189,7 +275,8 @@
                             label: 'Cuidado',
                             type: 'text',
                             name: 'cuidado',
-                            placeholder: ''
+                            placeholder: '',
+                            default_value: exists(cuidado) ? cuidado : false,
                         }) %>
 
                     </div>
@@ -215,10 +302,17 @@
                             label: 'Agregar Color',
                             name: 'agregar_color',
                             options: [
-                                'Blanco',
-                                'Negro',
-                                'Rojo'
-                            ]
+                                {
+                                    name: 'Blanco'
+                                },
+                                {
+                                    name: 'Negro'
+                                },
+                                {
+                                    name: 'Rojo'
+                                },
+                            ],
+                            default_option: exists(color) ? color : false,
                         }) %> 
 
                         <h4>
@@ -230,13 +324,20 @@
                 </div>
 
                 <!-- Imagenes -->
-                <div class="form_tab" id="tab_imagenes">
+                <div class="form_tab dnone" id="tab_imagenes">
                     <div class="form_data">
                     
                         <div class="form_row">
                             <label for="form_files_upload">Cargar imagenes</label>
                             <input type="file" id="form_files_upload" name="form_files_upload" multiple><br><br>
                         </div>
+
+                        <% if (exists(id)) { %>
+                            <h4>
+                                Las imágenes nuevas reemplazaran las anteriores
+                            </h4>
+                        <% } %>
+                        
 
                     </div>
                     <div class="form_images" id="form_preview_files">
@@ -245,6 +346,18 @@
                             <span class="form_images_card_name">LANDING-CAMPA_A-SS21-02.jpg</span>
                             <button class="form_images_card_delete button_main_action">Borrar</button>
                         </div> -->
+                        <% if (exists(imagenes)) { %>
+                            <% for( let i = 0; i < imagenes.length; i++ ) { %>
+                                <% 
+                                    const handleImageName = str => str.split('/')[3];
+                                %> 
+                                <div id="<%= handleImageName(imagenes[i]) %>" class="form_images_card from_product">
+                                    <img src="/images/catalog/products/<%= imagenes[i] %> " alt="<%= handleImageName(imagenes[i]) %>" class="form_images_card_image">
+                                    <span class="form_images_card_name"><%= handleImageName(imagenes[i]) %></span>
+                                    <button disabled class="form_images_card_delete button_main_action" onclick="removeCurrentFile(handleImageName(imagenes[i]))">Borrar</button>
+                                </div>
+                            <% } %>
+                        <% } %>
                         
                     </div>
                 </div>
@@ -395,6 +508,13 @@
                                     name  = "categorias" 
                                     id    = "<%=  categories[i].name + categories[i].id %>" 
                                     value = "<%=  categories[i].name %>"
+                                    <% if (exists(categorias)) { %>
+                                        <% for( let z = 0; z < categorias.length; z++ ) { %>
+                                            <% if (categorias[z] == categories[i].name) { %>
+                                                checked
+                                            <% } %>
+                                        <% } %>
+                                    <% } %>
                                 >
                                 <label for="<%=  categories[i].name + categories[i].id %>" >
                                     <%=  categories[i].name %> <i>(<%= categories[i].id %> )</i> 
@@ -411,6 +531,13 @@
                                                         name  = "categorias" 
                                                         id    = "<%=  subcats[i].name + subcats[i].id %>"
                                                         value = "<%=  subcats[i].name %>"
+                                                        <% if (exists(categorias)) { %>
+                                                            <% for( let z = 0; z < categorias.length; z++ ) { %>
+                                                                <% if (categorias[z] == subcats[i].name) { %>
+                                                                    checked
+                                                                <% } %>
+                                                            <% } %>
+                                                        <% } %>
                                                     >
                                                     <label for="<%=  subcats[i].name + subcats[i].id %>">
                                                         <%=  subcats[i].name %> <i>(<%= subcats[i].id %> )</i> 
@@ -427,6 +554,13 @@
                                                                             name  = "categorias" 
                                                                             id    = "<%=  subsubcats[i].name + subsubcats[i].id %>"
                                                                             value = "<%=  subsubcats[i].name %>"
+                                                                            <% if (exists(categorias)) { %>
+                                                                                <% for( let z = 0; z < categorias.length; z++ ) { %>
+                                                                                    <% if (categorias[z] == subsubcats[i].name) { %>
+                                                                                        checked
+                                                                                    <% } %>
+                                                                                <% } %>
+                                                                            <% } %>
                                                                         >
                                                                         <label for="<%=  subsubcats[i].name + subsubcats[i].id %>">
                                                                             <%=  subsubcats[i].name %> <i>(<%= subsubcats[i].id %> )</i> 
@@ -455,7 +589,12 @@
                 <!-- Producto relacionados -->
                 <div class="form_tab dnone" id="tab_related_products"><h1>tab_related_products</h1></div>
                 
-                <button type="submit" id="product_create_form_submit_btn" class="button_main_action">Guardar producto</button>
+                <% if (exists(id)) { %>
+                    <button type="submit" id="product_create_form_update_btn" class="button_main_action">Acualizar producto</button>
+                <% } else { %>
+                    <button type="submit" id="product_create_form_create_btn" class="button_main_action">Guardar producto</button>
+                <% } %>
+                 
     
             </form>
 
@@ -469,7 +608,7 @@
             -   colors
             -   sizes
             -   images
-            -   is_active
+            -   status
 
 
         -->

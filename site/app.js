@@ -7,6 +7,9 @@ const PORT = 3000;
 app.listen(PORT, () => console.log('Escuchando el puerto ' + PORT));
 app.set('view engine', 'ejs');
 
+// Views functions
+app.locals._exists = (item) => (item !== undefined ? true : false);
+
 // Middlewares
 app.use(express.static('public'));
 app.use(methodOverride('_method'));

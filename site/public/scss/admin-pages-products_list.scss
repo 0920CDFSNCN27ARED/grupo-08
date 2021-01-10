@@ -51,11 +51,19 @@
                 &:nth-child(1) {
                     width: 10%;
                 }
-                &:nth-child(2),
+                &:nth-child(2) {
+                    width: 15%;
+                }
                 &:nth-child(4),
                 &:nth-child(5),
                 &:nth-child(8) {
                     width: 10%;
+                    a {
+                        color: $blue;
+                        &:hover {
+                            color: $black;
+                        }
+                    }
                 }
                 &:nth-child(3) {
                     width: 30%;

@@ -8,6 +8,16 @@ function esDesktop() {
     return window.matchMedia('(min-width: 1000px)').matches;
 }
 
+function eventFire(el, etype) {
+    if (el.fireEvent) {
+        el.fireEvent('on' + etype);
+    } else {
+        var evObj = document.createEvent('Events');
+        evObj.initEvent(etype, true, false);
+        el.dispatchEvent(evObj);
+    }
+}
+
 // Header
 const header = document.querySelector('header');
 window.addEventListener('scroll', () =>
@@ -195,7 +205,6 @@ if (products_create_view) {
         let [marca, tipoProducto, nombre] = ['marca', 'tipo_de_producto', 'nombre'];
 
         if (target.value) {
-            console.log('entre');
             marca = arrTargetVal[0];
             tipoProducto = arrTargetVal[1];
             nombre = arrTargetVal[2];
@@ -230,11 +239,11 @@ if (products_create_view) {
         target.value = `${marca}-${tipoProducto}-${nombre}`;
     }
 
-    function handleTablaTalles(currEl, targetElement) {
+    function handleTablaTalles(currEl, targetElement, ...stock_talles) {
         // Templates tabla talles
         // Perdon! esta horrible esto
         const tabla_talles_calzado_35_al_45 = `
-            <div class="tablita talles_calzado">
+            <div class="tablita talles_calzado" data_table="tabla_talles_calzado_35_al_45">
                 <h4>Calzado</h4>
                 <table width="100%" cellspacing="0" cellpadding="0">
                     <tr>
@@ -313,70 +322,70 @@ if (products_create_view) {
                             Color stock
                         </td>
                         <td>
-                            <input type="number"  name="stock_talle"  id="stock_talle"  placeholder="0" value="0">
+                            <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number"  name="stock_talle"  id="stock_talle"  placeholder="0" value="0">
+                            <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number"  name="stock_talle"  id="stock_talle"  placeholder="0" value="0">
+                            <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number"  name="stock_talle"  id="stock_talle"  placeholder="0" value="0">
+                            <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number"  name="stock_talle"  id="stock_talle"  placeholder="0" value="0">
+                            <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number"  name="stock_talle"  id="stock_talle"  placeholder="0" value="0">
+                            <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number"  name="stock_talle"  id="stock_talle"  placeholder="0" value="0">
+                            <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number"  name="stock_talle"  id="stock_talle"  placeholder="0" value="0">
+                            <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number"  name="stock_talle"  id="stock_talle"  placeholder="0" value="0">
+                            <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number"  name="stock_talle"  id="stock_talle"  placeholder="0" value="0">
+                            <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number"  name="stock_talle"  id="stock_talle"  placeholder="0" value="0">
+                            <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number"  name="stock_talle"  id="stock_talle"  placeholder="0" value="0">
+                            <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number"  name="stock_talle"  id="stock_talle"  placeholder="0" value="0">
+                            <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number"  name="stock_talle"  id="stock_talle"  placeholder="0" value="0">
+                            <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number"  name="stock_talle"  id="stock_talle"  placeholder="0" value="0">
+                            <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number"  name="stock_talle"  id="stock_talle"  placeholder="0" value="0">
+                            <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number"  name="stock_talle"  id="stock_talle"  placeholder="0" value="0">
+                            <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number"  name="stock_talle"  id="stock_talle"  placeholder="0" value="0">
+                            <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number"  name="stock_talle"  id="stock_talle"  placeholder="0" value="0">
+                            <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number"  name="stock_talle"  id="stock_talle"  placeholder="0" value="0">
+                            <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number"  name="stock_talle"  id="stock_talle"  placeholder="0" value="0">
+                            <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number"  name="stock_talle"  id="stock_talle"  placeholder="0" value="0">
+                            <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
                         </td>
                     </tr>
                 </table>
@@ -384,7 +393,7 @@ if (products_create_view) {
             </div>
         `;
         const tabla_talles_36_al_48 = `
-            <div class="tablita talles_prendas_inf">
+            <div class="tablita talles_prendas_inf" data_table="tabla_talles_36_al_48">
                 <h4>Prendas inferiores</h4>
                 <table width="100%" cellspacing="0" cellpadding="0">
                     <tr>
@@ -418,25 +427,25 @@ if (products_create_view) {
                             Color stock
                         </td>
                         <td>
-                            <input type="number" name="stock_talle" id="stock_talle" placeholder="0" value="0">
+                            <input type="number" name="stock_talles" id="stock_talles" placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number" name="stock_talle" id="stock_talle" placeholder="0" value="0">
+                            <input type="number" name="stock_talles" id="stock_talles" placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number" name="stock_talle" id="stock_talle" placeholder="0" value="0">
+                            <input type="number" name="stock_talles" id="stock_talles" placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number" name="stock_talle" id="stock_talle" placeholder="0" value="0">
+                            <input type="number" name="stock_talles" id="stock_talles" placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number" name="stock_talle" id="stock_talle" placeholder="0" value="0">
+                            <input type="number" name="stock_talles" id="stock_talles" placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number" name="stock_talle" id="stock_talle" placeholder="0" value="0">
+                            <input type="number" name="stock_talles" id="stock_talles" placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number" name="stock_talle" id="stock_talle" placeholder="0" value="0">
+                            <input type="number" name="stock_talles" id="stock_talles" placeholder="0" value="0">
                         </td>
                     </tr>
                 </table>
@@ -444,7 +453,7 @@ if (products_create_view) {
             </div>
         `;
         const tabla_talles_xxs_al_xxl = `
-            <div class="tablita talles_prendas_sup">
+            <div class="tablita talles_prendas_sup" data_table="tabla_talles_xxs_al_xxl">
                 <h4>Prendas superiores</h4>
                 <table width="100%" cellspacing="0" cellpadding="0">
                     <tr>
@@ -478,25 +487,25 @@ if (products_create_view) {
                             Color stock
                         </td>
                         <td>
-                            <input type="number" name="stock_talle" id="stock_talle" placeholder="0" value="0">
+                            <input type="number" name="stock_talles" id="stock_talles" placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number" name="stock_talle" id="stock_talle" placeholder="0" value="0">
+                            <input type="number" name="stock_talles" id="stock_talles" placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number" name="stock_talle" id="stock_talle" placeholder="0" value="0">
+                            <input type="number" name="stock_talles" id="stock_talles" placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number" name="stock_talle" id="stock_talle" placeholder="0" value="0">
+                            <input type="number" name="stock_talles" id="stock_talles" placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number" name="stock_talle" id="stock_talle" placeholder="0" value="0">
+                            <input type="number" name="stock_talles" id="stock_talles" placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number" name="stock_talle" id="stock_talle" placeholder="0" value="0">
+                            <input type="number" name="stock_talles" id="stock_talles" placeholder="0" value="0">
                         </td>
                         <td>
-                            <input type="number" name="stock_talle" id="stock_talle" placeholder="0" value="0">
+                            <input type="number" name="stock_talles" id="stock_talles" placeholder="0" value="0">
                         </td>
                     </tr>
                 </table>
@@ -536,15 +545,25 @@ if (products_create_view) {
                 break;
         }
 
+        if (stock_talles.length > 0) {
+            let currTable = document.querySelector(`[data_table="${selectedTabla}"]`);
+            let _inputs = currTable.querySelectorAll('input');
+            _inputs.forEach((input, i) => {
+                input.value = stock_talles[i];
+            });
+        }
+
         function removerTablas() {
-            console.log('remover tablas');
             let tablas = document.querySelectorAll('.tablita');
             if (tablas.length > 0) {
                 tablas.forEach((tabla) => tabla.remove());
-                console.log('tablas removidas');
             }
         }
     }
+
+    // Trigguereo e click en select de talles
+    let tablaTalles = document.querySelector('#tabla_de_talles');
+    eventFire(tablaTalles, 'click');
 
     // Muestro imagenes al subir
     let filesInput = document.querySelector('#form_files_upload');
@@ -554,7 +573,6 @@ if (products_create_view) {
     if (window.File && window.FileList && window.FileReader) {
         filesInput.addEventListener('change', (e) => {
             let files, output;
-            console.log('onchange', filesInput.files);
 
             files = e.target.files; // el FileList
             output = document.querySelector('#form_preview_files');
@@ -596,30 +614,67 @@ if (products_create_view) {
 
         // Remuevo la imagen del front
         //document.querySelector(`[id*="${target}"]`).remove();
-
-        console.log(filesArray);
     }
 
     // Guardar producto
-    let guardarProdBtn = document.querySelector('#product_create_form_submit_btn');
     let form = document.querySelector('#product_create_form');
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault();
 
-        var FD = new FormData(form);
-        FD.append('imagenes', filesArray);
+    let guardarProdBtn = document.querySelector('#product_create_form_create_btn');
+    if (guardarProdBtn) {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
 
-        createProduct('/admin/c/productos/crear', FD).then((res) => {
-            if (res.status === 200) {
-                console.log(res);
-                location.href = '/admin/c/productos';
-            }
+            var FD = new FormData(form);
+            FD.append('imagenes', filesArray);
+
+            createProduct('POST', '/admin/c/productos/crear', FD).then((res) => {
+                if (res.status === 200) {
+                    location.href = '/admin/c/productos';
+                }
+            });
         });
-    });
+    }
 
-    async function createProduct(url = '', data = {}) {
+    let actualizarProdBtn = document.querySelector('#product_create_form_update_btn');
+    if (actualizarProdBtn) {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            let pid;
+            let FD = new FormData(form);
+
+            for (let [k, v] of FD) {
+                if (k == 'id') {
+                    pid = v;
+                }
+            }
+
+            createProduct('POST', `/admin/c/productos/${pid}/update?_method=PUT`, FD).then(
+                (res) => {
+                    if (res.status === 200) {
+                        location.href = '/admin/c/productos';
+                    }
+                }
+            );
+        });
+    }
+
+    let borrarProdBtn = document.querySelector('#product_create_form_delete_btn');
+    if (borrarProdBtn) {
+        borrarProdBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            let path = borrarProdBtn.getAttribute('href');
+
+            createProduct('POST', path).then((res) => {
+                if (res.status === 200) {
+                    location.href = '/admin/c/productos';
+                }
+            });
+        });
+    }
+
+    async function createProduct(_method = '', url = '', data = {}) {
         const res = await fetch(url, {
-            method: 'POST',
+            method: _method,
             body: data,
         });
 

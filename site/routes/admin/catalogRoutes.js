@@ -21,12 +21,9 @@ routes.get('/productos', catalogControllers.getAll);
 routes.get('/productos/crear', catalogControllers.create);
 routes.post('/productos/crear', upload.any(), catalogControllers.created);
 
-routes.get('/productos/:id', (req, res) => {
-    res.render('products-list');
-});
+routes.get('/productos/:id', catalogControllers.getOne);
+routes.put('/productos/:id/update', upload.any(), catalogControllers.update);
 
-routes.get('/productos/:id/edit', (req, res) => {
-    res.render('products-list');
-});
+routes.delete('/productos/:id/delete', catalogControllers.delete);
 
 module.exports = routes;

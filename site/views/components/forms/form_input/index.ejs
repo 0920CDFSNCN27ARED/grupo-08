@@ -7,24 +7,33 @@
 
 -->
 
+<% 
+    const exists = locals._exists;
+%> 
+
 <div class="form_row">
-    <% if (label) { %>
+    <% if (exists(label)) { %>
         <label for="<%= name %>" class="form_label"><%= label %> </label>
     <% } %>
     <input 
         type="<%= type %>" 
-        id="<%= locals.idSelector !== undefined ? idSelector : name %>" 
+        id="<%= exists(locals.idSelector) ? idSelector : name %>" 
         name="<%= name %>" 
         class="form_input" 
         placeholder="<%= placeholder %>"
         <%= is_required ? 'required' : '' %> 
 
-        <% if (locals.disabled !== undefined) { %>
+        <% if (exists(locals.disabled)) { %>
          disabled
         <% } %>
 
-        <% if (locals.event !== undefined) { %>
+        <% if (exists(locals.event)) { %>
             <%= event[0] %>="<%= event[1] %>"
+        <% } %>
+        <% if (exists(locals.default_value)) { %>
+            <% if (default_value) { %>
+                value="<%= default_value %>"
+            <% } %>
         <% } %>
     >
 </div>
