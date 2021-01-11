@@ -14,16 +14,24 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 // Controller
-const catalogControllers = require('../../controllers/admin/catalogControllers');
+const productsControllers = require('../../controllers/admin/productsControllers');
+const categoriesControllers = require('../../controllers/admin/categoriesControllers');
 
-// Routes
-routes.get('/productos', catalogControllers.getAll);
-routes.get('/productos/crear', catalogControllers.create);
-routes.post('/productos/crear', upload.any(), catalogControllers.created);
+// Productos
+routes.get('/productos', productsControllers.getAll);
+routes.get('/productos/crear', productsControllers.create);
+routes.post('/productos/crear', upload.any(), productsControllers.created);
 
-routes.get('/productos/:id', catalogControllers.getOne);
-routes.put('/productos/:id/update', upload.any(), catalogControllers.update);
+routes.get('/productos/:id', productsControllers.getOne);
+routes.put('/productos/:id/update', upload.any(), productsControllers.update);
 
-routes.delete('/productos/:id/delete', catalogControllers.delete);
+routes.delete('/productos/:id/delete', productsControllers.delete);
+
+// Categorias
+routes.get('/categorias', categoriesControllers.getAll);
+routes.post('/categorias/crear', upload.any(), categoriesControllers.create);
+
+routes.get('/categorias/:id', categoriesControllers.getOne);
+routes.put('/categorias/:id/update', upload.any(), categoriesControllers.update);
 
 module.exports = routes;

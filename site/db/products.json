@@ -1,43 +1,5 @@
 [
   {
-    "id": 1610271857090,
-    "status": "habilitado",
-    "tipo_de_producto": "remeras",
-    "tabla_de_talles": "tabla_talles_xxs_al_xxl",
-    "marca": "zara",
-    "product_name": "Remera Mickey",
-    "sku_visible": "zara-remeras-remera_mickey",
-    "product_price": "2900",
-    "product_price_special": "2000",
-    "product_price_special_desde": "2021:01:10 00:00:00",
-    "product_price_special_hasta": "2021:01:18 23:59:59",
-    "descripcion_corta": "Esto es una descripcion corta",
-    "composicion": "Composicion",
-    "cuidado": "Los cuidados son estos",
-    "color": "negro",
-    "stock_talles": [
-      "2",
-      "2",
-      "3",
-      "5",
-      "3",
-      "3",
-      "1"
-    ],
-    "categorias": [
-      "Eshop",
-      "camisas",
-      "hotsale",
-      "remeras"
-    ],
-    "imagenes": [
-      "/p/r/producto00001.jpg",
-      "/p/r/producto00002.jpg",
-      "/p/r/producto00003.jpg",
-      "/p/r/producto00004.jpg"
-    ]
-  },
-  {
     "id": 1610271933614,
     "status": "habilitado",
     "tipo_de_producto": "pantaloes",
@@ -76,79 +38,49 @@
     ]
   },
   {
-    "id": 1610271857090,
-    "status": "habilitado",
-    "tipo_de_producto": "campera",
-    "tabla_de_talles": "tabla_talles_xxs_al_xxl",
-    "marca": "zara",
-    "product_name": "Campera denim",
-    "sku_visible": "zara-campera-campera_denim",
-    "product_price": "12800",
-    "product_price_special": "9450",
-    "product_price_special_desde": "2021:01:10 00:00:00",
-    "product_price_special_hasta": "2021:01:18 23:59:59",
-    "descripcion_corta": "Esto es una descripcion corta",
-    "composicion": "Composicion",
-    "cuidado": "Los cuidados son estos",
-    "color": "negro",
-    "stock_talles": [
-      "2",
-      "2",
-      "3",
-      "5",
-      "3",
-      "0",
-      "1"
-    ],
-    "categorias": [
-      "Eshop",
-      "camisas",
-      "hotsale",
-      "remeras"
-    ],
-    "imagenes": [
-      "/p/r/producto00002.jpg",
-      "/p/r/producto00001.jpg",
-      "/p/r/producto00003.jpg",
-      "/p/r/producto00004.jpg"
-    ]
-  },
-  {
-    "id": 1610271857090,
+    "id": 1610337974918,
     "status": "habilitado",
     "tipo_de_producto": "remeras",
-    "tabla_de_talles": "tabla_talles_xxs_al_xxl",
-    "marca": "zara",
-    "product_name": "Remera Mickey",
-    "sku_visible": "zara-remeras-remera_mickey",
-    "product_price": "3100",
-    "product_price_special": "0",
+    "tabla_de_talles": "tabla_talles_calzado_35_al_45",
+    "marca": "alaska",
+    "product_name": "Old School",
+    "sku_visible": "alaska-remeras-",
+    "product_price": "3440",
+    "product_price_special": 0,
     "product_price_special_desde": "",
     "product_price_special_hasta": "",
     "descripcion_corta": "Esto es una descripcion corta",
-    "composicion": "Composicion",
-    "cuidado": "Los cuidados son estos",
+    "composicion": "Esta es la composicion",
+    "cuidado": "Estos son los cuidados a tener",
     "color": "negro",
     "stock_talles": [
+      "0",
       "2",
-      "2",
-      "3",
+      "6",
       "5",
+      "4",
+      "4",
+      "4",
+      "4",
       "3",
+      "0",
       "3",
-      "1"
+      "4",
+      "0",
+      "0",
+      "2",
+      "2",
+      "1",
+      "1",
+      "1",
+      "0",
+      "0",
+      "0"
     ],
-    "categorias": [
-      "Eshop",
-      "camisas",
-      "hotsale",
-      "remeras"
-    ],
+    "categorias": [],
     "imagenes": [
-      "/p/r/producto00003.jpg",
-      "/p/r/producto00001.jpg",
-      "/p/r/producto00002.jpg",
-      "/p/r/producto00004.jpg"
+      "/b/a/banner_1.jpg",
+      "/b/a/banner_2.jpg"
     ]
   }
 ]

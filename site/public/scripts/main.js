@@ -18,6 +18,31 @@ function eventFire(el, etype) {
     }
 }
 
+function changeTab(currentObj, target) {
+    let formTab, formTabBtn;
+
+    // Oculto todos los tabs
+    formTab = document.querySelectorAll('.form_tab');
+    formTab.forEach((tab) => tab.classList.add('dnone'));
+
+    // Remuevo active class en todos los btns
+    formTabBtn = document.querySelectorAll('.form_tab_btn');
+    formTabBtn.forEach((btn) => btn.classList.remove('active'));
+
+    // Muestro el tab actual y agrego active class al btn
+    document.querySelector(`#${target}`).classList.remove('dnone');
+    currentObj.classList.add('active');
+}
+
+async function createProduct(_method = '', url = '', data = {}) {
+    const res = await fetch(url, {
+        method: _method,
+        body: data,
+    });
+
+    return res.json();
+}
+
 // Header
 const header = document.querySelector('header');
 window.addEventListener('scroll', () =>
@@ -181,22 +206,6 @@ if (slider_featured_products) {
 // ADMIN CREATE PRODUCT
 const products_create_view = document.querySelector('.products_create_view');
 if (products_create_view) {
-    function changeTab(currentObj, target) {
-        let formTab, formTabBtn;
-
-        // Oculto todos los tabs
-        formTab = document.querySelectorAll('.form_tab');
-        formTab.forEach((tab) => tab.classList.add('dnone'));
-
-        // Remuevo active class en todos los btns
-        formTabBtn = document.querySelectorAll('.form_tab_btn');
-        formTabBtn.forEach((btn) => btn.classList.remove('active'));
-
-        // Muestro el tab actual y agrego active class al btn
-        document.querySelector(`#${target}`).classList.remove('dnone');
-        currentObj.classList.add('active');
-    }
-
     function handleSkuVisible(currEl, targetElement) {
         let target = document.querySelector(`#${targetElement}`);
         let arrTargetVal = target.value.split('-');
@@ -671,13 +680,98 @@ if (products_create_view) {
             });
         });
     }
+}
 
-    async function createProduct(_method = '', url = '', data = {}) {
-        const res = await fetch(url, {
-            method: _method,
-            body: data,
+// ADMIN CREATE CATEGORY
+const categories_list_view = document.querySelector('.categories_list_view');
+if (categories_list_view) {
+    // Guardar producto
+    let form = document.querySelector('#category_create_form');
+
+    // Muestro imagenes al subir
+    let filesInput = document.querySelector('#form_files_upload');
+    let filesArray = [];
+
+    // Valido la api de file
+    if (window.File && window.FileList && window.FileReader) {
+        filesInput.addEventListener('change', (e) => {
+            let files, output;
+
+            files = e.target.files; // el FileList
+            output = document.querySelector('#form_preview_files');
+
+            for (let i = 0; i < files.length; i++) {
+                let file = files[i];
+                let fr = new FileReader();
+
+                fr.addEventListener('load', function (e) {
+                    let image = e.target;
+
+                    let templateCard = `
+                        <div id="${file.name}" class="form_images_card">
+                            <img src="${image.result}" alt="${file.name}" class="form_images_card_image">
+                            <span class="form_images_card_name">${file.name}</span>
+                            <button class="form_images_card_delete button_main_action" onclick="removeCurrentFile('${file.name}')">Borrar</button>
+                        </div>
+                    `;
+
+                    output.innerHTML += templateCard;
+                    filesArray.push(file);
+                });
+
+                fr.readAsDataURL(file);
+            }
         });
+    } else {
+        alert('El navegador no soporta la API FILE');
+    }
 
-        return res.json();
+    function removeCurrentFile(target) {
+        // Remuevo la imagen del array
+        let deletedFileIndex = filesArray.findIndex((file) => file.name === target);
+        filesArray.splice(deletedFileIndex, 1);
+
+        // Remuevo la imagen del front
+        document.querySelector(`[id*="${target}"]`).remove();
+        filesInput.value = '';
+    }
+
+    let guardarCategoriaBtn = document.querySelector('#category_create_form_create_btn');
+    if (guardarCategoriaBtn) {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            var FD = new FormData(form);
+            FD.append('imagenes', filesArray);
+
+            createProduct('POST', '/admin/c/categorias/crear', FD).then((res) => {
+                if (res.status === 200) {
+                    location.href = '/admin/c/categorias';
+                }
+            });
+        });
+    }
+
+    let actualizarCatBtn = document.querySelector('#category_create_form_update_btn');
+    if (actualizarCatBtn) {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            let pid;
+            let FD = new FormData(form);
+
+            for (let [k, v] of FD) {
+                if (k == 'id') {
+                    pid = v;
+                }
+            }
+
+            createProduct('POST', `/admin/c/categorias/${pid}/update?_method=PUT`, FD).then(
+                (res) => {
+                    if (res.status === 200) {
+                        location.href = '/admin/c/categorias';
+                    }
+                }
+            );
+        });
     }
 }

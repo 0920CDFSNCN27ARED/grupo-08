@@ -1,10 +1,21 @@
 const express = require('express');
 const methodOverride = require('method-override');
+const opn = require('open');
 
 // SETTINGS
 const app = express();
 const PORT = 3000;
-app.listen(PORT, () => console.log('Escuchando el puerto ' + PORT));
+
+// prettier-ignore
+app.listen(PORT, () => {
+        console.log('Escuchando el puerto ' + PORT)
+
+        /* opn('http://192.168.0.101:3000/admin/c/categorias', {
+            background: true,
+            app: ['google chrome'],
+        }) */
+    }
+);
 app.set('view engine', 'ejs');
 
 // Views functions

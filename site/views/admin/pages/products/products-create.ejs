@@ -3,10 +3,10 @@
 <head>
     <% pageTitle = locals.title !== undefined ? title : 'Crear producto' %> 
     
-    <%- include('../partials/head') %>
+    <%- include('../../partials/head') %>
 </head>
 <body>
-    <%- include('../partials/header.ejs')  %> 
+    <%- include('../../partials/header.ejs')  %> 
 
 
     <main>
@@ -32,6 +32,8 @@
                 stock_talles,
                 categorias,
                 imagenes} = exists(locals.product) ? product : {};
+
+            let _categories = exists(locals.categories) ? categories : {};
         %> 
 
         <section class="content_header">
@@ -114,7 +116,7 @@
                             Tabla de talles
                         -->
                     
-                        <%- include('../../components/forms/form_select/index', {
+                        <%- include('../../../components/forms/form_select/index', {
                             is_required: true,
                             label: 'Estado',
                             name: 'status',
@@ -129,7 +131,7 @@
                             default_option: exists(status) ? status : false,
                         }) %> 
 
-                        <%- include('../../components/forms/form_select/index', {
+                        <%- include('../../../components/forms/form_select/index', {
                             is_required: true,
                             label: 'Tipo de producto',
                             name: 'tipo_de_producto',
@@ -151,7 +153,7 @@
                             default_option: exists(tipo_de_producto) ? tipo_de_producto : false,
                         }) %> 
 
-                        <%- include('../../components/forms/form_select/index', {
+                        <%- include('../../../components/forms/form_select/index', {
                             is_required: true,
                             label: 'Tabla de talles',
                             name: 'tabla_de_talles',
@@ -177,7 +179,7 @@
                             default_option: exists(tabla_de_talles) ? tabla_de_talles : false,
                         }) %> 
 
-                        <%- include('../../components/forms/form_select/index', {
+                        <%- include('../../../components/forms/form_select/index', {
                             is_required: true,
                             label: 'Marca',
                             name: 'marca',
@@ -196,7 +198,7 @@
                             default_option: exists(marca) ? marca : false,
                         }) %> 
             
-                        <%- include('../../components/forms/form_input/index', {
+                        <%- include('../../../components/forms/form_input/index', {
                             is_required: true,
                             label: 'Nombre',
                             type: 'text',
@@ -206,7 +208,7 @@
                             default_value: exists(product_name) ? product_name : false,
                         }) %> 
 
-                        <%- include('../../components/forms/form_input/index', {
+                        <%- include('../../../components/forms/form_input/index', {
                             is_required: true,
                             label: 'SKU visible',
                             type: 'text',
@@ -215,7 +217,7 @@
                             default_value: exists(sku_visible) ? sku_visible : false,
                         }) %> 
 
-                        <%- include('../../components/forms/form_input/index', {
+                        <%- include('../../../components/forms/form_input/index', {
                             is_required: true,
                             label: 'Precio',
                             type: 'number',
@@ -225,7 +227,7 @@
 
                         }) %> 
 
-                        <%- include('../../components/forms/form_input/index', {
+                        <%- include('../../../components/forms/form_input/index', {
                             is_required: false,
                             label: 'Precio especial',
                             type: 'number',
@@ -234,7 +236,7 @@
                             default_value: exists(product_price_special) ? product_price_special : false,
                         }) %> 
 
-                        <%- include('../../components/forms/form_input/index', {
+                        <%- include('../../../components/forms/form_input/index', {
                             is_required: false,
                             label: 'Precio especial desde fecha',
                             type: 'text',
@@ -243,7 +245,7 @@
                             default_value: exists(product_price_special_desde) ? product_price_special_desde : false,
                         }) %> 
 
-                        <%- include('../../components/forms/form_input/index', {
+                        <%- include('../../../components/forms/form_input/index', {
                             is_required: false,
                             label: 'Precio especial hasta fecha',
                             type: 'text',
@@ -252,7 +254,7 @@
                             default_value: exists(product_price_special_hasta) ? product_price_special_hasta : false,
                         }) %> 
 
-                        <%- include('../../components/forms/form_input/index', {
+                        <%- include('../../../components/forms/form_input/index', {
                             is_required: false,
                             label: 'Descripcion corta',
                             type: 'text',
@@ -261,7 +263,7 @@
                             default_value: exists(descripcion_corta) ? descripcion_corta : false,
                         }) %>
 
-                        <%- include('../../components/forms/form_input/index', {
+                        <%- include('../../../components/forms/form_input/index', {
                             is_required: false,
                             label: 'Composicion',
                             type: 'text',
@@ -270,7 +272,7 @@
                             default_value: exists(composicion) ? composicion : false,
                         }) %>
 
-                        <%- include('../../components/forms/form_input/index', {
+                        <%- include('../../../components/forms/form_input/index', {
                             is_required: false,
                             label: 'Cuidado',
                             type: 'text',
@@ -297,7 +299,7 @@
                         Tambien esta tabla se tiene que guardar en el producto
                     -->
                     <div class="form_data">
-                        <%- include('../../components/forms/form_select/index', {
+                        <%- include('../../../components/forms/form_select/index', {
                             is_required: false,
                             label: 'Agregar Color',
                             name: 'agregar_color',
@@ -367,139 +369,6 @@
                     <div class="form_data">
                         <h4>Categorias del producto</h4>
 
-                        <% 
-                            let categories = [
-                                
-                                {
-                                    id: 1,
-                                    name: 'Eshop',
-                                    subcategories: [
-                                        {
-                                            id: 2,
-                                            name: 'coleccionss21',
-                                            subcategories: [
-                                                {
-                                                    id: 3,
-                                                    name: 'remeras',
-                                                },
-                                                {
-                                                    id: 4,
-                                                    name: 'camisas',
-                                                },
-                                                {
-                                                    id: 5,
-                                                    name: 'sweaters',
-                                                },
-                                                {
-                                                    id: 6,
-                                                    name: 'pantalones',
-                                                },
-                                                {
-                                                    id: 7,
-                                                    name: 'vestidos',
-                                                },
-                                            ],
-                                        },
-                                        {
-                                            id: 8,
-                                            name: 'denim',
-                                            subcategories: [
-                                                {
-                                                    id: 9,
-                                                    name: 'jeans',
-                                                },
-                                                {
-                                                    id: 10,
-                                                    name: 'vestidos',
-                                                },
-                                                {
-                                                    id: 11,
-                                                    name: 'camperas',
-                                                },
-                                                {
-                                                    id: 12,
-                                                    name: 'camisas',
-                                                },
-                                            ],
-                                        },
-                                        {
-                                            id: 13,
-                                            name: 'accesorios',
-                                            subcategories: [
-                                                {
-                                                    id: 14,
-                                                    name: 'calzado',
-                                                    subcategories: [
-                                                        {
-                                                            id: 9,
-                                                            name: 'zapatillas',
-                                                        },
-                                                        {
-                                                            id: 10,
-                                                            name: 'botas',
-                                                        },
-                                                        {
-                                                            id: 11,
-                                                            name: 'zapatos',
-                                                        },
-                                                    ],
-                                                },
-                                                {
-                                                    id: 15,
-                                                    name: 'carteras',
-                                                },
-                                                {
-                                                    id: 16,
-                                                    name: 'cinturones',
-                                                },
-                                            ]
-                                        },
-                                        {
-                                            id: 17,
-                                            name: 'playa',
-                                        }
-                                    ]
-
-                                },
-                                {
-                                    id: 18,
-                                    name: 'hotsale',
-                                    subcategories: [
-                                        {
-                                            id: 19,
-                                            name: 'remeras',
-                                        },
-                                        {
-                                            id: 20,
-                                            name: 'camisas',
-                                        },
-                                        {
-                                            id: 21,
-                                            name: 'vestiods',
-                                        },
-                                        {
-                                            id: 22,
-                                            name: 'denim',
-                                        },
-                                        {
-                                            id: 23,
-                                            name: 'pantalones',
-                                        },  
-                                    ]
-                                },
-
-                                {
-                                    id: 24,
-                                    name: 'blackfriday',
-                                },
-                                {
-                                    id: 25,
-                                    name: 'cybermonday',
-                                }
-                                
-                            ]
-                        %> 
-
                         <ul>
                         <% for( let i = 0; i < categories.length; i++ ) { %>
                             <li>
@@ -519,64 +388,6 @@
                                 <label for="<%=  categories[i].name + categories[i].id %>" >
                                     <%=  categories[i].name %> <i>(<%= categories[i].id %> )</i> 
                                 </label>
-
-                                <!-- Checkeo si tiene subcategorias -->
-                                <% if (categories[i].subcategories) { %>
-                                        <% let subcats = categories[i].subcategories;  %> 
-                                        <ul style="margin-left: 1.5rem;">
-                                            <% for( let i = 0; i < subcats.length; i++ ) { %>
-                                                <li>
-                                                    <input 
-                                                        type  = "checkbox" 
-                                                        name  = "categorias" 
-                                                        id    = "<%=  subcats[i].name + subcats[i].id %>"
-                                                        value = "<%=  subcats[i].name %>"
-                                                        <% if (exists(categorias)) { %>
-                                                            <% for( let z = 0; z < categorias.length; z++ ) { %>
-                                                                <% if (categorias[z] == subcats[i].name) { %>
-                                                                    checked
-                                                                <% } %>
-                                                            <% } %>
-                                                        <% } %>
-                                                    >
-                                                    <label for="<%=  subcats[i].name + subcats[i].id %>">
-                                                        <%=  subcats[i].name %> <i>(<%= subcats[i].id %> )</i> 
-                                                    </label>
-
-                                                    <!-- Checkeo si tiene sub subcategorias -->
-                                                    <% if (subcats[i].subcategories) { %>
-                                                            <% subsubcats = subcats[i].subcategories; %>
-                                                            <ul style="margin-left: 1.5rem;">
-                                                                <% for( let i = 0; i < subsubcats.length; i++ ) { %>
-                                                                    <li>
-                                                                        <input 
-                                                                            type  = "checkbox" 
-                                                                            name  = "categorias" 
-                                                                            id    = "<%=  subsubcats[i].name + subsubcats[i].id %>"
-                                                                            value = "<%=  subsubcats[i].name %>"
-                                                                            <% if (exists(categorias)) { %>
-                                                                                <% for( let z = 0; z < categorias.length; z++ ) { %>
-                                                                                    <% if (categorias[z] == subsubcats[i].name) { %>
-                                                                                        checked
-                                                                                    <% } %>
-                                                                                <% } %>
-                                                                            <% } %>
-                                                                        >
-                                                                        <label for="<%=  subsubcats[i].name + subsubcats[i].id %>">
-                                                                            <%=  subsubcats[i].name %> <i>(<%= subsubcats[i].id %> )</i> 
-                                                                        </label>
-
-                                                                    </li>
-
-                                                                <% } %>
-                                                            </ul>
-                                                    <% } %>
-
-                                                </li>
-
-                                            <% } %>
-                                        </ul>
-                                <% } %>
 
                             </li>
                             
@@ -616,6 +427,6 @@
         
     </main>
 
-    <%- include('../partials/footer.ejs')  %> 
+    <%- include('../../partials/footer.ejs')  %> 
 </body>
 </html>

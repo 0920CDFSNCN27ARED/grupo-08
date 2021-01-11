@@ -1,0 +1,164 @@
+.categories_list_view {
+    .content_form {
+        margin-top: 2rem;
+        margin-bottom: 4rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .categories_list {
+        border-right: 1px solid $gray1;
+        padding-right: 2rem;
+        overflow-x: auto;
+        width: 210px;
+
+        h4 {
+            @include font-size(16);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            padding-top: 1rem;
+        }
+
+        ul {
+            border-left: 1px solid $gray2;
+            padding-left: 1rem;
+        }
+
+        li {
+            padding: 0.2rem 0;
+
+            &.active {
+                & > a {
+                    color: $blue;
+                    font-weight: 700;
+                }
+            }
+        }
+
+        a {
+            @include font-size(12);
+            color: $gray4;
+            width: 100%;
+            display: block;
+            &:hover {
+                color: $blue;
+            }
+        }
+    }
+
+    .categories_form {
+        width: calc(100% - 210px - 2rem);
+        position: relative;
+
+        .form_header {
+            width: 100%;
+            display: block;
+            border: 1px solid $gray1;
+            padding: 1rem;
+            border-radius: 0.5rem;
+
+            h4 {
+                @include font-size(16);
+                font-weight: 700;
+            }
+
+            ul {
+                display: flex;
+                justify-content: flex-start;
+            }
+
+            a {
+                display: block;
+                padding: 1rem 0.5rem;
+                margin: 0 1rem 0 0;
+                background: $white;
+                border: 0;
+                border-bottom: 2px solid $white;
+                @include font-size(12);
+                cursor: pointer;
+
+                &:hover {
+                    border-bottom: 2px solid $blue;
+                }
+                &.active {
+                    border-bottom: 2px solid $blue;
+                    font-weight: 700;
+                }
+            }
+        }
+
+        .form_data {
+            width: 100%;
+            padding: 1rem;
+
+            .form_row {
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 1.5rem;
+
+                label {
+                    @include font-size(14);
+                    font-weight: 700;
+                    color: $gray5;
+                    margin-bottom: 0.3rem;
+                }
+
+                input,
+                select {
+                    width: 100%;
+                    padding: 0.8rem 1rem;
+                    border: 1px solid $gray1;
+                    border-radius: 0.5rem;
+                }
+            }
+        }
+
+        .form_images {
+            width: 40%;
+            min-height: calc(100vh - 5rem);
+            padding: 1rem;
+            padding-right: 0;
+            border-left: 1px solid $gray2;
+            display: flex;
+            flex-direction: column;
+
+            .form_images_card {
+                border: 1px solid $gray1;
+                display: flex;
+                width: 100%;
+                position: relative;
+                margin-bottom: 1rem;
+
+                img {
+                    max-width: 80px;
+                }
+
+                span {
+                    padding: 1rem;
+                    @include font-size(10);
+                }
+
+                button {
+                    position: absolute;
+                    bottom: 1rem;
+                    right: 1rem;
+                    width: calc(100% - 80px - 2rem);
+                    background: $error;
+                    padding: 0.2rem 0;
+                    font-weight: 400;
+                    &:hover {
+                        background: $error_h;
+                    }
+                }
+            }
+        }
+
+        button[type='submit'] {
+            position: fixed;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    }
+}

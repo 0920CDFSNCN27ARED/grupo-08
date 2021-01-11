@@ -3,11 +3,11 @@
 <head>
     <% pageTitle = locals.title !== undefined ? title : 'Productos' %> 
     
-    <%- include('../partials/head') %>
+    <%- include('../../partials/head') %>
 </head>
 <body>
 
-    <%- include('../partials/header.ejs')  %> 
+    <%- include('../../partials/header.ejs')  %> 
 
     <main>
 
@@ -137,7 +137,7 @@
                     <!-- Producto -->
 
                     <% for( let i = 0; i < products.length; i++ ) { %>
-                        <%- include('../../components/products/rowTable/index', {
+                        <%- include('../../../components/products/rowTable/index', {
                             clases: ['products_table_product'],
                             //idAttr: '',
                             events: [],

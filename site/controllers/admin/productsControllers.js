@@ -1,7 +1,8 @@
 const writeJsonFile = require('../../helpers/writeJsonFile');
 const readJsonFile = require('../../helpers/readJsonFile');
+const returnCategoriesHTML = require('../../helpers/returnCategoriesHTML');
 
-const catalogControllers = {
+const productsControllers = {
     getOne: (req, res) => {
         const { id } = req.params;
 
@@ -16,7 +17,7 @@ const catalogControllers = {
             });
         }
 
-        res.render('admin/pages/products-create', { product });
+        res.render('admin/pages/products/products-create', { product });
     },
     getAll: (req, res) => {
         const allProducts = readJsonFile('../db/products.json');
@@ -45,10 +46,16 @@ const catalogControllers = {
             return handledProducts;
         }
 
-        res.render('admin/pages/products-list', { products: handleProductsArr(allProducts) });
+        res.render('admin/pages/products/products-list', {
+            products: handleProductsArr(allProducts),
+        });
     },
     create: (req, res) => {
-        res.render('admin/pages/products-create');
+        const allCategories = readJsonFile('../db/categories.json');
+
+        res.render('admin/pages/products/products-create', {
+            categories: returnCategoriesHTML(allCategories),
+        });
     },
     created: (req, res) => {
         const handleImages = (obj) => {
@@ -199,4 +206,4 @@ const catalogControllers = {
     },
 };
 
-module.exports = catalogControllers;
+module.exports = productsControllers;
