@@ -18,14 +18,14 @@ const categoriesControllers = {
 
         res.render('admin/pages/categories/categories-list', {
             category,
-            categoriesHTML: returnCategoriesFormated.asHTML(allCategories),
+            categoriesHTML: returnCategoriesFormated.asHTML(allCategories, '/admin/c/categorias'),
         });
     },
     getAll: (req, res) => {
         const allCategories = readJsonFile('../db/categories.json');
 
         res.render('admin/pages/categories/categories-list', {
-            categoriesHTML: returnCategoriesFormated.asHTML(allCategories),
+            categoriesHTML: returnCategoriesFormated.asHTML(allCategories, '/admin/c/categorias'),
         });
     },
     create: (req, res) => {

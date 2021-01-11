@@ -40,8 +40,8 @@ header {
 
         .menu__desplegable {
             &:hover {
-                .contenido_submenu {
-                    display: block;
+                > .contenido_submenu {
+                    display: flex;
                 }
             }
         }
@@ -56,13 +56,11 @@ header {
             border-bottom: 1px solid $gray2;
             background: $white;
 
-            ul {
-                justify-content: center;
+            justify-content: center;
 
-                li a {
-                    text-transform: capitalize;
-                    color: $black;
-                }
+            li a {
+                text-transform: capitalize;
+                color: $black;
             }
         }
     }

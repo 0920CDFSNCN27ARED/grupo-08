@@ -24,7 +24,11 @@
       "1",
       "1"
     ],
-    "categorias": "4",
+    "categorias": [
+      "4",
+      "1",
+      "5"
+    ],
     "imagenes": [
       "/s/h/short_truly.jpg"
     ]
@@ -69,7 +73,10 @@
       "0",
       "0"
     ],
-    "categorias": "4",
+    "categorias": [
+      "1",
+      "4"
+    ],
     "imagenes": [
       "/b/a/banner_1.jpg",
       "/b/a/banner_2.jpg"

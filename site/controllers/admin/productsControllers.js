@@ -95,7 +95,7 @@ const productsControllers = {
             cuidado: req.body.cuidado ? req.body.cuidado : '',
             color: req.body.agregar_color ? req.body.agregar_color : '',
             stock_talles: req.body.stock_talles ? req.body.stock_talles : [],
-            categorias: req.body.categorias ? req.body.categorias : [],
+            categorias: req.body.categorias ? [...req.body.categorias] : [],
             imagenes: handleImages(req.files) ? handleImages(req.files) : [],
         };
 
@@ -191,7 +191,7 @@ const productsControllers = {
                 prod.color = prod.color == agregar_color ? prod.color : agregar_color;
                 prod.stock_talles =
                     prod.stock_talles == stock_talles ? prod.stock_talles : stock_talles;
-                prod.categorias = prod.categorias == categorias ? prod.categorias : categorias;
+                prod.categorias = prod.categorias == categorias ? prod.categorias : [...categorias];
             }
         });
 

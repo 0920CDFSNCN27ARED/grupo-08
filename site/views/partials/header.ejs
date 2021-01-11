@@ -1,3 +1,5 @@
+<% console.log(); %> 
+
 <header class="">
     <button id="menu_mobile--btn">
         <span></span>
@@ -13,71 +15,7 @@
 
     <nav id="menu">
         <ul>
-            <li class="menu__desplegable">
-                <a href="/c/categoria/categoria_remeras">categoria 1</a>
-
-                <div class="contenido_submenu">
-                    <ul>
-                        <li>
-                            <a href="/c/categoria/categoria_remeras/subcategoria_remeras"
-                                >Cat1_Subcat 1</a
-                            >
-                        </li>
-                        <li>
-                            <a href="/c/categoria/categoria_remeras/subcategoria_remeras"
-                                >Cat1_Subcat 2</a
-                            >
-                        </li>
-                        <li>
-                            <a href="/c/categoria/categoria_remeras/subcategoria_remeras"
-                                >Cat1_Subcat 3</a
-                            >
-                        </li>
-                        <li>
-                            <a href="/c/categoria/categoria_remeras/subcategoria_remeras"
-                                >Cat1_Subcat 4</a
-                            >
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li>
-                <a href="/c/categoria/categoria_pantalones">categoria 2</a>
-            </li>
-            <li>
-                <a href="/c/categoria/categoria_buzos">categoria 3</a>
-            </li>
-            <li class="menu__desplegable">
-                <a href="/c/categoria/categoria_zapas">categoria 4</a>
-
-                <div class="contenido_submenu">
-                    <ul>
-                        <li>
-                            <a href="/c/categoria/categoria_zapas/subcategoria_zapas"
-                                >Cat4_Subcat 1</a
-                            >
-                        </li>
-                        <li>
-                            <a href="/c/categoria/categoria_zapas/subcategoria_zapas"
-                                >Cat4_Subcat 2</a
-                            >
-                        </li>
-                        <li>
-                            <a href="/c/categoria/categoria_zapas/subcategoria_zapas"
-                                >Cat4_Subcat 3</a
-                            >
-                        </li>
-                        <li>
-                            <a href="/c/categoria/categoria_zapas/subcategoria_zapas"
-                                >Cat4_Subcat 4</a
-                            >
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li>
-                <a href="/c/categoria/categoria_1">categoria 5</a>
-            </li>
+            <%- categories %> 
         </ul>
     </nav>
 
