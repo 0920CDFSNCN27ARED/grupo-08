@@ -370,27 +370,76 @@
                         <h4>Categorias del producto</h4>
 
                         <ul>
-                        <% for( let i = 0; i < categories.length; i++ ) { %>
-                            <li>
-                                <input 
-                                    type  = "checkbox" 
-                                    name  = "categorias" 
-                                    id    = "<%=  categories[i].name + categories[i].id %>" 
-                                    value = "<%=  categories[i].name %>"
-                                    <% if (exists(categorias)) { %>
-                                        <% for( let z = 0; z < categorias.length; z++ ) { %>
-                                            <% if (categorias[z] == categories[i].name) { %>
-                                                checked
+                        <% for( let i = 0; i < _categories.length; i++ ) { %>
+
+                            <% 
+                                let cat =  _categories[i];
+                                function checkSubcats(obj, arr) {
+                                    let html = '';
+                                    if (obj.subcategories.length > 0) {
+                                        html += `<ul style="margin-left: 1.5rem;">`;
+                                        obj.subcategories.forEach((subcat) => {
+                                            let objSubcat = arr.find((_obj) => _obj.id === subcat);
+                                            // prettier-ignore
+                                            html += `
+                                                <li>
+                                                    <input 
+                                                        type  = "checkbox" 
+                                                        name  = "categorias" 
+                                                        id    = "${objSubcat.name + objSubcat.id}" 
+                                                        value = "${objSubcat.id}"`;
+
+                                                        if (exists(categorias)) {
+                                                            for( let z = 0; z < categorias.length; z++ ) {
+                                                                console.log('cats', categorias);
+                                                                console.log('catsZ', categorias[z]);
+                                                                if (categorias[z] == objSubcat.id) {
+                                                                    html += `checked`;
+                                                                }
+                                                            }
+                                                        }
+                                                    html += `>
+                                                    <label for="${objSubcat.name + objSubcat.id}" >
+                                                        ${objSubcat.name} <i>(${objSubcat.id})</i> 
+                                                    </label>
+                                                    ${checkSubcats(objSubcat, arr)}
+                                                </li>`;
+                                        });
+                                        html += `</ul>`;
+                                    }
+
+                                    return html;
+                                }
+
+                            %> 
+                            <% console.log('cat', cat); %> 
+
+                            <% if (cat.parent_cat == 0) { %>
+                                <li>
+                                    <input 
+                                        type  = "checkbox" 
+                                        name  = "categorias" 
+                                        id    = "<%=  cat.name + cat.id %>" 
+                                        value = "<%=  cat.id %>"
+                                        <% if (exists(categorias)) { %>
+                                            <% for( let z = 0; z < categorias.length; z++ ) { %>
+                                                <% if (categorias[z] == cat.id) { %>
+                                                    checked
+                                                <% } %>
                                             <% } %>
                                         <% } %>
-                                    <% } %>
-                                >
-                                <label for="<%=  categories[i].name + categories[i].id %>" >
-                                    <%=  categories[i].name %> <i>(<%= categories[i].id %> )</i> 
-                                </label>
+                                    >
+                                    <label for="<%=  cat.name + cat.id %>" >
+                                        <%=  cat.name %> <i>(<%= cat.id %>)</i> 
+                                    </label>
+                                    <%- checkSubcats(cat, _categories) %> 
+                                </li>
 
-                            </li>
+
+                            <% } %>
+
                             
+
                         <% } %>
                         </ul>
 

@@ -1,6 +1,6 @@
 const writeJsonFile = require('../../helpers/writeJsonFile');
 const readJsonFile = require('../../helpers/readJsonFile');
-const returnCategoriesHTML = require('../../helpers/returnCategoriesHTML');
+const returnCategoriesFormated = require('../../helpers/returnCategoriesFormated');
 
 const categoriesControllers = {
     getOne: (req, res) => {
@@ -18,14 +18,14 @@ const categoriesControllers = {
 
         res.render('admin/pages/categories/categories-list', {
             category,
-            categoriesHTML: returnCategoriesHTML(allCategories),
+            categoriesHTML: returnCategoriesFormated.asHTML(allCategories),
         });
     },
     getAll: (req, res) => {
         const allCategories = readJsonFile('../db/categories.json');
 
         res.render('admin/pages/categories/categories-list', {
-            categoriesHTML: returnCategoriesHTML(allCategories),
+            categoriesHTML: returnCategoriesFormated.asHTML(allCategories),
         });
     },
     create: (req, res) => {

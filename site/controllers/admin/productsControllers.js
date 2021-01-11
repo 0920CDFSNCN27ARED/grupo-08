@@ -1,10 +1,10 @@
 const writeJsonFile = require('../../helpers/writeJsonFile');
 const readJsonFile = require('../../helpers/readJsonFile');
-const returnCategoriesHTML = require('../../helpers/returnCategoriesHTML');
 
 const productsControllers = {
     getOne: (req, res) => {
         const { id } = req.params;
+        const allCategories = readJsonFile('../db/categories.json');
 
         // Busco el id en los productos
         let product, allProducts;
@@ -17,7 +17,10 @@ const productsControllers = {
             });
         }
 
-        res.render('admin/pages/products/products-create', { product });
+        res.render('admin/pages/products/products-create', {
+            product,
+            categories: allCategories,
+        });
     },
     getAll: (req, res) => {
         const allProducts = readJsonFile('../db/products.json');
@@ -52,9 +55,8 @@ const productsControllers = {
     },
     create: (req, res) => {
         const allCategories = readJsonFile('../db/categories.json');
-
         res.render('admin/pages/products/products-create', {
-            categories: returnCategoriesHTML(allCategories),
+            categories: allCategories,
         });
     },
     created: (req, res) => {

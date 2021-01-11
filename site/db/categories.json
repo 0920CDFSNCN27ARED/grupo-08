@@ -73,5 +73,19 @@
     ],
     "parent_cat": 1,
     "subcategories": []
+  },
+  {
+    "id": 6,
+    "status": "deshabilitado",
+    "show_menu": "si",
+    "name": "Denin",
+    "page_title": "Denim",
+    "meta_description": "Todo tipo de productos denim",
+    "meta_keywords": "camperas, jeans",
+    "imagenes": [
+      "/b/a/banner_4.jpg"
+    ],
+    "parent_cat": 0,
+    "subcategories": []
   }
 ]
