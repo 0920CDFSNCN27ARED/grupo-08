@@ -73,21 +73,7 @@ const catalog_product_view = document.querySelector('.catalog_product_view');
 if (catalog_product_view) {
     let swiper_photos_el = catalog_product_view.querySelector('.swiper-container');
 
-    let swiper_photos = new Swiper(swiper_photos_el, {
-        loop: true,
-        pagination: {
-            el: '.swiper-pagination',
-        },
-        breakpoints: {
-            1000: {
-                loop: false,
-                slidesPerView: 2,
-                slidesPerGroup: 2,
-                slidesPerColumn: 10,
-                slidesPerColumnFill: 'row',
-            },
-        },
-    });
+    
 }
 
 // SLIDER PRODUCTOS RECOMENDADOS
@@ -186,7 +172,7 @@ if (slider_featured_products) {
     const products_wrapper = slider_featured_products.querySelector('.swiper-wrapper');
     products_wrapper.innerHTML += product_template.repeat(6);
 
-    let swiper_photos_el = slider_featured_products.querySelector('.swiper-container');
+    /* let swiper_photos_el = slider_featured_products.querySelector('.swiper-container');
     let swiper_photos = new Swiper(swiper_photos_el, {
         slidesPerView: 1,
         loop: true,
@@ -200,7 +186,7 @@ if (slider_featured_products) {
                 slidesPerView: 4,
             },
         },
-    });
+    }); */
 }
 
 // ADMIN CREATE PRODUCT

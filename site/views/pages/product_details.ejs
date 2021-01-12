@@ -35,7 +35,7 @@
         <%- include('../partials/header') %>
 
         <main>
-            <article id="product_id" class="product_details">
+            <article id="product-<%= id %>" class="product_details">
                 <div class="product_images">
                     <div class="swiper-container">
                         <div class="swiper-wrapper">
@@ -162,6 +162,27 @@
 
         <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
         <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-        <script src="/scripts/main.js"></script>
+
+        <script>
+
+            const producto = document.querySelector('#product-<%= id %>');
+            console.log(producto);
+            let swiper_photos = new Swiper(producto.querySelector('.swiper-container'), {
+                loop: true,
+                pagination: {
+                    el: '.swiper-pagination',
+                },
+                breakpoints: {
+                    1000: {
+                        loop: false,
+                        slidesPerView: 2,
+                        slidesPerGroup: 2,
+                        slidesPerColumn: 10,
+                        slidesPerColumnFill: 'row',
+                    },
+                },
+            });
+
+        </script>
     </body>
 </html>
