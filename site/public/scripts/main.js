@@ -34,6 +34,19 @@ function changeTab(currentObj, target) {
     currentObj.classList.add('active');
 }
 
+function showHidePw(el) {
+    let pwInput = el.parentNode.querySelector('input');
+    let getTypeAttr = pwInput.getAttribute('type');
+
+    if(getTypeAttr === 'password') {
+        pwInput.setAttribute('type', 'text');
+    } else {
+        pwInput.setAttribute('type', 'password');
+    }
+
+    el.classList.toggle('ocultar');
+}
+
 async function createProduct(_method = '', url = '', data = {}) {
     const res = await fetch(url, {
         method: _method,

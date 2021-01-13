@@ -1,6 +1,8 @@
 const readJsonFile = require('../helpers/readJsonFile');
 const returnCategoriesFormated = require('../helpers/returnCategoriesFormated');
 
+
+
 const mainControllers = {
     index: (req, res) => {
         const allCategories = readJsonFile('../db/categories.json');
