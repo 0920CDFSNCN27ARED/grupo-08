@@ -6,6 +6,9 @@ const customerControllers = {
     register: (req, res) => {
         res.render('pages/register');
     },
+    recover: (req, res) => {
+        res.render('pages/recover');
+    },
 };
 
 module.exports = customerControllers;

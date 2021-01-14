@@ -1,0 +1,109 @@
+.recover_account_view {
+  header {
+    border-bottom: 1px solid $gray1;
+    margin-bottom: 2rem;
+  }
+
+  main {
+    display: block;
+    width: 95%;
+    max-width: 800px;
+    margin: 8rem auto;
+    //margin-top: 8rem;
+    border: 1px solid $gray2;
+    padding: 1rem;
+  }
+
+  section {
+
+    * {
+      display: block;
+      margin-bottom: .5rem;
+
+    }
+
+    
+    h1, h2 {
+      @include font-size(28);
+      font-weight: 700;
+      color: $gray5;  
+      margin-bottom: 1rem;
+    }
+    
+    p {
+      @include font-size(16);
+      color: $gray3;
+      
+    }
+    
+    a {
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    label {
+      @include font-size(12);
+      color: $gray4;
+    }
+
+    .form_row {
+      width: 100%;
+    }
+
+    input,
+    select {
+        width: 100%;
+        padding: 0.8rem 1rem;
+        padding-right: calc(40px + .5rem);
+        border: 1px solid $gray1;
+        border-radius: 0.5rem;
+        font-family: $opensans;
+
+        &:focus {
+          border: 1px solid $blue;
+
+        }
+    }
+
+    button {
+      display: block;
+      text-align: center;
+      margin-top: 1rem;
+      width: 50%;
+      margin: 0 auto;
+    }
+
+  }
+
+}
+
+@media (max-width: 1000px) {
+  .recover_account_view {
+    form {
+      flex-direction: column;
+      gap: 0;
+      .form_row {
+        width: 100%;
+        margin-bottom: 1rem;
+      }
+
+      select,
+      input {
+        padding: 1.3rem 1;
+        @include font-size(16);
+      }
+
+    }
+
+  }
+
+}
