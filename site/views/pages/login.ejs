@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es" class="login_view">
     <head>
-        <% pageTitle = locals.title !== undefined ? title : 'Tienda Home' %> 
+        <% pageTitle = locals.title !== undefined ? title : 'Iniciar sesión' %> 
         
         <%- include('../partials/head') %>
     </head>
@@ -15,7 +15,7 @@
                 <p>
                     Al registrarte en nuestra tienda, se agilizará el proceso de compra, podrás ver y hacer un seguimiento de tus pedidos, y mucho más. 
                 </p>
-                <a href="#register" class="button_main_action">
+                <a href="registro" class="button_main_action">
                     Registrarse
                 </a>
             </section>
@@ -44,13 +44,22 @@
                     <button type="submit" id="login_button" class="button_main_action">INGRESAR</button>
                 </form>
 
+                <%- include('../components/login_links/index', {
+                    options: [
+                        {
+                            text: 'Recuperar contraseña',
+                            url: '/clientes/recover'
+                        },
+                    ]
+                }) %> 
+
                 <hr />
 
-                <a href="#facebook_login" class="button_main_action">
+                <a href="#facebook_login" class="button_main_action" onclick="alert('pendiente')">
                     Ingresar con Facebook
                 </a>
 
-                <a href="#google_login" class="button_main_action">
+                <a href="#google_login" class="button_main_action" onclick="alert('pendiente')">
                     Ingresar con Google
                 </a>
             </section>

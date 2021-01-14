@@ -1,121 +1,104 @@
 <!DOCTYPE html>
-<html lang="es" class="login">
+<html lang="es" class="register_view">
     <head>
-        <% pageTitle = locals.title !== undefined ? title : 'Registrarse' %> <%-
-        include('../partials/head') %>
+        <% pageTitle = locals.title !== undefined ? title : 'Registrarse' %> 
+        
+        <%- include('../partials/head') %>
     </head>
 
     <body>
         <%- include('../partials/header') %>
 
-        <main class="register_page">
-            <h2>Datos Personales</h2>
-            <form action="#" method="get">
-                <section id="nombre_completo" class="register_section">
-                    <div class="subsection">
-                        <label for="name">Nombre</label>
-                        <input
-                            class="width_100"
-                            type="text"
-                            name="name"
-                            id="name"
-                            placeholder="Ingresar nombre"
-                        />
-                    </div>
-                    <div class="subsection">
-                        <label for="surname">Apellido</label>
-                        <input
-                            class="width_100"
-                            type="text"
-                            name="surname"
-                            id="surname"
-                            placeholder="Ingresar apellido"
-                        />
-                    </div>
-                </section>
-                <section id="email" class="register_section">
-                    <div class="subsection">
-                        <label for="email">Email</label>
-                        <input
-                            class="width_100"
-                            type="email"
-                            name="email"
-                            id="email"
-                            placeholder="Ingresar email"
-                        />
-                    </div>
-                    <div class="subsection">
-                        <label for="email_confirm">Confirmar email</label>
-                        <input
-                            class="width_100"
-                            type="email"
-                            name="email_confirm"
-                            id="email_confirm"
-                            placeholder="Repetir email"
-                        />
-                    </div>
-                </section>
-                <section id="password" class="register_section">
-                    <div class="subsection">
-                        <label for="password">Contraseña</label>
-                        <input
-                            class="width_100"
-                            type="password"
-                            name="password"
-                            id="password"
-                            placeholder="Ingresar contraseña"
-                        />
-                    </div>
-                    <div class="subsection">
-                        <label for="password_confirm">Confirmar contraseña</label>
-                        <input
-                            class="width_100"
-                            type="password"
-                            name="password_confirm"
-                            id="password_confirm"
-                            placeholder="Repetir contraseña"
-                        />
-                    </div>
-                </section>
-                <section class="register_section">
-                    <div id="birth" class="subsection">
-                        <div id="birth_date">
-                            <label for="birth_date">Fecha de nacimiento</label><br />
-                            <input
-                                type="date"
-                                name="birth_date"
-                                id="birth_date"
-                                placeholder="dd / mm / aa"
-                                class="width_100"
-                            />
-                        </div>
-                        <div id="gender">
-                            <label for="gender">Género</label><br />
-                            <select name="gender" id="gender" value="" class="width_100">
-                                <option value="default">Selecciona género</option>
-                                <option value="M">Másculino</option>
-                                <option value="F">Femenino</option>
-                                <option value="C">Crustáceo</option>
-                            </select>
-                        </div>
-                    </div>
-                </section>
-                <section id="terms" class="register_section">
-                    <div class="subsection">
-                        <input type="checkbox" name="terms" id="terms" />
-                        <p id="accept_terms" style="display: inline">
-                            Acepto términos y condiciones
-                        </p>
-                        <br />
-                        <p id="mandatory_msg">* Todos los campos son obligatorios</p>
-                    </div>
-                </section>
-                <section class="register_section">
-                    <div class="subsection">
-                        <button type="submit">REGISTRARME</button>
-                    </div>
-                </section>
-            </form>
+        <main>
+            <section>
+                <h2>Datos Personales</h2>
+                <form action="/" method="POST">
+                    <%- include('../components/forms/form_input/index', {
+                        is_required: true,
+                        label: 'Nombre',
+                        type: 'text',
+                        name: 'first_name',
+                        placeholder: 'Ingrese su nombre',
+                    }) %> 
+                    <%- include('../components/forms/form_input/index', {
+                        is_required: true,
+                        label: 'Apellido',
+                        type: 'text',
+                        name: 'last_name',
+                        placeholder: 'Ingrese su Apellido',
+                    }) %> 
+                    
+                    <%- include('../components/forms/form_input/index', {
+                        is_required: true,
+                        label: 'Correo electrónico',
+                        type: 'email',
+                        name: 'email',
+                        placeholder: 'Ingrese su correo electrónico',
+                    }) %> 
+                    <%- include('../components/forms/form_input/index', {
+                        is_required: true,
+                        label: 'Confirmar correo electrónico',
+                        type: 'email',
+                        name: 'email_confirm',
+                        placeholder: 'Repita su correo electrónico',
+                    }) %> 
+
+                    <%- include('../components/forms/form_input/index', {
+                        is_required: true,
+                        label: 'Contraseña',
+                        type: 'password',
+                        name: 'password',
+                        placeholder: 'Ingrese su contraseña',
+                    }) %> 
+                    <%- include('../components/forms/form_input/index', {
+                        is_required: true,
+                        label: 'Confirmar contraseña',
+                        type: 'password',
+                        name: 'password_confirm',
+                        placeholder: 'Repita su contraseña',
+                    }) %> 
+                    
+                    <%- include('../components/forms/form_input/index', {
+                        is_required: true,
+                        label: 'Fecha de nacimiento',
+                        type: 'date',
+                        name: 'dob',
+                        placeholder: 'Fecha de nacimiento',
+                    }) %> 
+
+                    <%- include('../components/forms/form_select/index', {
+                        is_required: true,
+                        label: 'Género',
+                        name: 'user_gender',
+                        options: [
+                            {
+                                name: 'Hombre'
+                            },
+                            {
+                                name: 'Mujer'
+                            }
+                        ],
+                    }) %> 
+
+                    <button type="submit" id="login_button" class="button_main_action">Registrarse</button>
+
+                </form>
+
+                <%- include('../components/login_links/index', {
+                    options: [
+                        {
+                            text: 'Iniciar sesión',
+                            url: '/clientes/login'
+                        },
+                        {
+                            text: 'Recuperar contraseña',
+                            url: '/clientes/recover'
+                        },
+                    ]
+                }) %> 
+
+            </section>
+            
         </main>
 
         <footer>

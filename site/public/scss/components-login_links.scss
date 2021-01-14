@@ -1,0 +1,15 @@
+.login_links {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 1rem;
+
+    a {
+        @include font-size(12);
+        color: $gray4;
+        &:hover {
+            color: $blue;
+        }
+    }
+
+}
