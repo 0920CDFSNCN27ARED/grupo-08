@@ -1,0 +1,219 @@
+.products_create_view {
+    #product_create_form {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        position: relative;
+
+        button[type='submit'] {
+            position: fixed;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    }
+
+    .form_header {
+        width: 100%;
+        display: block;
+        border: 1px solid $gray1;
+        padding: 1rem;
+        border-radius: 0.5rem;
+
+        h4 {
+            @include font-size(16);
+            font-weight: 700;
+        }
+
+        ul {
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        a {
+            display: block;
+            padding: 1rem 0.5rem;
+            margin: 0 1rem 0 0;
+            background: $white;
+            border: 0;
+            border-bottom: 2px solid $white;
+            @include font-size(12);
+            cursor: pointer;
+
+            &:hover {
+                border-bottom: 2px solid $blue;
+            }
+            &.active {
+                border-bottom: 2px solid $blue;
+                font-weight: 700;
+            }
+        }
+    }
+
+    .form_data {
+        width: calc(60% - 1rem);
+
+        .form_row {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 1.5rem;
+
+            label {
+                @include font-size(14);
+                font-weight: 700;
+                color: $gray5;
+                margin-bottom: 0.3rem;
+            }
+
+            input,
+            select {
+                width: 100%;
+                padding: 0.8rem 1rem;
+                border: 1px solid $gray1;
+                border-radius: 0.5rem;
+            }
+        }
+    }
+
+    .form_images {
+        width: 40%;
+        min-height: calc(100vh - 5rem);
+        padding: 1rem;
+        padding-right: 0;
+        border-left: 1px solid $gray2;
+        display: flex;
+        flex-direction: column;
+
+        .form_images_card {
+            border: 1px solid $gray1;
+            display: flex;
+            width: 100%;
+            position: relative;
+            margin-bottom: 1rem;
+
+            img {
+                max-width: 80px;
+            }
+
+            span {
+                padding: 1rem;
+                @include font-size(10);
+            }
+
+            button {
+                position: absolute;
+                bottom: 1rem;
+                right: 1rem;
+                width: calc(100% - 80px - 2rem);
+                background: $error;
+                padding: 0.2rem 0;
+                font-weight: 400;
+                &:hover {
+                    background: $error_h;
+                }
+            }
+        }
+    }
+
+    // Tabs
+    #tab_data,
+    #tab_imagenes {
+        width: 100%;
+        @extend #product_create_form;
+    }
+
+    #tab_data {
+        input[name='sku_visible'] {
+            pointer-events: none;
+            background: $gray1;
+        }
+    }
+
+    #tab_attributes {
+        width: 100%;
+
+        .form_data {
+            width: 100%;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid $gray1;
+            margin-bottom: 1rem;
+
+            th,
+            td {
+                text-transform: uppercase;
+                padding: 0.5rem;
+                border-left: 1px solid $gray2;
+
+                &:first-child {
+                    width: 150px;
+                    text-transform: capitalize;
+                    border-left: 0px;
+                    @include font-size(12);
+                    text-align: center;
+                }
+
+                input {
+                    width: 100%;
+                    padding: 0.5rem 0.2rem;
+                    text-align: center;
+                }
+            }
+
+            th {
+                background: $gray1;
+                @include font-size(12);
+            }
+        }
+
+        .talles_calzado {
+            table {
+                th,
+                td {
+                    @include font-size(10);
+
+                    &:first-child {
+                        width: 80px;
+                    }
+                }
+            }
+        }
+    }
+
+    #tab_categories {
+        width: 100%;
+        .form_data {
+            width: 100%;
+
+            h4 {
+                @include font-size(16);
+                font-weight: 700;
+                margin-bottom: 1rem;
+            }
+
+            label {
+                cursor: pointer;
+            }
+        }
+    }
+
+    #tab_imagenes {
+        h4 {
+            @include font-size(12);
+        }
+    }
+}
+
+@media screen and (min-width: 1400px) {
+    .products_create {
+        .form_images {
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+        }
+    }
+}

@@ -1,7 +1,33 @@
+<%
+    const exists = locals._exists;
+    console.log(product);
+    let {
+        id,
+        status,
+        tipo_de_producto,
+        tabla_de_talles,
+        marca,
+        product_name,
+        sku_visible,
+        product_price,
+        product_price_special,
+        product_price_special_desde,
+        product_price_special_hasta,
+        descripcion_corta,
+        composicion,
+        cuidado,
+        color,
+        stock_talles,
+        categorias,
+        imagenes
+    } = product;
+
+%> 
+
 <!DOCTYPE html>
 <html lang="es" class="catalog_product_view">
     <head>
-        <% pageTitle = locals.title !== undefined ? title : 'Ficha de producto' %> <%-
+        <% pageTitle = product_name !== undefined ? product_name : 'Ficha de producto' %> <%-
         include('../partials/head') %>
     </head>
 
@@ -9,19 +35,15 @@
         <%- include('../partials/header') %>
 
         <main>
-            <article id="product_id" class="product_details">
+            <article id="product-<%= id %>" class="product_details">
                 <div class="product_images">
                     <div class="swiper-container">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <img src="/images/catalog/category/img_producto-4.png" alt="" />
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="/images/catalog/category/img_producto-5.png" alt="" />
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="/images/catalog/category/img_producto-1.png" alt="" />
-                            </div>
+                            <% for( let i = 0; i < imagenes.length; i++ ) { %>
+                                <div class="swiper-slide">
+                                    <img src="/images/catalog/products/<%= imagenes[i] %>" alt="" />
+                                </div>
+                            <% } %>
                         </div>
 
                         <div class="swiper-pagination"></div>
@@ -30,11 +52,15 @@
 
                 <div class="product_info">
                     <div class="product_head">
-                        <h1 class="product_name">Camisa extragrande DIOR AND JUDY BLAME</h1>
-                        <div class="product_price discount">
+                        <h1 class="product_name"><%= product_name %></h1>
+                        
+                        <div class="product_price <%= product_price_special > 0 ? 'discount' : '' %>">
                             <h3 class="regular_price">$8.000</h3>
-                            <h3 class="special_price">$4.000</h3>
-                            <h3 class="percent_off">50% OFF</h3>
+
+                            <% if (product_price_special > 0) { %>
+                                <h3 class="special_price">$4.000</h3>
+                                <h3 class="percent_off">50% OFF</h3>
+                            <% } %>
                         </div>
                     </div>
 
@@ -45,27 +71,19 @@
                                 <div class="color selected">
                                     <span></span>
                                 </div>
-                                <div class="color">
-                                    <span></span>
-                                </div>
-                                <div class="color">
-                                    <span></span>
-                                </div>
                             </div>
                         </div>
                         <div class="colors_info">
-                            <h4>Azul</h4>
+                            <h4><%= color %> </h4>
                         </div>
                     </div>
 
                     <div class="product_attribute_sizes">
                         <select name="talles" id="talles" value="">
                             <option value="default">Selecciona tu talle</option>
-                            <option value="XS">XS</option>
-                            <option value="S">S</option>
-                            <option value="M">M</option>
-                            <option value="L">L</option>
-                            <option value="XL">XL</option>
+                            <% for( let i = 0; i < stock_talles.length; i++ ) { %>
+                                <option value="<%= stock_talles[i] %>"><%= stock_talles[i] %></option>    
+                            <% } %>
                         </select>
                     </div>
 
@@ -144,6 +162,27 @@
 
         <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
         <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-        <script src="/scripts/main.js"></script>
+
+        <script>
+
+            const producto = document.querySelector('#product-<%= id %>');
+            console.log(producto);
+            let swiper_photos = new Swiper(producto.querySelector('.swiper-container'), {
+                loop: true,
+                pagination: {
+                    el: '.swiper-pagination',
+                },
+                breakpoints: {
+                    1000: {
+                        loop: false,
+                        slidesPerView: 2,
+                        slidesPerGroup: 2,
+                        slidesPerColumn: 10,
+                        slidesPerColumnFill: 'row',
+                    },
+                },
+            });
+
+        </script>
     </body>
 </html>

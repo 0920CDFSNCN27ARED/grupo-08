@@ -8,6 +8,54 @@ function esDesktop() {
     return window.matchMedia('(min-width: 1000px)').matches;
 }
 
+function eventFire(el, etype) {
+    if (el.fireEvent) {
+        el.fireEvent('on' + etype);
+    } else {
+        var evObj = document.createEvent('Events');
+        evObj.initEvent(etype, true, false);
+        el.dispatchEvent(evObj);
+    }
+}
+
+function changeTab(currentObj, target) {
+    let formTab, formTabBtn;
+
+    // Oculto todos los tabs
+    formTab = document.querySelectorAll('.form_tab');
+    formTab.forEach((tab) => tab.classList.add('dnone'));
+
+    // Remuevo active class en todos los btns
+    formTabBtn = document.querySelectorAll('.form_tab_btn');
+    formTabBtn.forEach((btn) => btn.classList.remove('active'));
+
+    // Muestro el tab actual y agrego active class al btn
+    document.querySelector(`#${target}`).classList.remove('dnone');
+    currentObj.classList.add('active');
+}
+
+function showHidePw(el) {
+    let pwInput = el.parentNode.querySelector('input');
+    let getTypeAttr = pwInput.getAttribute('type');
+
+    if(getTypeAttr === 'password') {
+        pwInput.setAttribute('type', 'text');
+    } else {
+        pwInput.setAttribute('type', 'password');
+    }
+
+    el.classList.toggle('ocultar');
+}
+
+async function createProduct(_method = '', url = '', data = {}) {
+    const res = await fetch(url, {
+        method: _method,
+        body: data,
+    });
+
+    return res.json();
+}
+
 // Header
 const header = document.querySelector('header');
 window.addEventListener('scroll', () =>
@@ -38,21 +86,7 @@ const catalog_product_view = document.querySelector('.catalog_product_view');
 if (catalog_product_view) {
     let swiper_photos_el = catalog_product_view.querySelector('.swiper-container');
 
-    let swiper_photos = new Swiper(swiper_photos_el, {
-        loop: true,
-        pagination: {
-            el: '.swiper-pagination',
-        },
-        breakpoints: {
-            1000: {
-                loop: false,
-                slidesPerView: 2,
-                slidesPerGroup: 2,
-                slidesPerColumn: 10,
-                slidesPerColumnFill: 'row',
-            },
-        },
-    });
+    
 }
 
 // SLIDER PRODUCTOS RECOMENDADOS
@@ -151,7 +185,7 @@ if (slider_featured_products) {
     const products_wrapper = slider_featured_products.querySelector('.swiper-wrapper');
     products_wrapper.innerHTML += product_template.repeat(6);
 
-    let swiper_photos_el = slider_featured_products.querySelector('.swiper-container');
+    /* let swiper_photos_el = slider_featured_products.querySelector('.swiper-container');
     let swiper_photos = new Swiper(swiper_photos_el, {
         slidesPerView: 1,
         loop: true,
@@ -165,5 +199,578 @@ if (slider_featured_products) {
                 slidesPerView: 4,
             },
         },
-    });
+    }); */
+}
+
+// ADMIN CREATE PRODUCT
+const products_create_view = document.querySelector('.products_create_view');
+if (products_create_view) {
+    function handleSkuVisible(currEl, targetElement) {
+        let target = document.querySelector(`#${targetElement}`);
+        let arrTargetVal = target.value.split('-');
+
+        // El sku visible se compone por marca - tipo prod - nombre
+        let [marca, tipoProducto, nombre] = ['marca', 'tipo_de_producto', 'nombre'];
+
+        if (target.value) {
+            marca = arrTargetVal[0];
+            tipoProducto = arrTargetVal[1];
+            nombre = arrTargetVal[2];
+        }
+
+        switch (currEl.getAttribute('name')) {
+            case 'marca':
+                marca = formatString(currEl.value);
+                break;
+
+            case 'tipo_de_producto':
+                tipoProducto = formatString(currEl.value);
+                break;
+
+            case 'product_name':
+                nombre = formatString(currEl.value);
+                break;
+
+            default:
+                break;
+        }
+
+        function formatString(str) {
+            return str
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .toLowerCase()
+                .replaceAll(' ', '_');
+        }
+
+        // Devuelvo el sku visible
+        target.value = `${marca}-${tipoProducto}-${nombre}`;
+    }
+
+    function handleTablaTalles(currEl, targetElement, ...stock_talles) {
+        // Templates tabla talles
+        // Perdon! esta horrible esto
+        const tabla_talles_calzado_35_al_45 = `
+            <div class="tablita talles_calzado" data_table="tabla_talles_calzado_35_al_45">
+                <h4>Calzado</h4>
+                <table width="100%" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <th>
+                        Talles 
+                        </th>
+                        <th>
+                            35
+                        </th>
+                        <th>
+                            35.5
+                        </th>
+                        <th>
+                            36
+                        </th>
+                        <th>
+                            36.5
+                        </th>
+                        <th>
+                            37
+                        </th>
+                        <th>
+                            37.5
+                        </th>
+                        <th>
+                            38
+                        </th>
+                        <th>
+                            38.5
+                        </th>
+                        <th>
+                            39
+                        </th>
+                        <th>
+                            39.5
+                        </th>
+                        <th>
+                            40
+                        </th>
+                        <th>
+                            40.5
+                        </th>
+                        <th>
+                            41
+                        </th>
+                        <th>
+                            41.5
+                        </th>
+                        <th>
+                            42
+                        </th>
+                        <th>
+                            42.5
+                        </th>
+                        <th>
+                            43
+                        </th>
+                        <th>
+                            43.5
+                        </th>
+                        <th>
+                            44
+                        </th>
+                        <th>
+                            44.5
+                        </th>
+                        <th>
+                            45
+                        </th>
+                        <th>
+                            45.5
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            Color stock
+                        </td>
+                        <td>
+                            <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
+                        </td>
+                        <td>
+                            <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
+                        </td>
+                        <td>
+                            <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
+                        </td>
+                        <td>
+                            <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
+                        </td>
+                        <td>
+                            <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
+                        </td>
+                        <td>
+                            <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
+                        </td>
+                        <td>
+                            <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
+                        </td>
+                        <td>
+                            <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
+                        </td>
+                        <td>
+                            <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
+                        </td>
+                        <td>
+                            <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
+                        </td>
+                        <td>
+                            <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
+                        </td>
+                        <td>
+                            <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
+                        </td>
+                        <td>
+                            <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
+                        </td>
+                        <td>
+                            <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
+                        </td>
+                        <td>
+                            <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
+                        </td>
+                        <td>
+                            <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
+                        </td>
+                        <td>
+                            <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
+                        </td>
+                        <td>
+                            <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
+                        </td>
+                        <td>
+                            <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
+                        </td>
+                        <td>
+                            <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
+                        </td>
+                        <td>
+                            <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
+                        </td>
+                        <td>
+                            <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
+                        </td>
+                    </tr>
+                </table>
+            
+            </div>
+        `;
+        const tabla_talles_36_al_48 = `
+            <div class="tablita talles_prendas_inf" data_table="tabla_talles_36_al_48">
+                <h4>Prendas inferiores</h4>
+                <table width="100%" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <th>
+                        Talles 
+                        </th>
+                        <th>
+                            36
+                        </th>
+                        <th>
+                            38
+                        </th>
+                        <th>
+                            40
+                        </th>
+                        <th>
+                            42
+                        </th>
+                        <th>
+                            44
+                        </th>
+                        <th>
+                            46
+                        </th>
+                        <th>
+                            48
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            Color stock
+                        </td>
+                        <td>
+                            <input type="number" name="stock_talles" id="stock_talles" placeholder="0" value="0">
+                        </td>
+                        <td>
+                            <input type="number" name="stock_talles" id="stock_talles" placeholder="0" value="0">
+                        </td>
+                        <td>
+                            <input type="number" name="stock_talles" id="stock_talles" placeholder="0" value="0">
+                        </td>
+                        <td>
+                            <input type="number" name="stock_talles" id="stock_talles" placeholder="0" value="0">
+                        </td>
+                        <td>
+                            <input type="number" name="stock_talles" id="stock_talles" placeholder="0" value="0">
+                        </td>
+                        <td>
+                            <input type="number" name="stock_talles" id="stock_talles" placeholder="0" value="0">
+                        </td>
+                        <td>
+                            <input type="number" name="stock_talles" id="stock_talles" placeholder="0" value="0">
+                        </td>
+                    </tr>
+                </table>
+            
+            </div>
+        `;
+        const tabla_talles_xxs_al_xxl = `
+            <div class="tablita talles_prendas_sup" data_table="tabla_talles_xxs_al_xxl">
+                <h4>Prendas superiores</h4>
+                <table width="100%" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <th>
+                        Talles 
+                        </th>
+                        <th>
+                            xxs
+                        </th>
+                        <th>
+                            xs
+                        </th>
+                        <th>
+                            s
+                        </th>
+                        <th>
+                            m
+                        </th>
+                        <th>
+                            l
+                        </th>
+                        <th>
+                            xl
+                        </th>
+                        <th>
+                            xxl
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            Color stock
+                        </td>
+                        <td>
+                            <input type="number" name="stock_talles" id="stock_talles" placeholder="0" value="0">
+                        </td>
+                        <td>
+                            <input type="number" name="stock_talles" id="stock_talles" placeholder="0" value="0">
+                        </td>
+                        <td>
+                            <input type="number" name="stock_talles" id="stock_talles" placeholder="0" value="0">
+                        </td>
+                        <td>
+                            <input type="number" name="stock_talles" id="stock_talles" placeholder="0" value="0">
+                        </td>
+                        <td>
+                            <input type="number" name="stock_talles" id="stock_talles" placeholder="0" value="0">
+                        </td>
+                        <td>
+                            <input type="number" name="stock_talles" id="stock_talles" placeholder="0" value="0">
+                        </td>
+                        <td>
+                            <input type="number" name="stock_talles" id="stock_talles" placeholder="0" value="0">
+                        </td>
+                    </tr>
+                </table>
+            
+            </div>
+        `;
+
+        let selectedTabla, target, targetMsg;
+
+        target = document.querySelector(`#${targetElement} .form_data`);
+        targetMsg = target.children[1];
+
+        // Oculto el mensaje
+        targetMsg.style.display = 'none';
+
+        selectedTabla = currEl.options[currEl.selectedIndex].value;
+        switch (selectedTabla) {
+            case 'tabla_talles_calzado_35_al_45':
+                removerTablas();
+                target.innerHTML += tabla_talles_calzado_35_al_45;
+                break;
+
+            case 'tabla_talles_36_al_48':
+                removerTablas();
+                target.innerHTML += tabla_talles_36_al_48;
+                break;
+
+            case 'tabla_talles_xxs_al_xxl':
+                removerTablas();
+                target.innerHTML += tabla_talles_xxs_al_xxl;
+                break;
+
+            default:
+                removerTablas();
+                // Muestro el mensaje
+                targetMsg.style.display = 'block';
+                break;
+        }
+
+        if (stock_talles.length > 0) {
+            let currTable = document.querySelector(`[data_table="${selectedTabla}"]`);
+            let _inputs = currTable.querySelectorAll('input');
+            _inputs.forEach((input, i) => {
+                input.value = stock_talles[i];
+            });
+        }
+
+        function removerTablas() {
+            let tablas = document.querySelectorAll('.tablita');
+            if (tablas.length > 0) {
+                tablas.forEach((tabla) => tabla.remove());
+            }
+        }
+    }
+
+    // Trigguereo e click en select de talles
+    let tablaTalles = document.querySelector('#tabla_de_talles');
+    eventFire(tablaTalles, 'click');
+
+    // Muestro imagenes al subir
+    let filesInput = document.querySelector('#form_files_upload');
+    let filesArray = [];
+
+    // Valido la api de file
+    if (window.File && window.FileList && window.FileReader) {
+        filesInput.addEventListener('change', (e) => {
+            let files, output;
+
+            files = e.target.files; // el FileList
+            output = document.querySelector('#form_preview_files');
+
+            for (let i = 0; i < files.length; i++) {
+                let file = files[i];
+                let fr = new FileReader();
+
+                fr.addEventListener('load', function (e) {
+                    let image = e.target;
+
+                    let templateCard = `
+                        <div id="${file.name}" class="form_images_card">
+                            <img src="${image.result}" alt="${file.name}" class="form_images_card_image">
+                            <span class="form_images_card_name">${file.name}</span>
+                            <button class="form_images_card_delete button_main_action" onclick="removeCurrentFile('${file.name}')">Borrar</button>
+                        </div>
+                    `;
+
+                    output.innerHTML += templateCard;
+                    filesArray.push(file);
+                });
+
+                fr.readAsDataURL(file);
+            }
+        });
+    } else {
+        alert('El navegador no soporta la API FILE');
+    }
+
+    function removeCurrentFile(target) {
+        // Remuevo la imagen del array
+        let deletedFileIndex = filesArray.findIndex((file) => file.name === target);
+        //filesArray.splice(deletedFileIndex, 1);
+
+        alert(
+            `Funcionalidad de prueba, no funciona!\n\nEl archivo ${filesArray[deletedFileIndex].name} fue removido.`
+        );
+
+        // Remuevo la imagen del front
+        //document.querySelector(`[id*="${target}"]`).remove();
+    }
+
+    // Guardar producto
+    let form = document.querySelector('#product_create_form');
+
+    let guardarProdBtn = document.querySelector('#product_create_form_create_btn');
+    if (guardarProdBtn) {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            var FD = new FormData(form);
+            FD.append('imagenes', filesArray);
+
+            createProduct('POST', '/admin/c/productos/crear', FD).then((res) => {
+                if (res.status === 200) {
+                    location.href = '/admin/c/productos';
+                }
+            });
+        });
+    }
+
+    let actualizarProdBtn = document.querySelector('#product_create_form_update_btn');
+    if (actualizarProdBtn) {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            let pid;
+            let FD = new FormData(form);
+
+            for (let [k, v] of FD) {
+                if (k == 'id') {
+                    pid = v;
+                }
+            }
+
+            createProduct('POST', `/admin/c/productos/${pid}/update?_method=PUT`, FD).then(
+                (res) => {
+                    if (res.status === 200) {
+                        location.href = '/admin/c/productos';
+                    }
+                }
+            );
+        });
+    }
+
+    let borrarProdBtn = document.querySelector('#product_create_form_delete_btn');
+    if (borrarProdBtn) {
+        borrarProdBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            let path = borrarProdBtn.getAttribute('href');
+
+            createProduct('POST', path).then((res) => {
+                if (res.status === 200) {
+                    location.href = '/admin/c/productos';
+                }
+            });
+        });
+    }
+}
+
+// ADMIN CREATE CATEGORY
+const categories_list_view = document.querySelector('.categories_list_view');
+if (categories_list_view) {
+    // Guardar producto
+    let form = document.querySelector('#category_create_form');
+
+    // Muestro imagenes al subir
+    let filesInput = document.querySelector('#form_files_upload');
+    let filesArray = [];
+
+    // Valido la api de file
+    if (window.File && window.FileList && window.FileReader) {
+        filesInput.addEventListener('change', (e) => {
+            let files, output;
+
+            files = e.target.files; // el FileList
+            output = document.querySelector('#form_preview_files');
+
+            for (let i = 0; i < files.length; i++) {
+                let file = files[i];
+                let fr = new FileReader();
+
+                fr.addEventListener('load', function (e) {
+                    let image = e.target;
+
+                    let templateCard = `
+                        <div id="${file.name}" class="form_images_card">
+                            <img src="${image.result}" alt="${file.name}" class="form_images_card_image">
+                            <span class="form_images_card_name">${file.name}</span>
+                            <button class="form_images_card_delete button_main_action" onclick="removeCurrentFile('${file.name}')">Borrar</button>
+                        </div>
+                    `;
+
+                    output.innerHTML += templateCard;
+                    filesArray.push(file);
+                });
+
+                fr.readAsDataURL(file);
+            }
+        });
+    } else {
+        alert('El navegador no soporta la API FILE');
+    }
+
+    function removeCurrentFile(target) {
+        // Remuevo la imagen del array
+        let deletedFileIndex = filesArray.findIndex((file) => file.name === target);
+        filesArray.splice(deletedFileIndex, 1);
+
+        // Remuevo la imagen del front
+        document.querySelector(`[id*="${target}"]`).remove();
+        filesInput.value = '';
+    }
+
+    let guardarCategoriaBtn = document.querySelector('#category_create_form_create_btn');
+    if (guardarCategoriaBtn) {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            var FD = new FormData(form);
+            FD.append('imagenes', filesArray);
+
+            createProduct('POST', '/admin/c/categorias/crear', FD).then((res) => {
+                if (res.status === 200) {
+                    location.href = '/admin/c/categorias';
+                }
+            });
+        });
+    }
+
+    let actualizarCatBtn = document.querySelector('#category_create_form_update_btn');
+    if (actualizarCatBtn) {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            let pid;
+            let FD = new FormData(form);
+
+            for (let [k, v] of FD) {
+                if (k == 'id') {
+                    pid = v;
+                }
+            }
+
+            createProduct('POST', `/admin/c/categorias/${pid}/update?_method=PUT`, FD).then(
+                (res) => {
+                    if (res.status === 200) {
+                        location.href = '/admin/c/categorias';
+                    }
+                }
+            );
+        });
+    }
 }

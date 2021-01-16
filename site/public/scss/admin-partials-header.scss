@@ -1,0 +1,124 @@
+header {
+    width: 100%;
+    max-width: 250px;
+    height: 100vh;
+    padding: 1rem;
+    border: 1px solid $gray1;
+    position: sticky;
+    top: 0;
+
+    #logo {
+        margin-bottom: 1rem;
+
+        path {
+            @include transition(0.2s);
+            fill: $black;
+        }
+
+        &:hover {
+            path {
+                fill: $blue;
+            }
+        }
+    }
+
+    .user_data {
+        margin-bottom: 1rem;
+
+        h2 {
+            font-family: $montserrat;
+            @include font-size(16);
+            font-weight: 700;
+        }
+
+        h4 {
+            @include font-size(14);
+            color: $blue;
+            text-transform: uppercase;
+        }
+    }
+
+    #menu {
+        // Iconos del menu
+        svg {
+            width: 20px;
+            .a {
+                fill: none;
+                stroke: $gray4;
+                stroke-linecap: round;
+                stroke-linejoin: round;
+                stroke-width: 3px;
+            }
+
+            &#dashboard_icon,
+            &#catalog_icon,
+            &#cms_icon {
+                .a {
+                    stroke-width: 2.5px;
+                }
+            }
+        }
+
+        .menu_item {
+            border: 1px solid $white;
+            border-radius: 0.5rem;
+            @include transition(0.2s);
+            margin: 0.2rem 0;
+            padding: 0.5rem;
+            position: relative;
+
+            a {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                color: $gray4;
+
+                span {
+                    margin-right: 0.5rem;
+                    padding-top: 0.2rem;
+                }
+            }
+
+            &:hover {
+                z-index: 5;
+                border: 1px solid $gray1;
+                @include shadow(0px, 5px, 10px, $gray1, 0.5);
+                > a {
+                    color: $blue;
+
+                    svg {
+                        .a {
+                            stroke: $blue;
+                        }
+                    }
+                }
+            }
+        }
+
+        .menu_submenu {
+            border-left: 1px solid $gray2;
+            padding-left: 1rem;
+            margin-left: 0.5rem;
+
+            li {
+                margin: 0.2rem 0;
+                padding: 0.02rem 0;
+                @include font-size(14);
+
+                a {
+                    &:hover {
+                        @extend .menu_item_active;
+                    }
+                }
+            }
+        }
+
+        .menu_item_active {
+            &,
+            > a {
+                color: $blue;
+                font-weight: 700;
+            }
+        }
+    }
+}

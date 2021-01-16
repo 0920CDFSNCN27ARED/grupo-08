@@ -1,34 +1,50 @@
 const express = require('express');
-const app = express();
-const session = require('express-session');
 const methodOverride = require('method-override');
+const opn = require('open');
 
+// SETTINGS
+const app = express();
 const PORT = 3000;
-app.listen(PORT, () => console.log('Escuchando el puerto ' + PORT));
 
-// Configuraciones express
+// prettier-ignore
+app.listen(PORT, () => {
+        console.log('Escuchando el puerto ' + PORT)
+
+        /* opn('http://192.168.0.101:3000/admin/c/categorias', {
+            background: true,
+            app: ['google chrome'],
+        }) */
+    }
+);
 app.set('view engine', 'ejs');
 
-// Archivos estaticos
-const staticFiles = express.static('public');
-app.use(staticFiles);
+// Views functions
+app.locals._exists = (item) => (item !== undefined ? true : false);
 
-// Cargar rutas
+// Middlewares
+app.use(express.static('public'));
+app.use(methodOverride('_method'));
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+
+// Load Routes
 const mainRoutes = require('./routes/mainRoutes');
 const productRoutes = require('./routes/productRoutes');
 const checkoutRoutes = require('./routes/checkoutRoutes');
 const customerRoutes = require('./routes/customerRoutes');
 
-// Middlewares
+// Admin
+const adminRoutes = require('./routes/admin/adminRoutes');
 
-// CORS
-
-// Levantar rutas
-
+// Routes
 app.use('/', mainRoutes);
 app.use('/c', productRoutes);
 app.use('/clientes', customerRoutes);
 app.use('/checkout', checkoutRoutes);
+
+// Admin
+app.use('/admin', adminRoutes);
+
 app.use((req, res, next) => {
     res.render('pages/not_found');
 });

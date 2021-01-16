@@ -1,6 +1,29 @@
+<% 
+    const exists = locals._exists;
+    const description = exists(locals.category) 
+        ? category.meta_description 
+        : 'Conocé la Nueva Colección Primavera - Verano 2021. 3, 6 y 12 Cuotas sin Interés. Envíos gratis a partir de $4000. Vestidos, Camisas, Polleras, Calzado y mucho más.';
+    const keywords = exists(locals.category) 
+        ? category.meta_keywords 
+        : 'camisas, calzado, indumentaria, jeans, denim, botas, abrigos, sweaters, sacos, montgomery, buzos, remeras, chombas, polos, camisetas, pantalones, borcegos, zapatos, ropa, moda, fashion'
+%> 
+
+
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!--Titles-->
 <title><%= pageTitle %></title>
+<meta property="og:title" content="<%= pageTitle %>" />
+<meta name="twitter:title" content="<%= pageTitle %>" />
+
+<!--Descriptions-->
+<meta name="description" content="<%= description %>" />
+<meta property="og:description" content="<%= description %>" />
+<meta name="twitter:description" content="<%= description %>" />
+
+<!-- Keywords -->
+<meta name="description" content="<%= keywords %>" />
 
 <!-- Swiper js -->
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />

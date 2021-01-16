@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es" class="products_list" layout="admin">
+<head>
+    <% pageTitle = locals.title !== undefined ? title : 'Productos' %> 
+    
+    <%- include('../../partials/head') %>
+</head>
+<body>
+
+    <%- include('../../partials/header.ejs')  %> 
+
+    <main>
+
+        <section class="content_header">
+
+            <h1>
+                Gestionar productos
+            </h1>
+
+            <a href="/admin/c/productos/crear" class="button_main_action">
+                Crear Producto
+            </a>
+
+        </section>
+
+        <section id="products_list_component">
+
+            <div class="products_pagination">
+                <div class="products_pagination_current_page">
+                    Página 1 de 893 página(s)
+                </div>
+                
+                <div class="products_pagination_view_limit">
+                    Ver 20 por página
+                </div>
+            </div>
+
+            <div class="products_table">
+
+                <table width="100%" cellspacing="0" cellpadding="0">
+                    <!-- Table header -->
+                    <tr class="products_table_header">
+                        <th>
+                            Imagen
+                        </th>
+                        <th>
+                            PID
+                        </th>
+                        <th>
+                            Nombre producto
+                        </th>
+                        <th>
+                            Precio
+                        </th>
+                        <th>
+                            Precio descuento
+                        </th>
+                        <th>
+                            Stock
+                        </th>
+                        <th>
+                            Estado
+                        </th>
+                        <th>
+                            Accion
+                        </th>
+                    </tr>
+
+                    <!-- Table filters -->
+                    <tr class="products_table_filter">
+                        <td>
+
+                        </td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <input type="text" placeholder="Producto ID">
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <input type="text" placeholder="Ingresa el nombre del producto">
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <input type="text" placeholder="Precio">
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <input type="text" placeholder="Precio descuento">
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <input type="text" placeholder="Stock">
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <select name="" id="">
+                                            <option value="h">Habilitado</option>
+                                            <option value="d">Deshabilitado</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+
+                        </td>
+                    </tr>
+                    <tr><td class="table_spacing" colspan="8"></td></tr>
+
+                    <!-- Producto -->
+
+                    <% for( let i = 0; i < products.length; i++ ) { %>
+                        <%- include('../../../components/products/rowTable/index', {
+                            clases: ['products_table_product'],
+                            //idAttr: '',
+                            events: [],
+                            action: {
+                                name: 'Editar',
+                            },
+                            ...products[i]
+                        }) %> 
+                    <% } %>
+                    
+                </table>
+
+            </div>
+
+        </section>
+
+        
+
+    </main>
+    
+</body>
+</html>

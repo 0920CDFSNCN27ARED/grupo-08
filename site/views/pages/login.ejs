@@ -1,50 +1,70 @@
 <!DOCTYPE html>
-<html lang="es" class="login">
+<html lang="es" class="login_view">
     <head>
-        <% pageTitle = locals.title !== undefined ? title : 'Iniciar sesión' %>
-        <%-include('../partials/head') %>
+        <% pageTitle = locals.title !== undefined ? title : 'Iniciar sesión' %> 
+        
+        <%- include('../partials/head') %>
     </head>
 
     <body>
-        <%-include('../partials/header') %>
-        
-        <main class="login_page">
-            <section class="login_section login_register_section">
+        <%- include('../partials/header') %>
+
+        <main>
+            <section class="register_section">
                 <h2>Nuevos clientes</h2>
                 <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, velit sit
-                    laudantium labore adipisci nulla tempora dolor neque quas culpa?
+                    Al registrarte en nuestra tienda, se agilizará el proceso de compra, podrás ver y hacer un seguimiento de tus pedidos, y mucho más. 
                 </p>
-                <a href="#register">
-                    <button id="register_button">REGISTRARSE</button>
+                <a href="registro" class="button_main_action">
+                    Registrarse
                 </a>
             </section>
 
-            <section class="login_section login_login_section">
+            <section class="login_section">
+                <h2>Iniciar sesión</h2>
+                <p>Si tenés una cuenta registrada, ingresá tus datos</p>
+
                 <form action="/" method="POST">
-                    <h2>Iniciar sesión</h2>
-                    <p>Si tenés una cuenta registrada, ingresá tus datos</p>
-                    <input type="email" name="mail" id="mail" placeholder="Correo electrónico" />
-                    <input type="password" name="password" id="password" placeholder="Contraseña" />
-                    <button type="submit" id="login_button">INGRESAR</button>
+                    <%- include('../components/forms/form_input/index', {
+                        is_required: true,
+                        label: 'Correo electrónico',
+                        type: 'email',
+                        name: 'email',
+                        placeholder: 'Ingrese su correo electrónico',
+                    }) %> 
+
+                    <%- include('../components/forms/form_input/index', {
+                        is_required: true,
+                        label: 'Contraseña',
+                        type: 'password',
+                        name: 'password',
+                        placeholder: 'Ingrese su contraseña',
+                    }) %>  
+                    
+                    <button type="submit" id="login_button" class="button_main_action">INGRESAR</button>
                 </form>
+
+                <%- include('../components/login_links/index', {
+                    options: [
+                        {
+                            text: 'Recuperar contraseña',
+                            url: '/clientes/recuperar-cuenta'
+                        },
+                    ]
+                }) %> 
 
                 <hr />
 
-                <a href="#facebook_login">
-                    <button>INGRESAR CON FACEBOOK</button>
+                <a href="#facebook_login" class="button_main_action" onclick="alert('pendiente')">
+                    Ingresar con Facebook
                 </a>
 
-                <a href="#google_login">
-                    <button>INGRESAR CON GOOGLE</button>
+                <a href="#google_login" class="button_main_action" onclick="alert('pendiente')">
+                    Ingresar con Google
                 </a>
             </section>
         </main>
 
         <%- include('../partials/footer') %>
-
-        <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
-        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-        <script src="/scripts/main.js"></script>
     </body>
 </html>

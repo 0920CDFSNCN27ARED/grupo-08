@@ -1,0 +1,52 @@
+<!-- 
+    type    = 
+    name    = 
+    id      =
+    label   =
+    placeholder =  
+
+-->
+
+<% 
+    const exists = locals._exists;
+%> 
+
+<div class="form_row">
+    <% if (exists(label)) { %>
+        <label for="<%= name %>" class="form_label"><%= label %> </label>
+    <% } %>
+
+
+    <% if (type === 'password') { %>
+        <div class="input-password-wrapper" style="position: relative;">
+    <% } %>
+    
+            <input 
+                type="<%= type %>" 
+                id="<%= exists(locals.idSelector) ? idSelector : name %>" 
+                name="<%= name %>" 
+                class="form_input" 
+                placeholder="<%= placeholder %>"
+                <%= is_required ? 'required' : '' %> 
+
+                <% if (exists(locals.disabled)) { %>
+                disabled
+                <% } %>
+
+                <% if (exists(locals.event)) { %>
+                    <%= event[0] %>="<%= event[1] %>"
+                <% } %>
+                <% if (exists(locals.default_value)) { %>
+                    <% if (default_value) { %>
+                        value="<%= default_value %>"
+                    <% } %>
+                <% } %>
+            >
+    
+    <% if (type === 'password') { %>
+            <div class="showHide_password" onclick="showHidePw(this)"></div>
+        </div>
+    <% } %>
+
+    
+</div>

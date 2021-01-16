@@ -1,8 +1,14 @@
+<% 
+    console.log(products);
+%> 
+
 <!DOCTYPE html>
 <html lang="es" class="catalog_category_view">
     <head>
-        <% pageTitle = locals.title !== undefined ? title : 'Categoría' %> <%-
-        include('../partials/head') %>
+        <% 
+            pageTitle = category.page_title !== undefined ? category.page_title : 'Categoría';
+        %> 
+        <%- include('../partials/head') %>
 
         <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
         <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
@@ -11,12 +17,20 @@
     <body>
         <%- include('../partials/header') %>
 
-        <div id="banner_categoria_id" class="banner_top_categoria">
-            <%- include('../components/sliders/slider_full/index', { sliderID: 'slider_home',
-            sliderHome_banners: [ { slideID: 1, slideImgURL:
-            '/images/catalog/category/banner_categoria.png', slideImgURL_mobile:
-            '/images/catalog/category/banner_categoria.png', }, ] }) %>
-        </div>
+        <% if (category.imagenes.length > 0) { %>
+            <div id="banner_categoria_id" class="banner_top_categoria">
+                <%- include('../components/sliders/slider_full/index', {
+                    sliderID: 'slider_home',
+                    sliderHome_banners: [ 
+                        { 
+                            slideID: 1, 
+                            slideImgURL: `/images/catalog/products/${category.imagenes[0]}`, 
+                        }, 
+                    ]
+                    })
+                %>
+            </div>
+        <% } %>
 
         <%- include('../components/toolbar/index')  %> 
 
@@ -70,34 +84,34 @@
             </div>
 
             <div id="catalog_gallery" class="col-4">
-                
-                <%- include('../components/product_card/index', 
-                        {
-                            product: {
-                                id: 1,
-                                sku: '11114320070i',
-                                name: 'Vestido soulful',
-                                price: '13.800',
-                                discount: '',
-                                colors: ['negro'],
-                                sizes: ['xs', 's', 'm', 'l', 'xl'],
-                                images: [
-                                    '/images/catalog/products/11114320070i/producto00000.jpg',
-                                    '/images/catalog/products/11114320070i/producto00001.jpg',
-                                    '/images/catalog/products/11114320070i/producto00002.jpg',
-                                    '/images/catalog/products/11114320070i/producto00003.jpg',
-                                    '/images/catalog/products/11114320070i/producto00004.jpg',
-                                    '/images/catalog/products/11114320070i/producto00005.jpg',
-                                    '/images/catalog/products/11114320070i/producto00006.jpg',
-                                    '/images/catalog/products/11114320070i/producto00007.jpg'
-                                ],
-                                'product_details': 'Esto es una descripcion'
-                                
-                            }
 
-                        }
-                    ) 
-                %>
+                <% if (products.length > 0) { %>
+                    <% for( let i = 0; i < products.length; i++ ) { %>
+                        <%- include('../components/product_card/index', 
+                                {
+                                    product: {
+                                        id: products[i].id,
+                                        sku: products[i].sku_visible,
+                                        name: products[i].product_name,
+                                        price: products[i].product_price,
+                                        discount: products[i].product_price_special > 0 ? `$${products[i].product_price_special}` : '',
+                                        colors: [products[i].color],
+                                        sizes: products[i].stock_talles,
+                                        images: products[i].imagenes,
+                                        'product_details': products[i].descripcion_corta
+                                        
+                                    }
+
+                                }
+                            ) 
+                        %>
+                    
+                    <% } %>
+
+                <% } else { %>
+                    <h1>No hay producto en la categoría</h1>
+                <% } %>
+            
             </div>
         </main>
 

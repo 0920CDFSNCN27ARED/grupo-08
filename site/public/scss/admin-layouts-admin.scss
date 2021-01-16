@@ -1,0 +1,28 @@
+html[layout='admin'] {
+    body {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+
+    main {
+        margin-left: 2rem;
+        width: calc(100% - 250px - 4rem);
+    }
+
+    .content_header {
+        margin: 1rem 0rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        .error:hover {
+            background: $error;
+        }
+
+        .button_main_action {
+            margin-left: 1rem;
+        }
+    }
+}

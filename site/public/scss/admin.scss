@@ -1,0 +1,18 @@
+// Settings
+@import './settings-variables.scss';
+@import './settings-mixins.scss';
+@import './settings-normalize.scss';
+
+// Pages
+@import './admin-pages-home.scss';
+@import './admin-pages-products_list.scss';
+@import './admin-pages-products_create.scss';
+@import './admin-pages-categories_list_view.scss';
+
+// Partials
+@import './admin-partials-header.scss';
+
+// Layouts
+@import './admin-layouts-admin.scss';
+
+// Components

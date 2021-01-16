@@ -1,0 +1,57 @@
+<!-- 
+    name        = 
+    idSelector  =
+    label       =
+    options     = []
+-->
+
+<% 
+    const exists = locals._exists;
+%> 
+
+<div class="form_row">
+    <% if (exists(label)) { %>
+        <label for="<%= name %>" class="form_label"><%= label %> </label>
+    <% } %>
+    <select 
+        id="<%= exists(locals.idSelector) ? idSelector : name %>" 
+        name="<%= name %>" 
+        <%= exists(is_required) ? 'required' : '' %>
+        
+        <% if (exists(locals.disabled)) { %>
+        disabled
+        <% } %>
+
+        <% if (exists(locals.event)) { %>
+            <%= event[0] %>="<%= event[1] %>"
+        <% } %>
+
+    >
+        <option value="">Seleccionar</option>
+        <% for( let i = 0; i < options.length; i++ ) { %>
+            <%  
+                 function handleString(string) {
+                    const replaceAll = (str, oldStr, newStr) => str.split(oldStr).join(newStr);
+                    let str = replaceAll(string, ' ', '_').toLowerCase();
+                
+                    return str;
+                }
+                
+
+            %> 
+            <option 
+                value="<%= handleString(`${options[i].name}`); %>"
+                <% if (exists(locals.default_option) ) { 
+                        if(locals.default_option === handleString(`${options[i].name}`)){ %>
+                            selected="selected"
+                <%      }
+                   } 
+                %>
+            >
+                <%= options[i].name %>  
+            </option>
+
+        <% } %>
+
+    </select>
+</div>

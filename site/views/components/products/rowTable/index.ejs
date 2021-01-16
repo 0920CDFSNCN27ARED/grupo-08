@@ -1,0 +1,36 @@
+<% 
+    const handleClases = (arr) => arr.join(' ');
+    const exists = locals._exists;
+%> 
+
+<tr
+    <%= exists(locals.idAttr) ? `id=${locals.idAttr}` : '' // ID %>  
+    <%= exists(locals.clases) ? `class=${handleClases(locals.clases)}` : '' // CLASS %>
+>
+    <td>
+        <img 
+            src="/images/catalog/products/<%= locals.image %>"
+            alt="<%= locals.name %>">
+    </th>
+    <td>
+        <%= locals.id %>
+    </th>
+    <td>
+        <%= locals.name %>
+    </th>
+    <td>
+        $<%= locals.price %>
+    </th>
+    <td>
+        $<%= locals.special_price %>
+    </th>
+    <td>
+        <%= locals.stock %>
+    </th>
+    <td>
+        <%= locals.status %>
+    </th>
+    <td>
+        <a href="/admin/c/productos/<%= locals.id %>"><%= locals.action.name %></a>
+    </th>
+</tr>
