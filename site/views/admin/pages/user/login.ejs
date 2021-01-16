@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es" class="login_view">
+<head>
+    <% pageTitle = locals.title !== undefined ? title : 'Iniciar sesión' %> 
+    
+    <%- include('../../partials/head') %>
+</head>
+<body>
+
+    <main>
+        <section>
+            <h1>
+                Ingresar al panel de administración
+            </h1>
+            <form action="#" method="POST">
+                <%- include('../../../components/forms/form_input/index', {
+                    is_required: true,
+                    label: 'Nombre de usuario',
+                    type: 'text',
+                    name: 'username',
+                    placeholder: 'Ingrese su nombre de usuario',
+                }) %> 
+
+                <%- include('../../../components/forms/form_input/index', {
+                    is_required: true,
+                    label: 'Contraseña',
+                    type: 'password',
+                    name: 'password',
+                    placeholder: 'Ingrese su contraseña',
+                }) %> 
+
+                <button type="submit" id="login_button" class="button_main_action">INGRESAR</button>
+
+            </form>
+
+            <%- include('../../../components/login_links/index', {
+                options: [
+                    {
+                        text: 'Recuperar contraseña',
+                        url: '/admin/user/recuperar-cuenta'
+                    },
+                ]
+            }) %> 
+        </section>
+
+
+    </main>
+
+    <script src="/scripts/main.js"></script>
+
+</body>
+</html>

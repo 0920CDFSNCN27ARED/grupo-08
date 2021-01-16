@@ -1,6 +1,6 @@
 {
     "easycompile.sass": {
-        "main": ["main.scss"],
+        "main": ["main.scss", "admin.scss"],
         "out": "./../css/",
         "outExt": ".min.css",
         "compress": true,
@@ -8,7 +8,7 @@
     },
     /*   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }, */
+    }, */
     "[scss]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
