@@ -84,5 +84,40 @@
       "/b/a/banner_1.jpg",
       "/s/h/short_truly.jpg"
     ]
+  },
+  {
+    "id": 1610786770636,
+    "status": "habilitado",
+    "tipo_de_producto": "abrigos",
+    "tabla_de_talles": "tabla_talles_xxs_al_xxl",
+    "marca": "zara",
+    "product_name": "BLAZER VILLARD",
+    "sku_visible": "zara-abrigos-blazer_villard",
+    "product_price": "4890",
+    "product_price_special": "3000",
+    "product_price_special_desde": "2021:01:10 00:00:00",
+    "product_price_special_hasta": "2021:01:18 23:59:59",
+    "descripcion_corta": "Esto es una descripcion corta",
+    "composicion": "Esta es la composicion",
+    "cuidado": "Estos son los cuidados a tener",
+    "color": "blanco",
+    "stock_talles": [
+      "1",
+      "1",
+      "1",
+      "2",
+      "3",
+      "1",
+      "1"
+    ],
+    "categorias": [
+      "3"
+    ],
+    "imagenes": [
+      "/s/w/sweet_110882be_be_1.jpg",
+      "/s/w/sweet_110882be_be_2.jpg",
+      "/s/w/sweet_110882be_be_3.jpg",
+      "/s/w/sweet_110882be_be_4.jpg"
+    ]
   }
 ]

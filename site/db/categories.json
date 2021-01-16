@@ -87,5 +87,19 @@
     ],
     "parent_cat": 0,
     "subcategories": []
+  },
+  {
+    "id": 7,
+    "status": "habilitado",
+    "show_menu": "si",
+    "name": "Remeras lisas",
+    "page_title": "Remeras lisas",
+    "meta_description": "Estas son remeras lisas",
+    "meta_keywords": "remeras, remeras lisas, lisas, blanco, negro",
+    "imagenes": [
+      "/B/a/BannerCategoria.jpg"
+    ],
+    "parent_cat": 0,
+    "subcategories": []
   }
 ]
