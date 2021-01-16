@@ -1,0 +1,15 @@
+[
+    {
+        "id":1,
+        "first_name":"Leandro",
+        "last_name":"Muzzupappa",
+        "email":"lnmuzzupappa@gmail.com",
+        "username":"lmuzzupappa",
+        "password":"123456",
+        "created_at":"2021-01-16 19:39:00",
+        "login_date":"2021-01-16 19:39:00",
+        "last_login_date":"2021-01-16 19:39:00",
+        "is_active":"true",
+        "permissions":1
+    }
+]
