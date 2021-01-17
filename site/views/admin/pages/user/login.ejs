@@ -1,3 +1,7 @@
+<% 
+    const exists = locals._exists;
+%> 
+
 <!DOCTYPE html>
 <html lang="es" class="login_view">
 <head>
@@ -12,7 +16,21 @@
             <h1>
                 Ingresar al panel de administración
             </h1>
-            <form action="#" method="POST">
+            
+            <% if (exists(locals.errors)) { %>
+                <div class="errors_container">
+                    
+                    <ul>
+                        <% for( let i = 0; i < errors.length; i++ ) { %>
+                            <li><%= errors[i] %> </li>
+                        <% } %>
+                    </ul>
+                    
+                    <button onclick="handleRemoveErrors(this);">x</button>
+                </div>
+            <% } %>
+
+            <form action="/admin/user/login" method="POST">
                 <%- include('../../../components/forms/form_input/index', {
                     is_required: true,
                     label: 'Nombre de usuario',
@@ -27,7 +45,12 @@
                     type: 'password',
                     name: 'password',
                     placeholder: 'Ingrese su contraseña',
-                }) %> 
+                }) %>
+
+                <div class="form_row custom_row">
+                    <input type="checkbox" name="persist_session" id="persist_session">
+                    <label for="persist_session">Mantener sesión iniciada</label>
+                </div>
 
                 <button type="submit" id="login_button" class="button_main_action">INGRESAR</button>
 
@@ -47,6 +70,11 @@
     </main>
 
     <script src="/scripts/main.js"></script>
+    <script>
+        function handleRemoveErrors(el) {
+            const errorsContainer = el.parentNode.remove();
+        }
+    </script>
 
 </body>
 </html>
