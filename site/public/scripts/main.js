@@ -629,11 +629,18 @@ if (products_create_view) {
 
     let guardarProdBtn = document.querySelector('#product_create_form_create_btn');
     if (guardarProdBtn) {
+
+        // Vacio el input file
+        guardarProdBtn.addEventListener('click', () => filesInput.value = '')
+
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
             var FD = new FormData(form);
-            FD.append('imagenes', filesArray);
+            
+            for(let file of filesArray){ 
+                FD.append('imagenes', file, file.name);
+            }
 
             createProduct('POST', '/admin/c/productos/crear', FD).then((res) => {
                 if (res.status === 200) {
