@@ -120,5 +120,42 @@
       "/s/w/sweet_110882be_be_3.jpg",
       "/s/w/sweet_110882be_be_4.jpg"
     ]
+  },
+  {
+    "id": 1611630506135,
+    "status": "habilitado",
+    "tipo_de_producto": "zapatos",
+    "tabla_de_talles": "tabla_talles_36_al_48",
+    "marca": "zara",
+    "product_name": "ewe",
+    "sku_visible": "zara-zapatos-ewe",
+    "product_price": "222",
+    "product_price_special": 0,
+    "product_price_special_desde": "",
+    "product_price_special_hasta": "",
+    "descripcion_corta": "",
+    "composicion": "",
+    "cuidado": "",
+    "color": "rojo",
+    "stock_talles": [
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0"
+    ],
+    "categorias": [
+      "1",
+      "4",
+      "3"
+    ],
+    "imagenes": [
+      "/1/0/1080100026713_3.webp",
+      "/1/0/1080100026713_4.webp",
+      "/s/w/sweet_110882be_be_2.jpg",
+      "/s/w/sweet_110882be_be_3.jpg"
+    ]
   }
 ]
