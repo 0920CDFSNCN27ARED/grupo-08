@@ -9,7 +9,38 @@ const customerControllers = {
         res.render('pages/login');
     },
     logged: (req, res) => {
-        res.render('pages/customer')
+        const errors = [];
+        const { email, password } = req.body;
+
+        const allCustomers = readJsonFile('../db/customers.json');
+        const customer = allCustomers.find(customer => {
+            return (
+                customer.email === email &&
+                bcrypt.compareSync(password, customer.password)
+            )
+        });
+
+        if(!customer) {
+            errors.push('Credenciales incorrectas');
+            res.render('pages/login', {errors})
+            return;
+        }
+
+        allCustomers.forEach(_customer => {
+            if(_customer.id == customer.id) {
+                customer.last_login_date = Date.now();
+            }
+        });
+        writeJsonFile(allCustomers, '../db/customers.json');
+        req.session.customer = customer.id;
+
+        return res.redirect('/clientes/mi-cuenta');
+    },
+    logout: (req, res) => {
+        console.log('se cerro la sesion de: ' + req.session.customer);
+        delete req.session.customer;
+
+        return res.redirect('/');
     },
 
     register: (req, res) => {
@@ -81,7 +112,7 @@ const customerControllers = {
 
         allCustomers.push(customer);
         writeJsonFile(allCustomers, '../db/customers.json');
-        res.locals.customer = customer;
+        req.session.customer = customer.id;
 
         return res.redirect('/clientes/mi-cuenta')
     },
@@ -89,6 +120,12 @@ const customerControllers = {
     recover: (req, res) => {
         res.render('pages/recover');
     },
+
+    account: (req, res) => {
+        console.log(req.session.customer);
+
+        res.render('pages/customer');
+    }
 };
 
 module.exports = customerControllers;
