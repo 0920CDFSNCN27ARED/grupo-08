@@ -69,7 +69,6 @@ const categoriesControllers = {
     },
     update: (req, res) => {
         const allCategories = jsonFile.read('../db/categories.json');
-        console.log(req.body);
         const {
             id,
             status,

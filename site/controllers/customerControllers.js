@@ -36,7 +36,6 @@ const customerControllers = {
         return res.redirect('/clientes/mi-cuenta');
     },
     logout: (req, res) => {
-        console.log('se cerro la sesion de: ' + req.session.customer);
         delete req.session.customer;
 
         return res.redirect('/');

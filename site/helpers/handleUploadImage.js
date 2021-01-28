@@ -23,8 +23,6 @@ function handleUploadImage(req, file) {
 
     fs.ensureDirSync(finalPath, (err) => {
         if (err) throw err;
-
-        console.log('Creado');
     });
 
     return finalPath;

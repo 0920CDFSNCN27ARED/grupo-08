@@ -35,7 +35,6 @@ const userControllers = {
         // Mantener sesion
         if(persist_session) {
             req.session.loggedAdminId = user.id;
-            console.log(req.session);
         }
         
 
