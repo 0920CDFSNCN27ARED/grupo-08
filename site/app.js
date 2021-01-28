@@ -1,6 +1,7 @@
 const express = require('express');
 const methodOverride = require('method-override');
 const opn = require('open');
+const session = require('express-session');
 
 // SETTINGS
 const app = express();
@@ -26,6 +27,11 @@ app.use(express.static('public'));
 app.use(methodOverride('_method'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(session({
+    secret: 'metronomyRocks',
+    resave: true,
+    saveUninitialized: true
+}))
 
 // Load Routes
 const mainRoutes = require('./routes/mainRoutes');

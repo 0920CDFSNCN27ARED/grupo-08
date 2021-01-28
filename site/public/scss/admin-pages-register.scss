@@ -1,0 +1,106 @@
+.register_view {
+    body {
+        width: 100%;
+        max-width: 100%;
+        background: $gray1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    main {
+        width: 90%;
+        max-width: 600px;
+        background: $white;
+        padding: 1rem;
+    }
+
+    h1 {
+        @include font-size(24);
+        font-weight: 700;
+        color: $gray5;  
+        margin-bottom: 1rem;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+
+        label {
+            @include font-size(12);
+            color: $gray4;
+            padding-left: .5rem;
+            display: block;
+            margin-bottom: .3rem;
+        }
+
+        .form_row {
+            margin-bottom: 1rem;
+        }
+
+        .custom_row {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            input {
+                width: auto;
+                margin-bottom: .3rem;
+            }
+            
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            padding-right: calc(40px + .5rem);
+            border: 1px solid $gray1;
+            border-radius: 0.5rem;
+
+            &:focus {
+            border: 1px solid $blue;
+
+            }
+        }
+    }
+    
+    .login_links {
+        text-align: center;
+        margin-top: 1rem;
+        @include font-size(12);
+    }
+
+    .errors_container {
+        border: 1px solid $error_h;
+        border-radius: .3rem;
+        margin: 1rem 0;
+        padding: .5rem;
+        background: $error;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        ul {
+            li {
+                @include font-size(12);
+                letter-spacing: .40px;
+                color: $white;
+
+                &::before {
+                    content: '- ';
+                }
+            }
+        }
+
+        button {
+            border: 0;
+            background: transparent;
+            color: $white;
+            &:hover {
+                color: $black;
+
+            }
+        }
+    }
+}

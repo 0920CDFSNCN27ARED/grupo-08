@@ -1,3 +1,5 @@
+<% const exists = locals._exists; %> 
+
 <!DOCTYPE html>
 <html lang="es" class="login_view">
     <head>
@@ -24,7 +26,13 @@
                 <h2>Iniciar sesión</h2>
                 <p>Si tenés una cuenta registrada, ingresá tus datos</p>
 
-                <form action="/" method="POST">
+                <% if (exists(locals.errors)) { %>
+                    <%- include('../components/listErrors/index', {
+                        errors
+                    }) %> 
+                <% } %>
+
+                <form action="/clientes/logged" method="POST">
                     <%- include('../components/forms/form_input/index', {
                         is_required: true,
                         label: 'Correo electrónico',

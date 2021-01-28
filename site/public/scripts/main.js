@@ -18,6 +18,10 @@ function eventFire(el, etype) {
     }
 }
 
+function handleRemoveErrors(el) {
+    const errorsContainer = el.parentNode.remove();
+}
+
 function changeTab(currentObj, target) {
     let formTab, formTabBtn;
 

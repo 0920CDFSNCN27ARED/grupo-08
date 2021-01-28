@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es" class="home_view">
+    <head>
+        <% pageTitle = locals.title !== undefined ? title : 'Mi cuenta' %> 
+        
+        <%- include('../partials/head') %>
+
+    </head>
+
+    <body>
+        
+        <%- include('../partials/header') %>
+
+        <main>
+
+            <h1>usuario</h1>
+
+            <br><br>
+            
+            <form action="/clientes/logout" method="POST">
+                <button class="button_main_action">Cerrar sesion</button>
+            </form>
+
+        </main>
+
+    <%- include('../partials/footer') %>    
+</body>
+</html>

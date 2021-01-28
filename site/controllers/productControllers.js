@@ -1,13 +1,13 @@
 const formatString = require('../helpers/formatString');
-const readJsonFile = require('../helpers/readJsonFile');
+const jsonFile = require('../helpers/jsonFile');
 const returnCategoriesFormated = require('../helpers/returnCategoriesFormated');
 
 const productControllers = {
     gallery: (req, res) => {
         const _catName = req.params.categoria;
 
-        const allCategories = readJsonFile('../db/categories.json');
-        const allProducts = readJsonFile('../db/products.json');
+        const allCategories = jsonFile.read('../db/categories.json');
+        const allProducts = jsonFile.read('../db/products.json');
 
         const _catObj = allCategories.find((cat) => {
             if (formatString(cat.name) == _catName) {
@@ -40,8 +40,8 @@ const productControllers = {
     details: (req, res) => {
         const { sku } = req.params;
 
-        const allCategories = readJsonFile('../db/categories.json');
-        const allProducts = readJsonFile('../db/products.json');
+        const allCategories = jsonFile.read('../db/categories.json');
+        const allProducts = jsonFile.read('../db/products.json');
 
         // Loopeo todos los productos y los asigno a una variable
         let productToShow = allProducts.find((prod) => prod.sku_visible == sku);

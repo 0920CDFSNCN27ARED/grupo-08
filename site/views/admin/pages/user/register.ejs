@@ -1,0 +1,135 @@
+<% 
+    const exists = locals._exists;
+%> 
+
+<!DOCTYPE html>
+<html lang="es" class="register_view">
+<head>
+    <% pageTitle = locals.title !== undefined ? title : 'Iniciar sesión' %> 
+    
+    <%- include('../../partials/head') %>
+</head>
+<body>
+
+    <main>
+        <section>
+            <h1>
+                Registrar usuario
+            </h1>
+            
+            <% if (exists(locals.errors)) { %>
+                <div class="errors_container">
+                    
+                    <ul>
+                        <% for( let i = 0; i < errors.length; i++ ) { %>
+                            <li><%= errors[i] %> </li>
+                        <% } %>
+                    </ul>
+
+                    <button onclick="handleRemoveErrors(this);">x</button>
+                </div>
+            <% } %>
+
+            <form action="/admin/user/register" method="POST">
+                <%- include('../../../components/forms/form_input/index', {
+                    is_required: true,
+                    label: 'Nombre',
+                    type: 'text',
+                    name: 'first_name',
+                    placeholder: 'Ingrese su nombre',
+                }) %> 
+
+                <%- include('../../../components/forms/form_input/index', {
+                    is_required: true,
+                    label: 'Apellido',
+                    type: 'text',
+                    name: 'last_name',
+                    placeholder: 'Ingrese su apellido',
+                }) %> 
+
+                <%- include('../../../components/forms/form_input/index', {
+                    is_required: true,
+                    label: 'Correo electrónico',
+                    type: 'email',
+                    name: 'email',
+                    placeholder: 'Ingrese su email',
+                }) %> 
+
+                <%- include('../../../components/forms/form_input/index', {
+                    is_required: true,
+                    label: 'Nombre de usuario',
+                    type: 'text',
+                    name: 'username',
+                    placeholder: 'Ingrese su nombre de usuario',
+                }) %> 
+
+                <%- include('../../../components/forms/form_input/index', {
+                    is_required: true,
+                    label: 'Contraseña',
+                    type: 'password',
+                    name: 'password',
+                    placeholder: 'Ingrese su contraseña',
+                }) %> 
+
+                <%- include('../../../components/forms/form_input/index', {
+                    is_required: true,
+                    label: 'Confirmar contraseña',
+                    type: 'password',
+                    name: 'password_confirm',
+                    placeholder: 'Repita su contraseña',
+                }) %> 
+
+                <%- include('../../../components/forms/form_select/index', {
+                    is_required: true,
+                    label: 'Estado',
+                    name: 'status',
+                    options: [
+                        {
+                            name: 'Activo',
+                        },
+                        {
+                            name: 'Inactivo',
+                        },
+                    ],
+                }) %> 
+
+                <%- include('../../../components/forms/form_select/index', {
+                    is_required: true,
+                    label: 'Rol',
+                    name: 'permissions',
+                    options: [
+                        {
+                            name: 'administrador',
+                        },
+                        {
+                            name: 'catalogador',
+                        },
+                    ],
+                }) %> 
+
+                <button type="submit" id="login_button" class="button_main_action">INGRESAR</button>
+
+            </form>
+
+            <%- include('../../../components/login_links/index', {
+                options: [
+                    {
+                        text: 'Recuperar contraseña',
+                        url: '/admin/user/recuperar-cuenta'
+                    },
+                ]
+            }) %> 
+        </section>
+
+
+    </main>
+
+    <script src="/scripts/main.js"></script>
+    <script>
+        function handleRemoveErrors(el) {
+            const errorsContainer = el.parentNode.remove();
+        }
+    </script>
+
+</body>
+</html>

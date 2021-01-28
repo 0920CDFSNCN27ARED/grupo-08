@@ -1,0 +1,37 @@
+
+.errors_container {
+    border: 1px solid $error_h;
+    border-radius: .3rem;
+    margin: 1rem 0;
+    padding: .5rem;
+    background: $error;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+
+    ul {
+        li {
+            @include font-size(12);
+            letter-spacing: .40px;
+            color: $white;
+
+            &::before {
+                content: '- ';
+            }
+        }
+    }
+
+    button {
+        position: absolute;
+        top: .5rem;
+        right: .5rem;
+        border: 0;
+        background: transparent;
+        color: $white;
+        &:hover {
+            color: $black;
+
+        }
+    }
+}

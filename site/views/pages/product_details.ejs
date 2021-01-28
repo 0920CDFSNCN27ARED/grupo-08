@@ -1,6 +1,5 @@
 <%
     const exists = locals._exists;
-    console.log(product);
     let {
         id,
         status,
@@ -166,7 +165,6 @@
         <script>
 
             const producto = document.querySelector('#product-<%= id %>');
-            console.log(producto);
             let swiper_photos = new Swiper(producto.querySelector('.swiper-container'), {
                 loop: true,
                 pagination: {

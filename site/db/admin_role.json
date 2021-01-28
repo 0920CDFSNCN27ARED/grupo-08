@@ -1,0 +1,15 @@
+[
+    {
+        "id": "1",
+        "name": "administrador"
+    },
+    {
+        "id": "2",
+        "name": "catalogador"
+    },
+    {
+        "id": "3",
+        "name": "otro"
+    }
+
+]
