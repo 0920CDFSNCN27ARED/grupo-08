@@ -391,8 +391,6 @@
 
                                                         if (exists(categorias)) {
                                                             for( let z = 0; z < categorias.length; z++ ) {
-                                                                console.log('cats', categorias);
-                                                                console.log('catsZ', categorias[z]);
                                                                 if (categorias[z] == objSubcat.id) {
                                                                     html += `checked`;
                                                                 }
@@ -412,7 +410,6 @@
                                 }
 
                             %> 
-                            <% console.log('cat', cat); %> 
 
                             <% if (cat.parent_cat == 0) { %>
                                 <li>
