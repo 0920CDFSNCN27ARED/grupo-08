@@ -1,5 +1,4 @@
-const writeJsonFile = require('../helpers/writeJsonFile');
-const readJsonFile = require('../helpers/readJsonFile');
+const jsonFile = require('../helpers/jsonFile');
 const bcrypt = require('bcrypt');
 const handleCreateId = require('../helpers/handleCreateId');
 
@@ -12,7 +11,7 @@ const customerControllers = {
         const errors = [];
         const { email, password } = req.body;
 
-        const allCustomers = readJsonFile('../db/customers.json');
+        const allCustomers = jsonFile.read('../db/customers.json');
         const customer = allCustomers.find(customer => {
             return (
                 customer.email === email &&
@@ -31,7 +30,7 @@ const customerControllers = {
                 customer.last_login_date = Date.now();
             }
         });
-        writeJsonFile(allCustomers, '../db/customers.json');
+        jsonFile.write(allCustomers, '../db/customers.json');
         req.session.customer = customer.id;
 
         return res.redirect('/clientes/mi-cuenta');
@@ -69,7 +68,7 @@ const customerControllers = {
             res.render('admin/pages/user/register.ejs', {errors});
         }
 
-        const allCustomers = readJsonFile('../db/customers.json');
+        const allCustomers = jsonFile.read('../db/customers.json');
         allCustomers.forEach(customer => {
             if(customer.email === email) errors.push('El email ya esta registrado')
             // Agregar validaciones varias aca
@@ -111,7 +110,7 @@ const customerControllers = {
         }
 
         allCustomers.push(customer);
-        writeJsonFile(allCustomers, '../db/customers.json');
+        jsonFile.write(allCustomers, '../db/customers.json');
         req.session.customer = customer.id;
 
         return res.redirect('/clientes/mi-cuenta')

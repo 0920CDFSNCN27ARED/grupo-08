@@ -1,5 +1,4 @@
-const writeJsonFile = require('../../helpers/writeJsonFile');
-const readJsonFile = require('../../helpers/readJsonFile');
+const jsonFile = require('../../helpers/jsonFile');
 const returnCategoriesFormated = require('../../helpers/returnCategoriesFormated');
 
 const categoriesControllers = {
@@ -7,7 +6,7 @@ const categoriesControllers = {
         const { id } = req.params;
 
         let category, allCategories;
-        allCategories = readJsonFile('../db/categories.json');
+        allCategories = jsonFile.read('../db/categories.json');
         category = allCategories.find((cat) => cat.id == id);
 
         if (category == undefined) {
@@ -22,14 +21,14 @@ const categoriesControllers = {
         });
     },
     getAll: (req, res) => {
-        const allCategories = readJsonFile('../db/categories.json');
+        const allCategories = jsonFile.read('../db/categories.json');
 
         res.render('admin/pages/categories/categories-list', {
             categoriesHTML: returnCategoriesFormated.asHTML(allCategories, '/admin/c/categorias'),
         });
     },
     create: (req, res) => {
-        const allCategories = readJsonFile('../db/categories.json');
+        const allCategories = jsonFile.read('../db/categories.json');
 
         const handleCategoryId = (arr) => {
             if (arr.length === 0) return 1;
@@ -65,11 +64,11 @@ const categoriesControllers = {
 
         allCategories.push(category);
 
-        writeJsonFile(allCategories, '../db/categories.json');
+        jsonFile.write(allCategories, '../db/categories.json');
         res.send({ status: 200 });
     },
     update: (req, res) => {
-        const allCategories = readJsonFile('../db/categories.json');
+        const allCategories = jsonFile.read('../db/categories.json');
         console.log(req.body);
         const {
             id,
@@ -96,7 +95,7 @@ const categoriesControllers = {
             }
         });
 
-        writeJsonFile(allCategories, '../db/categories.json');
+        jsonFile.write(allCategories, '../db/categories.json');
         res.send({ status: 200 });
     },
 };

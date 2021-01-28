@@ -1,11 +1,11 @@
-const readJsonFile = require('../helpers/readJsonFile');
+const jsonFile = require('../helpers/jsonFile');
 const returnCategoriesFormated = require('../helpers/returnCategoriesFormated');
 
 
 
 const mainControllers = {
     index: (req, res) => {
-        const allCategories = readJsonFile('../db/categories.json');
+        const allCategories = jsonFile.read('../db/categories.json');
 
         res.render('pages/index', {
             categories: returnCategoriesFormated.asHTMLfront(allCategories, '/c/categoria'),

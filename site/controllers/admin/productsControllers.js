@@ -1,14 +1,13 @@
-const writeJsonFile = require('../../helpers/writeJsonFile');
-const readJsonFile = require('../../helpers/readJsonFile');
+const jsonFile = require('../../helpers/jsonFile');
 
 const productsControllers = {
     getOne: (req, res) => {
         const { id } = req.params;
-        const allCategories = readJsonFile('../db/categories.json');
+        const allCategories = jsonFile.write('../db/categories.json');
 
         // Busco el id en los productos
         let product, allProducts;
-        allProducts = readJsonFile('../db/products.json');
+        allProducts = jsonFile.write('../db/products.json');
         product = allProducts.find((prod) => prod.id == id);
 
         if (product == undefined) {
@@ -23,7 +22,7 @@ const productsControllers = {
         });
     },
     getAll: (req, res) => {
-        const allProducts = readJsonFile('../db/products.json');
+        const allProducts = jsonFile.write('../db/products.json');
         const handleTotalStock = (arr) => {
             return arr.reduce((a, b) => {
                 [a, b] = [parseInt(a), parseInt(b)];
@@ -54,7 +53,7 @@ const productsControllers = {
         });
     },
     create: (req, res) => {
-        const allCategories = readJsonFile('../db/categories.json');
+        const allCategories = jsonFile.write('../db/categories.json');
         res.render('admin/pages/products/products-create', {
             categories: allCategories,
         });
@@ -121,18 +120,18 @@ const productsControllers = {
         }; */
 
         // Traigo los productos
-        const allProducts = readJsonFile('../db/products.json');
+        const allProducts = jsonFile.write('../db/products.json');
 
         // pusheo el producto
         allProducts.push(product);
 
         // Guardo todos los productos
-        writeJsonFile(allProducts, '../db/products.json');
+        jsonFile.write(allProducts, '../db/products.json');
         //res.redirect(200, '/');
         res.send({ status: 200 });
     },
     update: (req, res) => {
-        let allProducts = readJsonFile('../db/products.json');
+        let allProducts = jsonFile.write('../db/products.json');
         let {
             id,
             status,
@@ -195,15 +194,15 @@ const productsControllers = {
             }
         });
 
-        writeJsonFile(allProducts, '../db/products.json');
+        jsonFile.write(allProducts, '../db/products.json');
         res.send({ status: 200 });
     },
     delete: (req, res) => {
         let { id } = req.params;
-        let allProducts = readJsonFile('../db/products.json');
+        let allProducts = jsonFile.write('../db/products.json');
         let productsUpdated = allProducts.filter((prod, i) => prod.id != id);
 
-        writeJsonFile(productsUpdated, '../db/products.json');
+        jsonFile.write(productsUpdated, '../db/products.json');
         res.send({ status: 200 });
     },
 };

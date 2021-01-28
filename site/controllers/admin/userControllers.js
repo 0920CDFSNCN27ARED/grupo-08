@@ -1,5 +1,4 @@
-const writeJsonFile = require('../../helpers/writeJsonFile');
-const readJsonFile = require('../../helpers/readJsonFile');
+const jsonFile = require('../../helpers/jsonFile');
 const bcrypt = require('bcrypt');
 const handleCreateId = require('../../helpers/handleCreateId');
 
@@ -11,7 +10,7 @@ const userControllers = {
         const errors = [];
         const { username, password, persist_session } = req.body;
 
-        const allUsers = readJsonFile('../db/admin_users.json');
+        const allUsers = jsonFile.write('../db/admin_users.json');
         const user = allUsers.find(user => {
             return (
                 user.username === username &&
@@ -31,7 +30,7 @@ const userControllers = {
                 user.last_login_date = Date.now();
             }
         });
-        writeJsonFile(allUsers, '../db/admin_users.json');
+        jsonFile.write(allUsers, '../db/admin_users.json');
 
         // Mantener sesion
         if(persist_session) {
@@ -65,7 +64,7 @@ const userControllers = {
             res.render('admin/pages/user/register.ejs', {errors});
         }
         
-        const allUsers = readJsonFile('../db/admin_users.json');
+        const allUsers = jsonFile.write('../db/admin_users.json');
         allUsers.forEach(user => {
             if(user.email === email) errors.push('El email ya esta registrado');
             if(user.username === username) errors.push('El username ya esta registrado');
@@ -90,7 +89,7 @@ const userControllers = {
         }
         allUsers.push(user);
 
-        writeJsonFile(allUsers, '../db/admin_users.json');
+        jsonFile.write(allUsers, '../db/admin_users.json');
         res.redirect('/admin')
 
     }
