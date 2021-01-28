@@ -27,16 +27,9 @@
                 <p>Si tenés una cuenta registrada, ingresá tus datos</p>
 
                 <% if (exists(locals.errors)) { %>
-                    <div class="errors_container">
-                        
-                        <ul>
-                            <% for( let i = 0; i < errors.length; i++ ) { %>
-                                <li><%= errors[i] %> </li>
-                            <% } %>
-                        </ul>
-                        
-                        <button onclick="handleRemoveErrors(this);">x</button>
-                    </div>
+                    <%- include('../components/listErrors/index', {
+                        errors
+                    }) %> 
                 <% } %>
 
                 <form action="/clientes/logged" method="POST">

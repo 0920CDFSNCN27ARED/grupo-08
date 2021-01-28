@@ -1,0 +1,10 @@
+<div class="errors_container">
+                    
+    <ul>
+        <% for( let i = 0; i < errors.length; i++ ) { %>
+            <li><%= errors[i] %> </li>
+        <% } %>
+    </ul>
+    
+    <button onclick="handleRemoveErrors(this);">x</button>
+</div>
