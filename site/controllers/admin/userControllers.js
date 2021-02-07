@@ -10,7 +10,7 @@ const userControllers = {
         const errors = [];
         const { username, password, persist_session } = req.body;
 
-        const allUsers = jsonFile.write('../db/admin_users.json');
+        const allUsers = jsonFile.read('../db/admin_users.json');
         const user = allUsers.find(user => {
             return (
                 user.username === username &&
@@ -63,7 +63,7 @@ const userControllers = {
             res.render('admin/pages/user/register.ejs', {errors});
         }
         
-        const allUsers = jsonFile.write('../db/admin_users.json');
+        const allUsers = jsonFile.read('../db/admin_users.json');
         allUsers.forEach(user => {
             if(user.email === email) errors.push('El email ya esta registrado');
             if(user.username === username) errors.push('El username ya esta registrado');
