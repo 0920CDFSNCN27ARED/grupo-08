@@ -327,4 +327,18 @@ if (categories_list_view) {
             );
         });
     }
+
+    let borrarCategoryBtn = document.querySelector('#category_create_form_delete_btn');
+    if (borrarCategoryBtn) {
+        borrarCategoryBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            let path = borrarCategoryBtn.getAttribute('href');
+
+            createProduct('POST', path).then((res) => {
+                if (res.status === 200) {
+                    location.href = '/admin/c/categorias';
+                }
+            });
+        });
+    }
 }

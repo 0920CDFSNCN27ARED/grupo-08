@@ -97,6 +97,14 @@ const categoriesControllers = {
         jsonFile.write(allCategories, '../db/categories.json');
         res.send({ status: 200 });
     },
+    delete: (req, res) => {
+        let { id } = req.params;
+        let allCategories = jsonFile.read('../db/categories.json');
+        let categoriesUpdated = allCategories.filter((cat, i) => cat.id != id);
+
+        jsonFile.write(categoriesUpdated, '../db/categories.json');
+        res.send({ status: 200 });
+    },
 };
 
 module.exports = categoriesControllers;
