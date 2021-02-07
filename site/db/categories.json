@@ -90,9 +90,9 @@
   },
   {
     "id": 7,
-    "status": "habilitado",
+    "status": "deshabilitado",
     "show_menu": "si",
-    "name": "Remeras lisas",
+    "name": "cat 1",
     "page_title": "Remeras lisas",
     "meta_description": "Estas son remeras lisas",
     "meta_keywords": "remeras, remeras lisas, lisas, blanco, negro",

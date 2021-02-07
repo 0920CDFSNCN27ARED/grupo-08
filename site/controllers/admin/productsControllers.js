@@ -120,7 +120,7 @@ const productsControllers = {
         }; */
 
         // Traigo los productos
-        const allProducts = jsonFile.write('../db/products.json');
+        const allProducts = jsonFile.read('../db/products.json');
 
         // pusheo el producto
         allProducts.push(product);
