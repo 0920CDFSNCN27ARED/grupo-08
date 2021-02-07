@@ -52,7 +52,7 @@ function showHidePw(el) {
 }
 
 // Crear productos
-async function createProduct(_method = '', url = '', data = {}) {
+async function fetchData(_method = '', url = '', data = {}) {
     const res = await fetch(url, {
         method: _method,
         body: data,

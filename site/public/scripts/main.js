@@ -199,7 +199,7 @@ if (products_create_view) {
                 FD.append('imagenes', file, file.name);
             }
 
-            createProduct('POST', '/admin/c/productos/crear', FD).then((res) => {
+            fetchData('POST', '/admin/c/productos/crear', FD).then((res) => {
                 if (res.status === 200) {
                     location.href = '/admin/c/productos';
                 }
@@ -220,7 +220,7 @@ if (products_create_view) {
                 }
             }
 
-            createProduct('POST', `/admin/c/productos/${pid}/update?_method=PUT`, FD).then(
+            fetchData('POST', `/admin/c/productos/${pid}/update?_method=PUT`, FD).then(
                 (res) => {
                     if (res.status === 200) {
                         location.href = '/admin/c/productos';
@@ -236,7 +236,7 @@ if (products_create_view) {
             e.preventDefault();
             let path = borrarProdBtn.getAttribute('href');
 
-            createProduct('POST', path).then((res) => {
+            fetchData('POST', path).then((res) => {
                 if (res.status === 200) {
                     location.href = '/admin/c/productos';
                 }
@@ -297,7 +297,7 @@ if (categories_list_view) {
             var FD = new FormData(form);
             FD.append('imagenes', filesArray);
 
-            createProduct('POST', '/admin/c/categorias/crear', FD).then((res) => {
+            fetchData('POST', '/admin/c/categorias/crear', FD).then((res) => {
                 if (res.status === 200) {
                     location.href = '/admin/c/categorias';
                 }
@@ -318,7 +318,7 @@ if (categories_list_view) {
                 }
             }
 
-            createProduct('POST', `/admin/c/categorias/${pid}/update?_method=PUT`, FD).then(
+            fetchData('POST', `/admin/c/categorias/${pid}/update?_method=PUT`, FD).then(
                 (res) => {
                     if (res.status === 200) {
                         location.href = '/admin/c/categorias';
@@ -334,7 +334,7 @@ if (categories_list_view) {
             e.preventDefault();
             let path = borrarCategoryBtn.getAttribute('href');
 
-            createProduct('POST', path).then((res) => {
+            fetchData('POST', path).then((res) => {
                 if (res.status === 200) {
                     location.href = '/admin/c/categorias';
                 }
