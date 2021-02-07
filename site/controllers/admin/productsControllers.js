@@ -199,7 +199,7 @@ const productsControllers = {
     },
     delete: (req, res) => {
         let { id } = req.params;
-        let allProducts = jsonFile.write('../db/products.json');
+        let allProducts = jsonFile.read('../db/products.json');
         let productsUpdated = allProducts.filter((prod, i) => prod.id != id);
 
         jsonFile.write(productsUpdated, '../db/products.json');

@@ -51,7 +51,7 @@ function showHidePw(el) {
     el.classList.toggle('ocultar');
 }
 
-// Crear productos
+// Fetch data
 async function fetchData(_method = '', url = '', data = {}) {
     const res = await fetch(url, {
         method: _method,
@@ -61,6 +61,43 @@ async function fetchData(_method = '', url = '', data = {}) {
     return res.json();
 }
 
+function deleteData(el, redirectPath) {
+    el.addEventListener('click', (e) => {
+        e.preventDefault();
+        let path = el.getAttribute('href');
+        console.log('desde fn');
+
+        fetchData('POST', path).then((res) => {
+            if (res.status === 200) {
+                location.href = redirectPath;
+            }
+        });
+    });
+}
+
+function updateData(form, type, redirectPath ) {
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        let pid;
+        let FD = new FormData(form);
+
+        for (let [k, v] of FD) {
+            if (k == 'id') {
+                pid = v;
+            }
+        }
+
+        fetchData('POST', `/admin/c/${type}/${pid}/update?_method=PUT`, FD).then(
+            (res) => {
+                if (res.status === 200) {
+                    location.href = redirectPath;
+                }
+            }
+        );
+    });
+}
+
+
 // Home
 function switchSliderImageOnMobile(obj) {
     let imageSrc = obj.getAttribute('src');
@@ -69,7 +106,7 @@ function switchSliderImageOnMobile(obj) {
     obj.setAttribute('src', imageSrcMobile);
 }
 
-// Admin create product
+// Admin
 function handleSkuVisible(currEl, targetElement) {
     let target = document.querySelector(`#${targetElement}`);
     let arrTargetVal = target.value.split('-');
@@ -434,12 +471,41 @@ function handleTablaTalles(currEl, targetElement, ...stock_talles) {
     }
 }
 
-function removeCurrentFile(target) {
-    // Remuevo la imagen del array
-    let deletedFileIndex = filesArray.findIndex((file) => file.name === target);
-    filesArray.splice(deletedFileIndex, 1);
+function handleImagesUploaded(filesInput, outputEl) {
+    let filesArray = [];
+    // Valido la api de file
+    if (window.File && window.FileList && window.FileReader) {
+        filesInput.addEventListener('change', (e) => {
+            let files, output;
 
-    // Remuevo la imagen del front
-    document.querySelector(`[id*="${target}"]`).remove();
-    filesInput.value = '';
-}
+            files = e.target.files; // el FileList
+            output = document.querySelector(outputEl);
+
+            for (let i = 0; i < files.length; i++) {
+                let file = files[i];
+                let fr = new FileReader();
+
+                fr.addEventListener('load', function (e) {
+                    let image = e.target;
+
+                    let templateCard = `
+                        <div id="${file.name}" class="form_images_card">
+                            <img src="${image.result}" alt="${file.name}" class="form_images_card_image">
+                            <span class="form_images_card_name">${file.name}</span>
+                            <button class="form_images_card_delete button_main_action" onclick="removeCurrentFile('${file.name}')">Borrar</button>
+                        </div>
+                    `;
+
+                    output.innerHTML += templateCard;
+                    filesArray.push(file);
+                });
+
+                fr.readAsDataURL(file);
+            }
+        });
+        return filesArray;
+    } else {
+        alert('El navegador no soporta la API FILE');
+        return filesArray;
+    }
+} 
