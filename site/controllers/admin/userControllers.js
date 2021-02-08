@@ -4,7 +4,13 @@ const handleCreateId = require('../../helpers/handleCreateId');
 
 const userControllers = {
     login: (req, res) => {
+        if(req.session.adminId !== undefined || req.cookies.rememberMe !== undefined) return res.redirect(301, '/admin');
         res.render('admin/pages/user/login.ejs')
+    },
+    logout: (req, res) => {
+        delete req.session.adminId;
+        res.clearCookie('rememberMe');
+        res.render('admin/pages/user/login.ejs');
     },
     logged: (req, res) => {
         const errors = [];
@@ -32,15 +38,13 @@ const userControllers = {
         });
         jsonFile.write(allUsers, '../db/admin_users.json');
 
-        // Mantener sesion
+        req.session.adminId = user.id;
+        
         if(persist_session) {
-            req.session.loggedAdminId = user.id;
+            res.cookie('rememberMe', req.session.adminId, {maxAge: 60 * 1000 * 60 * 24});
         }
-        
 
-        
-        
-        //res.redirect('/admin');
+        return res.redirect(301, '/admin');
     },
     register: (req, res) => {
         res.render('admin/pages/user/register.ejs')

@@ -5,22 +5,10 @@
     "last_name": "Muzzupappa",
     "email": "lnmuzzupappa@gmail.com",
     "username": "lmuzzupappa",
-    "password": "$2b$12$AVI56y5ePq.a7Flx3V7XdOlCoYfxGzOYJ9MhunzwbLj2ksCaP5wqi",
-    "created_at": 1610867746199,
-    "last_login_date": 1612657133796,
+    "password": "$2b$12$FbDdOYvqQODfm7zDyEPmleoJS1xREoBhk.RreEL9nRlEH3V0B2pJ.",
+    "created_at": 1612756807152,
+    "last_login_date": 1612762427001,
     "status": "activo",
     "permissions": "administrador"
-  },
-  {
-    "id": 2,
-    "first_name": "Nicolas",
-    "last_name": "Muzzupappa",
-    "email": "nmuzzupappa@gmail.com",
-    "username": "nmuzzupappa",
-    "password": "$2b$12$YO1uk8Gw8z8ZupLoHihG..GV69xtGux5M.u2y315BqxjzqqhW49HW",
-    "created_at": 1611279552731,
-    "last_login_date": "",
-    "status": "activo",
-    "permissions": "catalogador"
   }
 ]
