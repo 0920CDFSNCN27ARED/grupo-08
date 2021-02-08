@@ -5,6 +5,7 @@ const handleCreateId = require('../../helpers/handleCreateId');
 const userControllers = {
     login: (req, res) => {
         if(req.session.adminId !== undefined || req.cookies.rememberMe !== undefined) return res.redirect(301, '/admin');
+
         res.render('admin/pages/user/login.ejs')
     },
     logout: (req, res) => {
@@ -93,8 +94,8 @@ const userControllers = {
         allUsers.push(user);
 
         jsonFile.write(allUsers, '../db/admin_users.json');
-        res.redirect('/admin')
-
+        
+        return res.redirect(301, '/admin')
     }
 }
 

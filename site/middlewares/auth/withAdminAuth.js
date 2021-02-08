@@ -17,6 +17,7 @@ function withAdminAuth(req, res, next) {
     }
 
     req.session.adminId = curAdmin.id;
+    res.locals.curAdmin = curAdmin;
 
 
     next();
