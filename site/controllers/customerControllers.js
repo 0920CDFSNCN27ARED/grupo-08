@@ -5,7 +5,6 @@ const handleCreateId = require('../helpers/handleCreateId');
 
 const customerControllers = {
     login: (req, res) => {
-        console.log(req.session)
         res.render('pages/login');
     },
     logged: (req, res) => {
@@ -121,7 +120,6 @@ const customerControllers = {
     },
 
     account: (req, res) => {
-        console.log(req.session.customer);
 
         res.render('pages/customer');
     }

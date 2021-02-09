@@ -4,8 +4,6 @@ function withAdminAuth(req, res, next) {
     let userSession = req.session.adminId;
     let userCookies = (req.cookies !== undefined && req.cookies.rememberMe) ? req.cookies.rememberMe : undefined;
 
-    console.log('cookie --> ', userCookies);
-
     if(userSession === undefined) return res.redirect(301, '/admin/user/login');
 
     const allAdmins = jsonFile.read('../db/admin_users.json');

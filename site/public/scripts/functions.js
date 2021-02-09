@@ -65,7 +65,6 @@ function deleteData(el, redirectPath) {
     el.addEventListener('click', (e) => {
         e.preventDefault();
         let path = el.getAttribute('href');
-        console.log('desde fn');
 
         fetchData('POST', path).then((res) => {
             if (res.status === 200) {
