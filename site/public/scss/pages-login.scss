@@ -88,6 +88,23 @@
             width: 100%;
           }
 
+          .custom_row {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            
+            label {
+              padding: .5rem 0;
+              cursor: pointer;
+            }
+
+            input {
+                width: auto;
+                margin-right: .5rem;
+            }
+            
+        }
+
       }
 
       hr {
