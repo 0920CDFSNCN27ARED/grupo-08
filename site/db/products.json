@@ -76,7 +76,8 @@
     ],
     "categorias": [
       "1",
-      "4"
+      "4",
+      "6"
     ],
     "imagenes": [
       "/b/a/banner_1.jpg",
@@ -87,75 +88,36 @@
     ]
   },
   {
-    "id": 1610786770636,
+    "id": 1612659227131,
     "status": "habilitado",
-    "tipo_de_producto": "abrigos",
+    "tipo_de_producto": "pantaloes",
     "tabla_de_talles": "tabla_talles_xxs_al_xxl",
-    "marca": "zara",
-    "product_name": "BLAZER VILLARD",
-    "sku_visible": "zara-abrigos-blazer_villard",
-    "product_price": "4890",
-    "product_price_special": "3000",
-    "product_price_special_desde": "2021:01:10 00:00:00",
-    "product_price_special_hasta": "2021:01:18 23:59:59",
-    "descripcion_corta": "Esto es una descripcion corta",
-    "composicion": "Esta es la composicion",
-    "cuidado": "Estos son los cuidados a tener",
-    "color": "blanco",
-    "stock_talles": [
-      "1",
-      "1",
-      "1",
-      "2",
-      "3",
-      "1",
-      "1"
-    ],
-    "categorias": [
-      "3"
-    ],
-    "imagenes": [
-      "/s/w/sweet_110882be_be_1.jpg",
-      "/s/w/sweet_110882be_be_2.jpg",
-      "/s/w/sweet_110882be_be_3.jpg",
-      "/s/w/sweet_110882be_be_4.jpg"
-    ]
-  },
-  {
-    "id": 1611630506135,
-    "status": "habilitado",
-    "tipo_de_producto": "zapatos",
-    "tabla_de_talles": "tabla_talles_36_al_48",
-    "marca": "zara",
-    "product_name": "ewe",
-    "sku_visible": "zara-zapatos-ewe",
-    "product_price": "222",
+    "marca": "felix",
+    "product_name": "algo",
+    "sku_visible": "felix-pantaloes-algo",
+    "product_price": "3344",
     "product_price_special": 0,
     "product_price_special_desde": "",
     "product_price_special_hasta": "",
-    "descripcion_corta": "",
-    "composicion": "",
-    "cuidado": "",
-    "color": "rojo",
+    "descripcion_corta": "Esto es una descripcion corta",
+    "composicion": "Esta es la composicion",
+    "cuidado": "Estos son los cuidados a tener",
+    "color": "negro",
     "stock_talles": [
+      "12",
       "0",
       "0",
-      "0",
-      "0",
+      "3",
       "0",
       "0",
       "0"
     ],
     "categorias": [
-      "1",
-      "4",
-      "3"
+      "7"
     ],
     "imagenes": [
-      "/1/0/1080100026713_3.webp",
-      "/1/0/1080100026713_4.webp",
-      "/s/w/sweet_110882be_be_2.jpg",
-      "/s/w/sweet_110882be_be_3.jpg"
+      "/1/0/1080100026713_1.webp",
+      "/1/0/1080100026713_3.webp"
     ]
   }
 ]

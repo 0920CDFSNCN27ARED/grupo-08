@@ -5,22 +5,34 @@
     "last_name": "Muzzupappa",
     "email": "lnmuzzupappa@gmail.com",
     "username": "lmuzzupappa",
-    "password": "$2b$12$AVI56y5ePq.a7Flx3V7XdOlCoYfxGzOYJ9MhunzwbLj2ksCaP5wqi",
-    "created_at": 1610867746199,
-    "last_login_date": 1611278053544,
+    "password": "$2b$12$FbDdOYvqQODfm7zDyEPmleoJS1xREoBhk.RreEL9nRlEH3V0B2pJ.",
+    "created_at": 1612756807152,
+    "last_login_date": 1612763723220,
     "status": "activo",
     "permissions": "administrador"
   },
   {
     "id": 2,
-    "first_name": "Nicolas",
-    "last_name": "Muzzupappa",
-    "email": "nmuzzupappa@gmail.com",
-    "username": "nmuzzupappa",
-    "password": "$2b$12$YO1uk8Gw8z8ZupLoHihG..GV69xtGux5M.u2y315BqxjzqqhW49HW",
-    "created_at": 1611279552731,
-    "last_login_date": "",
+    "first_name": "Leandro",
+    "last_name": "Canton",
+    "email": "lcanton@email.com",
+    "username": "lcanton",
+    "password": "$2b$12$ml20OgPmoLmg6/4XuUfmS.1Xi6uqmdslLRdCjT97JehJ2bi6zn5hG",
+    "created_at": 1612762993812,
+    "last_login_date": 1612763822785,
     "status": "activo",
-    "permissions": "catalogador"
+    "permissions": "administrador"
+  },
+  {
+    "id": 3,
+    "first_name": "Martin",
+    "last_name": "Zeballos",
+    "email": "mzeballos@email.com",
+    "username": "mzeballos",
+    "password": "$2b$12$i/5OesD8oNhIfmsU6cfrQu86LVxx5hxQurYL0Rt1Q5whJ.0G0nfHu",
+    "created_at": 1612763072915,
+    "last_login_date": 1612763831174,
+    "status": "activo",
+    "permissions": "administrador"
   }
 ]

@@ -2,6 +2,7 @@ const express = require('express');
 const methodOverride = require('method-override');
 const opn = require('open');
 const session = require('express-session');
+const cookieParser = require('cookie-parser');
 
 // SETTINGS
 const app = express();
@@ -31,7 +32,8 @@ app.use(session({
     secret: 'metronomyRocks',
     resave: true,
     saveUninitialized: true
-}))
+}));
+app.use(cookieParser());
 
 // Load Routes
 const mainRoutes = require('./routes/mainRoutes');

@@ -3,11 +3,11 @@ const jsonFile = require('../../helpers/jsonFile');
 const productsControllers = {
     getOne: (req, res) => {
         const { id } = req.params;
-        const allCategories = jsonFile.write('../db/categories.json');
+        const allCategories = jsonFile.read('../db/categories.json');
 
         // Busco el id en los productos
         let product, allProducts;
-        allProducts = jsonFile.write('../db/products.json');
+        allProducts = jsonFile.read('../db/products.json');
         product = allProducts.find((prod) => prod.id == id);
 
         if (product == undefined) {
@@ -22,7 +22,7 @@ const productsControllers = {
         });
     },
     getAll: (req, res) => {
-        const allProducts = jsonFile.write('../db/products.json');
+        const allProducts = jsonFile.read('../db/products.json');
         const handleTotalStock = (arr) => {
             return arr.reduce((a, b) => {
                 [a, b] = [parseInt(a), parseInt(b)];
@@ -53,7 +53,7 @@ const productsControllers = {
         });
     },
     create: (req, res) => {
-        const allCategories = jsonFile.write('../db/categories.json');
+        const allCategories = jsonFile.read('../db/categories.json');
         res.render('admin/pages/products/products-create', {
             categories: allCategories,
         });
@@ -120,7 +120,7 @@ const productsControllers = {
         }; */
 
         // Traigo los productos
-        const allProducts = jsonFile.write('../db/products.json');
+        const allProducts = jsonFile.read('../db/products.json');
 
         // pusheo el producto
         allProducts.push(product);
@@ -131,7 +131,7 @@ const productsControllers = {
         res.send({ status: 200 });
     },
     update: (req, res) => {
-        let allProducts = jsonFile.write('../db/products.json');
+        let allProducts = jsonFile.read('../db/products.json');
         let {
             id,
             status,
@@ -199,7 +199,7 @@ const productsControllers = {
     },
     delete: (req, res) => {
         let { id } = req.params;
-        let allProducts = jsonFile.write('../db/products.json');
+        let allProducts = jsonFile.read('../db/products.json');
         let productsUpdated = allProducts.filter((prod, i) => prod.id != id);
 
         jsonFile.write(productsUpdated, '../db/products.json');

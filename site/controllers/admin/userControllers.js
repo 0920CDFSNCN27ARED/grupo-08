@@ -4,13 +4,20 @@ const handleCreateId = require('../../helpers/handleCreateId');
 
 const userControllers = {
     login: (req, res) => {
+        if(req.session.adminId !== undefined || req.cookies.rememberMe !== undefined) return res.redirect(301, '/admin');
+
         res.render('admin/pages/user/login.ejs')
+    },
+    logout: (req, res) => {
+        delete req.session.adminId;
+        res.clearCookie('rememberMe');
+        res.render('admin/pages/user/login.ejs');
     },
     logged: (req, res) => {
         const errors = [];
         const { username, password, persist_session } = req.body;
 
-        const allUsers = jsonFile.write('../db/admin_users.json');
+        const allUsers = jsonFile.read('../db/admin_users.json');
         const user = allUsers.find(user => {
             return (
                 user.username === username &&
@@ -32,15 +39,13 @@ const userControllers = {
         });
         jsonFile.write(allUsers, '../db/admin_users.json');
 
-        // Mantener sesion
+        req.session.adminId = user.id;
+        
         if(persist_session) {
-            req.session.loggedAdminId = user.id;
+            res.cookie('rememberMe', req.session.adminId, {maxAge: 60 * 1000 * 60 * 24});
         }
-        
 
-        
-        
-        //res.redirect('/admin');
+        return res.redirect(301, '/admin');
     },
     register: (req, res) => {
         res.render('admin/pages/user/register.ejs')
@@ -63,7 +68,7 @@ const userControllers = {
             res.render('admin/pages/user/register.ejs', {errors});
         }
         
-        const allUsers = jsonFile.write('../db/admin_users.json');
+        const allUsers = jsonFile.read('../db/admin_users.json');
         allUsers.forEach(user => {
             if(user.email === email) errors.push('El email ya esta registrado');
             if(user.username === username) errors.push('El username ya esta registrado');
@@ -89,8 +94,8 @@ const userControllers = {
         allUsers.push(user);
 
         jsonFile.write(allUsers, '../db/admin_users.json');
-        res.redirect('/admin')
-
+        
+        return res.redirect(301, '/admin')
     }
 }
 
