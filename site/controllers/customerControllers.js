@@ -5,11 +5,13 @@ const handleCreateId = require('../helpers/handleCreateId');
 
 const customerControllers = {
     login: (req, res) => {
+        if(req.session.customerID !== undefined || req.cookies.customerRememberMe !== undefined) return res.redirect(301, '/clientes/mi-cuenta');
+
         res.render('pages/login');
     },
     logged: (req, res) => {
         const errors = [];
-        const { email, password } = req.body;
+        const { email, password, persist_session } = req.body;
 
         const allCustomers = jsonFile.read('../db/customers.json');
         const customer = allCustomers.find(customer => {
@@ -31,17 +33,25 @@ const customerControllers = {
             }
         });
         jsonFile.write(allCustomers, '../db/customers.json');
-        req.session.customer = customer.id;
 
-        return res.redirect('/clientes/mi-cuenta');
+        req.session.customerID = customer.id;
+
+        if(persist_session) {
+            res.cookie('customerRememberMe', req.session.customerID, {maxAge: 60 * 1000 * 60 * 24});
+        }
+
+        return res.redirect(301, '/clientes/mi-cuenta');
     },
     logout: (req, res) => {
-        delete req.session.customer;
+        delete req.session.customerID;
+        res.clearCookie('customerRememberMe');
 
         return res.redirect('/');
     },
 
     register: (req, res) => {
+        if(req.session.customerID !== undefined || req.cookies.customerRememberMe !== undefined) return res.redirect(301, '/clientes/mi-cuenta');
+
         res.render('pages/register');
     },
     registered: (req, res) => {
@@ -110,7 +120,8 @@ const customerControllers = {
 
         allCustomers.push(customer);
         jsonFile.write(allCustomers, '../db/customers.json');
-        req.session.customer = customer.id;
+        
+        req.session.customerID = customer.id;
 
         return res.redirect('/clientes/mi-cuenta')
     },

@@ -35,6 +35,15 @@ app.use(session({
 }));
 app.use(cookieParser());
 
+app.use( function (req, res, next) {
+    console.log(req.session.customerID ? req.session.customerID : 'no existe la session de customerID');
+    console.log(req.cookies.customerRememberMe ? req.cookies.customerRememberMe : 'no existe la cookie');
+
+    console.log('--- \n --- \n --- \n');
+    
+    next();
+})
+
 // Load Routes
 const mainRoutes = require('./routes/mainRoutes');
 const productRoutes = require('./routes/productRoutes');
