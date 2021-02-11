@@ -1,19 +1,26 @@
 const jsonFile = require("../../helpers/jsonFile");
 
 function withAuth (req, res, next) {
-    if(!req.session.customer) return res.redirect('/clientes/login');
+    const customerSession = req.session.customerID;
+    const customerCookies = 
+        (req.cookies !== undefined && req.cookies.customerRememberMe)
+            ? req.cookies.customerRememberMe
+            : undefined;
+    const customerLogged = (customerSession || customerCookies) ? true : false;
 
-    const id = req.session.customer;
+    if(!customerLogged) return res.redirect(301, '/clientes/login');
+
     const allCustomers = jsonFile.read('../db/customers.json');
+    const curCustomer = allCustomers.find(customer => (customer.id == customerSession || customer.id == customerCookies));
 
-    const loggedCustomer = allCustomers.find(customer => customer.id == id);
+    if(curCustomer === undefined) {
+        delete req.session.customerID;
+        return res.redirect(301, '/clientes/login');
+    }
 
-    if(!loggedCustomer) (
-        delete req.session.customer,
-        next()
-    )
+    req.session.customerID = curCustomer.id;
+    res.locals.curCustomer = curCustomer;
 
-    req.session.customerData = loggedCustomer;
     next();
 }
 

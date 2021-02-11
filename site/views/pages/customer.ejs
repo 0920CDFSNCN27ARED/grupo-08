@@ -1,3 +1,5 @@
+<% const customer = locals.curCustomer %> 
+
 <!DOCTYPE html>
 <html lang="es" class="home_view">
     <head>
@@ -11,15 +13,15 @@
         
         <%- include('../partials/header') %>
 
+        <br><br><br><br>
+
         <main>
 
-            <h1>usuario</h1>
+            <h1><%= `${customer.first_name} ${customer.last_name}` %> </h1>
 
             <br><br>
-            
-            <form action="/clientes/logout" method="POST">
-                <button class="button_main_action">Cerrar sesion</button>
-            </form>
+
+            <a href="/clientes/logout" class="button_main_action">cerrar sesion</a>
 
         </main>
 
