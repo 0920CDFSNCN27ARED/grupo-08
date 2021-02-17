@@ -121,3 +121,11 @@ if (categories_list_view) {
 
     
 }
+
+// ADMIN CREATE ROLE
+const employee_create_view = document.querySelector('.employee_create_view');
+if(employee_create_view) {
+    let borrarRolBtn = document.querySelector('#role_form_delete_btn');
+    if(borrarRolBtn) deleteData(borrarRolBtn, '/admin/employees/crear-rol');
+
+}

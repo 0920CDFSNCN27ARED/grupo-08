@@ -35,6 +35,13 @@ app.use(session({
 }));
 app.use(cookieParser());
 
+app.use((req,res,next)=> {
+    console.log('Mi session es: ', req.session.adminId);
+    console.log('Mi locals es: ', res.locals.curAdmin);
+    console.log('--------------------------------------------------------\n\n');
+    next();
+})
+
 // Load Routes
 const mainRoutes = require('./routes/mainRoutes');
 const productRoutes = require('./routes/productRoutes');

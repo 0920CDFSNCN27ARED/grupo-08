@@ -4,10 +4,10 @@
     "first_name": "Leandro",
     "last_name": "Muzzupappa",
     "email": "lnmuzzupappa@gmail.com",
-    "username": "lmuzzupappa",
+    "username": "lm",
     "password": "$2b$12$FbDdOYvqQODfm7zDyEPmleoJS1xREoBhk.RreEL9nRlEH3V0B2pJ.",
     "created_at": 1612756807152,
-    "last_login_date": 1612763723220,
+    "last_login_date": 1613529305833,
     "status": "activo",
     "permissions": "administrador"
   },

@@ -2,7 +2,7 @@
     const admin = locals.curAdmin;
 %> 
 
-<header id="admin_header">
+<header id="admin_header" style="overflow: auto;">
     <div id="logo">
         <a href="/admin">
             <%- include('../../partials/misc/logo/index') %> 
@@ -99,6 +99,26 @@
                         </li>
                         <li>
                             <a href="/admin/cms/bloques">Bloques estaticos</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="menu_item">
+                <a href="/admin/employees">
+                    <span>
+
+                        <svg id="cms_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.289 33.164"><g transform="translate(-2.855 -1.455)"><path class="a" d="M31.5,24V12A3,3,0,0,0,30,9.4l-10.5-6a3,3,0,0,0-3,0L6,9.4A3,3,0,0,0,4.5,12V24A3,3,0,0,0,6,26.595l10.5,6a3,3,0,0,0,3,0l10.5-6A3,3,0,0,0,31.5,24Z"/><path class="a" d="M4.905,10.44,18,18.015,31.095,10.44"/><path class="a" d="M18,33.12V18"/></g></svg>
+
+                    </span>
+                    Empleados
+                </a>
+                <div class="menu_submenu">
+                    <ul>
+                        <li>
+                            <a href="/admin/employees/crear-admin">Empleados</a>
+                        </li>
+                        <li>
+                            <a href="/admin/employees/crear-rol">Roles</a>
                         </li>
                     </ul>
                 </div>

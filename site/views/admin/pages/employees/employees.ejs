@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es" class="categories_list_view" layout="admin">
+    <head>
+        <% pageTitle = locals.title !== undefined ? title : 'Categorias' %> 
+        
+        <%- include('../../partials/head') %>
+    </head>
+<body>
+    <%- include('../../partials/header.ejs')  %> 
+
+    <% 
+        const exists = locals._exists;
+        let {id,
+            status,
+            show_menu,
+            name,
+            page_title,
+            meta_description,
+            meta_keywords,
+            imagenes,
+            parent_cat,
+            subcategories} = exists(locals.category) ? category : {};
+    %> 
+    
+
+    <main>
+
+        <section class="content_header">
+
+            <h1>
+                Gestionar empleados
+            </h1>
+
+            <a href="/admin/employees/crear" class="button_main_action">
+                Cargar empleado
+            </a>
+
+        </section>
+
+
+    </main>
+</body>
+</html>
