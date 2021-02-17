@@ -1,25 +1,26 @@
 const express = require('express');
 const routes = express.Router();
 
-const employeesControllers = require('../../controllers/admin/employeesControllers');
+const adminRolesControllers = require('../../controllers/admin/employees/rolesControllers');
+const adminsControllers = require('../../controllers/admin/employees/adminsControllers');
+
+
+routes.get('/', adminsControllers.getAll);
+
+// Admin users
+routes.get('/', adminsControllers.getAll);
+routes.get('/list', adminsControllers.getAll);
+//routes.get('/create', adminsControllers.create);
 
 
 // Admin roles
-routes.get('/', employeesControllers.getAll);
-routes.get('/crear-rol', employeesControllers.getAll);
-routes.post('/role/created', employeesControllers.created);
+routes.get('/crear-rol', adminRolesControllers.getAll);
+routes.post('/role/created', adminRolesControllers.created);
 
-routes.get('/role/:id', employeesControllers.getOne);
-routes.put('/role/:id/update', employeesControllers.update);
+routes.get('/role/:id', adminRolesControllers.getOne);
+routes.put('/role/:id/update', adminRolesControllers.update);
 
-routes.delete('/role/:id/delete', employeesControllers.delete);
-
-
-// Admin users
-
-
-
-
+routes.delete('/role/:id/delete', adminRolesControllers.delete);
 
 
 module.exports = routes;

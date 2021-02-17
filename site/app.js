@@ -29,16 +29,27 @@ app.use(methodOverride('_method'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(session({
-    secret: 'metronomyRocks',
+    secret: "metronomyRocks",
     resave: true,
     saveUninitialized: true
 }));
 app.use(cookieParser());
 
-app.use((req,res,next)=> {
-    console.log('Mi session es: ', req.session.adminId);
-    console.log('Mi locals es: ', res.locals.curAdmin);
-    console.log('--------------------------------------------------------\n\n');
+app.use((req,res,next) => {
+    req.session.adminId = 1;
+    res.locals.curAdmin = {
+        id: 1,
+        first_name: 'Leandro',
+        last_name: 'Muzzupappa',
+        email: 'lnmuzzupappa@gmail.com',
+        username: 'lm',
+        password: '$2b$12$FbDdOYvqQODfm7zDyEPmleoJS1xREoBhk.RreEL9nRlEH3V0B2pJ.',
+        created_at: 1612756807152,
+        last_login_date: 1613574676213,
+        status: 'activo',
+        permissions: 'administrador'
+      }
+
     next();
 })
 

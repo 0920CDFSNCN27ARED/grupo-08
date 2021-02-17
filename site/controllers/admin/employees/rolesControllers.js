@@ -1,7 +1,7 @@
-const jsonFile = require('../../helpers/jsonFile');
-const db = require('../../database/models');
+const jsonFile = require('../../../helpers/jsonFile');
+const db = require('../../../database/models');
 
-const employeesControllers = {
+const adminRolesControllers = {
     getOne: async (req, res) => {
         const { id } = req.params;
 
@@ -13,7 +13,7 @@ const employeesControllers = {
                 }
             });
 
-            return res.render('admin/pages/employees/employees-create-role', {roles, role});
+            return res.render('admin/pages/employees/roles', {roles, role});
 
         } catch (err) {
             console.log('Hubo un error al traer un rol');
@@ -25,7 +25,7 @@ const employeesControllers = {
         
         try {
             const roles = await db.AdminRole.findAll();
-            return res.render('admin/pages/employees/employees-create-role', {roles});
+            return res.render('admin/pages/employees/roles', {roles});
 
         } catch (err) {
             console.log('Hubo un error al traer los rol');
@@ -98,4 +98,4 @@ const employeesControllers = {
 
 }
 
-module.exports = employeesControllers;
+module.exports = adminRolesControllers;
