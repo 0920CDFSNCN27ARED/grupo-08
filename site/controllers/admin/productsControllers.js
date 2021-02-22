@@ -1,75 +1,150 @@
 const jsonFile = require('../../helpers/jsonFile');
+const db = require('../../database/models');
 
 const productsControllers = {
-    getOne: (req, res) => {
+    getOne: async (req, res) => {
         const { id } = req.params;
-        const allCategories = jsonFile.read('../db/categories.json');
 
-        // Busco el id en los productos
-        let product, allProducts;
-        allProducts = jsonFile.read('../db/products.json');
-        product = allProducts.find((prod) => prod.id == id);
+        try {
+            const allCategories = await db.Category.findAll();
 
-        if (product == undefined) {
-            return res.status(400).send({
-                msg: 'El producto no ha sido encontrado',
+            // Busco el id en los productos
+            let product = await db.Producto.findOne({
+                where: {
+                    id: id,
+                },
             });
-        }
 
-        res.render('admin/pages/products/products-create', {
-            product,
-            categories: allCategories,
-        });
-    },
-    getAll: (req, res) => {
-        const allProducts = jsonFile.read('../db/products.json');
-        const handleTotalStock = (arr) => {
-            return arr.reduce((a, b) => {
-                [a, b] = [parseInt(a), parseInt(b)];
-                return a + b;
-            });
-        };
-
-        function handleProductsArr(arr) {
-            const handledProducts = [];
-            arr.forEach((prod) => {
-                handledProducts.push({
-                    image: prod.imagenes[0],
-                    id: prod.id,
-                    sku: prod.sku_visible,
-                    name: prod.product_name,
-                    price: prod.product_price,
-                    special_price: prod.product_price_special,
-                    stock: handleTotalStock(prod.stock_talles),
-                    status: prod.status,
+            if (product == undefined) {
+                return res.status(400).send({
+                    msg: 'El producto no ha sido encontrado',
                 });
+            }
+
+            return res.render('admin/pages/products/products-create', {
+                product,
+                categories: allCategories,
+            });
+        } catch (err) {
+            console.log('Hubo un error al traer un producto o las categorias');
+            res.locals.queryErr = 'Hubo un problema! Por favor refresca la página';
+            res.redirect(500, 'admin/pages/products');
+        }
+    },
+    getAll: async (req, res) => {
+        try {
+            const allProducts = await db.Product.findAll();
+            const handleTotalStock = (arr) => {
+                return arr.reduce((a, b) => {
+                    [a, b] = [parseInt(a), parseInt(b)];
+                    return a + b;
+                });
+            };
+
+            function handleProductsArr(arr) {
+                const handledProducts = [];
+                arr.forEach((prod) => {
+                    handledProducts.push({
+                        image: prod.imagenes[0],
+                        id: prod.id,
+                        sku: prod.sku_visible,
+                        name: prod.product_name,
+                        price: prod.product_price,
+                        special_price: prod.product_price_special,
+                        stock: handleTotalStock(prod.stock_talles),
+                        status: prod.status,
+                    });
+                });
+
+                return handledProducts;
+            }
+
+            return res.render('admin/pages/products/products-list', {
+                products: handleProductsArr(allProducts),
+            });
+        } catch (err) {
+            console.log('Hubo un error al traer los productos');
+            res.locals.queryErr = 'Hubo un problema! Por favor refresca la página';
+            res.redirect(500, 'admin/pages/products');
+        }
+    },
+    create: async (req, res) => {
+        try {
+            const allCategories = await db.Category.findAll();
+            const allSizeTables = await db.SizeTable.findAll();
+
+            const sizeTablesFormated = [];
+            allSizeTables.forEach((table) => {
+                const bla = {
+                    name: table.dataValues.tableName,
+                    value: table.dataValues.id,
+                };
+                sizeTablesFormated.push(bla);
             });
 
-            return handledProducts;
+            return res.render('admin/pages/products/products-create', {
+                categories: allCategories,
+                sizeTables: sizeTablesFormated,
+            });
+        } catch (err) {
+            console.log('Hubo un error al traer un producto o las categorias', err);
+            res.locals.queryErr = 'Hubo un problema! Por favor refresca la página';
+            res.redirect(500, 'admin/pages/products');
         }
-
-        res.render('admin/pages/products/products-list', {
-            products: handleProductsArr(allProducts),
-        });
     },
-    create: (req, res) => {
-        const allCategories = jsonFile.read('../db/categories.json');
-        res.render('admin/pages/products/products-create', {
-            categories: allCategories,
-        });
-    },
-    created: (req, res) => {
+    created: async (req, res) => {
+        console.log(req.body);
+        console.log('\n\n');
+        console.log(req.files);
+        console.log('\n\n');
+        return;
         const handleImages = (obj) => {
             let arrImagesNames = [];
 
             let images = obj;
             images.forEach((image) => {
                 let originalName = image.originalname;
+                console.log(`/${originalName[0]}/${originalName[1]}/${originalName}`);
                 arrImagesNames.push(`/${originalName[0]}/${originalName[1]}/${originalName}`);
             });
 
             return arrImagesNames;
         };
+
+        try {
+            db.Product.create({
+                sizeTableId: req.body.tabla_de_talles ? req.body.tabla_de_talles : '',
+                brandId: req.body.marca ? req.body.marca : '',
+                colorId: req.body.agregar_color ? req.body.agregar_color : '',
+                isActive: req.body.status ? req.body.status : '',
+                productName: req.body.product_name ? req.body.product_name : '',
+                sku: req.body.sku_visible ? req.body.sku_visible : '',
+                productPrice: req.body.product_price ? req.body.product_price : 0,
+                productPriceSpecial: req.body.product_price_special
+                    ? req.body.product_price_special
+                    : 0,
+
+                tipo_de_producto: req.body.tipo_de_producto ? req.body.tipo_de_producto : '',
+
+                product_price_special_desde: req.body.product_price_special_desde
+                    ? req.body.product_price_special_desde
+                    : '',
+                product_price_special_hasta: req.body.product_price_special_hasta
+                    ? req.body.product_price_special_hasta
+                    : '',
+                descripcion_corta: req.body.descripcion_corta ? req.body.descripcion_corta : '',
+                composicion: req.body.composicion ? req.body.composicion : '',
+                cuidado: req.body.cuidado ? req.body.cuidado : '',
+
+                stock_talles: req.body.stock_talles ? req.body.stock_talles : [],
+                categorias: req.body.categorias ? [...req.body.categorias] : [],
+                imagenes: handleImages(req.files) ? handleImages(req.files) : [],
+            });
+        } catch (err) {
+            console.log('Hubo un error de base de datos');
+            res.locals.queryErr = 'Hubo un problema! Por favor refresca la página';
+            res.redirect(500, 'admin/pages/products');
+        }
 
         const product = {
             id: Date.now(),

@@ -15,9 +15,8 @@
             const exists = locals._exists;
             let {
                 id,
-                status,
-                tipo_de_producto,
-                tabla_de_talles,
+                isActive,
+                sizeTableId,
                 marca,
                 product_name,
                 sku_visible,
@@ -119,55 +118,25 @@
                         <%- include('../../../components/forms/form_select/index', {
                             is_required: true,
                             label: 'Estado',
-                            name: 'status',
+                            name: 'isActive',
                             options: [
                                 {
-                                    name: 'Habilitado',
+                                    value: '1',
+                                    name: "Habilitado"
                                 },
                                 {
-                                    name: 'Deshabilitado',
+                                    value: '0',
+                                    name: "Deshabilitado"
                                 },
                             ],
-                            default_option: exists(status) ? status : false,
-                        }) %> 
-
-                        <%- include('../../../components/forms/form_select/index', {
-                            is_required: true,
-                            label: 'Tipo de producto',
-                            name: 'tipo_de_producto',
-                            options: [
-                                {
-                                    name: 'Abrigos'
-                                },
-                                {
-                                    name: 'Remeras'
-                                },
-                                {
-                                    name: 'Pantaloes'
-                                },
-                                {
-                                    name: 'Zapatos'
-                                },
-                            ],
-                            event: ['onchange', `handleSkuVisible(this,'sku_visible')`],
-                            default_option: exists(tipo_de_producto) ? tipo_de_producto : false,
+                            default_option: exists(isActive) ? isActive : false,
                         }) %> 
 
                         <%- include('../../../components/forms/form_select/index', {
                             is_required: true,
                             label: 'Tabla de talles',
-                            name: 'tabla_de_talles',
-                            options: [
-                                {
-                                    name: 'Tabla talles XXS al XXL'
-                                },
-                                {
-                                    name: 'Tabla talles 36 al 48'
-                                },
-                                {
-                                    name: 'Tabla talles calzado 35 al 45'
-                                },
-                            ],
+                            name: 'sizeTableId',
+                            options: exists(locals.sizeTables) ? locals.sizeTables : '',
                             event: [
                                 'onclick', 
                                 `handleTablaTalles(
@@ -176,7 +145,7 @@
                                     ${exists(stock_talles) ? [stock_talles] : ''})
                                 `
                             ],
-                            default_option: exists(tabla_de_talles) ? tabla_de_talles : false,
+                            default_option: exists(sizeTableId) ? sizeTableId : false,
                         }) %> 
 
                         <%- include('../../../components/forms/form_select/index', {

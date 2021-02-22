@@ -119,5 +119,107 @@
       "/1/0/1080100026713_1.webp",
       "/1/0/1080100026713_3.webp"
     ]
+  },
+  {
+    "id": 1613936735754,
+    "status": "habilitado",
+    "tipo_de_producto": "abrigos",
+    "tabla_de_talles": "tabla_talles_xxs_al_xxl",
+    "marca": "alaska",
+    "product_name": "asd",
+    "sku_visible": "alaska-abrigos-asd",
+    "product_price": "1000",
+    "product_price_special": "900",
+    "product_price_special_desde": "",
+    "product_price_special_hasta": "",
+    "descripcion_corta": "asdfas",
+    "composicion": "fsad",
+    "cuidado": "asdf",
+    "color": "blanco",
+    "stock_talles": [
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0"
+    ],
+    "categorias": [
+      "5",
+      "2"
+    ],
+    "imagenes": [
+      "/d/a/daily-afternoon-randomness-49-photos-30-2.jpg",
+      "/d/a/daily-afternoon-randomness-49-photos-33-132.jpg"
+    ]
+  },
+  {
+    "id": 1613936918003,
+    "status": "habilitado",
+    "tipo_de_producto": "abrigos",
+    "tabla_de_talles": "tabla_talles_xxs_al_xxl",
+    "marca": "alaska",
+    "product_name": "asd",
+    "sku_visible": "alaska-abrigos-asd",
+    "product_price": "1000",
+    "product_price_special": "900",
+    "product_price_special_desde": "",
+    "product_price_special_hasta": "",
+    "descripcion_corta": "asdfas",
+    "composicion": "fsad",
+    "cuidado": "asdf",
+    "color": "blanco",
+    "stock_talles": [
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0"
+    ],
+    "categorias": [
+      "5",
+      "2"
+    ],
+    "imagenes": [
+      "/d/a/daily-afternoon-randomness-49-photos-30-2.jpg",
+      "/d/a/daily-afternoon-randomness-49-photos-33-132.jpg"
+    ]
+  },
+  {
+    "id": 1613937123084,
+    "status": "habilitado",
+    "tipo_de_producto": "abrigos",
+    "tabla_de_talles": "tabla_talles_xxs_al_xxl",
+    "marca": "alaska",
+    "product_name": "asd",
+    "sku_visible": "alaska-abrigos-asd",
+    "product_price": "1000",
+    "product_price_special": "900",
+    "product_price_special_desde": "",
+    "product_price_special_hasta": "",
+    "descripcion_corta": "asdfas",
+    "composicion": "fsad",
+    "cuidado": "asdf",
+    "color": "blanco",
+    "stock_talles": [
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0"
+    ],
+    "categorias": [
+      "5",
+      "2"
+    ],
+    "imagenes": [
+      "/d/a/daily-afternoon-randomness-49-photos-30-2.jpg",
+      "/d/a/daily-afternoon-randomness-49-photos-33-132.jpg"
+    ]
   }
 ]
