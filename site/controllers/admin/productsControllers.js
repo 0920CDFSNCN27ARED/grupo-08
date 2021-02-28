@@ -1,5 +1,6 @@
 const jsonFile = require('../../helpers/jsonFile');
 const db = require('../../database/models');
+const stringToArray = require('../../helpers/stringToArray');
 
 const productsControllers = {
     getOne: async (req, res) => {
@@ -20,6 +21,9 @@ const productsControllers = {
                     msg: 'El producto no ha sido encontrado',
                 });
             }
+
+            product.categories = stringToArray(product.categories);
+            console.log(allCategories);
 
             return res.render('admin/pages/products/products-create', {
                 product,
@@ -75,11 +79,17 @@ const productsControllers = {
 
             const sizeTablesFormated = [];
             allSizeTables.forEach((table) => {
-                const bla = {
+                const tableArr = {
                     name: table.dataValues.tableName,
                     value: table.dataValues.id,
                 };
-                sizeTablesFormated.push(bla);
+                sizeTablesFormated.push(tableArr);
+            });
+
+            allCategories.forEach((category) => {
+                category.dataValues.subCategories = stringToArray(
+                    category.dataValues.subCategories
+                );
             });
 
             return res.render('admin/pages/products/products-create', {

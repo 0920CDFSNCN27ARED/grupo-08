@@ -32,7 +32,7 @@
                 categorias,
                 imagenes} = exists(locals.product) ? product : {};
 
-            let _categories = exists(locals.categories) ? categories : {};
+            let _categories = exists(locals.categories) ? categories : [];
         %> 
 
         <section class="content_header">
@@ -342,12 +342,13 @@
                         <% for( let i = 0; i < _categories.length; i++ ) { %>
 
                             <% 
-                                let cat =  _categories[i];
+                                let cat =  _categories[i].dataValues;
                                 function checkSubcats(obj, arr) {
                                     let html = '';
-                                    if (obj.subcategories.length > 0) {
+                                    if (obj.subCategories.length > 0) {
                                         html += `<ul style="margin-left: 1.5rem;">`;
-                                        obj.subcategories.forEach((subcat) => {
+                                            console.log(obj.subCategories);
+                                        obj.subCategories.forEach((subcat) => {
                                             let objSubcat = arr.find((_obj) => _obj.id === subcat);
                                             // prettier-ignore
                                             html += `
@@ -355,7 +356,7 @@
                                                     <input 
                                                         type  = "checkbox" 
                                                         name  = "categorias" 
-                                                        id    = "${objSubcat.name + objSubcat.id}" 
+                                                        id    = "${objSubcat.categoryName + objSubcat.id}" 
                                                         value = "${objSubcat.id}"`;
 
                                                         if (exists(categorias)) {
@@ -366,8 +367,8 @@
                                                             }
                                                         }
                                                     html += `>
-                                                    <label for="${objSubcat.name + objSubcat.id}" >
-                                                        ${objSubcat.name} <i>(${objSubcat.id})</i> 
+                                                    <label for="${objSubcat.categoryName + objSubcat.id}" >
+                                                        ${objSubcat.categoryName} <i>(${objSubcat.id})</i> 
                                                     </label>
                                                     ${checkSubcats(objSubcat, arr)}
                                                 </li>`;
@@ -380,12 +381,12 @@
 
                             %> 
 
-                            <% if (cat.parent_cat == 0) { %>
+                            <% if (cat.parentCategory == 0) { %>
                                 <li>
                                     <input 
                                         type  = "checkbox" 
                                         name  = "categorias" 
-                                        id    = "<%=  cat.name + cat.id %>" 
+                                        id    = "<%=  cat.categoryName + cat.id %>" 
                                         value = "<%=  cat.id %>"
                                         <% if (exists(categorias)) { %>
                                             <% for( let z = 0; z < categorias.length; z++ ) { %>
@@ -395,8 +396,8 @@
                                             <% } %>
                                         <% } %>
                                     >
-                                    <label for="<%=  cat.name + cat.id %>" >
-                                        <%=  cat.name %> <i>(<%= cat.id %>)</i> 
+                                    <label for="<%=  cat.categoryName + cat.id %>" >
+                                        <%=  cat.categoryName %> <i>(<%= cat.id %>)</i> 
                                     </label>
                                     <%- checkSubcats(cat, _categories) %> 
                                 </li>
