@@ -1,7 +1,3 @@
-<% 
-    const admin = locals.curAdmin;
-%> 
-
 <header id="admin_header" style="overflow: auto;">
     <div id="logo">
         <a href="/admin">
@@ -9,9 +5,10 @@
         </a>
     </div>
     <div class="user_data">
-        <h2><%= `${admin.first_name} ${admin.last_name}` %> </h2>
-        <h4><%= admin.permissions  %> </h4>
-        <a href="/admin/user/logout">cerrar sesion</a>
+        <h2>Nombre apellido</h2>
+        <h4>Administrador</h4>
+        <a href="/admin/user/logout">cerrar sesion</a> <br>
+        <a href="/admin/user/login">test login</a>
     </div>
 
     <nav id="menu">
@@ -73,7 +70,7 @@
                     </ul>
                 </div>
             </li>
-            <li class="menu_item dnone">
+            <li class="menu_item">
                 <a href="/admin/clientes">
                     <span>
 

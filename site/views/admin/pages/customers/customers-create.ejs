@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es" class="customer_create_view" layout="admin">
+<head>
+    <% pageTitle = locals.title !== undefined ? title : 'Crear producto' %> 
+    
+    <%- include('../../partials/head') %>
+</head>
+<body>
+    <%- include('../../partials/header.ejs')  %> 
+
+
+    <main>
+
+        <% 
+            const exists = locals._exists;
+            let {
+                id,
+                isActive,
+                firstName,
+                lastName,
+                email,
+                emailVerified,
+                dob,
+                gender,
+                createdAt,
+                updatedAt
+            } = exists(locals.customer) ? customer : {};
+
+        %> 
+
+        <section class="content_header">
+
+            <h1>
+                <%= 
+                    exists(id)
+                        ? `Cliente: ${firstName} ${lastName}`
+                        : 'Cargar cliente'
+                 %> 
+            </h1>
+
+            <div class="content_header_navigation">
+                <% if (exists(locals.customer)) { %>
+                    <a href="/admin/clientes/<%= id %>/delete?_method=DELETE" id="customer_create_form_delete_btn" class="button_main_action error">
+                        Eliminar cliente
+                    </a>
+                <% } %>
+    
+                <a href="/admin/clientes/" class="button_main_action">
+                    Volver
+                </a>
+            </div>
+            
+
+        </section>
+
+        <section class="content_form">
+            <% if (exists(locals.errors)) { %>
+                <%- include('../../../components/listErrors/index', {
+                    errors
+                })  %> 
+            <% } %>
+
+            <% 
+                let _action = '/admin/clientes/crear';
+                if(exists(id)) {
+                    _action = `/admin/clientes/${id}/edit?_method=PUT`;
+                }
+            %> 
+            
+            <form id="customer_create_form" method="POST" action='<%= _action %> '>
+                
+                <% if (exists(id)) { %>
+                    <input type="hidden" name="id" value="<%= id %>">
+                <% } %>
+
+                <div class="form_header">
+                    <h4>Información del cliente</h4>
+                    <ul>
+                        <li>
+                            <a class="form_tab_btn active" onclick="changeTab(this, 'tab_data')">Información de la cuenta</a>
+                        </li>
+                        <li>
+                            <a class="form_tab_btn" onclick="changeTab(this, 'tab_addresses')">Direcciones</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Datos producto -->
+                <div class="form_tab" id="tab_data">
+                    <div class="form_data">
+
+                        <!-- 
+                            id INT
+                            isActive INT
+                            firstName VARCHAR
+                            lastName VARCHAR
+                            email VARCHAR
+                            emailVerified INT
+                            userPassword VARCHAR
+                            dob timestamp
+                            gender VARCHAR
+                            createdAt timestamp
+                            updatedAt timestamp
+                        -->
+                    
+                        <%- include('../../../components/forms/form_select/index', {
+                            is_required: true,
+                            label: 'Estado',
+                            name: 'isActive',
+                            options: [
+                                {
+                                    name: 'Habilitado',
+                                    value: 1,
+                                },
+                                {
+                                    name: 'Deshabilitado',
+                                    value: 0,
+                                },
+                            ],
+                            default_option: exists(isActive) ? isActive : false,
+                        }) %> 
+            
+                        <%- include('../../../components/forms/form_input/index', {
+                            is_required: true,
+                            label: 'Nombre',
+                            type: 'text',
+                            name: 'firstName',
+                            placeholder: 'Nombre',
+                            event: [],
+                            default_value: exists(firstName) ? firstName : false,
+                        }) %> 
+
+                        <%- include('../../../components/forms/form_input/index', {
+                            is_required: true,
+                            label: 'Apellido',
+                            type: 'text',
+                            name: 'lastName',
+                            placeholder: 'Apellido',
+                            event: [],
+                            default_value: exists(lastName) ? lastName : false,
+                        }) %> 
+
+                        <%- include('../../../components/forms/form_input/index', {
+                            is_required: true,
+                            label: 'Email',
+                            type: 'text',
+                            name: 'email',
+                            placeholder: 'Email',
+                            event: [],
+                            default_value: exists(email) ? email : false,
+                        }) %> 
+
+                        <%- include('../../../components/forms/form_input/index', {
+                            is_required: exists(id) ? false : true,
+                            label: 'Contraseña',
+                            type: 'password',
+                            name: 'userPassword',
+                            placeholder: 'Contraseña',
+                            event: [],
+                            default_value: false,
+                        }) %> 
+
+                        <%- include('../../../components/forms/form_input/index', {
+                            is_required: true,
+                            label: 'Fecha de nacimiento',
+                            type: 'date',
+                            name: 'dob',
+                            placeholder: 'Fecha de nacimiento',
+                            event: [],
+                            default_value: exists(dob) ? dob : false,
+                        }) %> 
+
+                        <%- include('../../../components/forms/form_select/index', {
+                            is_required: true,
+                            label: 'Genero',
+                            name: 'gender',
+                            options: [
+                                {
+                                    name: 'Hombre',
+                                    value: 'hombre',
+                                },
+                                {
+                                    name: 'Mujer',
+                                    value: 'mujer',
+                                },
+                            ],
+                            default_option: exists(gender) ? gender : false,
+                        }) %> 
+
+                    </div>
+
+                </div>
+
+                <!-- Colores, talles y stock -->
+                <div class="form_tab dnone" id="tab_addresses">
+                    <div class="form_data">
+                        <h2>En proceso</h2>
+
+                    </div>
+                    
+                </div>
+                
+                <% if (exists(id)) { %>
+                    <button type="submit" id="product_create_form_update_btn" class="button_main_action">Acualizar cliente</button>
+                <% } else { %>
+                    <button type="submit" id="product_create_form_create_btn" class="button_main_action">Guardar cliente</button>
+                <% } %>
+                 
+    
+            </form>
+
+        </section>
+        
+    </main>
+
+    <%- include('../../partials/footer.ejs')  %> 
+</body>
+</html>

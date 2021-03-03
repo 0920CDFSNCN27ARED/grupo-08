@@ -1,0 +1,31 @@
+<% 
+    const handleClases = (arr) => arr.join(' ');
+    const exists = locals._exists;
+%> 
+
+<tr
+    <%= exists(locals.idAttr) ? `id=${locals.idAttr}` : '' // ID %>  
+    <%= exists(locals.clases) ? `class=${handleClases(locals.clases)}` : '' // CLASS %>
+>
+    <td>
+        <%= locals.id %>
+    </td>
+    <td>
+        <%= locals.firstName %>
+    </td>
+    <td>
+        <%= locals.lastName %>
+    </td>
+    <td>
+        <%= locals.email %>
+    </td>
+    <td>
+        <%= locals.gender %>
+    </td>
+    <td>
+        <%= locals.isActive == 1 ? 'Habilitado' : 'Deshabilitado' %>
+    </td>
+    <td>
+        <a href="/admin/clientes/<%= locals.id %>"><%= locals.action.name %></a>
+    </td>
+</tr>

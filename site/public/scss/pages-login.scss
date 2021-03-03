@@ -1,133 +1,128 @@
 .login_view {
-
-  header {
-    border-bottom: 1px solid $gray1;
-    margin-bottom: 2rem;
-  }
-
-  main {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 2rem;
-    width: 95%;
-    max-width: 1200px;
-    margin: 0 auto;
-    margin-top: 8rem;
-    border: 1px solid $gray2;
-    padding: 1rem;
-    min-height: calc(55vh - 8rem);
-
-
-    section {
-
-      * {
-        display: block;
-        margin-bottom: .5rem;
-
-      }
-
-      
-      h1, h2 {
-        @include font-size(28);
-        font-weight: 700;
-        color: $gray5;  
-      }
-      
-      p {
-        @include font-size(16);
-        color: $gray3;
-        
-      }
-      
-      a {
-        text-align: center;
-        text-transform: uppercase;
-      }
-
+    header {
+        border-bottom: 1px solid $gray1;
+        margin-bottom: 2rem;
     }
 
-    .register_section {
-      width: 45%;
+    main {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 2rem;
+        width: 95%;
+        max-width: 1200px;
+        margin: 0 auto;
+        margin-top: 8rem;
+        border: 1px solid $gray2;
+        padding: 1rem;
+        min-height: calc(55vh - 8rem);
 
-      a {
-        margin-top: 1rem;
-        text-align: center;
-      }
+        section {
+            * {
+                display: block;
+                margin-bottom: 0.5rem;
+            }
 
+            h1,
+            h2 {
+                @include font-size(28);
+                font-weight: 700;
+                color: $gray5;
+            }
+
+            p {
+                @include font-size(16);
+                color: $gray3;
+            }
+
+            a {
+                text-align: center;
+                text-transform: uppercase;
+            }
+        }
+
+        .register_section {
+            width: 45%;
+
+            a {
+                margin-top: 1rem;
+                text-align: center;
+            }
+        }
+        .login_section {
+            width: 55%;
+
+            form {
+                margin: 1rem 0;
+
+                label {
+                    @include font-size(12);
+                    color: $gray4;
+                }
+
+                .custom_row {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: flex-start;
+
+                    input {
+                        width: auto;
+                        margin-right: 0.5rem;
+                    }
+                }
+
+                input,
+                select {
+                    width: 100%;
+                    padding: 0.8rem 1rem;
+                    padding-right: calc(40px + 0.5rem);
+                    border: 1px solid $gray1;
+                    border-radius: 0.5rem;
+
+                    &:focus {
+                        border: 1px solid $blue;
+                    }
+                }
+
+                button {
+                    display: block;
+                    text-align: center;
+                    margin-top: 1rem;
+                    width: 100%;
+                }
+            }
+
+            hr {
+                margin-top: 2rem;
+                margin-bottom: 1rem;
+            }
+        }
     }
-    .login_section {
-      width: 55%;
-
-      form {
-        margin: 1rem 0;
-
-          label {
-            @include font-size(12);
-            color: $gray4;
-          }
-
-          input,
-          select {
-              width: 100%;
-              padding: 0.8rem 1rem;
-              padding-right: calc(40px + .5rem);
-              border: 1px solid $gray1;
-              border-radius: 0.5rem;
-
-              &:focus {
-                border: 1px solid $blue;
-
-              }
-          }
-
-          button {
-            display: block;
-            text-align: center;
-            margin-top: 1rem;
-            width: 100%;
-          }
-
-      }
-
-      hr {
-        margin-top: 2rem;
-        margin-bottom: 1rem;
-      }
-
-    }
-
-  }
-
-  
 }
 
 @media screen and (max-width: 1000px) {
-  .login_view {
-    main {
-      flex-direction: column-reverse;
-      margin-top: 5rem;
-      border: 0;
+    .login_view {
+        main {
+            flex-direction: column-reverse;
+            margin-top: 5rem;
+            border: 0;
 
+            .register_section,
+            .login_section {
+                width: 100%;
+            }
 
-      .register_section,
-      .login_section {
-        width: 100%;
-      }
-
-      .login_section {
-        margin-bottom: 2rem;
-        form {
-          select,
-          input {
-            padding: 1.3rem 1;
-            @include font-size(16);
-          }
-
+            .login_section {
+                margin-bottom: 2rem;
+                form {
+                    select,
+                    input {
+                        padding: 1.3rem 1;
+                        @include font-size(16);
+                    }
+                }
+            }
         }
-
-      }
     }
-
-  }
 }

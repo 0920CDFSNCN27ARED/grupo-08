@@ -25,10 +25,31 @@ const slider_featured_products = document.querySelector('.slider_featured_produc
 // ADMIN CREATE PRODUCT
 const products_create_view = document.querySelector('.products_create_view');
 if (products_create_view) {
-
     // Trigguereo e click en select de talles
     let tablaTalles = document.querySelector('#tabla_de_talles');
     eventFire(tablaTalles, 'click');
+
+    /* let aa = document.querySelector('#cuidado');
+    aa.addEventListener('click', (e) => {
+        algo(e, 'dsadsadsadsa');
+    }); */
+
+    /* // Fn declarada
+    function algo () {
+        //..
+    }
+    function() {
+
+    }
+
+    // Fn expresadas -- con arrow function
+    let algo2 = () => {
+
+    }
+    () => {
+         
+    }
+    */
 
     // Muestro imagenes al subir
     let filesInput = document.querySelector('#form_files_upload');
@@ -38,7 +59,7 @@ if (products_create_view) {
         // Remuevo la imagen del array
         let deletedFileIndex = filesArray.findIndex((file) => file.name === target);
         filesArray.splice(deletedFileIndex, 1);
-    
+
         // Remuevo la imagen del front
         document.querySelector(`[id*="${target}"]`).remove();
         filesInput.value = '';
@@ -49,17 +70,20 @@ if (products_create_view) {
 
     let guardarProdBtn = document.querySelector('#product_create_form_create_btn');
     if (guardarProdBtn) {
-
         // Vacio el input file
-        guardarProdBtn.addEventListener('click', () => filesInput.value = '')
+        guardarProdBtn.addEventListener('click', () => (filesInput.value = ''));
 
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
             var FD = new FormData(form);
-            
-            for(let file of filesArray){ 
+
+            for (let file of filesArray) {
                 FD.append('imagenes', file, file.name);
+            }
+
+            for (var pair of FD.entries()) {
+                console.log(pair[0], pair[1]);
             }
 
             fetchData('POST', '/admin/c/productos/crear', FD).then((res) => {
@@ -91,7 +115,7 @@ if (categories_list_view) {
         // Remuevo la imagen del array
         let deletedFileIndex = filesArray.findIndex((file) => file.name === target);
         filesArray.splice(deletedFileIndex, 1);
-    
+
         // Remuevo la imagen del front
         document.querySelector(`[id*="${target}"]`).remove();
         filesInput.value = '';
@@ -118,14 +142,18 @@ if (categories_list_view) {
 
     let borrarCategoryBtn = document.querySelector('#category_create_form_delete_btn');
     if (borrarCategoryBtn) deleteData(borrarCategoryBtn, '/admin/c/categorias');
-
-    
 }
 
 // ADMIN CREATE ROLE
 const employee_create_view = document.querySelector('.employee_create_view');
-if(employee_create_view) {
+if (employee_create_view) {
     let borrarRolBtn = document.querySelector('#role_form_delete_btn');
-    if(borrarRolBtn) deleteData(borrarRolBtn, '/admin/employees/crear-rol');
+    if (borrarRolBtn) deleteData(borrarRolBtn, '/admin/employees/crear-rol');
+}
 
+// ADMIN CREATE CUSTOMER
+const customer_create_view = document.querySelector('.customer_create_view');
+if (customer_create_view) {
+    let borrarCustomerBtn = document.querySelector('#customer_create_form_delete_btn');
+    if (borrarCustomerBtn) deleteData(borrarCustomerBtn, '/admin/clientes');
 }

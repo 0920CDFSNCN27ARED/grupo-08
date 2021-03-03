@@ -4,13 +4,12 @@ const handleCreateId = require('../../helpers/handleCreateId');
 
 const userControllers = {
     login: (req, res) => {
-        if(req.session.adminId !== undefined || req.cookies.rememberMe !== undefined) return res.redirect(301, '/admin');
-
-        res.render('admin/pages/user/login.ejs')
+        res.render('admin/pages/user/login.ejs');
     },
     logout: (req, res) => {
-        delete req.session.adminId;
-        res.clearCookie('rememberMe');
+        delete req.session.adminUser;
+        res.clearCookie('cookieAdminUser');
+
         res.render('admin/pages/user/login.ejs');
     },
     logged: (req, res) => {
@@ -18,40 +17,40 @@ const userControllers = {
         const { username, password, persist_session } = req.body;
 
         const allUsers = jsonFile.read('../db/admin_users.json');
-        const user = allUsers.find(user => {
-            return (
-                user.username === username &&
-                bcrypt.compareSync(password, user.password)
-            )
+        const user = allUsers.find((user) => {
+            return user.username === username && bcrypt.compareSync(password, user.password);
         });
 
-        if(!user) {
+        if (!user) {
             errors.push('Credenciales incorrectas');
-            res.render('admin/pages/user/login.ejs', {errors})
+            res.render('admin/pages/user/login.ejs', { errors });
             return;
         }
 
         // Guardo el login en la db
-        allUsers.forEach(_user => {
-            if(_user.id == user.id) {
+        allUsers.forEach((_user) => {
+            if (_user.id == user.id) {
                 user.last_login_date = Date.now();
             }
         });
         jsonFile.write(allUsers, '../db/admin_users.json');
 
-        req.session.adminId = user.id;
-        req.curAdmin = user;
-        
-        if(persist_session) {
-            res.cookie('rememberMe', req.session.adminId, {maxAge: 60 * 1000 * 60 * 24});
+        req.session.adminUser = user.id;
+
+        if (persist_session) {
+            let days = 30;
+
+            res.cookie('cookieAdminUser', user.id, {
+                maxAge: days * 24 * 60 * 60 * 1000,
+            });
         }
 
         return res.redirect(301, '/admin');
     },
     register: (req, res) => {
-        res.render('admin/pages/user/register.ejs')
+        res.render('admin/pages/user/register.ejs');
     },
-    create: (req, res)=> {
+    create: (req, res) => {
         const errors = [];
         const {
             first_name,
@@ -61,22 +60,22 @@ const userControllers = {
             password,
             password_confirm,
             status,
-            permissions
+            permissions,
         } = req.body;
 
-        if(password !== password_confirm) {
-            errors.push('Las contraseñas no son iguales')
-            res.render('admin/pages/user/register.ejs', {errors});
+        if (password !== password_confirm) {
+            errors.push('Las contraseñas no son iguales');
+            res.render('admin/pages/user/register.ejs', { errors });
         }
-        
+
         const allUsers = jsonFile.read('../db/admin_users.json');
-        allUsers.forEach(user => {
-            if(user.email === email) errors.push('El email ya esta registrado');
-            if(user.username === username) errors.push('El username ya esta registrado');
+        allUsers.forEach((user) => {
+            if (user.email === email) errors.push('El email ya esta registrado');
+            if (user.username === username) errors.push('El username ya esta registrado');
         });
 
-        if(errors.length > 0) {
-            res.render('admin/pages/user/register.ejs', {errors})
+        if (errors.length > 0) {
+            res.render('admin/pages/user/register.ejs', { errors });
             return;
         }
 
@@ -90,14 +89,16 @@ const userControllers = {
             created_at: Date.now(),
             last_login_date: '',
             status: status,
-            permissions: permissions
-        }
+            permissions: permissions,
+        };
         allUsers.push(user);
 
         jsonFile.write(allUsers, '../db/admin_users.json');
-        
-        return res.redirect(301, '/admin')
-    }
-}
+
+        req.session.adminUser = user.id;
+
+        return res.redirect(301, '/admin');
+    },
+};
 
 module.exports = userControllers;

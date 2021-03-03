@@ -1,19 +1,28 @@
-const jsonFile = require("../../helpers/jsonFile");
+const jsonFile = require('../../helpers/jsonFile');
+const db = require('../../database/models');
 
-function withAuth (req, res, next) {
-    if(!req.session.customer) return res.redirect('/clientes/login');
+function withAuth(req, res, next) {
+    const curURL = req.originalUrl;
 
-    const id = req.session.customer;
-    const allCustomers = jsonFile.read('../db/customers.json');
+    // Si el usuario NO esta en la session
+    // y si esta intentando acceder al panel del cliente
+    if (!req.session.customer && curURL.indexOf('clientes/mi-cuenta') > -1) {
+        delete req.session.customer;
+        res.clearCookie('cookieCustomer');
 
-    const loggedCustomer = allCustomers.find(customer => customer.id == id);
+        return res.redirect(301, '/clientes/login');
+    }
 
-    if(!loggedCustomer) (
-        delete req.session.customer,
-        next()
-    )
+    // Si el usuario existe en al sesion
+    // y si esta intentando loguearse en /clientes/login o /clientes/register
+    if (
+        req.session.customer &&
+        (curURL.indexOf('/clientes/login') > -1 || curURL.indexOf('/clientes/registro') > -1)
+    ) {
+        return res.redirect(301, '/clientes/mi-cuenta');
+    }
 
-    req.session.customerData = loggedCustomer;
+    console.log('Withauth MD');
     next();
 }
 

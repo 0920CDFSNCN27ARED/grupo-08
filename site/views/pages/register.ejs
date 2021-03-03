@@ -1,3 +1,7 @@
+<% 
+    const exists = locals._exists;
+%> 
+
 <!DOCTYPE html>
 <html lang="es" class="register_view">
     <head>
@@ -12,6 +16,12 @@
         <main>
             <section>
                 <h2>Datos Personales</h2>
+                <% if (exists(locals.errors)) { %>
+                    <%- include('../components/listErrors/index', {
+                        errors
+                    })  %> 
+                <% } %>
+                <br>
                 <form action="/clientes/registered" method="POST">
                     <%- include('../components/forms/form_input/index', {
                         is_required: true,

@@ -153,8 +153,7 @@ CREATE TABLE SizeTables(
 	id INT auto_increment not null,
     tableName VARCHAR(255) not null,
     sizes VARCHAR(255) not null, -- datos separados por coma
-	CONSTRAINT pk_sizesTable PRIMARY KEY(id),
-    CONSTRAINT uq_tableName UNIQUE(tableName)
+	CONSTRAINT pk_sizesTable PRIMARY KEY(id)
 );
 CREATE TABLE Colors(
 	id INT auto_increment not null,

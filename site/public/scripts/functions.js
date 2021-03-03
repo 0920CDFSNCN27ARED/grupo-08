@@ -42,7 +42,7 @@ function showHidePw(el) {
     let pwInput = el.parentNode.querySelector('input');
     let getTypeAttr = pwInput.getAttribute('type');
 
-    if(getTypeAttr === 'password') {
+    if (getTypeAttr === 'password') {
         pwInput.setAttribute('type', 'text');
     } else {
         pwInput.setAttribute('type', 'password');
@@ -57,6 +57,8 @@ async function fetchData(_method = '', url = '', data = {}) {
         method: _method,
         body: data,
     });
+
+    //
 
     return res.json();
 }
@@ -74,7 +76,7 @@ function deleteData(el, redirectPath) {
     });
 }
 
-function updateData(form, type, redirectPath ) {
+function updateData(form, type, redirectPath) {
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         let pid;
@@ -86,16 +88,13 @@ function updateData(form, type, redirectPath ) {
             }
         }
 
-        fetchData('POST', `/admin/c/${type}/${pid}/update?_method=PUT`, FD).then(
-            (res) => {
-                if (res.status === 200) {
-                    location.href = redirectPath;
-                }
+        fetchData('POST', `/admin/c/${type}/${pid}/update?_method=PUT`, FD).then((res) => {
+            if (res.status === 200) {
+                location.href = redirectPath;
             }
-        );
+        });
     });
 }
-
 
 // Home
 function switchSliderImageOnMobile(obj) {
@@ -469,13 +468,21 @@ function handleTablaTalles(currEl, targetElement, ...stock_talles) {
         }
     }
 }
-
+/* 
+function ejemploLean(e, str) {
+    console.log('e', e);
+    console.log(str);
+}
+ */
 function handleImagesUploaded(filesInput, outputEl) {
     let filesArray = [];
     // Valido la api de file
     if (window.File && window.FileList && window.FileReader) {
         filesInput.addEventListener('change', (e) => {
             let files, output;
+
+            /* console.log('fi', filesInput);
+            console.log('e', e); */
 
             files = e.target.files; // el FileList
             output = document.querySelector(outputEl);
@@ -507,4 +514,4 @@ function handleImagesUploaded(filesInput, outputEl) {
         alert('El navegador no soporta la API FILE');
         return filesArray;
     }
-} 
+}

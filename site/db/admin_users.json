@@ -7,7 +7,7 @@
     "username": "lm",
     "password": "$2b$12$FbDdOYvqQODfm7zDyEPmleoJS1xREoBhk.RreEL9nRlEH3V0B2pJ.",
     "created_at": 1612756807152,
-    "last_login_date": 1613574762447,
+    "last_login_date": 1614736437058,
     "status": "activo",
     "permissions": "administrador"
   },
@@ -19,7 +19,7 @@
     "username": "lcanton",
     "password": "$2b$12$ml20OgPmoLmg6/4XuUfmS.1Xi6uqmdslLRdCjT97JehJ2bi6zn5hG",
     "created_at": 1612762993812,
-    "last_login_date": 1613268086374,
+    "last_login_date": 1614207297135,
     "status": "activo",
     "permissions": "administrador"
   },

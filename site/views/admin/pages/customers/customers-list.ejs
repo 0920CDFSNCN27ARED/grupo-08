@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es" class="admin_customer_view" layout="admin">
+<head>
+    <% pageTitle = locals.title !== undefined ? title : 'Productos' %> 
+    
+    <%- include('../../partials/head') %>
+</head>
+<body>
+
+    <%- include('../../partials/header.ejs')  %> 
+
+    <main>
+
+        <section class="content_header">
+
+            <h1>
+                Gestionar clientes
+            </h1>
+
+            <a href="/admin/clientes/crear" class="button_main_action">
+                Cargar cliente
+            </a>
+
+        </section>
+
+        <section id="products_list_component">
+
+            <div class="products_pagination">
+                <div class="products_pagination_current_page">
+                    Página 1 de 893 página(s)
+                </div>
+                
+                <div class="products_pagination_view_limit">
+                    Ver 20 por página
+                </div>
+            </div>
+
+            <div class="products_table">
+
+                <table width="100%" cellspacing="0" cellpadding="0">
+                    <!-- Table header -->
+                    <tr class="products_table_header">
+                        <th>
+                            id
+                        </th>
+                        <th>
+                            Nombre
+                        </th>
+                        <th>
+                            Apellido
+                        </th>
+                        <th>
+                            Email
+                        </th>
+                        <th>
+                            Genero
+                        </th>
+                        <th>
+                            Estado
+                        </th>
+                        <th>
+                            Accion
+                        </th>
+                    </tr>
+
+                    <!-- Table filters -->
+                    <tr class="products_table_filter">
+                        <td>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <input type="text" placeholder="Cliente ID">
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <input type="text" placeholder="Nombre">
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <input type="text" placeholder="Apellido">
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <input type="text" placeholder="Email">
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <input type="text" placeholder="Genero">
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <select name="" id="">
+                                            <option value="h">Habilitado</option>
+                                            <option value="d">Deshabilitado</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+
+                        </td>
+                    </tr>
+                    <tr><td class="table_spacing" colspan="8"></td></tr>
+
+                    <!-- Clientes -->
+                    <% for( let i = 0; i < allCustomers.length; i++ ) { %>
+                        <% let customer = allCustomers[i].dataValues %> 
+                        <%- include('../../../components/rowTables/adminCustomersList.ejs',{
+                            clases: ['component_rowTables'],
+                            idAttr: 'customer_list_rowTable',
+                            events: [],
+                            action: {
+                                name: 'Editar',
+                            },
+                            ...customer
+                        }) %> 
+
+
+                    <% } %>
+                    
+                </table>
+
+            </div>
+
+        </section>
+
+        
+
+    </main>
+    
+</body>
+</html>

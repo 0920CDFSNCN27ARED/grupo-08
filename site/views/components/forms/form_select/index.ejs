@@ -40,9 +40,9 @@
 
             %> 
             <option 
-                value="<%= handleString(`${options[i].name}`); %>"
+                value="<%= options[i].value; %>"
                 <% if (exists(locals.default_option) ) { 
-                        if(locals.default_option === handleString(`${options[i].name}`)){ %>
+                        if(locals.default_option === options[i].value){ %>
                             selected="selected"
                 <%      }
                    } 

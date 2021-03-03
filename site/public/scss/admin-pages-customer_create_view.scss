@@ -1,0 +1,7 @@
+.customer_create_view {
+    @extend .products_create_view;
+
+    #customer_create_form {
+        @extend #product_create_form;
+    }
+}

@@ -98,6 +98,8 @@ const productsControllers = {
             imagenes: handleImages(req.files) ? handleImages(req.files) : [],
         };
 
+        console.log(product);
+
         /* let mockProd = {
             id: Date.now(),
             status: 'habilitado',
@@ -128,7 +130,11 @@ const productsControllers = {
         // Guardo todos los productos
         jsonFile.write(allProducts, '../db/products.json');
         //res.redirect(200, '/');
-        res.send({ status: 200 });
+        res.send({
+            status: 200,
+            statusText: 'OK',
+            Data: product,
+        });
     },
     update: (req, res) => {
         let allProducts = jsonFile.read('../db/products.json');

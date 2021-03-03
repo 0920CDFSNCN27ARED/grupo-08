@@ -86,38 +86,5 @@
       "/b/a/banner_1.jpg",
       "/s/h/short_truly.jpg"
     ]
-  },
-  {
-    "id": 1612659227131,
-    "status": "habilitado",
-    "tipo_de_producto": "pantaloes",
-    "tabla_de_talles": "tabla_talles_xxs_al_xxl",
-    "marca": "felix",
-    "product_name": "algo",
-    "sku_visible": "felix-pantaloes-algo",
-    "product_price": "3344",
-    "product_price_special": 0,
-    "product_price_special_desde": "",
-    "product_price_special_hasta": "",
-    "descripcion_corta": "Esto es una descripcion corta",
-    "composicion": "Esta es la composicion",
-    "cuidado": "Estos son los cuidados a tener",
-    "color": "negro",
-    "stock_talles": [
-      "12",
-      "0",
-      "0",
-      "3",
-      "0",
-      "0",
-      "0"
-    ],
-    "categorias": [
-      "7"
-    ],
-    "imagenes": [
-      "/1/0/1080100026713_1.webp",
-      "/1/0/1080100026713_3.webp"
-    ]
   }
 ]

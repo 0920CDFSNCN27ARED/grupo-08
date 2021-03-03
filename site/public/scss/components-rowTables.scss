@@ -1,0 +1,11 @@
+.component_rowTables {
+    &:nth-child(2n + 1) {
+        background: $gray1;
+    }
+
+    td {
+        padding: 1rem 0rem;
+        @include font-size(14);
+        color: $gray4;
+    }
+}
