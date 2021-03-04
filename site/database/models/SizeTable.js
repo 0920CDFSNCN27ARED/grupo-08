@@ -25,5 +25,12 @@ module.exports = (sequelize, dataTypes) => {
 
     const SizeTable = sequelize.define(alias, cols, config);
 
+    /* SizeTable.associate = (models) => {
+        SizeTable.hasMany(models.Product, {
+            as: 'sizeTable',
+            foreignkey: 'sizeTableId',
+        });
+    }; */
+
     return SizeTable;
 };

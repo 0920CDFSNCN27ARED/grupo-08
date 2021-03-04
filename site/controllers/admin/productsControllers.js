@@ -7,10 +7,8 @@ const productsControllers = {
         const { id } = req.params;
 
         try {
-            const allCategories = await db.Category.findAll();
-
             // Busco el id en los productos
-            let product = await db.Producto.findOne({
+            let product = await db.Product.findOne({
                 where: {
                     id: id,
                 },
@@ -21,16 +19,18 @@ const productsControllers = {
                     msg: 'El producto no ha sido encontrado',
                 });
             }
+            const allSizeTables = await db.SizeTable.findAll();
+            const allCategories = await db.Category.findAll();
 
             product.categories = stringToArray(product.categories);
-            console.log(allCategories);
 
             return res.render('admin/pages/products/products-create', {
                 product,
                 categories: allCategories,
+                sizeTables: allSizeTables,
             });
         } catch (err) {
-            console.log('Hubo un error al traer un producto o las categorias');
+            console.log('Hubo un error al traer un producto o las categorias', err);
             res.locals.queryErr = 'Hubo un problema! Por favor refresca la página';
             res.redirect(500, 'admin/pages/products');
         }
@@ -49,25 +49,26 @@ const productsControllers = {
                 const handledProducts = [];
                 arr.forEach((prod) => {
                     handledProducts.push({
-                        image: prod.imagenes[0],
+                        image: prod.images,
                         id: prod.id,
-                        sku: prod.sku_visible,
-                        name: prod.product_name,
-                        price: prod.product_price,
-                        special_price: prod.product_price_special,
-                        stock: handleTotalStock(prod.stock_talles),
-                        status: prod.status,
+                        sku: prod.sku,
+                        name: prod.productName,
+                        price: prod.productPrice,
+                        special_price: prod.productPriceSpecial,
+                        stock: 1,
+                        status: prod.isActive,
                     });
                 });
 
                 return handledProducts;
             }
+            console.log(allProducts);
 
             return res.render('admin/pages/products/products-list', {
                 products: handleProductsArr(allProducts),
             });
         } catch (err) {
-            console.log('Hubo un error al traer los productos');
+            console.log('Hubo un error al traer los productos', err);
             res.locals.queryErr = 'Hubo un problema! Por favor refresca la página';
             res.redirect(500, 'admin/pages/products');
         }
@@ -76,6 +77,8 @@ const productsControllers = {
         try {
             const allCategories = await db.Category.findAll();
             const allSizeTables = await db.SizeTable.findAll();
+            const allColors = await db.Color.findAll();
+            console.log(allColors);
 
             const sizeTablesFormated = [];
             allSizeTables.forEach((table) => {
@@ -103,11 +106,6 @@ const productsControllers = {
         }
     },
     created: async (req, res) => {
-        console.log(req.body);
-        console.log('\n\n');
-        console.log(req.files);
-        console.log('\n\n');
-        return;
         const handleImages = (obj) => {
             let arrImagesNames = [];
 
@@ -122,7 +120,7 @@ const productsControllers = {
         };
 
         try {
-            db.Product.create({
+            /* db.Product.create({
                 sizeTableId: req.body.tabla_de_talles ? req.body.tabla_de_talles : '',
                 brandId: req.body.marca ? req.body.marca : '',
                 colorId: req.body.agregar_color ? req.body.agregar_color : '',
@@ -133,30 +131,64 @@ const productsControllers = {
                 productPriceSpecial: req.body.product_price_special
                     ? req.body.product_price_special
                     : 0,
-
-                tipo_de_producto: req.body.tipo_de_producto ? req.body.tipo_de_producto : '',
-
-                product_price_special_desde: req.body.product_price_special_desde
+                productsGroup: req.body.tipo_de_producto ? req.body.tipo_de_producto : '',
+                productPriceSpecialFrom: req.body.product_price_special_desde
                     ? req.body.product_price_special_desde
                     : '',
-                product_price_special_hasta: req.body.product_price_special_hasta
+                productPriceSpecialTo: req.body.product_price_special_hasta
                     ? req.body.product_price_special_hasta
                     : '',
-                descripcion_corta: req.body.descripcion_corta ? req.body.descripcion_corta : '',
-                composicion: req.body.composicion ? req.body.composicion : '',
-                cuidado: req.body.cuidado ? req.body.cuidado : '',
-
-                stock_talles: req.body.stock_talles ? req.body.stock_talles : [],
-                categorias: req.body.categorias ? [...req.body.categorias] : [],
-                imagenes: handleImages(req.files) ? handleImages(req.files) : [],
+                shortDescription: req.body.descripcion_corta ? req.body.descripcion_corta : '',
+                composition: req.body.composicion ? req.body.composicion : '',
+                care: req.body.cuidado ? req.body.cuidado : '',
+                images: 'imagenes',
+                stock: '',
+                categories: '1,2',
+            }); */
+            console.log(req.body);
+            db.Product.create({
+                sizeTableId: req.body.sizeTableId ? req.body.sizeTableId : '',
+                brandId: req.body.brandId ? req.body.brandId : '',
+                colorId: req.body.colorId ? req.body.colorId : '',
+                isActive: req.body.isActive ? req.body.isActive : '',
+                productName: req.body.productName ? req.body.productName : '',
+                sku: req.body.sku ? req.body.sku : '',
+                productPrice: req.body.productPrice ? req.body.productPrice : '',
+                productPriceSpecial: req.body.productPriceSpecial
+                    ? req.body.productPriceSpecial
+                    : '',
+                productsGroup: req.body.productsGroup ? req.body.productsGroup : '',
+                productPriceSpecialFrom: req.body.productPriceSpecialFrom
+                    ? req.body.productPriceSpecialFrom
+                    : '',
+                productPriceSpecialTo: req.body.productPriceSpecialTo
+                    ? req.body.productPriceSpecialTo
+                    : '',
+                shortDescription: req.body.shortDescription ? req.body.shortDescription : '',
+                composition: req.body.composition ? req.body.composition : '',
+                care: req.body.care ? req.body.care : '',
+                images: req.body.images ? req.body.images : '',
+                stock: req.body.stock ? req.body.stock : '',
+                categories: req.body.categories ? req.body.categories : '',
+            });
+            return res.send({
+                status: 200,
+                msg: 'ok',
             });
         } catch (err) {
-            console.log('Hubo un error de base de datos');
+            console.log('Hubo un error de base de datos', err);
+
             res.locals.queryErr = 'Hubo un problema! Por favor refresca la página';
-            res.redirect(500, 'admin/pages/products');
+            //res.redirect(500, 'admin/pages/products');
+
+            res.send({
+                status: 500,
+                statusText: 'error',
+                msg: err,
+            });
         }
 
-        const product = {
+        /*const product = {
             id: Date.now(),
             status: req.body.status ? req.body.status : '',
             tipo_de_producto: req.body.tipo_de_producto ? req.body.tipo_de_producto : '',
@@ -181,7 +213,7 @@ const productsControllers = {
             stock_talles: req.body.stock_talles ? req.body.stock_talles : [],
             categorias: req.body.categorias ? [...req.body.categorias] : [],
             imagenes: handleImages(req.files) ? handleImages(req.files) : [],
-        };
+        };*/
 
         /* let mockProd = {
             id: Date.now(),
@@ -205,15 +237,17 @@ const productsControllers = {
         }; */
 
         // Traigo los productos
-        const allProducts = jsonFile.read('../db/products.json');
+        //const allProducts = jsonFile.read('../db/products.json');
 
         // pusheo el producto
-        allProducts.push(product);
+        //allProducts.push(product);
 
         // Guardo todos los productos
-        jsonFile.write(allProducts, '../db/products.json');
+        //jsonFile.write(allProducts, '../db/products.json');
         //res.redirect(200, '/');
-        res.send({ status: 200 });
+        res.send({
+            status: 200,
+        });
     },
     update: (req, res) => {
         let allProducts = jsonFile.read('../db/products.json');
@@ -280,7 +314,9 @@ const productsControllers = {
         });
 
         jsonFile.write(allProducts, '../db/products.json');
-        res.send({ status: 200 });
+        res.send({
+            status: 200,
+        });
     },
     delete: (req, res) => {
         let { id } = req.params;
@@ -288,7 +324,9 @@ const productsControllers = {
         let productsUpdated = allProducts.filter((prod, i) => prod.id != id);
 
         jsonFile.write(productsUpdated, '../db/products.json');
-        res.send({ status: 200 });
+        res.send({
+            status: 200,
+        });
     },
 };
 

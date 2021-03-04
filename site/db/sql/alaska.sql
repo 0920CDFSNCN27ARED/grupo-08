@@ -221,6 +221,7 @@ CREATE TABLE Products(
     stock VARCHAR(255) not null, -- valores separados por coma en el orden de los talles
     productsGroup VARCHAR(255),
     categories VARCHAR(255) not null, -- valores separados por coma
+    images VARCHAR(255), -- valores separados por coma
     createdAt timestamp not null,
 	updatedAt timestamp,
 	CONSTRAINT pk_product PRIMARY KEY(id),

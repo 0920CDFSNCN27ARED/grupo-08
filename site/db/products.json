@@ -221,5 +221,49 @@
       "/d/a/daily-afternoon-randomness-49-photos-30-2.jpg",
       "/d/a/daily-afternoon-randomness-49-photos-33-132.jpg"
     ]
+  },
+  {
+    "id": 1614820073536,
+    "status": "",
+    "tipo_de_producto": "",
+    "tabla_de_talles": "",
+    "marca": "",
+    "product_name": "sdh",
+    "sku_visible": "-tipo_de_producto-sdh",
+    "product_price": "453",
+    "product_price_special": 0,
+    "product_price_special_desde": "",
+    "product_price_special_hasta": "",
+    "descripcion_corta": "",
+    "composicion": "",
+    "cuidado": "",
+    "color": "",
+    "stock_talles": [],
+    "categorias": [
+      "5"
+    ],
+    "imagenes": []
+  },
+  {
+    "id": 1614822057120,
+    "status": "",
+    "tipo_de_producto": "",
+    "tabla_de_talles": "",
+    "marca": "",
+    "product_name": "sdh",
+    "sku_visible": "-tipo_de_producto-sdh",
+    "product_price": "453",
+    "product_price_special": 0,
+    "product_price_special_desde": "",
+    "product_price_special_hasta": "",
+    "descripcion_corta": "",
+    "composicion": "",
+    "cuidado": "",
+    "color": "",
+    "stock_talles": [],
+    "categorias": [
+      "5"
+    ],
+    "imagenes": []
   }
 ]

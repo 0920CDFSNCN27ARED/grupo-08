@@ -43,11 +43,11 @@ module.exports = (sequelize, dataTypes) => {
             allowNull: false,
         },
         productPriceSpecialFrom: {
-            type: d.DATE,
+            type: d.STRING,
             allowNull: true,
         },
         productPriceSpecialTo: {
-            type: d.DATE,
+            type: d.STRING,
             allowNull: true,
         },
         shortDescription: {
@@ -74,6 +74,10 @@ module.exports = (sequelize, dataTypes) => {
             type: d.STRING,
             allowNull: false,
         },
+        images: {
+            type: d.STRING,
+            allowNull: false,
+        },
         createdAt: {
             type: d.INTEGER,
             allowNull: false,
@@ -87,7 +91,22 @@ module.exports = (sequelize, dataTypes) => {
         timestamps: true,
     };
 
-    const AdminUser = sequelize.define(alias, cols, config);
+    const Product = sequelize.define(alias, cols, config);
 
-    return AdminUser;
+    Product.associate = (models) => {
+        Product.belongsTo(models.SizeTable, {
+            foreignkey: 'sizeTableId',
+            as: 'sizeTable',
+        });
+        Product.belongsTo(models.Color, {
+            foreignkey: 'colorId',
+            as: 'color',
+        });
+        Product.belongsTo(models.Brand, {
+            foreignkey: 'brandId',
+            as: 'brand',
+        });
+    };
+
+    return Product;
 };

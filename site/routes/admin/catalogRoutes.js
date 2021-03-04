@@ -36,5 +36,4 @@ routes.put('/categorias/:id/update', upload.any(), categoriesControllers.update)
 
 routes.delete('/categorias/:id/delete', categoriesControllers.delete);
 
-
 module.exports = routes;
