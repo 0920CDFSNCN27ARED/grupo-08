@@ -1,5 +1,6 @@
 const jsonFile = require('../../helpers/jsonFile');
 const returnCategoriesFormated = require('../../helpers/returnCategoriesFormated');
+const db = require('../../database/models');
 
 const categoriesControllers = {
     getOne: (req, res) => {
@@ -28,44 +29,54 @@ const categoriesControllers = {
         });
     },
     create: (req, res) => {
-        const allCategories = jsonFile.read('../db/categories.json');
+        /* 
+            status: '',
+            show_menu: '',
+            category_name: 'Categoria 1 nombre',
+            page_title: 'categoria 1 titulo',
+            meta_description: 'categoria 1 meta desc',
+            meta_keywords: 'categoria,1,meta,keywords',
+            imagenes: '[object File]'
 
-        const handleCategoryId = (arr) => {
-            if (arr.length === 0) return 1;
+            id 
+            isActive 
+            showMenu 
+            categoryName 
+            pageTitle 
+            metaDescription 
+            metaKeyWords 
+            parentCategory 
+            subCategories 
+            createdAt 
+            updatedAt
+        */
+        const {
+            status,
+            show_menu,
+            category_name,
+            page_title,
+            meta_description,
+            meta_keywords,
+            imagenes,
+        } = req.body;
 
-            let lastIdNo = arr[arr.length - 1].id;
-            return lastIdNo + 1;
-        };
-
-        const handleImages = (obj) => {
-            let arrImagesNames = [];
-
-            let images = obj;
-            images.forEach((image) => {
-                let originalName = image.originalname;
-                arrImagesNames.push(`/${originalName[0]}/${originalName[1]}/${originalName}`);
+        try {
+            const category = db.Category.create({
+                isActive: Number(status),
+                showMenu: Number(show_menu),
+                categoryName: category_name,
+                pageTitle: page_title,
+                metaDescription: meta_description,
+                metaKeyWords: meta_keywords,
+                parentCategory: '0',
+                subCategories: '',
             });
 
-            return arrImagesNames;
-        };
-
-        const category = {
-            id: handleCategoryId(allCategories),
-            status: req.body.status,
-            show_menu: req.body.show_menu,
-            name: req.body.category_name,
-            page_title: req.body.page_title ? req.body.page_title : '',
-            meta_description: req.body.meta_description ? req.body.meta_description : '',
-            meta_keywords: req.body.meta_keywords ? req.body.meta_keywords : '',
-            imagenes: handleImages(req.files) ? handleImages(req.files) : [],
-            parent_cat: 0,
-            subcategories: [],
-        };
-
-        allCategories.push(category);
-
-        jsonFile.write(allCategories, '../db/categories.json');
-        res.send({ status: 200 });
+            return res.send({ status: 200 });
+        } catch (err) {
+            console.log('Hubo un error al crear la categoria --> ', err);
+            return res.send({ status: 400 });
+        }
     },
     update: (req, res) => {
         const allCategories = jsonFile.read('../db/categories.json');

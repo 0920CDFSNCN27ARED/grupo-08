@@ -1,36 +1,5 @@
 [
   {
-    "id": 1,
-    "status": "habilitado",
-    "show_menu": "si",
-    "name": "New arrivals",
-    "page_title": "New arrivals ss21",
-    "meta_description": "Esto es la meta description",
-    "meta_keywords": "prendas para verano, verano 2021, verano, summer",
-    "imagenes": [
-      "/i/m/img2--desktop.jpg"
-    ],
-    "parent_cat": 0,
-    "subcategories": [
-      4,
-      5
-    ]
-  },
-  {
-    "id": 2,
-    "status": "habilitado",
-    "show_menu": "si",
-    "name": "Eshop",
-    "page_title": "Eshop",
-    "meta_description": "Este es el eshop",
-    "meta_keywords": "eshop, tienda, shop",
-    "imagenes": [
-      "/i/m/img3--mobile.png"
-    ],
-    "parent_cat": 0,
-    "subcategories": []
-  },
-  {
     "id": 3,
     "status": "deshabilitado",
     "show_menu": "no",
@@ -72,34 +41,6 @@
       "/i/m/img2--desktop.jpg"
     ],
     "parent_cat": 1,
-    "subcategories": []
-  },
-  {
-    "id": 6,
-    "status": "deshabilitado",
-    "show_menu": "si",
-    "name": "Denin",
-    "page_title": "Denim",
-    "meta_description": "Todo tipo de productos denim",
-    "meta_keywords": "camperas, jeans",
-    "imagenes": [
-      "/b/a/banner_4.jpg"
-    ],
-    "parent_cat": 0,
-    "subcategories": []
-  },
-  {
-    "id": 7,
-    "status": "deshabilitado",
-    "show_menu": "si",
-    "name": "cat 1",
-    "page_title": "Remeras lisas",
-    "meta_description": "Estas son remeras lisas",
-    "meta_keywords": "remeras, remeras lisas, lisas, blanco, negro",
-    "imagenes": [
-      "/B/a/BannerCategoria.jpg"
-    ],
-    "parent_cat": 0,
     "subcategories": []
   }
 ]

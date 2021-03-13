@@ -120,36 +120,11 @@ const productsControllers = {
         };
 
         try {
-            /* db.Product.create({
-                sizeTableId: req.body.tabla_de_talles ? req.body.tabla_de_talles : '',
-                brandId: req.body.marca ? req.body.marca : '',
-                colorId: req.body.agregar_color ? req.body.agregar_color : '',
-                isActive: req.body.status ? req.body.status : '',
-                productName: req.body.product_name ? req.body.product_name : '',
-                sku: req.body.sku_visible ? req.body.sku_visible : '',
-                productPrice: req.body.product_price ? req.body.product_price : 0,
-                productPriceSpecial: req.body.product_price_special
-                    ? req.body.product_price_special
-                    : 0,
-                productsGroup: req.body.tipo_de_producto ? req.body.tipo_de_producto : '',
-                productPriceSpecialFrom: req.body.product_price_special_desde
-                    ? req.body.product_price_special_desde
-                    : '',
-                productPriceSpecialTo: req.body.product_price_special_hasta
-                    ? req.body.product_price_special_hasta
-                    : '',
-                shortDescription: req.body.descripcion_corta ? req.body.descripcion_corta : '',
-                composition: req.body.composicion ? req.body.composicion : '',
-                care: req.body.cuidado ? req.body.cuidado : '',
-                images: 'imagenes',
-                stock: '',
-                categories: '1,2',
-            }); */
             console.log(req.body);
             db.Product.create({
                 sizeTableId: req.body.sizeTableId ? req.body.sizeTableId : '',
-                brandId: req.body.brandId ? req.body.brandId : '',
-                colorId: req.body.colorId ? req.body.colorId : '',
+                brandId: req.body.brandId ? req.body.brandId : 99,
+                colorId: req.body.colorId ? req.body.colorId : 99,
                 isActive: req.body.isActive ? req.body.isActive : '',
                 productName: req.body.productName ? req.body.productName : '',
                 sku: req.body.sku ? req.body.sku : '',
@@ -171,83 +146,25 @@ const productsControllers = {
                 stock: req.body.stock ? req.body.stock : '',
                 categories: req.body.categories ? req.body.categories : '',
             });
-            return res.send({
+            console.log('fin del try');
+            /* return res.send({
                 status: 200,
                 msg: 'ok',
-            });
+            }); */
         } catch (err) {
             console.log('Hubo un error de base de datos', err);
 
             res.locals.queryErr = 'Hubo un problema! Por favor refresca la página';
             //res.redirect(500, 'admin/pages/products');
 
-            res.send({
+            /* res.send({
                 status: 500,
                 statusText: 'error',
                 msg: err,
-            });
+            }); */
+
+            console.log('fin del catch');
         }
-
-        /*const product = {
-            id: Date.now(),
-            status: req.body.status ? req.body.status : '',
-            tipo_de_producto: req.body.tipo_de_producto ? req.body.tipo_de_producto : '',
-            tabla_de_talles: req.body.tabla_de_talles ? req.body.tabla_de_talles : '',
-            marca: req.body.marca ? req.body.marca : '',
-            product_name: req.body.product_name ? req.body.product_name : '',
-            sku_visible: req.body.sku_visible ? req.body.sku_visible : '',
-            product_price: req.body.product_price ? req.body.product_price : 0,
-            product_price_special: req.body.product_price_special
-                ? req.body.product_price_special
-                : 0,
-            product_price_special_desde: req.body.product_price_special_desde
-                ? req.body.product_price_special_desde
-                : '',
-            product_price_special_hasta: req.body.product_price_special_hasta
-                ? req.body.product_price_special_hasta
-                : '',
-            descripcion_corta: req.body.descripcion_corta ? req.body.descripcion_corta : '',
-            composicion: req.body.composicion ? req.body.composicion : '',
-            cuidado: req.body.cuidado ? req.body.cuidado : '',
-            color: req.body.agregar_color ? req.body.agregar_color : '',
-            stock_talles: req.body.stock_talles ? req.body.stock_talles : [],
-            categorias: req.body.categorias ? [...req.body.categorias] : [],
-            imagenes: handleImages(req.files) ? handleImages(req.files) : [],
-        };*/
-
-        /* let mockProd = {
-            id: Date.now(),
-            status: 'habilitado',
-            tipo_de_producto: 'remeras',
-            tabla_de_talles: 'tabla_talles_xxs_al_xxl',
-            marca: 'zara',
-            product_name: 'Remera hombre mickey',
-            sku_visible: 'zara-remeras-remera_hombre_mickey',
-            product_price: '22',
-            product_price_special: '11',
-            product_price_special_desde: '2021:01:10 00:00:00',
-            product_price_special_hasta: '2021:01:18 23:59:59',
-            descripcion_corta: 'Esto es una descripcion corta',
-            composicion: 'Esta es la composicion',
-            cuidado: 'Estos son los cuidados a tener',
-            agregar_color: '',
-            stock_talles: ['3', '2', '0', '2', '2', '0', '2']
-            categorias: ['Eshop', 'coleccionss21', 'remeras'],
-            imagenes: handleImages(req.files),
-        }; */
-
-        // Traigo los productos
-        //const allProducts = jsonFile.read('../db/products.json');
-
-        // pusheo el producto
-        //allProducts.push(product);
-
-        // Guardo todos los productos
-        //jsonFile.write(allProducts, '../db/products.json');
-        //res.redirect(200, '/');
-        res.send({
-            status: 200,
-        });
     },
     update: (req, res) => {
         let allProducts = jsonFile.read('../db/products.json');

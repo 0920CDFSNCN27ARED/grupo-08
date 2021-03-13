@@ -58,18 +58,6 @@
 
             <div class="categories_form">
                 <form id="category_create_form" method="POST" enctype="multipart/form-data">
-                    <!-- 
-                        id
-                        nombre
-                        status
-                        incluir en el menu
-                        descripcion
-                        imagen_portada
-                        titulo de pagina
-                        meta_keywords
-                        meta_description
-                        productos de la categoria
-                    -->
                     <% if (exists(id)) { %>
                         <input type="hidden" name="id" value="<%= id %>">
                     <% } %>
@@ -98,9 +86,11 @@
                                 options: [
                                     {
                                         name: 'Habilitado',
+                                        value: 1
                                     },
                                     {
                                         name: 'Deshabilitado',
+                                        value: 0
                                     },
                                 ],
                                 default_option: exists(status) ? status : false,
@@ -113,9 +103,12 @@
                                 options: [
                                     {
                                         name: 'Si',
+                                        value: 1
+                                        
                                     },
                                     {
                                         name: 'No',
+                                        value: 0
                                     },
                                 ],
                                 default_option: exists(show_menu) ? show_menu : false,
