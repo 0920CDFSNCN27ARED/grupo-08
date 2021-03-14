@@ -1,13 +1,13 @@
 const formatString = require('./formatString');
 
-const returnBrandsFormated = {
+const returnColorsFormated = {
     asHTML: (arr, basePath = '', classes = {}) => {
         let html = '';
 
         arr.forEach((obj) => {
             html += `
                 <li>
-                    <a href="${basePath}/${obj.id}">${obj.brandName}</a> 
+                    <a href="${basePath}/${obj.id}">${obj.colorName}</a> 
                 </li>
             `;
         });
@@ -16,4 +16,4 @@ const returnBrandsFormated = {
     },
 };
 
-module.exports = returnBrandsFormated;
+module.exports = returnColorsFormated;

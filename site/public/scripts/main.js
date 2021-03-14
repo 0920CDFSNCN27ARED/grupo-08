@@ -497,4 +497,34 @@ window.addEventListener('load', async () => {
         let borrarCategoryBtn = document.querySelector('#brand_create_form_delete_btn');
         if (borrarCategoryBtn) deleteData(borrarCategoryBtn, '/admin/c/marcas');
     }
+
+    // ADMIN CREATE COLOR
+    const colors_list_view = document.querySelector('.colors_list_view');
+    if (colors_list_view) {
+        let form = document.querySelector('#color_create_form');
+
+        // Create
+        let guardarColorBtn = document.querySelector('#color_create_form_create_btn');
+        if (guardarColorBtn) {
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                var FD = new FormData(form);
+
+                fetchData('POST', '/admin/c/colores/crear', FD).then((res) => {
+                    if (res.status === 200) {
+                        location.href = '/admin/c/colores';
+                    }
+                });
+            });
+        }
+
+        // Update
+        let actualizarColorBtn = document.querySelector('#color_create_form_update_btn');
+        if (actualizarColorBtn) updateData(form, 'colores', '/admin/c/colores');
+
+        // Delete
+        let borrarColorBtn = document.querySelector('#color_create_form_delete_btn');
+        if (borrarColorBtn) deleteData(borrarColorBtn, '/admin/c/colores');
+    }
 });
