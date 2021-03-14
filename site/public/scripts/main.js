@@ -527,4 +527,34 @@ window.addEventListener('load', async () => {
         let borrarColorBtn = document.querySelector('#color_create_form_delete_btn');
         if (borrarColorBtn) deleteData(borrarColorBtn, '/admin/c/colores');
     }
+
+    // ADMIN CREATE SIZE TABLES
+    const sizeTables_list_view = document.querySelector('.sizeTables_list_view');
+    if (sizeTables_list_view) {
+        let form = document.querySelector('#sizeTable_create_form');
+
+        // Create
+        let guardarSizeTableBtn = document.querySelector('#sizeTable_create_form_create_btn');
+        if (guardarSizeTableBtn) {
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                var FD = new FormData(form);
+
+                fetchData('POST', '/admin/c/tabla-de-talles/crear', FD).then((res) => {
+                    if (res.status === 200) {
+                        location.href = '/admin/c/tabla-de-talles';
+                    }
+                });
+            });
+        }
+
+        // Update
+        let actualizarSizeTableBtn = document.querySelector('#sizeTable_create_form_update_btn');
+        if (actualizarSizeTableBtn) updateData(form, 'tabla-de-talles', '/admin/c/tabla-de-talles');
+
+        // Delete
+        let borrarSizeTableBtn = document.querySelector('#sizeTable_create_form_delete_btn');
+        if (borrarSizeTableBtn) deleteData(borrarSizeTableBtn, '/admin/c/tabla-de-talles');
+    }
 });

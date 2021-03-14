@@ -18,6 +18,7 @@ const productsControllers = require('../../controllers/admin/productsControllers
 const categoriesControllers = require('../../controllers/admin/categoriesControllers');
 const brandsControllers = require('../../controllers/admin/brandsControllers');
 const colorsControllers = require('../../controllers/admin/colorsControllers');
+const sizeTablesControllers = require('../../controllers/admin/sizeTablesControllers');
 
 // Productos
 routes.get('/productos', productsControllers.getAll);
@@ -55,5 +56,14 @@ routes.get('/colores/:id', colorsControllers.getOne);
 routes.put('/colores/:id/update', upload.any(), colorsControllers.update);
 
 routes.delete('/colores/:id/delete', colorsControllers.delete);
+
+// Tabla talles
+routes.get('/tabla-de-talles', sizeTablesControllers.getAll);
+routes.post('/tabla-de-talles/crear', upload.any(), sizeTablesControllers.create);
+
+routes.get('/tabla-de-talles/:id', sizeTablesControllers.getOne);
+routes.put('/tabla-de-talles/:id/update', upload.any(), sizeTablesControllers.update);
+
+routes.delete('/tabla-de-talles/:id/delete', sizeTablesControllers.delete);
 
 module.exports = routes;
