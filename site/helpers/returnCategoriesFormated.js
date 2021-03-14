@@ -5,11 +5,10 @@ const returnCategoriesFormated = {
         let html = '';
 
         arr.forEach((cat) => {
-            if (cat.parent_cat === 0) {
+            if (cat.parentCategory == '' || cat.parentCategory == '0') {
                 html += `
                     <li>
-                        <a href="${basePath}/${cat.id}">${cat.name}</a>
-                        ${checkSubcats(cat, arr)}
+                        <a href="${basePath}/${cat.id}">${cat.categoryName}</a> 
                     </li>
                 `;
             }
@@ -41,11 +40,12 @@ const returnCategoriesFormated = {
         let html = '';
 
         arr.forEach((cat) => {
-            if (cat.parent_cat === 0) {
+            if (cat.parentCategory == '' || cat.parentCategory == '0') {
                 html += `
                     <li class="menu__desplegable">
-                        <a href="${basePath}/${formatString(cat.name)}">${cat.name}</a>
-                        ${checkSubcats(cat, arr)}
+                        <a href="${basePath}/${formatString(cat.categoryName)}">
+                            ${cat.categoryName}
+                        </a>
                     </li>
                 `;
             }

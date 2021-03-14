@@ -16,6 +16,7 @@ const upload = multer({ storage: storage });
 // Controller
 const productsControllers = require('../../controllers/admin/productsControllers');
 const categoriesControllers = require('../../controllers/admin/categoriesControllers');
+const brandsControllers = require('../../controllers/admin/brandsControllers');
 
 // Productos
 routes.get('/productos', productsControllers.getAll);
@@ -35,5 +36,14 @@ routes.get('/categorias/:id', categoriesControllers.getOne);
 routes.put('/categorias/:id/update', upload.any(), categoriesControllers.update);
 
 routes.delete('/categorias/:id/delete', categoriesControllers.delete);
+
+// Marcas
+routes.get('/marcas', brandsControllers.getAll);
+routes.post('/marcas/crear', upload.any(), brandsControllers.create);
+
+routes.get('/marcas/:id', brandsControllers.getOne);
+routes.put('/marcas/:id/update', upload.any(), brandsControllers.update);
+
+routes.delete('/marcas/:id/delete', brandsControllers.delete);
 
 module.exports = routes;

@@ -465,4 +465,36 @@ window.addEventListener('load', async () => {
         let borrarRolBtn = document.querySelector('#role_form_delete_btn');
         if (borrarRolBtn) deleteData(borrarRolBtn, '/admin/employees/crear-rol');
     }
+
+    // ADMIN CREATE BRAND
+    const brands_list_view = document.querySelector('.brands_list_view');
+    if (brands_list_view) {
+        let form = document.querySelector('#brand_create_form');
+
+        // Create
+        let guardarMarcaBtn = document.querySelector('#brand_create_form_create_btn');
+        if (guardarMarcaBtn) {
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                console.log('entre');
+
+                var FD = new FormData(form);
+
+                fetchData('POST', '/admin/c/marcas/crear', FD).then((res) => {
+                    if (res.status === 200) {
+                        location.href = '/admin/c/marcas';
+                    }
+                });
+            });
+        }
+
+        // Update
+        let actualizarBrandBtn = document.querySelector('#brand_create_form_update_btn');
+        if (actualizarBrandBtn) updateData(form, 'marcas', '/admin/c/marcas');
+
+        // Delete
+        let borrarCategoryBtn = document.querySelector('#brand_create_form_delete_btn');
+        if (borrarCategoryBtn) deleteData(borrarCategoryBtn, '/admin/c/marcas');
+    }
 });
