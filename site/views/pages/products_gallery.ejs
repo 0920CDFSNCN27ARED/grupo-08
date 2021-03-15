@@ -1,9 +1,24 @@
+<% 
+    const exists = locals._exists; 
+    
+    let {
+        id,
+        isActive,
+        showMenu,
+        categoryName,
+        __pageTitle,
+        metaDescription,
+        metaKeyWords,
+        parentCategory,
+        subCategories,
+    } = exists(locals.category) ? locals.category : {};
+
+%> 
+
 <!DOCTYPE html>
 <html lang="es" class="catalog_category_view">
     <head>
-        <% 
-            pageTitle = category.page_title !== undefined ? category.page_title : 'Categoría';
-        %> 
+        <% pageTitle = exists(locals.category) ? __pageTitle : 'Categoría'; %> 
         <%- include('../partials/head') %>
 
         <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
@@ -13,20 +28,23 @@
     <body>
         <%- include('../partials/header') %>
 
-        <% if (category.imagenes.length > 0) { %>
-            <div id="banner_categoria_id" class="banner_top_categoria">
-                <%- include('../components/sliders/slider_full/index', {
-                    sliderID: 'slider_home',
-                    sliderHome_banners: [ 
-                        { 
-                            slideID: 1, 
-                            slideImgURL: `/images/catalog/products/${category.imagenes[0]}`, 
-                        }, 
-                    ]
-                    })
-                %>
-            </div>
-        <% } %>
+        <div 
+            id="banner_categoria_id" 
+            class="banner_top_categoria"
+            style="
+                padding: 2rem 0; 
+                margin:0 auto;
+                margin-top: 5rem; 
+                background: linear-gradient(to right, #2C5364, #203A43, #0F2027);
+                text-align: center;
+                text-transform: uppercase;
+                color: white;
+                font-weight: 700;
+            "
+
+        >
+            <h1><%= categoryName %> </h1>
+        </div>
 
         <%- include('../components/toolbar/index')  %> 
 
@@ -87,14 +105,14 @@
                                 {
                                     product: {
                                         id: products[i].id,
-                                        sku: products[i].sku_visible,
-                                        name: products[i].product_name,
-                                        price: products[i].product_price,
-                                        discount: products[i].product_price_special > 0 ? `$${products[i].product_price_special}` : '',
-                                        colors: [products[i].color],
-                                        sizes: products[i].stock_talles,
-                                        images: products[i].imagenes,
-                                        'product_details': products[i].descripcion_corta
+                                        sku: products[i].sku,
+                                        name: products[i].productName,
+                                        price: products[i].productPrice,
+                                        discount: products[i].productPriceSpecial > 0 ? `$${products[i].productPriceSpecial}` : '',
+                                        colors: [products[i].colorId],
+                                        sizes: products[i].stock,
+                                        images: products[i].images,
+                                        'product_details': products[i].shortDescription
                                         
                                     }
 

@@ -1,4 +1,7 @@
-<% const exists = locals._exists; %> 
+<% 
+    const exists = locals._exists;
+    console.log(locals.formatedCategories);
+%> 
 
 <header class="">
     <button id="menu_mobile--btn">
@@ -15,7 +18,7 @@
 
     <nav id="menu">
         <ul>
-            <%- exists(locals.categories) ? categories : '' %> 
+            <%- exists(locals.formatedCategories) ? formatedCategories : '' %> 
         </ul>
     </nav>
 

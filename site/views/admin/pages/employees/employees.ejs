@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es" class="employees_list_admin_view" layout="admin">
+    <head>
+        <% pageTitle = locals.title !== undefined ? title : 'Categorias' %> 
+        
+        <%- include('../../partials/head') %>
+    </head>
+<body>
+    <%- include('../../partials/header.ejs')  %> 
+
+    <% 
+        const exists = locals._exists;
+        const rolesArr = exists(locals.roles) ? locals.roles : {};
+        const { id, roleName } = exists(locals.role) ? role : {};
+
+        console.log(exists(locals.role))
+    %> 
+    
+
+    <main>
+
+        <section class="content_header">
+
+            <h1>
+                Gestionar empleados
+            </h1>
+
+            <div class="content_header_navigation">
+                <% if (exists(locals.role)) { %>
+                    <a href="/admin/employees/role/<%= id %>/delete?_method=DELETE" id="role_form_delete_btn" class="button_main_action error">
+                        Borrar empleado
+                    </a>
+                <% } %>
+    
+                <a href="/admin/employees/crear-rol" class="button_main_action">
+                    Cargar empleado
+                </a>
+            </div>
+
+        </section>
+
+        <section id="employees_list">
+
+            <div class="pagination">
+                <div class="pagination_current_page">
+                    Página 1 de 893 página(s)
+                </div>
+                
+                <div class="pagination_view_limit">
+                    Ver 20 por página
+                </div>
+            </div>
+
+            <div class="table_wrapper">
+
+                <table width="100%" cellspacing="0" cellpadding="0">
+
+                    <!-- Table header -->
+                    <tr class="table_header">
+                        <th>
+                            ID
+                        </th>
+                        <th>
+                            Rol
+                        </th>
+                        <th>
+                            Usuario
+                        </th>
+                        <th>
+                            Nombre
+                        </th>
+                        <th>
+                            Apellido
+                        </th>
+                        <th>
+                            Email
+                        </th>
+                        <th>
+                            Estado
+                        </th>
+                        <th>
+                            Accion
+                        </th>
+                    </tr>
+
+                    <!-- Table filters -->
+                    <tr class="table_filters">
+                        <td>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <input type="text" placeholder="ID">
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <input type="text" placeholder="Rol">
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <input type="text" placeholder="Usuario">
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <input type="text" placeholder="Nombre">
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <input type="text" placeholder="Apellido">
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <input type="text" placeholder="Email">
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <select name="" id="">
+                                            <option>Seleccionar</option>
+                                            <option value="1">Habilitado</option>
+                                            <option value="0">Deshabilitado</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr><td class="table_spacing" colspan="8"></td></tr>
+
+                    <tr class="table_data">
+                        <td>
+                            1610271933614
+                        </td><td>
+                            Administrador
+                        </td><td>
+                            lmuzzupappa
+                        </td><td>
+                            Leandro
+                        </td><td>
+                            Muzzupappa
+                        </td><td>
+                            lmuzzupappa@gmail.com
+                        </td><td>
+                            habilitado
+                        </td><td>
+                            <a href="/admin/employee">Editar</a> 
+                        </td>
+                    </tr>
+
+                </table>
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+    <%- include('../../partials/footer.ejs')  %> 
+</body>
+</html>

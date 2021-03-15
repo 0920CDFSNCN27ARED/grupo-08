@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es" class="employee_create_view" layout="admin">
+    <head>
+        <% pageTitle = locals.title !== undefined ? title : 'Categorias' %> 
+        
+        <%- include('../../partials/head') %>
+    </head>
+<body>
+    <%- include('../../partials/header.ejs')  %> 
+
+    <% 
+        const exists = locals._exists;
+        const rolesArr = exists(locals.roles) ? locals.roles : {};
+        const { id, roleName } = exists(locals.role) ? role : {};
+
+        console.log(exists(locals.role))
+    %> 
+    
+
+    <main>
+
+        <section class="content_header">
+
+            <h1>
+                Gestionar roles
+            </h1>
+
+            <div class="content_header_navigation">
+                <% if (exists(locals.role)) { %>
+                    <a href="/admin/employees/role/<%= id %>/delete?_method=DELETE" id="role_form_delete_btn" class="button_main_action error">
+                        Borrar rol
+                    </a>
+                <% } %>
+    
+                <a href="/admin/employees/crear-rol" class="button_main_action">
+                    Roles
+                </a>
+            </div>
+
+        </section>
+
+        <section class="content_form">
+            
+            <div class="roles_list">
+                <h4>Listado de roles</h4>
+                <ul>
+                    <% if (rolesArr.length > 0) { %>
+                        <% for( let i = 0; i < rolesArr.length; i++ ) { %>
+                            <% let role = rolesArr[i].dataValues %> 
+
+                            <li>
+                                <a href="/admin/employees/role/<%= role.id %> "><%= role.roleName %></a>
+                            </li>
+
+                        <% } %>
+
+                    <% } else { %>
+                        <li>
+                            No hay roles cargados
+                        </li>
+
+                    <% } %>
+                </ul>
+                
+            </div>
+
+            <div class="roles_form">
+                
+                <% 
+                    const formURL = exists(locals.role) 
+                        ? `/admin/employees/role/${id}/update?_method=PUT` 
+                        : '/admin/employees/role/created';
+                %> 
+
+                <form action="<%= formURL %>" method="POST">
+
+                    <% if (exists(id)) { %>
+                        <input type="hidden" name="id" value="<%= id %>">
+                    <% } %>
+
+                    <div class="form_data">
+                        <%- include('../../../components/forms/form_input/index', {
+                            is_required: true,
+                            label: exists(roleName) ? `Estas modificando: ${roleName}. Ingresa un nuevo valor` : 'Ingresa el nombre del nuevo rol',
+                            type: 'text',
+                            name: 'roleName',
+                            placeholder: 'Ej: Administrador',
+                            default_value: exists(roleName) ? roleName : false,
+                        }) %> 
+
+                    </div>
+
+                    <button type="submit" id="create-role-btn" class="button_main_action">
+                        <%= exists(id) ? 'Actualizar rol' : 'Crear rol' %>
+                    </button>
+                </form>
+            </div>
+
+        </section>
+
+
+    </main>
+
+    <%- include('../../partials/footer.ejs')  %> 
+</body>
+</html>

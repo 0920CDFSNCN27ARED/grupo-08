@@ -11,12 +11,15 @@ function withAdminAuth(req, res, next) {
 
     if(curAdmin === undefined) {
         delete req.session.adminId;
+        req.curAdmin = null;
+        res.locals.curAdmin = curAdmin;
+
         return res.redirect(301, '/admin/user/login');
     }
 
     req.session.adminId = curAdmin.id;
+    req.curAdmin = curAdmin;
     res.locals.curAdmin = curAdmin;
-
 
     next();
 }

@@ -7,6 +7,7 @@ const getAbsolutePath = require('./getAbsolutePath');
 // CON EL MISMO NOMBRE PISA EL ANTERIOR
 
 function handleUploadImage(req, file) {
+    console.log('\n\n\n\n dsadsadsdsadsds \n\n\n\n ');
     /* 
         Las imagenes se van a guardar dentro del directorio catalog/products
         que a su vez se va a guardar dentro de los directorios llamados

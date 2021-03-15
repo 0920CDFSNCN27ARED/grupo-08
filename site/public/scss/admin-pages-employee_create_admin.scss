@@ -1,0 +1,125 @@
+.employees_list_admin_view {
+    main {
+        width: calc(100% - 250px - 4rem);
+    }
+
+    #employees_list {
+        .pagination {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            @include font-size(12);
+        }
+    }
+
+    .table_wrapper {
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            position: relative;
+
+            td {
+                text-align: center;
+            }
+
+            .table_spacing {
+                height: 1rem;
+            }
+
+            img {
+                max-width: 130px;
+            }
+        }
+
+        .table_header,
+        .table_filters,
+        .table_data {
+            position: relative;
+            > td {
+                /* 
+                    child - value
+                    1 - id
+                    2 - rol
+                    3 - usuario
+                    4 - nombre
+                    5 - apellido
+                    6 - email
+                    7 - status
+                    8 - action
+                */
+
+                &:nth-child(1) {
+                    width: 10%;
+                }
+                &:nth-child(2) {
+                    width: 10%;
+                }
+                
+                &:nth-child(3),
+                &:nth-child(4),
+                &:nth-child(5),
+                &:nth-child(6),
+                &:nth-child(7) {
+                    width: calc((100% - 30%) / 5);
+                }
+
+
+                &:nth-child(8) {
+                    width: 10%;
+                    a {
+                        color: $blue;
+                        &:hover {
+                            color: $black;
+                        }
+                    }
+                }
+
+            }
+        }
+
+        .table_header {
+            background: $gray4;
+            color: $white;
+            @include font-size(12);
+            font-weight: 700;
+            text-transform: uppercase;
+            th {
+                padding: 0.5rem;
+            }
+        }
+
+        .table_filters {
+            background: $gray1;
+            > td {
+                padding: 0.8rem 0;
+                text-align: center;
+                vertical-align: top;
+            }
+
+            input {
+                width: calc(100% - 0.5rem);
+                padding: 0.5rem 0.2rem;
+                margin-bottom: 0.5rem;
+            }
+            select {
+                width: calc(100% - 0.5rem);
+            }
+        }
+
+        .table_data {
+            position: relative;
+            border: 2rem solid transparent;
+            border-left-width: 1rem;
+            border-right-width: 1rem;
+            overflow: hidden;
+
+            &:nth-child(2n + 1) {
+                background: $gray1;
+            }
+
+            @include font-size(12);
+        }
+    }
+}

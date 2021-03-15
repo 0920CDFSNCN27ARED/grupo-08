@@ -40,6 +40,7 @@ const userControllers = {
         jsonFile.write(allUsers, '../db/admin_users.json');
 
         req.session.adminId = user.id;
+        req.curAdmin = user;
         
         if(persist_session) {
             res.cookie('rememberMe', req.session.adminId, {maxAge: 60 * 1000 * 60 * 24});
