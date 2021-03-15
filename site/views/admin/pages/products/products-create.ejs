@@ -15,26 +15,36 @@
             const exists = locals._exists;
             let {
                 id,
-                isActive,
                 sizeTableId,
-                marca,
-                product_name,
-                sku_visible,
-                product_price,
-                product_price_special,
-                product_price_special_desde,
-                product_price_special_hasta,
-                descripcion_corta,
-                composicion,
-                cuidado,
-                color,
-                stock_talles,
-                categorias,
-                imagenes} = exists(locals.product) ? product : {};
+                brandId,
+                colorId,
+                isActive,
+                productName,
+                sku,
+                productPrice,
+                productPriceSpecial,
+                productPriceSpecialFrom,
+                productPriceSpecialTo,
+                shortDescription,
+                composition,
+                care,
+                stock,
+                productsGroup,
+                createdAt,
+                updatedAt,
+                categories,
+                images,
+            } = exists(locals.product) ? product : {};
 
-            let _categories = exists(locals.categories) ? categories : [];
-            let _tablitas = exists(locals.allSizeTables) ? allSizeTables : [];
-            console.log(_tablitas);
+            const _categories = exists(locals.categories) ? locals.categories :  {};
+            const _sizeTables = exists(locals.sizeTables) ? locals.sizeTables :  {};
+            const _brands = exists(locals.brands) ? locals.brands :  {};
+            const _colors  = exists(locals.colors) ? locals.colors :  {};
+
+            if(exists(locals.product)) {
+                images = images.split(',');
+            }
+
         %> 
 
         <section class="content_header">
@@ -42,7 +52,7 @@
             <h1>
                 <%= 
                     exists(id)
-                        ? product_name
+                        ? productName
                         : 'Crear producto'
                  %> 
             </h1>
@@ -94,28 +104,6 @@
                 <!-- Datos producto -->
                 <div class="form_tab" id="tab_data">
                     <div class="form_data">
-
-                        <!-- 
-                            Estado
-
-                            Nombre
-                            Sku visible (timestamp + nombre)
-                            
-                            Descripcion corta
-                            Composicion
-                            Cuidado
-
-                            Imagenes
-
-                            Precio
-                            Precio especial
-                            Precio especial desde fecha
-                            Precio especial hasta fecha
-
-                            Marca
-                            Tipo de producto
-                            Tabla de talles
-                        -->
                     
                         <%- include('../../../components/forms/form_select/index', {
                             is_required: true,
@@ -141,10 +129,11 @@
                             options: exists(locals.sizeTables) ? locals.sizeTables : '',
                             event: [
                                 'onclick', 
-                                `handleTablaTalles(
-                                    this, 
+                                `tablita(
+                                    this,
+                                    ${JSON.stringify(sizeTables)},
                                     'tab_attributes', 
-                                    ${exists(stock_talles) ? [stock_talles] : ''})
+                                    ${exists(stock) ? JSON.stringify(stock) : ''})
                                 `
                             ],
                             default_option: exists(sizeTableId) ? sizeTableId : false,
@@ -153,48 +142,38 @@
                         <%- include('../../../components/forms/form_select/index', {
                             is_required: true,
                             label: 'Marca',
-                            name: 'marca',
-                            options: [
-                                {
-                                    name: 'Alaska'
-                                },
-                                {
-                                    name: 'Felix'
-                                },
-                                {
-                                    name: 'Zara'
-                                },
-                            ],
-                            event: ['onchange', `handleSkuVisible(this,'sku_visible')`],
-                            default_option: exists(marca) ? marca : false,
+                            name: 'brandId',
+                            options: _brands,
+                            event: ['onchange', `handleSkuVisible(this,'sku')`],
+                            default_option: exists(brandId) ? brandId : false,
                         }) %> 
             
                         <%- include('../../../components/forms/form_input/index', {
                             is_required: true,
                             label: 'Nombre',
                             type: 'text',
-                            name: 'product_name',
+                            name: 'productName',
                             placeholder: 'Ingrese el nombre del producto',
-                            event: ['onkeyup', `handleSkuVisible(this,'sku_visible')`],
-                            default_value: exists(product_name) ? product_name : false,
+                            event: ['onkeyup', `handleSkuVisible(this,'sku')`],
+                            default_value: exists(productName) ? productName : false,
                         }) %> 
 
                         <%- include('../../../components/forms/form_input/index', {
                             is_required: true,
                             label: 'SKU visible',
                             type: 'text',
-                            name: 'sku_visible',
-                            placeholder: 'El sku se generará automaticamente con la marca, el tipo de producto y el nombre',
-                            default_value: exists(sku_visible) ? sku_visible : false,
+                            name: 'sku',
+                            placeholder: 'El sku se generará automaticamente con la marca y el nombre',
+                            default_value: exists(sku) ? sku : false,
                         }) %> 
 
                         <%- include('../../../components/forms/form_input/index', {
                             is_required: true,
                             label: 'Precio',
                             type: 'number',
-                            name: 'product_price',
+                            name: 'productPrice',
                             placeholder: 'Ingrese el precio sin $',
-                            default_value: exists(product_price) ? product_price : false,
+                            default_value: exists(productPrice) ? productPrice : 0,
 
                         }) %> 
 
@@ -202,54 +181,54 @@
                             is_required: false,
                             label: 'Precio especial',
                             type: 'number',
-                            name: 'product_price_special',
+                            name: 'productPriceSpecial',
                             placeholder: 'Ingrese el precio sin $',
-                            default_value: exists(product_price_special) ? product_price_special : false,
+                            default_value: exists(productPriceSpecial) ? productPriceSpecial : 0,
                         }) %> 
 
                         <%- include('../../../components/forms/form_input/index', {
                             is_required: false,
                             label: 'Precio especial desde fecha',
                             type: 'text',
-                            name: 'product_price_special_desde',
+                            name: 'productPriceSpecialFrom',
                             placeholder: 'Ejemplo 2021-01-02 00:00:00',
-                            default_value: exists(product_price_special_desde) ? product_price_special_desde : false,
+                            default_value: exists(productPriceSpecialFrom) ? productPriceSpecialFrom : '',
                         }) %> 
 
                         <%- include('../../../components/forms/form_input/index', {
                             is_required: false,
                             label: 'Precio especial hasta fecha',
                             type: 'text',
-                            name: 'product_price_special_hasta',
+                            name: 'productPriceSpecialTo',
                             placeholder: 'Ejemplo 2021-01-20 23:59:59',
-                            default_value: exists(product_price_special_hasta) ? product_price_special_hasta : false,
+                            default_value: exists(productPriceSpecialTo) ? productPriceSpecialTo : '',
                         }) %> 
 
                         <%- include('../../../components/forms/form_input/index', {
                             is_required: false,
                             label: 'Descripcion corta',
                             type: 'text',
-                            name: 'descripcion_corta',
+                            name: 'shortDescription',
                             placeholder: '',
-                            default_value: exists(descripcion_corta) ? descripcion_corta : false,
+                            default_value: exists(shortDescription) ? shortDescription : '',
                         }) %>
 
                         <%- include('../../../components/forms/form_input/index', {
                             is_required: false,
                             label: 'Composicion',
                             type: 'text',
-                            name: 'composicion',
+                            name: 'composition',
                             placeholder: '',
-                            default_value: exists(composicion) ? composicion : false,
+                            default_value: exists(composition) ? composition : '',
                         }) %>
 
                         <%- include('../../../components/forms/form_input/index', {
                             is_required: false,
                             label: 'Cuidado',
                             type: 'text',
-                            name: 'cuidado',
+                            name: 'care',
                             placeholder: '',
-                            default_value: exists(cuidado) ? cuidado : false,
+                            default_value: exists(care) ? care : '',
                         }) %>
 
                     </div>
@@ -258,37 +237,17 @@
 
                 <!-- Colores, talles y stock -->
                 <div class="form_tab dnone" id="tab_attributes">
-
-                    <!-- 
-                        Tendria que crear en la db una tabla con todos los colores y traerlos en un select aca,
-                        luego al seleccionar un option genera el html con la tabla y los datos de la tabla de talles elegida anteriormente
-                        - en caso de que no haya seleccionado el tipo de tabla mostrar un texto que diga que la seleccione
-
-                        Esta tabla de talles generada se tendria que vincular al color elegido y habria que crear una tabla nueva
-                        con el id del color elegido, y los talles junto con el stock
-
-                        Tambien esta tabla se tiene que guardar en el producto
-                    -->
                     <div class="form_data">
                         <%- include('../../../components/forms/form_select/index', {
                             is_required: false,
                             label: 'Agregar Color',
-                            name: 'agregar_color',
-                            options: [
-                                {
-                                    name: 'Blanco'
-                                },
-                                {
-                                    name: 'Negro'
-                                },
-                                {
-                                    name: 'Rojo'
-                                },
-                            ],
-                            default_option: exists(color) ? color : false,
+                            name: 'colorId',
+                            options: _colors,
+                            default_option: exists(colorId) ? colorId : false,
+                            event: ['onclick', `handleSkuVisible(this,'sku')`],
                         }) %> 
 
-                        <h4>
+                        <h4 class="sinTablaSeleccionada">
                             Tenes que seleccionar un tipo de tabla en la pestaña Datos de producto
                         </h4>
 
@@ -319,14 +278,14 @@
                             <span class="form_images_card_name">LANDING-CAMPA_A-SS21-02.jpg</span>
                             <button class="form_images_card_delete button_main_action">Borrar</button>
                         </div> -->
-                        <% if (exists(imagenes)) { %>
-                            <% for( let i = 0; i < imagenes.length; i++ ) { %>
+                        <% if (exists(images)) { %>
+                            <% for( let i = 0; i < images.length; i++ ) { %>
                                 <% 
                                     const handleImageName = str => str.split('/')[3];
                                 %> 
-                                <div id="<%= handleImageName(imagenes[i]) %>" class="form_images_card from_product">
-                                    <img src="/images/catalog/products/<%= imagenes[i] %> " alt="<%= handleImageName(imagenes[i]) %>" class="form_images_card_image">
-                                    <span class="form_images_card_name"><%= handleImageName(imagenes[i]) %></span>
+                                <div id="<%= handleImageName(images[i]) %>" class="form_images_card from_product">
+                                    <img src="/images/catalog/products/<%= images[i] %> " alt="<%= handleImageName(images[i]) %>" class="form_images_card_image">
+                                    <span class="form_images_card_name"><%= handleImageName(images[i]) %></span>
                                     <button disabled class="form_images_card_delete button_main_action" onclick="removeCurrentFile(handleImageName(imagenes[i]))">Borrar</button>
                                 </div>
                             <% } %>
@@ -343,56 +302,17 @@
                         <ul>
                         <% for( let i = 0; i < _categories.length; i++ ) { %>
 
-                            <% 
-                                let cat =  _categories[i].dataValues;
-                                function checkSubcats(obj, arr) {
-                                    let html = '';
-                                    if (obj.subCategories.length > 0) {
-                                        html += `<ul style="margin-left: 1.5rem;">`;
-                                            console.log(obj.subCategories);
-                                        obj.subCategories.forEach((subcat) => {
-                                            let objSubcat = arr.find((_obj) => _obj.id === subcat);
-                                            // prettier-ignore
-                                            html += `
-                                                <li>
-                                                    <input 
-                                                        type  = "checkbox" 
-                                                        name  = "categorias" 
-                                                        id    = "${objSubcat.categoryName + objSubcat.id}" 
-                                                        value = "${objSubcat.id}"`;
-
-                                                        if (exists(categorias)) {
-                                                            for( let z = 0; z < categorias.length; z++ ) {
-                                                                if (categorias[z] == objSubcat.id) {
-                                                                    html += `checked`;
-                                                                }
-                                                            }
-                                                        }
-                                                    html += `>
-                                                    <label for="${objSubcat.categoryName + objSubcat.id}" >
-                                                        ${objSubcat.categoryName} <i>(${objSubcat.id})</i> 
-                                                    </label>
-                                                    ${checkSubcats(objSubcat, arr)}
-                                                </li>`;
-                                        });
-                                        html += `</ul>`;
-                                    }
-
-                                    return html;
-                                }
-
-                            %> 
-
+                            <% let cat =  _categories[i]; %> 
                             <% if (cat.parentCategory == 0) { %>
                                 <li>
                                     <input 
                                         type  = "checkbox" 
-                                        name  = "categorias" 
+                                        name  = "categories" 
                                         id    = "<%=  cat.categoryName + cat.id %>" 
                                         value = "<%=  cat.id %>"
-                                        <% if (exists(categorias)) { %>
-                                            <% for( let z = 0; z < categorias.length; z++ ) { %>
-                                                <% if (categorias[z] == cat.id) { %>
+                                        <% if (exists(categories)) { %>
+                                            <% for( let z = 0; z < categories.length; z++ ) { %>
+                                                <% if (categories[z] == cat.id) { %>
                                                     checked
                                                 <% } %>
                                             <% } %>
@@ -401,7 +321,6 @@
                                     <label for="<%=  cat.categoryName + cat.id %>" >
                                         <%=  cat.categoryName %> <i>(<%= cat.id %>)</i> 
                                     </label>
-                                    <%- checkSubcats(cat, _categories) %> 
                                 </li>
 
 

@@ -1,12 +1,31 @@
+<% 
+    let imgs = product.images.split(',');
+    function replaceAllPolyfill(string) {
+        const replaceAll = (str, oldStr, newStr) => str.split(oldStr).join(newStr);
+        let str = replaceAll(string, ' ', '_').toLowerCase();
+
+        return str;
+    }
+
+    function formatString(str) {
+        return replaceAllPolyfill(
+            str
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .toLowerCase()
+        );
+    }
+%> 
+
 <article id="product_<%= product.sku%>" class="product_card">
-    <a href="/c/producto/<%= product.sku %> ">
+    <a href="/c/producto/<%= formatString(product.name) %>/<%= product.sku %>">
         <div class="product_photos">
             <div class="swiper-container">
                 <div class="swiper-wrapper">
-                    <% for( let i = 0; i < product.images.length; i++ ) { %>
+                    <% for( let i = 0; i < imgs.length; i++ ) { %>
                         <div class="swiper-slide">
                             <img
-                                src="/images/catalog/products/<%= product.images[i] %> "
+                                src="/images/catalog/products/<%= imgs[i] %> "
                                 alt="<%= product.name %> "
                             />
                         </div>
@@ -17,20 +36,6 @@
         <div class="product_info">
             <h3><%= product.name %> </h3>
             <p>$<%= product.price %> </p>
-
-            <!-- <div class="quickshop">
-                <div class="quickshop_colors">
-                    <span id="${id}_color1" class="q_color selected"></span>
-                    <span id="${id}_color2" class="q_color"></span>
-                    <span id="${id}_color3" class="q_color"></span>
-                </div>
-                <div class="quickshop_sizes">
-                    <span id="${id}_t1" class="q_size selected">T1</span>
-                    <span id="${id}_t2" class="q_size">T2</span>
-                    <span id="${id}_t3" class="q_size">T3</span>
-                </div>
-                <button id="q_add_to_cart">Agregar al carrito</button>
-            </div> -->
         </div>
     </a>
     <div class="swiper_prev">

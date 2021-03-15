@@ -19,15 +19,34 @@ const productsControllers = {
                     msg: 'El producto no ha sido encontrado',
                 });
             }
-            const allSizeTables = await db.SizeTable.findAll();
-            const allCategories = await db.Category.findAll();
 
-            product.categories = stringToArray(product.categories);
+            const sizeTables = await db.SizeTable.findAll();
+            const brands = await db.Brand.findAll();
+            const colors = await db.Color.findAll();
+            const categories = await db.Category.findAll();
+
+            const allSizeTables = sizeTables.map((table) => ({
+                name: table.dataValues.tableName,
+                value: table.dataValues.id,
+                sizes: table.dataValues.sizes,
+            }));
+
+            const allBrands = brands.map((brand) => ({
+                name: brand.dataValues.brandName,
+                value: brand.dataValues.id,
+            }));
+            const allColors = colors.map((color) => ({
+                name: color.dataValues.colorName,
+                value: color.dataValues.id,
+            }));
+            const allCategories = categories.map((category) => category.dataValues);
 
             return res.render('admin/pages/products/products-create', {
                 product,
                 categories: allCategories,
                 sizeTables: allSizeTables,
+                brands: allBrands,
+                colors: allColors,
             });
         } catch (err) {
             console.log('Hubo un error al traer un producto o las categorias', err);
@@ -62,7 +81,6 @@ const productsControllers = {
 
                 return handledProducts;
             }
-            console.log(allProducts);
 
             return res.render('admin/pages/products/products-list', {
                 products: handleProductsArr(allProducts),
@@ -75,30 +93,35 @@ const productsControllers = {
     },
     create: async (req, res) => {
         try {
-            const allCategories = await db.Category.findAll();
-            const allSizeTables = await db.SizeTable.findAll();
-            const allColors = await db.Color.findAll();
-            console.log(allColors);
+            const sizeTables = await db.SizeTable.findAll();
+            const brands = await db.Brand.findAll();
+            const colors = await db.Color.findAll();
+            const categories = await db.Category.findAll();
 
-            const sizeTablesFormated = [];
-            allSizeTables.forEach((table) => {
-                const tableArr = {
-                    name: table.dataValues.tableName,
-                    value: table.dataValues.id,
-                };
-                sizeTablesFormated.push(tableArr);
-            });
+            const allSizeTables = sizeTables.map((table) => ({
+                name: table.dataValues.tableName,
+                value: table.dataValues.id,
+                sizes: table.dataValues.sizes,
+            }));
 
-            allCategories.forEach((category) => {
-                category.dataValues.subCategories = stringToArray(
-                    category.dataValues.subCategories
-                );
-            });
+            const allBrands = brands.map((brand) => ({
+                name: brand.dataValues.brandName,
+                value: brand.dataValues.id,
+            }));
+            const allColors = colors.map((color) => ({
+                name: color.dataValues.colorName,
+                value: color.dataValues.id,
+            }));
+            const allCategories = categories.map((category) => category.dataValues);
 
             return res.render('admin/pages/products/products-create', {
                 categories: allCategories,
-                sizeTables: sizeTablesFormated,
+                sizeTables: allSizeTables,
+                brands: allBrands,
+                colors: allColors,
             });
+
+            //
         } catch (err) {
             console.log('Hubo un error al traer un producto o las categorias', err);
             res.locals.queryErr = 'Hubo un problema! Por favor refresca la página';
@@ -112,138 +135,163 @@ const productsControllers = {
             let images = obj;
             images.forEach((image) => {
                 let originalName = image.originalname;
-                console.log(`/${originalName[0]}/${originalName[1]}/${originalName}`);
                 arrImagesNames.push(`/${originalName[0]}/${originalName[1]}/${originalName}`);
             });
 
-            return arrImagesNames;
+            return arrImagesNames.join(', ');
         };
 
+        let {
+            isActive,
+            sizeTableId,
+            brandId,
+            productName,
+            sku,
+            productPrice,
+            productPriceSpecial,
+            productPriceSpecialFrom,
+            productPriceSpecialTo,
+            shortDescription,
+            composition,
+            care,
+            colorId,
+            stock,
+            categories,
+        } = req.body;
+
+        stock = stock.join(',');
+
+        if (typeof categories == 'object' || typeof categories == 'array')
+            categories = categories.join(',');
+
+        if (typeof productPriceSpecial == 'string' && productPriceSpecial === '')
+            productPriceSpecial = null;
+
+        let images = handleImages(req.files);
+
         try {
-            console.log(req.body);
             db.Product.create({
-                sizeTableId: req.body.sizeTableId ? req.body.sizeTableId : '',
-                brandId: req.body.brandId ? req.body.brandId : 99,
-                colorId: req.body.colorId ? req.body.colorId : 99,
-                isActive: req.body.isActive ? req.body.isActive : '',
-                productName: req.body.productName ? req.body.productName : '',
-                sku: req.body.sku ? req.body.sku : '',
-                productPrice: req.body.productPrice ? req.body.productPrice : '',
-                productPriceSpecial: req.body.productPriceSpecial
-                    ? req.body.productPriceSpecial
-                    : '',
-                productsGroup: req.body.productsGroup ? req.body.productsGroup : '',
-                productPriceSpecialFrom: req.body.productPriceSpecialFrom
-                    ? req.body.productPriceSpecialFrom
-                    : '',
-                productPriceSpecialTo: req.body.productPriceSpecialTo
-                    ? req.body.productPriceSpecialTo
-                    : '',
-                shortDescription: req.body.shortDescription ? req.body.shortDescription : '',
-                composition: req.body.composition ? req.body.composition : '',
-                care: req.body.care ? req.body.care : '',
-                images: req.body.images ? req.body.images : '',
-                stock: req.body.stock ? req.body.stock : '',
-                categories: req.body.categories ? req.body.categories : '',
+                sizeTableId,
+                brandId,
+                colorId,
+                isActive,
+                productName,
+                sku,
+                productPrice,
+                productPriceSpecial,
+                productPriceSpecialFrom,
+                productPriceSpecialTo,
+                shortDescription,
+                composition,
+                care,
+                stock,
+                categories,
+                images,
             });
-            console.log('fin del try');
-            /* return res.send({
+
+            return res.send({
                 status: 200,
                 msg: 'ok',
-            }); */
+            });
         } catch (err) {
             console.log('Hubo un error de base de datos', err);
 
             res.locals.queryErr = 'Hubo un problema! Por favor refresca la página';
-            //res.redirect(500, 'admin/pages/products');
 
-            /* res.send({
-                status: 500,
+            res.send({
+                status: 301,
                 statusText: 'error',
                 msg: err,
-            }); */
-
-            console.log('fin del catch');
+            });
         }
     },
-    update: (req, res) => {
-        let allProducts = jsonFile.read('../db/products.json');
+    update: async (req, res) => {
+        const handleImages = (obj) => {
+            let arrImagesNames = [];
+
+            let images = obj;
+            images.forEach((image) => {
+                let originalName = image.originalname;
+                arrImagesNames.push(`/${originalName[0]}/${originalName[1]}/${originalName}`);
+            });
+
+            return arrImagesNames.join(', ');
+        };
+
         let {
             id,
-            status,
-            tipo_de_producto,
-            tabla_de_talles,
-            marca,
-            product_name,
-            sku_visible,
-            product_price,
-            product_price_special,
-            product_price_special_desde,
-            product_price_special_hasta,
-            descripcion_corta,
-            composicion,
-            cuidado,
-            agregar_color,
-            stock_talles,
-            categorias,
+            isActive,
+            sizeTableId,
+            brandId,
+            productName,
+            sku,
+            productPrice,
+            productPriceSpecial,
+            productPriceSpecialFrom,
+            productPriceSpecialTo,
+            shortDescription,
+            composition,
+            care,
+            colorId,
+            stock,
+            categories,
         } = req.body;
 
-        allProducts.forEach((prod, i) => {
-            if (prod.id == id) {
-                prod.status = prod.status == status ? prod.status : status;
-                prod.tipo_de_producto =
-                    prod.tipo_de_producto == tipo_de_producto
-                        ? prod.tipo_de_producto
-                        : tipo_de_producto;
-                prod.tabla_de_talles =
-                    prod.tabla_de_talles == tabla_de_talles
-                        ? prod.tabla_de_talles
-                        : tabla_de_talles;
-                prod.marca = prod.marca == marca ? prod.marca : marca;
-                prod.product_name =
-                    prod.product_name == product_name ? prod.product_name : product_name;
-                prod.sku_visible = prod.sku_visible == sku_visible ? prod.sku_visible : sku_visible;
-                prod.product_price =
-                    prod.product_price == product_price ? prod.product_price : product_price;
-                prod.product_price_special =
-                    prod.product_price_special == product_price_special
-                        ? prod.product_price_special
-                        : product_price_special;
-                prod.product_price_special_desde =
-                    prod.product_price_special_desde == product_price_special_desde
-                        ? prod.product_price_special_desde
-                        : product_price_special_desde;
-                prod.product_price_special_hasta =
-                    prod.product_price_special_hasta == product_price_special_hasta
-                        ? prod.product_price_special_hasta
-                        : product_price_special_hasta;
-                prod.descripcion_corta =
-                    prod.descripcion_corta == descripcion_corta
-                        ? prod.descripcion_corta
-                        : descripcion_corta;
-                prod.composicion = prod.composicion == composicion ? prod.composicion : composicion;
-                prod.cuidado = prod.cuidado == cuidado ? prod.cuidado : cuidado;
-                prod.color = prod.color == agregar_color ? prod.color : agregar_color;
-                prod.stock_talles =
-                    prod.stock_talles == stock_talles ? prod.stock_talles : stock_talles;
-                prod.categorias = prod.categorias == categorias ? prod.categorias : [...categorias];
-            }
-        });
+        stock = stock.join(',');
 
-        jsonFile.write(allProducts, '../db/products.json');
-        res.send({
-            status: 200,
-        });
+        if (typeof categories == 'object' || typeof categories == 'array')
+            categories = categories.join(',');
+
+        if (typeof productPriceSpecial == 'string' && productPriceSpecial === '')
+            productPriceSpecial = null;
+
+        let images = handleImages(req.files);
+
+        try {
+            await db.Product.update(
+                {
+                    id,
+                    isActive,
+                    sizeTableId,
+                    brandId,
+                    productName,
+                    sku,
+                    productPrice,
+                    productPriceSpecial,
+                    productPriceSpecialFrom,
+                    productPriceSpecialTo,
+                    shortDescription,
+                    composition,
+                    care,
+                    colorId,
+                    stock,
+                    categories,
+                },
+                {
+                    where: { id: id },
+                }
+            );
+
+            return res.send({ status: 200 });
+        } catch (err) {
+            console.log('Hubo un error al actualizar la marca --> ', err);
+            return res.redirect('/admin/?error_al_actualizar_marca_' + id);
+        }
     },
-    delete: (req, res) => {
+    delete: async (req, res) => {
         let { id } = req.params;
-        let allProducts = jsonFile.read('../db/products.json');
-        let productsUpdated = allProducts.filter((prod, i) => prod.id != id);
 
-        jsonFile.write(productsUpdated, '../db/products.json');
-        res.send({
-            status: 200,
-        });
+        try {
+            await db.Product.destroy({
+                where: {
+                    id: id,
+                },
+            });
+            res.send({ status: 200 });
+        } catch (err) {
+            console.log('Hubo un error al borrar el producto --> ', err);
+            return res.redirect('/admin/?error_al_borrar_producto_' + id);
+        }
     },
 };
 

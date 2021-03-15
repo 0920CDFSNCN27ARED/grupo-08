@@ -40,7 +40,7 @@ module.exports = (sequelize, dataTypes) => {
         },
         productPriceSpecial: {
             type: d.DECIMAL(20, 2),
-            allowNull: false,
+            allowNull: true,
         },
         productPriceSpecialFrom: {
             type: d.STRING,
@@ -89,6 +89,7 @@ module.exports = (sequelize, dataTypes) => {
     };
     config = {
         timestamps: true,
+        logging: false,
     };
 
     const Product = sequelize.define(alias, cols, config);

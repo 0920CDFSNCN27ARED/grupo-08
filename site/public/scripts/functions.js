@@ -107,25 +107,25 @@ function handleSkuVisible(currEl, targetElement) {
     let target = document.querySelector(`#${targetElement}`);
     let arrTargetVal = target.value.split('-');
 
-    // El sku visible se compone por marca - tipo prod - nombre
-    let [marca, tipoProducto, nombre] = ['marca', 'tipo_de_producto', 'nombre'];
+    // El sku visible se compone por marca - color - nombre
+    let [marca, color, nombre] = ['marca', 'color', 'nombre'];
 
     if (target.value) {
         marca = arrTargetVal[0];
-        tipoProducto = arrTargetVal[1];
+        color = arrTargetVal[1];
         nombre = arrTargetVal[2];
     }
 
     switch (currEl.getAttribute('name')) {
-        case 'marca':
+        case 'brandId':
             marca = formatString(currEl.value);
             break;
 
-        case 'tipo_de_producto':
-            tipoProducto = formatString(currEl.value);
+        case 'colorId':
+            color = currEl.selectedIndex;
             break;
 
-        case 'product_name':
+        case 'productName':
             nombre = formatString(currEl.value);
             break;
 
@@ -133,22 +133,82 @@ function handleSkuVisible(currEl, targetElement) {
             break;
     }
 
-    function formatString(str) {
-        return str
-            .normalize('NFD')
-            .replace(/[\u0300-\u036f]/g, '')
-            .toLowerCase()
-            .replaceAll(' ', '_');
-    }
-
     // Devuelvo el sku visible
-    target.value = `${marca}-${tipoProducto}-${nombre}`;
+    target.value = `${marca}-${color}-${nombre}`;
 }
 
-async function getsizeTables() {
-    let data = await fetch('http://localhost:3000/admin/tablitas/todas');
-    data = await data.json();
-    return data;
+function tablita(currEl, table, target, stock) {
+    let sinTablaSeleccionada = document.querySelector('.sinTablaSeleccionada');
+    sinTablaSeleccionada.classList.add('dnone');
+
+    let isTableContainer = document.querySelector('.tablita');
+    if (isTableContainer) isTableContainer.remove();
+
+    const selectedTableIndex = currEl.selectedIndex - 1;
+    const selectedTable = table[selectedTableIndex];
+
+    let stockArr = [];
+    if (stock !== undefined) {
+        stockArr = stock.split(',');
+    }
+
+    if (selectedTableIndex == -1) {
+        sinTablaSeleccionada.classList.remove('dnone');
+        return;
+    }
+
+    // Formateo el string a un array de numeros
+    selectedTable.sizes = selectedTable.sizes
+        .split(',')
+        .map((item) => (isNaN(item) ? item : Number(item)));
+
+    // Creo el div
+    let tableContainer = document.createElement('div');
+    tableContainer.classList.add('tablita');
+    tableContainer.setAttribute('data_table', formatString(selectedTable.name));
+
+    // Creo titulo
+    let title = document.createElement('h4');
+    title.innerText = selectedTable.name;
+    tableContainer.appendChild(title);
+
+    // Creo tabla principal
+    let htmlTable = document.createElement('table');
+    htmlTable.setAttribute('width', '100%');
+    htmlTable.setAttribute('cellspacing', 0);
+    htmlTable.setAttribute('cellpadding', 0);
+
+    // Creo tr head
+    let htmlTrHead = document.createElement('tr');
+    selectedTable.sizes.forEach((size) => {
+        let htmlTh = document.createElement('th');
+        htmlTh.innerText = size;
+
+        htmlTrHead.appendChild(htmlTh);
+    });
+    htmlTable.appendChild(htmlTrHead);
+
+    // Creo tr content
+    let htmlTrContent = document.createElement('tr');
+    selectedTable.sizes.forEach((size, i) => {
+        let htmlTd = document.createElement('td');
+        let htmlInput = document.createElement('input');
+        htmlInput.type = 'number';
+        htmlInput.name = 'stock';
+        htmlInput.id = 'stock';
+        htmlInput.placeholder = '0';
+        htmlInput.value = stock !== undefined ? stockArr[i] : '0';
+
+        htmlTd.appendChild(htmlInput);
+        htmlTrContent.appendChild(htmlTd);
+    });
+    htmlTable.appendChild(htmlTrContent);
+
+    tableContainer.appendChild(htmlTable);
+
+    // appendeo todo al target
+    let _target = document.getElementById(target);
+    _target.appendChild(tableContainer);
 }
 
 function handleImagesUploaded(filesInput, outputEl) {
@@ -188,4 +248,12 @@ function handleImagesUploaded(filesInput, outputEl) {
         alert('El navegador no soporta la API FILE');
         return filesArray;
     }
+}
+
+function formatString(str) {
+    return str
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+        .replaceAll(' ', '_');
 }

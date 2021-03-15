@@ -53,9 +53,10 @@ module.exports = (sequelize, dataTypes) => {
     };
     config = {
         timestamps: true,
+        logging: false,
     };
 
-    const AdminUser = sequelize.define(alias, cols, config);
+    const Category = sequelize.define(alias, cols, config);
 
-    return AdminUser;
+    return Category;
 };

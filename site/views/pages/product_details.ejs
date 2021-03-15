@@ -2,31 +2,39 @@
     const exists = locals._exists;
     let {
         id,
-        status,
-        tipo_de_producto,
-        tabla_de_talles,
-        marca,
-        product_name,
-        sku_visible,
-        product_price,
-        product_price_special,
-        product_price_special_desde,
-        product_price_special_hasta,
-        descripcion_corta,
-        composicion,
-        cuidado,
-        color,
-        stock_talles,
-        categorias,
-        imagenes
-    } = product;
+        sizeTableId,
+        brandId,
+        colorId,
+        isActive,
+        productName,
+        sku,
+        productPrice,
+        productPriceSpecial,
+        productPriceSpecialFrom,
+        productPriceSpecialTo,
+        shortDescription,
+        composition,
+        care,
+        stock,
+        productsGroup,
+        createdAt,
+        updatedAt,
+        categories,
+        images,
+    } = exists(locals.product) ? product : {};
+
+    if(locals.product) {
+        images = images.split(',');
+        stock = stock.split(',');
+
+    }
 
 %> 
 
 <!DOCTYPE html>
 <html lang="es" class="catalog_product_view">
     <head>
-        <% pageTitle = product_name !== undefined ? product_name : 'Ficha de producto' %> <%-
+        <% pageTitle = productName !== undefined ? productName : 'Ficha de producto' %> <%-
         include('../partials/head') %>
     </head>
 
@@ -38,9 +46,9 @@
                 <div class="product_images">
                     <div class="swiper-container">
                         <div class="swiper-wrapper">
-                            <% for( let i = 0; i < imagenes.length; i++ ) { %>
+                            <% for( let i = 0; i < images.length; i++ ) { %>
                                 <div class="swiper-slide">
-                                    <img src="/images/catalog/products/<%= imagenes[i] %>" alt="" />
+                                    <img src="/images/catalog/products/<%= images[i] %>" alt="" />
                                 </div>
                             <% } %>
                         </div>
@@ -51,14 +59,14 @@
 
                 <div class="product_info">
                     <div class="product_head">
-                        <h1 class="product_name"><%= product_name %></h1>
+                        <h1 class="product_name"><%= productName %></h1>
                         
-                        <div class="product_price <%= product_price_special > 0 ? 'discount' : '' %>">
-                            <h3 class="regular_price">$8.000</h3>
+                        <div class="product_price <%= productPriceSpecial > 0 ? 'discount' : '' %>">
+                            <h3 class="regular_price">$<%= productPrice %></h3>
 
-                            <% if (product_price_special > 0) { %>
-                                <h3 class="special_price">$4.000</h3>
-                                <h3 class="percent_off">50% OFF</h3>
+                            <% if (productPriceSpecial > 0) { %>
+                                <h3 class="special_price">$<%= productPriceSpecial %></h3>
+                                <h3 class="percent_off dnone">50% OFF</h3>
                             <% } %>
                         </div>
                     </div>
@@ -73,15 +81,15 @@
                             </div>
                         </div>
                         <div class="colors_info">
-                            <h4><%= color %> </h4>
+                            <h4><%= colorId %> </h4>
                         </div>
                     </div>
 
                     <div class="product_attribute_sizes">
                         <select name="talles" id="talles" value="">
                             <option value="default">Selecciona tu talle</option>
-                            <% for( let i = 0; i < stock_talles.length; i++ ) { %>
-                                <option value="<%= stock_talles[i] %>"><%= stock_talles[i] %></option>    
+                            <% for( let i = 0; i < stock.length; i++ ) { %>
+                                <option value="<%= stock[i] %>"><%= stock[i] %></option>    
                             <% } %>
                         </select>
                     </div>
