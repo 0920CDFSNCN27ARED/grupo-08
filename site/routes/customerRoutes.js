@@ -4,9 +4,10 @@ const routes = express.Router();
 const customerControllers = require('../controllers/customerControllers');
 const withAuth = require('../middlewares/auth/withAuth');
 
+routes.get('/', (req,res) => res.redirect(301, '/clientes/mi-cuenta'))
 routes.get('/login', customerControllers.login);
 routes.post('/logged', customerControllers.logged);
-routes.post('/logout', customerControllers.logout);
+routes.get('/logout', customerControllers.logout);
 
 routes.get('/registro', customerControllers.register);
 routes.post('/registered', customerControllers.registered);

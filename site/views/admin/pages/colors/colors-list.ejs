@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es" class="colors_list_view" layout="admin">
+    <head>
+        <% pageTitle = locals.title !== undefined ? title : 'Colores' %> 
+        
+        <%- include('../../partials/head') %>
+    </head>
+<body>
+    <%- include('../../partials/header.ejs')  %> 
+
+    <% 
+        const exists = locals._exists;
+        let {
+            id,
+            colorName
+        } = exists(locals.color) ? color.dataValues : {};
+    %> 
+    
+
+    <main>
+        <section class="content_header">
+
+            <h1>
+                <%= 
+                    exists(id)
+                        ? `Categoría: ${colorName}`
+                        : 'Categorías'
+                 %> 
+            </h1>
+
+            <div class="content_header_navigation">
+                <% if (exists(locals.color)) { %>
+                    <a href="/admin/c/colores/<%= id %>/delete?_method=DELETE" id="color_create_form_delete_btn" class="button_main_action error">
+                        Borrar color
+                    </a>
+                <% } %>
+                <a href="/admin/c/colores/" class="button_main_action">
+                    Volver
+                </a>
+            </div>
+            
+
+        </section>
+
+        <section class="content_form">
+            <div class="categories_list">
+                <h4>Listado de Colores</h4>
+                <ul>
+                    <%- colorsHTML %>
+                </ul>
+            </div>
+
+            <div class="categories_form">
+                <form id="color_create_form" method="POST" enctype="multipart/form-data">
+                    <% if (exists(id)) { %>
+                        <input type="hidden" name="id" value="<%= id %>">
+                    <% } %>
+
+                    <div class="form_header">
+                        <h4>Información de los colores</h4>
+                        <ul>
+                            <li>
+                                <a class="form_tab_btn active" onclick="changeTab(this, 'tab_data')">Datos color</a>
+                            </li>
+                            <li class="dnone">
+                                <a class="form_tab_btn" onclick="changeTab(this, 'tab_imagenes')">Imagen</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="form_tab" id="tab_data">
+                        <div class="form_data">
+
+                            <%- include('../../../components/forms/form_input/index', {
+                                is_required: true,
+                                label: 'Nombre',
+                                type: 'text',
+                                name: 'colorName',
+                                placeholder: 'Ingrese el nombre del color',
+                                default_value: exists(colorName) ? colorName : false,
+                            }) %> 
+
+                        </div>
+                    </div>
+
+                    <!-- Imagenes -->
+                    <div class="form_tab dnone" id="tab_imagenes">
+                        <div class="form_data">
+                        
+                            <div class="form_row">
+                                <label for="form_files_upload">Cargar imagen</label>
+                                <input type="file" id="form_files_upload" name="form_files_upload"><br><br>
+                            </div>
+
+                            <% if (exists(locals.color)) { %>
+                                <h4>
+                                    Las imágenes nuevas reemplazaran las anteriores
+                                </h4>
+                            <% } %>
+
+                        </div>
+                        <div class="form_images" id="form_preview_files">
+                            
+                        </div>
+                    </div>
+                    
+                    <% if (exists(locals.color)) { %>
+                        <button type="submit" id="color_create_form_update_btn" class="button_main_action">Actualizar marca</button>
+                    <% } else { %>
+                        <button type="submit" id="color_create_form_create_btn" class="button_main_action">Guardar marca</button>
+                    <% } %>
+
+                </form>
+            </div>
+
+        </section>
+    </main>
+    
+    
+    <%- include('../../partials/footer.ejs')  %> 
+</body>
+</html>

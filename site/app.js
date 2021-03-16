@@ -3,6 +3,7 @@ const methodOverride = require('method-override');
 const opn = require('open');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
+const getCategories = require('./middlewares/categories/getAllCategories');
 
 const withCookiesAuth = require('./middlewares/auth/withCookiesAuth');
 const withAuth = require('./middlewares/auth/withAuth');
@@ -62,19 +63,6 @@ app.use((req, res, next) => {
     console.log('admin session: ', req.session.adminUser);
     console.log('admin cookie: ', req.cookies.cookieAdminUser);
 
-    /* req.session.adminId = 1;
-    res.locals.curAdmin = {
-        id: 1,
-        first_name: 'Leandro',
-        last_name: 'Muzzupappa',
-        email: 'lnmuzzupappa@gmail.com',
-        username: 'lm',
-        password: '$2b$12$FbDdOYvqQODfm7zDyEPmleoJS1xREoBhk.RreEL9nRlEH3V0B2pJ.',
-        created_at: 1612756807152,
-        last_login_date: 1613574676213,
-        status: 'activo',
-        permissions: 'administrador'
-      } */
     console.log('app md fin \n\n');
 
     next();
@@ -92,7 +80,7 @@ const customerRoutes = require('./routes/customerRoutes');
 const adminRoutes = require('./routes/admin/adminRoutes');
 
 // Routes
-app.use('/', mainRoutes);
+app.use('/', getCategories, mainRoutes);
 app.use('/c', productRoutes);
 app.use('/clientes', withAuth, customerRoutes);
 app.use('/checkout', checkoutRoutes);

@@ -109,25 +109,25 @@ function handleSkuVisible(currEl, targetElement) {
     let target = document.querySelector(`#${targetElement}`);
     let arrTargetVal = target.value.split('-');
 
-    // El sku visible se compone por marca - tipo prod - nombre
-    let [marca, tipoProducto, nombre] = ['marca', 'tipo_de_producto', 'nombre'];
+    // El sku visible se compone por marca - color - nombre
+    let [marca, color, nombre] = ['marca', 'color', 'nombre'];
 
     if (target.value) {
         marca = arrTargetVal[0];
-        tipoProducto = arrTargetVal[1];
+        color = arrTargetVal[1];
         nombre = arrTargetVal[2];
     }
 
     switch (currEl.getAttribute('name')) {
-        case 'marca':
+        case 'brandId':
             marca = formatString(currEl.value);
             break;
 
-        case 'tipo_de_producto':
-            tipoProducto = formatString(currEl.value);
+        case 'colorId':
+            color = currEl.selectedIndex;
             break;
 
-        case 'product_name':
+        case 'productName':
             nombre = formatString(currEl.value);
             break;
 
@@ -135,338 +135,82 @@ function handleSkuVisible(currEl, targetElement) {
             break;
     }
 
-    function formatString(str) {
-        return str
-            .normalize('NFD')
-            .replace(/[\u0300-\u036f]/g, '')
-            .toLowerCase()
-            .replaceAll(' ', '_');
-    }
-
     // Devuelvo el sku visible
-    target.value = `${marca}-${tipoProducto}-${nombre}`;
+    target.value = `${marca}-${color}-${nombre}`;
 }
 
-function handleTablaTalles(currEl, targetElement, ...stock_talles) {
-    // Templates tabla talles
-    // Perdon! esta horrible esto
-    const tabla_talles_calzado_35_al_45 = `
-        <div class="tablita talles_calzado" data_table="tabla_talles_calzado_35_al_45">
-            <h4>Calzado</h4>
-            <table width="100%" cellspacing="0" cellpadding="0">
-                <tr>
-                    <th>
-                    Talles 
-                    </th>
-                    <th>
-                        35
-                    </th>
-                    <th>
-                        35.5
-                    </th>
-                    <th>
-                        36
-                    </th>
-                    <th>
-                        36.5
-                    </th>
-                    <th>
-                        37
-                    </th>
-                    <th>
-                        37.5
-                    </th>
-                    <th>
-                        38
-                    </th>
-                    <th>
-                        38.5
-                    </th>
-                    <th>
-                        39
-                    </th>
-                    <th>
-                        39.5
-                    </th>
-                    <th>
-                        40
-                    </th>
-                    <th>
-                        40.5
-                    </th>
-                    <th>
-                        41
-                    </th>
-                    <th>
-                        41.5
-                    </th>
-                    <th>
-                        42
-                    </th>
-                    <th>
-                        42.5
-                    </th>
-                    <th>
-                        43
-                    </th>
-                    <th>
-                        43.5
-                    </th>
-                    <th>
-                        44
-                    </th>
-                    <th>
-                        44.5
-                    </th>
-                    <th>
-                        45
-                    </th>
-                    <th>
-                        45.5
-                    </th>
-                </tr>
-                <tr>
-                    <td>
-                        Color stock
-                    </td>
-                    <td>
-                        <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
-                    </td>
-                    <td>
-                        <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
-                    </td>
-                    <td>
-                        <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
-                    </td>
-                    <td>
-                        <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
-                    </td>
-                    <td>
-                        <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
-                    </td>
-                    <td>
-                        <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
-                    </td>
-                    <td>
-                        <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
-                    </td>
-                    <td>
-                        <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
-                    </td>
-                    <td>
-                        <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
-                    </td>
-                    <td>
-                        <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
-                    </td>
-                    <td>
-                        <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
-                    </td>
-                    <td>
-                        <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
-                    </td>
-                    <td>
-                        <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
-                    </td>
-                    <td>
-                        <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
-                    </td>
-                    <td>
-                        <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
-                    </td>
-                    <td>
-                        <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
-                    </td>
-                    <td>
-                        <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
-                    </td>
-                    <td>
-                        <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
-                    </td>
-                    <td>
-                        <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
-                    </td>
-                    <td>
-                        <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
-                    </td>
-                    <td>
-                        <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
-                    </td>
-                    <td>
-                        <input type="number"  name="stock_talles"  id="stock_talles"  placeholder="0" value="0">
-                    </td>
-                </tr>
-            </table>
-        
-        </div>
-    `;
-    const tabla_talles_36_al_48 = `
-        <div class="tablita talles_prendas_inf" data_table="tabla_talles_36_al_48">
-            <h4>Prendas inferiores</h4>
-            <table width="100%" cellspacing="0" cellpadding="0">
-                <tr>
-                    <th>
-                    Talles 
-                    </th>
-                    <th>
-                        36
-                    </th>
-                    <th>
-                        38
-                    </th>
-                    <th>
-                        40
-                    </th>
-                    <th>
-                        42
-                    </th>
-                    <th>
-                        44
-                    </th>
-                    <th>
-                        46
-                    </th>
-                    <th>
-                        48
-                    </th>
-                </tr>
-                <tr>
-                    <td>
-                        Color stock
-                    </td>
-                    <td>
-                        <input type="number" name="stock_talles" id="stock_talles" placeholder="0" value="0">
-                    </td>
-                    <td>
-                        <input type="number" name="stock_talles" id="stock_talles" placeholder="0" value="0">
-                    </td>
-                    <td>
-                        <input type="number" name="stock_talles" id="stock_talles" placeholder="0" value="0">
-                    </td>
-                    <td>
-                        <input type="number" name="stock_talles" id="stock_talles" placeholder="0" value="0">
-                    </td>
-                    <td>
-                        <input type="number" name="stock_talles" id="stock_talles" placeholder="0" value="0">
-                    </td>
-                    <td>
-                        <input type="number" name="stock_talles" id="stock_talles" placeholder="0" value="0">
-                    </td>
-                    <td>
-                        <input type="number" name="stock_talles" id="stock_talles" placeholder="0" value="0">
-                    </td>
-                </tr>
-            </table>
-        
-        </div>
-    `;
-    const tabla_talles_xxs_al_xxl = `
-        <div class="tablita talles_prendas_sup" data_table="tabla_talles_xxs_al_xxl">
-            <h4>Prendas superiores</h4>
-            <table width="100%" cellspacing="0" cellpadding="0">
-                <tr>
-                    <th>
-                    Talles 
-                    </th>
-                    <th>
-                        xxs
-                    </th>
-                    <th>
-                        xs
-                    </th>
-                    <th>
-                        s
-                    </th>
-                    <th>
-                        m
-                    </th>
-                    <th>
-                        l
-                    </th>
-                    <th>
-                        xl
-                    </th>
-                    <th>
-                        xxl
-                    </th>
-                </tr>
-                <tr>
-                    <td>
-                        Color stock
-                    </td>
-                    <td>
-                        <input type="number" name="stock_talles" id="stock_talles" placeholder="0" value="0">
-                    </td>
-                    <td>
-                        <input type="number" name="stock_talles" id="stock_talles" placeholder="0" value="0">
-                    </td>
-                    <td>
-                        <input type="number" name="stock_talles" id="stock_talles" placeholder="0" value="0">
-                    </td>
-                    <td>
-                        <input type="number" name="stock_talles" id="stock_talles" placeholder="0" value="0">
-                    </td>
-                    <td>
-                        <input type="number" name="stock_talles" id="stock_talles" placeholder="0" value="0">
-                    </td>
-                    <td>
-                        <input type="number" name="stock_talles" id="stock_talles" placeholder="0" value="0">
-                    </td>
-                    <td>
-                        <input type="number" name="stock_talles" id="stock_talles" placeholder="0" value="0">
-                    </td>
-                </tr>
-            </table>
-        
-        </div>
-    `;
+function tablita(currEl, table, target, stock) {
+    let sinTablaSeleccionada = document.querySelector('.sinTablaSeleccionada');
+    sinTablaSeleccionada.classList.add('dnone');
 
-    let selectedTabla, target, targetMsg;
+    let isTableContainer = document.querySelector('.tablita');
+    if (isTableContainer) isTableContainer.remove();
 
-    target = document.querySelector(`#${targetElement} .form_data`);
-    targetMsg = target.children[1];
+    const selectedTableIndex = currEl.selectedIndex - 1;
+    const selectedTable = table[selectedTableIndex];
 
-    // Oculto el mensaje
-    targetMsg.style.display = 'none';
-
-    selectedTabla = currEl.options[currEl.selectedIndex].value;
-    switch (selectedTabla) {
-        case 'tabla_talles_calzado_35_al_45':
-            removerTablas();
-            target.innerHTML += tabla_talles_calzado_35_al_45;
-            break;
-
-        case 'tabla_talles_36_al_48':
-            removerTablas();
-            target.innerHTML += tabla_talles_36_al_48;
-            break;
-
-        case 'tabla_talles_xxs_al_xxl':
-            removerTablas();
-            target.innerHTML += tabla_talles_xxs_al_xxl;
-            break;
-
-        default:
-            removerTablas();
-            // Muestro el mensaje
-            targetMsg.style.display = 'block';
-            break;
+    let stockArr = [];
+    if (stock !== undefined) {
+        stockArr = stock.split(',');
     }
 
-    if (stock_talles.length > 0) {
-        let currTable = document.querySelector(`[data_table="${selectedTabla}"]`);
-        let _inputs = currTable.querySelectorAll('input');
-        _inputs.forEach((input, i) => {
-            input.value = stock_talles[i];
-        });
+    if (selectedTableIndex == -1) {
+        sinTablaSeleccionada.classList.remove('dnone');
+        return;
     }
 
-    function removerTablas() {
-        let tablas = document.querySelectorAll('.tablita');
-        if (tablas.length > 0) {
-            tablas.forEach((tabla) => tabla.remove());
-        }
-    }
+    // Formateo el string a un array de numeros
+    selectedTable.sizes = selectedTable.sizes
+        .split(',')
+        .map((item) => (isNaN(item) ? item : Number(item)));
+
+    // Creo el div
+    let tableContainer = document.createElement('div');
+    tableContainer.classList.add('tablita');
+    tableContainer.setAttribute('data_table', formatString(selectedTable.name));
+
+    // Creo titulo
+    let title = document.createElement('h4');
+    title.innerText = selectedTable.name;
+    tableContainer.appendChild(title);
+
+    // Creo tabla principal
+    let htmlTable = document.createElement('table');
+    htmlTable.setAttribute('width', '100%');
+    htmlTable.setAttribute('cellspacing', 0);
+    htmlTable.setAttribute('cellpadding', 0);
+
+    // Creo tr head
+    let htmlTrHead = document.createElement('tr');
+    selectedTable.sizes.forEach((size) => {
+        let htmlTh = document.createElement('th');
+        htmlTh.innerText = size;
+
+        htmlTrHead.appendChild(htmlTh);
+    });
+    htmlTable.appendChild(htmlTrHead);
+
+    // Creo tr content
+    let htmlTrContent = document.createElement('tr');
+    selectedTable.sizes.forEach((size, i) => {
+        let htmlTd = document.createElement('td');
+        let htmlInput = document.createElement('input');
+        htmlInput.type = 'number';
+        htmlInput.name = 'stock';
+        htmlInput.id = 'stock';
+        htmlInput.placeholder = '0';
+        htmlInput.value = stock !== undefined ? stockArr[i] : '0';
+
+        htmlTd.appendChild(htmlInput);
+        htmlTrContent.appendChild(htmlTd);
+    });
+    htmlTable.appendChild(htmlTrContent);
+
+    tableContainer.appendChild(htmlTable);
+
+    // appendeo todo al target
+    let _target = document.getElementById(target);
+    _target.appendChild(tableContainer);
 }
 /* 
 function ejemploLean(e, str) {
@@ -514,4 +258,12 @@ function handleImagesUploaded(filesInput, outputEl) {
         alert('El navegador no soporta la API FILE');
         return filesArray;
     }
+}
+
+function formatString(str) {
+    return str
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+        .replaceAll(' ', '_');
 }

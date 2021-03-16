@@ -1,46 +1,47 @@
 const formatString = require('../helpers/formatString');
 const jsonFile = require('../helpers/jsonFile');
 const returnCategoriesFormated = require('../helpers/returnCategoriesFormated');
+const db = require('../database/models');
 
 const productControllers = {
-    gallery: (req, res) => {
+    gallery: async (req, res) => {
         const _catName = req.params.categoria;
 
-        const allCategories = jsonFile.read('../db/categories.json');
-        const allProducts = jsonFile.read('../db/products.json');
-
-        const _catObj = allCategories.find((cat) => {
-            if (formatString(cat.name) == _catName) {
-                return cat;
-            }
-        });
-
-        // Si no encuentra la categoria devuelvo 404
-        if (_catObj === undefined) res.send({ status: 404, msg: 'Categoria no encontrada' });
-
-        // Busco todos los productos que contengan la categoria
-        let productsToShow = [];
-
-        // Loopeo todos los productos y los asigno a una variable
-        allProducts.forEach((prods) => {
-            prods.categorias.forEach((cat) => {
-                if (cat == _catObj.id) {
-                    productsToShow.push(prods);
-                }
+        try {
+            let category = await db.Category.findOne({
+                where: {
+                    categoryName: _catName,
+                },
             });
-        });
 
-        res.render('pages/products_gallery', {
-            categories: returnCategoriesFormated.asHTMLfront(allCategories, '/c/categoria'),
-            category: _catObj,
-            products: productsToShow,
-        });
+            if (category === undefined) {
+                return res.send({ status: 404, msg: 'categoria no encontrada' });
+            }
+            category = category.dataValues;
+            category.__pageTitle = category.pageTitle;
+
+            let catID = category.id;
+
+            let products = await db.Product.findAll({
+                where: { categories: catID },
+            });
+
+            products = products.map((product) => product.dataValues);
+
+            return res.render('pages/products_gallery', {
+                category,
+                products,
+            });
+        } catch (err) {
+            console.log('Hubo un error al traer la categoria --> ', err);
+            return res.redirect(301, '/');
+        }
     },
 
-    details: (req, res) => {
-        const { sku } = req.params;
+    details: async (req, res) => {
+        const { pname, sku } = req.params;
 
-        const allCategories = jsonFile.read('../db/categories.json');
+        /* const allCategories = jsonFile.read('../db/categories.json');
         const allProducts = jsonFile.read('../db/products.json');
 
         // Loopeo todos los productos y los asigno a una variable
@@ -51,7 +52,28 @@ const productControllers = {
         res.render('pages/product_details', {
             categories: returnCategoriesFormated.asHTMLfront(allCategories, '/c/categoria'),
             product: productToShow,
-        });
+        }); */
+
+        try {
+            let product = await db.Product.findOne({
+                where: {
+                    sku: sku,
+                },
+            });
+
+            if (product === undefined || formatString(product.dataValues.productName) !== pname) {
+                return res.redirect(301, '/');
+            }
+
+            product = product.dataValues;
+
+            res.render('pages/product_details', {
+                product,
+            });
+        } catch (err) {
+            console.log('Hubo un error al traer el producto ' + pname, err);
+            return res.redirect(301, '/');
+        }
     },
 };
 

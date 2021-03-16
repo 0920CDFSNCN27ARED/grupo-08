@@ -1,74 +1,83 @@
 const jsonFile = require('../../helpers/jsonFile');
 const returnCategoriesFormated = require('../../helpers/returnCategoriesFormated');
+const db = require('../../database/models');
 
 const categoriesControllers = {
-    getOne: (req, res) => {
+    getOne: async (req, res) => {
         const { id } = req.params;
 
-        let category, allCategories;
-        allCategories = jsonFile.read('../db/categories.json');
-        category = allCategories.find((cat) => cat.id == id);
-
-        if (category == undefined) {
-            return res.status(400).send({
-                msg: 'La categoría no ha sido encontrada',
+        try {
+            const category = await db.Category.findOne({
+                where: { id: id },
             });
+
+            if (!category) {
+                return res.redirect('/admin/?error_al_traer_categoria_' + id);
+            }
+
+            const categories = await db.Category.findAll();
+            const allCategories = categories.map((cat) => cat.dataValues);
+
+            return res.render('admin/pages/categories/categories-list', {
+                category,
+                categoriesHTML: returnCategoriesFormated.asHTML(
+                    allCategories,
+                    '/admin/c/categorias'
+                ),
+            });
+        } catch (err) {
+            console.log('Hubo un error al traer las categorias --> ', err);
+            return res.redirect('/admin/?error_al_traer_categoria_' + id);
         }
-
-        res.render('admin/pages/categories/categories-list', {
-            category,
-            categoriesHTML: returnCategoriesFormated.asHTML(allCategories, '/admin/c/categorias'),
-        });
     },
-    getAll: (req, res) => {
-        const allCategories = jsonFile.read('../db/categories.json');
+    getAll: async (req, res) => {
+        try {
+            const categories = await db.Category.findAll();
+            const allCategories = categories.map((cat) => cat.dataValues);
 
-        res.render('admin/pages/categories/categories-list', {
-            categoriesHTML: returnCategoriesFormated.asHTML(allCategories, '/admin/c/categorias'),
-        });
+            return res.render('admin/pages/categories/categories-list', {
+                categoriesHTML: returnCategoriesFormated.asHTML(
+                    allCategories,
+                    '/admin/c/categorias'
+                ),
+            });
+        } catch (err) {
+            console.log('Hubo un error al traer las categorias --> ', err);
+            return res.redirect('/admin');
+        }
     },
-    create: (req, res) => {
-        const allCategories = jsonFile.read('../db/categories.json');
+    create: async (req, res) => {
+        const {
+            status,
+            show_menu,
+            category_name,
+            page_title,
+            meta_description,
+            meta_keywords,
+            imagenes,
+        } = req.body;
 
-        const handleCategoryId = (arr) => {
-            if (arr.length === 0) return 1;
-
-            let lastIdNo = arr[arr.length - 1].id;
-            return lastIdNo + 1;
-        };
-
-        const handleImages = (obj) => {
-            let arrImagesNames = [];
-
-            let images = obj;
-            images.forEach((image) => {
-                let originalName = image.originalname;
-                arrImagesNames.push(`/${originalName[0]}/${originalName[1]}/${originalName}`);
+        try {
+            const category = db.Category.create({
+                isActive: Number(status),
+                showMenu: Number(show_menu),
+                categoryName: category_name,
+                pageTitle: page_title,
+                metaDescription: meta_description,
+                metaKeyWords: meta_keywords,
+                parentCategory: '0',
+                subCategories: '',
             });
 
-            return arrImagesNames;
-        };
-
-        const category = {
-            id: handleCategoryId(allCategories),
-            status: req.body.status,
-            show_menu: req.body.show_menu,
-            name: req.body.category_name,
-            page_title: req.body.page_title ? req.body.page_title : '',
-            meta_description: req.body.meta_description ? req.body.meta_description : '',
-            meta_keywords: req.body.meta_keywords ? req.body.meta_keywords : '',
-            imagenes: handleImages(req.files) ? handleImages(req.files) : [],
-            parent_cat: 0,
-            subcategories: [],
-        };
-
-        allCategories.push(category);
-
-        jsonFile.write(allCategories, '../db/categories.json');
-        res.send({ status: 200 });
+            return res.send({ status: 200 });
+        } catch (err) {
+            console.log('Hubo un error al crear la categoria --> ', err);
+            return res.send({ status: 400 });
+        }
     },
-    update: (req, res) => {
-        const allCategories = jsonFile.read('../db/categories.json');
+    update: async (req, res) => {
+        console.log(req.body);
+
         const {
             id,
             status,
@@ -79,31 +88,42 @@ const categoriesControllers = {
             meta_keywords,
         } = req.body;
 
-        allCategories.forEach((cat, i) => {
-            if (cat.id == id) {
-                cat.status = cat.status == status ? cat.status : status;
-                cat.show_menu = cat.show_menu == show_menu ? cat.show_menu : show_menu;
-                cat.name = cat.name == category_name ? cat.name : category_name;
-                cat.page_title = cat.page_title == page_title ? cat.page_title : page_title;
-                cat.meta_description =
-                    cat.meta_description == meta_description
-                        ? cat.meta_description
-                        : meta_description;
-                cat.meta_keywords =
-                    cat.meta_keywords == meta_keywords ? cat.meta_keywords : meta_keywords;
-            }
-        });
+        try {
+            await db.Category.update(
+                {
+                    id: id,
+                    isActive: status,
+                    showMenu: show_menu,
+                    categoryName: category_name,
+                    pageTitle: page_title,
+                    metaDescription: meta_description,
+                    metaKeyWords: meta_keywords,
+                },
+                {
+                    where: { id: id },
+                }
+            );
 
-        jsonFile.write(allCategories, '../db/categories.json');
-        res.send({ status: 200 });
+            return res.send({ status: 200 });
+        } catch (err) {
+            console.log('Hubo un error al actualizar la categoria --> ', err);
+            return res.redirect('/admin/?error_al_actualizar_categoria_' + id);
+        }
     },
-    delete: (req, res) => {
+    delete: async (req, res) => {
         let { id } = req.params;
-        let allCategories = jsonFile.read('../db/categories.json');
-        let categoriesUpdated = allCategories.filter((cat, i) => cat.id != id);
 
-        jsonFile.write(categoriesUpdated, '../db/categories.json');
-        res.send({ status: 200 });
+        try {
+            await db.Category.destroy({
+                where: {
+                    id: id,
+                },
+            });
+            res.send({ status: 200 });
+        } catch (err) {
+            console.log('Hubo un error al borrar las categorias --> ', err);
+            return res.redirect('/admin/?error_al_borrar_categoria_' + id);
+        }
     },
 };
 

@@ -6,6 +6,7 @@ const userRoutes = require('./userRoutes');
 const catalogRoutes = require('./catalogRoutes');
 const employeesRoutes = require('./employeesRoutes');
 const customersRoutes = require('./customersRoutes');
+const tablitasRoutes = require('./tablesRoutes');
 
 routes.get('/', (req, res) => {
     res.render('admin/pages/index');
@@ -13,7 +14,8 @@ routes.get('/', (req, res) => {
 
 routes.use('/c', catalogRoutes);
 routes.use('/user', userRoutes);
-routes.use('/employees', employeesRoutes);
 routes.use('/clientes', customersRoutes);
+routes.use('/employees', employeesRoutes);
+routes.use('/tablitas', tablitasRoutes);
 
 module.exports = routes;

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es" class="brands_list_view" layout="admin">
+    <head>
+        <% pageTitle = locals.title !== undefined ? title : 'Marcas' %> 
+        
+        <%- include('../../partials/head') %>
+    </head>
+<body>
+    <%- include('../../partials/header.ejs')  %> 
+
+    <% 
+        const exists = locals._exists;
+        let {
+            id,
+            brandName
+        } = exists(locals.brand) ? brand.dataValues : {};
+    %> 
+    
+
+    <main>
+        <section class="content_header">
+
+            <h1>
+                <%= 
+                    exists(id)
+                        ? `Categoría: ${brandName}`
+                        : 'Categorías'
+                 %> 
+            </h1>
+
+            <div class="content_header_navigation">
+                <% if (exists(locals.brand)) { %>
+                    <a href="/admin/c/marcas/<%= id %>/delete?_method=DELETE" id="brand_create_form_delete_btn" class="button_main_action error">
+                        Borrar marca
+                    </a>
+                <% } %>
+                <a href="/admin/c/marcas/" class="button_main_action">
+                    Volver
+                </a>
+            </div>
+            
+
+        </section>
+
+        <section class="content_form">
+            <div class="categories_list">
+                <h4>Listado de marcas</h4>
+                <ul>
+                    <%- brandsHTML %>
+                </ul>
+            </div>
+
+            <div class="categories_form">
+                <form id="brand_create_form" method="POST" enctype="multipart/form-data">
+                    <% if (exists(id)) { %>
+                        <input type="hidden" name="id" value="<%= id %>">
+                    <% } %>
+
+                    <div class="form_header">
+                        <h4>Información de la Marca</h4>
+                        <ul>
+                            <li>
+                                <a class="form_tab_btn active" onclick="changeTab(this, 'tab_data')">Datos categoria</a>
+                            </li>
+                            <li class="dnone">
+                                <a class="form_tab_btn" onclick="changeTab(this, 'tab_imagenes')">Imagen</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="form_tab" id="tab_data">
+                        <div class="form_data">
+
+                            <%- include('../../../components/forms/form_input/index', {
+                                is_required: true,
+                                label: 'Nombre',
+                                type: 'text',
+                                name: 'brandName',
+                                placeholder: 'Ingrese el nombre de la marca',
+                                default_value: exists(brandName) ? brandName : false,
+                            }) %> 
+
+                        </div>
+                    </div>
+
+                    <!-- Imagenes -->
+                    <div class="form_tab dnone" id="tab_imagenes">
+                        <div class="form_data">
+                        
+                            <div class="form_row">
+                                <label for="form_files_upload">Cargar imagen</label>
+                                <input type="file" id="form_files_upload" name="form_files_upload"><br><br>
+                            </div>
+
+                            <% if (exists(locals.brand)) { %>
+                                <h4>
+                                    Las imágenes nuevas reemplazaran las anteriores
+                                </h4>
+                            <% } %>
+
+                        </div>
+                        <div class="form_images" id="form_preview_files">
+                            
+                        </div>
+                    </div>
+                    
+                    <% if (exists(locals.brand)) { %>
+                        <button type="submit" id="brand_create_form_update_btn" class="button_main_action">Actualizar marca</button>
+                    <% } else { %>
+                        <button type="submit" id="brand_create_form_create_btn" class="button_main_action">Guardar marca</button>
+                    <% } %>
+
+                </form>
+            </div>
+
+        </section>
+    </main>
+    
+    
+    <%- include('../../partials/footer.ejs')  %> 
+</body>
+</html>
