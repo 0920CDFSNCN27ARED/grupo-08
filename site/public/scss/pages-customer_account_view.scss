@@ -1,0 +1,71 @@
+.customer_account_view {
+    header {
+        border-bottom: 1px solid $gray1;
+    }
+
+    main {
+        margin-top: 7rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 2rem;
+        padding: 0 2rem;
+
+        section {
+            position: relative;
+        }
+    }
+
+    .navigation {
+        width: 20%;
+        padding: 1rem;
+        border: 1px solid $gray1;
+        position: sticky;
+        top: 6rem;
+        border-radius: 0.5rem;
+        @include shadow(0px, 20px, 20px, $black, 0.05);
+
+        h4 {
+            @include font-size(16);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            color: $gray4;
+        }
+
+        a {
+            @include font-size(14);
+            margin-bottom: 0.5rem;
+            color: $gray3;
+
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+
+            &::before {
+                content: '';
+                width: 0rem;
+                height: 1px;
+                background: $gray3;
+                margin-right: 0.3rem;
+                @include transition(0.2s);
+            }
+
+            &:hover {
+                color: $gray5;
+
+                &::before {
+                    width: 1rem;
+                    background: $gray5;
+                }
+            }
+        }
+    }
+
+    .content_data {
+        width: 80%;
+        border: 1px solid red;
+    }
+}

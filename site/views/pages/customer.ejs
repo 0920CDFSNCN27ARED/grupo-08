@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" class="home_view">
+<html lang="es" class="customer_account_view">
     <head>
         <% pageTitle = locals.title !== undefined ? title : 'Mi cuenta' %> 
         
@@ -13,13 +13,37 @@
 
         <main>
 
-            <h1>usuario</h1>
+            <section class="navigation">
+                <h4>
+                    Mi cuenta
+                </h4>
+                <ul>
+                    <li>
+                        <a href="#">Inicio</a>
+                    </li>
+                    <li>
+                        <a href="#">Información de la cuenta</a>
+                    </li>
+                    <li>
+                        <a href="#">Mis direcciones</a>
+                    </li>
+                    <li>
+                        <a href="#">Mis pedidos</a>
+                    </li>
+                    <li>
+                        <a href="#">Mi wishlist</a>
+                    </li>
+                    <li class="navigation-logout">
+                        <a href="/clientes/logout">Cerrar sesión</a>
+                    </li>
+                </ul>
 
-            <br><br>
-            
-            <form action="/clientes/logout" method="GET">
-                <button class="button_main_action">Cerrar sesion</button>
-            </form>
+            </section>
+            <section class="content_data">
+                <div class="">
+                    Bienvenido ${usuario}
+                </div>
+            </section>
 
         </main>
 
