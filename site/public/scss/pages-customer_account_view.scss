@@ -53,6 +53,7 @@
                 @include transition(0.2s);
             }
 
+            &.active,
             &:hover {
                 color: $gray5;
 
@@ -66,6 +67,97 @@
 
     .content_data {
         width: 80%;
-        border: 1px solid red;
+        padding: 2rem 0;
+
+        .data {
+            border: 1px solid $gray1;
+            background: $white;
+            padding: 0.5rem 1rem;
+            margin-bottom: 1rem;
+            border-radius: 0.5rem;
+
+            * {
+                @include font-size(14);
+            }
+
+            h2 {
+                @include font-size(18);
+                font-weight: 700;
+                color: $gray3;
+                text-transform: uppercase;
+            }
+
+            p {
+                color: $gray5;
+            }
+        }
+    }
+
+    .user {
+        margin-bottom: 2rem;
+    }
+
+    .pedidos-recientes {
+        table {
+            width: 100%;
+            text-align: left;
+            padding: 0.5rem 0;
+
+            tr {
+                &:nth-child(2n - 1) {
+                    td {
+                        background: $gray1;
+                    }
+                }
+            }
+
+            th {
+                font-weight: 700;
+                text-transform: uppercase;
+                border-bottom: 1px solid $gray2;
+            }
+            td {
+                padding: 0.3rem 0;
+            }
+        }
+    }
+
+    .form_tab {
+        width: 100%;
+        max-width: 500px;
+
+        hr {
+            margin: 2rem 0rem;
+            color: $gray2;
+        }
+
+        h2 {
+            margin-bottom: 1rem;
+        }
+
+        h4 {
+            margin-bottom: 1rem;
+        }
+    }
+
+    .form_row {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1rem;
+        position: relative;
+
+        label {
+            margin-bottom: 0.3rem;
+            cursor: pointer;
+            @include font-size(14);
+            color: $gray3;
+        }
+
+        input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid $gray1;
+        }
     }
 }

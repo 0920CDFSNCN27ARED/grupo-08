@@ -19,19 +19,19 @@
                 </h4>
                 <ul>
                     <li>
-                        <a href="#">Inicio</a>
+                        <a href="javascript:void(0)" class="form_tab_btn active" onclick="changeTab(this, 'customer-home')">Inicio</a>
                     </li>
                     <li>
-                        <a href="#">Información de la cuenta</a>
+                        <a href="javascript:void(0)" class="form_tab_btn" onclick="changeTab(this, 'customer-account-data')">Información de la cuenta</a>
                     </li>
                     <li>
-                        <a href="#">Mis direcciones</a>
+                        <a href="javascript:void(0)" class="form_tab_btn" onclick="changeTab(this, 'customer-addresses')">Mis direcciones</a>
                     </li>
                     <li>
-                        <a href="#">Mis pedidos</a>
+                        <a href="javascript:void(0)" class="form_tab_btn" onclick="changeTab(this, 'customer-sales')">Mis pedidos</a>
                     </li>
                     <li>
-                        <a href="#">Mi wishlist</a>
+                        <a href="javascript:void(0)" class="form_tab_btn" onclick="changeTab(this, 'customer-wishlist')">Mi wishlist</a>
                     </li>
                     <li class="navigation-logout">
                         <a href="/clientes/logout">Cerrar sesión</a>
@@ -39,10 +39,112 @@
                 </ul>
 
             </section>
-            <section class="content_data">
-                <div class="">
-                    Bienvenido ${usuario}
+
+            <section ID="customer-home" class="form_tab content_data dnone">
+                <div class="user">
+                    <h2>Bienvenido ${usuario}</h2>
                 </div>
+
+                <div class="data pedidos-recientes">
+                    <h2>
+                        Ultimo pedidos
+                    </h2>
+                    <table cellspacing="0" cellpadding="0">
+                        <tr>
+                            <th>
+                                Fecha
+                            </th>
+                            <th>
+                                Pedido #
+                            </th>
+                            <th>
+                                Destinatario
+                            </th>
+                            <th>
+                                Total
+                            </th>
+                            <th>
+                                Estado
+                            </th>
+                            <th>
+                                Acciones
+                            </th>
+                        </tr>
+                        <tr><td colspan="6" height="5"></td></tr>
+                        <tr>
+                            <td>
+                                17/03/2021
+                            </td>
+                            <td>
+                                4839948530485
+                            </td>
+                            <td>
+                                Leandro Muzzupappa
+                            </td>
+                            <td>
+                                $2.000,00
+                            </td>
+                            <td>
+                                Cancelado
+                            </td>
+                            <td>
+                                <a href="#">
+                                    Ver pedido
+                                </a>
+                            </td>
+                        </tr>
+
+                    </table>
+                    <p>No hay pedidos</p>
+                </div>
+
+                <div class="data info-cuenta">
+                    <h2>
+                        Información de la cuenta
+                    </h2>
+                    <div class="datos">
+                        <p class="datos-nombre">
+                            Leandro Muzzupappa
+                        </p>
+                        <p class="datos-email">
+                            lmuzzupappa@gmail.com
+                        </p>
+                        <p class="datos-password">
+                            <a href="#">Cambiar contraseña</a>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="data direcciones">
+                    <h2>
+                        Direcciones
+                    </h2>
+                    <div class="datos">
+                        <div class="datos-dir-facturacion">
+                            <h4>Direccion de facturación</h4>
+                            <p>Avenida Siempreviva 742, Springfield</p>
+                        </div>
+                        <div class="datos-dir-envio">
+                            <h4>Direccion de envío</h4>
+                            <p>Avenida Siempreviva 742, Springfield</p>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </section>
+
+            <section id="customer-account-data" class="form_tab dnone">
+                <%- include('../layouts/customer-account-data.ejs')  %> 
+            </section>
+            <section id="customer-addresses" class="form_tab">
+                <%- include('../layouts/customer-addresses')  %> 
+            </section>
+            <section id="customer-sales" class="form_tab dnone">
+                <%- include('../layouts/customer-sales.ejs')  %> 
+            </section>
+            <section id="customer-wishlist" class="form_tab dnone">
+                <%- include('../layouts/customer-wishlist')  %> 
             </section>
 
         </main>

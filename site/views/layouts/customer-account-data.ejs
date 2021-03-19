@@ -1,0 +1,67 @@
+<h2>
+    Información de la cuenta
+</h2>
+<form id="form-customer-account-data">
+    <%- include('../components/forms/form_input/index', {
+        is_required: true,
+        label: 'Nombre',
+        type: 'text',
+        name: 'firstName',
+        placeholder: 'Nombre',
+    }) %> 
+
+    <%- include('../components/forms/form_input/index', {
+        is_required: true,
+        label: 'Apellido',
+        type: 'text',
+        name: 'lastName',
+        placeholder: 'Apellido',
+    }) %> 
+
+    <%- include('../components/forms/form_input/index', {
+        is_required: true,
+        label: 'Correo electronico',
+        type: 'email',
+        name: 'email',
+        placeholder: 'Correo electrónico',
+    }) %> 
+
+    <%- include('../components/forms/form_input/index', {
+        is_required: true,
+        label: 'Fecha de nacimiento',
+        type: 'date',
+        name: 'dob',
+        placeholder: 'Fecha de nacimiento',
+    }) %> 
+
+    <%- include('../components/forms/form_input/index', {
+        is_required: true,
+        label: 'Genero',
+        type: 'text',
+        name: 'gender',
+        placeholder: 'Género',
+    }) %> 
+
+    <hr>
+
+    <h4>Cambiar contraseña</h4>
+
+    <%- include('../components/forms/form_input/index', {
+        is_required: true,
+        label: 'Contraseña actual',
+        type: 'password',
+        name: 'password',
+        placeholder: 'Ingrese su contraseña actual',
+    }) %> 
+    <%- include('../components/forms/form_input/index', {
+        is_required: true,
+        label: 'Contraseña nueva',
+        type: 'password',
+        name: 'passwordNew',
+        placeholder: 'Repita su contraseña',
+    }) %> 
+
+    <button type="submit" id="form-customer-account-data-update-btn" class="button_main_action">Guardar</button>
+
+
+</form>

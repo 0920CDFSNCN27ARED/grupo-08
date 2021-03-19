@@ -21,13 +21,23 @@
         updatedAt,
         categories,
         images,
+        sizeTable,
+        color,
     } = exists(locals.product) ? product : {};
 
     if(locals.product) {
         images = images.split(',');
         stock = stock.split(',');
-
+        sizeTable = sizeTable.dataValues.sizes.split(',');
+        color = color.dataValues.colorName;
     }
+
+    let showStock = [];
+    for (let i = 0; i < stock.length; i++) {
+        if(stock[i] != '0') showStock.push( sizeTable[i].toUpperCase() );
+    }
+
+    console.log(locals.product);
 
 %> 
 
@@ -81,15 +91,15 @@
                             </div>
                         </div>
                         <div class="colors_info">
-                            <h4><%= colorId %> </h4>
+                            <h4><%= color %> </h4>
                         </div>
                     </div>
 
                     <div class="product_attribute_sizes">
                         <select name="talles" id="talles" value="">
                             <option value="default">Selecciona tu talle</option>
-                            <% for( let i = 0; i < stock.length; i++ ) { %>
-                                <option value="<%= stock[i] %>"><%= stock[i] %></option>    
+                            <% for( let i = 0; i < showStock.length; i++ ) { %>
+                                <option value="<%= showStock[i] %>"><%= showStock[i] %></option>    
                             <% } %>
                         </select>
                     </div>

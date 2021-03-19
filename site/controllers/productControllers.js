@@ -59,6 +59,7 @@ const productControllers = {
                 where: {
                     sku: sku,
                 },
+                include: ['sizeTable', 'color'],
             });
 
             if (product === undefined || formatString(product.dataValues.productName) !== pname) {
