@@ -37,8 +37,6 @@
         if(stock[i] != '0') showStock.push( sizeTable[i].toUpperCase() );
     }
 
-    console.log(locals.product);
-
 %> 
 
 <!DOCTYPE html>
@@ -46,144 +44,153 @@
     <head>
         <% pageTitle = productName !== undefined ? productName : 'Ficha de producto' %> <%-
         include('../partials/head') %>
+
+
+        <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     </head>
 
     <body>
         <%- include('../partials/header') %>
 
         <main>
-            <article id="product-<%= id %>" class="product_details">
-                <div class="product_images">
-                    <div class="swiper-container">
-                        <div class="swiper-wrapper">
-                            <% for( let i = 0; i < images.length; i++ ) { %>
-                                <div class="swiper-slide">
-                                    <img src="/images/catalog/products/<%= images[i] %>" alt="" />
-                                </div>
-                            <% } %>
-                        </div>
+            <form action="/checkout/carrito/agregar" method="POST">
+                <% if (exists(id)) { %>
+                    <input type="hidden" name="productId" value="<%= id %>">
+                <% } %>
 
-                        <div class="swiper-pagination"></div>
-                    </div>
-                </div>
+                <article id="product-<%= id %>" class="product_details">
+                    <div class="product_images">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                <% for( let i = 0; i < images.length; i++ ) { %>
+                                    <div class="swiper-slide">
+                                        <img src="/images/catalog/products/<%= images[i] %>" alt="" />
+                                    </div>
+                                <% } %>
+                            </div>
 
-                <div class="product_info">
-                    <div class="product_head">
-                        <h1 class="product_name"><%= productName %></h1>
-                        
-                        <div class="product_price <%= productPriceSpecial > 0 ? 'discount' : '' %>">
-                            <h3 class="regular_price">$<%= productPrice %></h3>
-
-                            <% if (productPriceSpecial > 0) { %>
-                                <h3 class="special_price">$<%= productPriceSpecial %></h3>
-                                <h3 class="percent_off dnone">50% OFF</h3>
-                            <% } %>
+                            <div class="swiper-pagination"></div>
                         </div>
                     </div>
 
-                    <div class="product_attribute_color">
-                        <div class="colors_wrapper">
-                            <h4>Color</h4>
-                            <div class="colors_options">
-                                <div class="color selected">
-                                    <span></span>
-                                </div>
+                    <div class="product_info">
+                        <div class="product_head">
+                            <h1 class="product_name"><%= productName %></h1>
+                            
+                            <div class="product_price <%= productPriceSpecial > 0 ? 'discount' : '' %>">
+                                <h3 class="regular_price">$<%= productPrice %></h3>
+
+                                <% if (productPriceSpecial > 0) { %>
+                                    <h3 class="special_price">$<%= productPriceSpecial %></h3>
+                                    <h3 class="percent_off dnone">50% OFF</h3>
+                                <% } %>
                             </div>
                         </div>
-                        <div class="colors_info">
-                            <h4><%= color %> </h4>
+
+                        <div class="product_attribute_color">
+                            <div class="colors_wrapper">
+                                <h4>Color</h4>
+                                <div class="colors_options">
+                                    <div class="color selected">
+                                        <span></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="colors_info">
+                                <h4><%= color %> </h4>
+                            </div>
+                        </div>
+
+                        <div class="product_attribute_sizes">
+                            <select name="selectedSize" id="selectedSize" value="">
+                                <option value="default">Selecciona tu talle</option>
+                                <% for( let i = 0; i < showStock.length; i++ ) { %>
+                                    <option value="selectedSize-<%= showStock[i] %>"><%= showStock[i] %></option>    
+                                <% } %>
+                            </select>
+                            <% if (locals.errors) { %>
+                                <%- include('../components/listErrors/index', errors)  %> 
+                            <% } %>
+                        </div>
+
+                        <div class="product_cart_buttons">
+                            <button
+                                id="add_to_cart"
+                                class="button_main_action"
+                            >
+                                Añadir a la bolsa
+                            </button>
+
+                            <!--
+                                Agregar la clase added_to_wishlist
+                                para ver como queda cuando se agrega a favoritos
+                            -->
+                            <button
+                                id="add_to_wishlist"
+                                class="button_main_action"
+                                onclick="alert('Agregado a lista de deseo')"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="22"
+                                    height="19.444"
+                                    viewBox="0 0 22 19.444"
+                                >
+                                    <path
+                                        class="a"
+                                        d="M19.232,3.041a5.262,5.262,0,0,0-7.444,0L10.774,4.055,9.76,3.041a5.264,5.264,0,0,0-7.444,7.444L3.33,11.5l7.444,7.444L18.218,11.5l1.014-1.014a5.262,5.262,0,0,0,0-7.444Z"
+                                        transform="translate(0.226 -0.499)"
+                                    />
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div class="product_info_wrapper">
+                            <ul class="product_info_actions">
+                                <li class="product_info_action">
+                                    <a class="size_guide" href="#tabla_de_talles">Tabla de talles</a>
+                                </li>
+                                <li class="product_info_action">
+                                    <a class="re_stock" href="#avisarme_cuando_llegue_mi_talle"
+                                        >Avisarme cuando llegue mi talle</a
+                                    >
+                                </li>
+                                <li class="product_info_action">
+                                    <a class="product_description" href="#descripcion"
+                                        >Descripcion del producto</a
+                                    >
+                                </li>
+                                <li class="product_info_action">
+                                    <a class="product_composition" href="#material_y_cuidado"
+                                        >Material y cuidados</a
+                                    >
+                                </li>
+                                <li class="product_info_action">
+                                    <a class="product_payments_methods" href="#formas_de_pago"
+                                        >Envio y formas de pago</a
+                                    >
+                                </li>
+                                <li class="product_info_action">
+                                    <a class="product_share" href="#compartir">Compartir</a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-
-                    <div class="product_attribute_sizes">
-                        <select name="talles" id="talles" value="">
-                            <option value="default">Selecciona tu talle</option>
-                            <% for( let i = 0; i < showStock.length; i++ ) { %>
-                                <option value="<%= showStock[i] %>"><%= showStock[i] %></option>    
-                            <% } %>
-                        </select>
-                    </div>
-
-                    <div class="product_cart_buttons">
-                        <button
-                            id="add_to_cart"
-                            class="button_main_action"
-                            onclick="window.location.href = '/carrito'"
-                        >
-                            Añadir a la bolsa
-                        </button>
-
-                        <!--
-                        Agregar la clase added_to_wishlist
-                        para ver como queda cuando se agrega a favoritos
-                     -->
-                        <button
-                            id="add_to_wishlist"
-                            class="button_main_action"
-                            onclick="alert('Agregado a lista de deseo')"
-                        >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="22"
-                                height="19.444"
-                                viewBox="0 0 22 19.444"
-                            >
-                                <path
-                                    class="a"
-                                    d="M19.232,3.041a5.262,5.262,0,0,0-7.444,0L10.774,4.055,9.76,3.041a5.264,5.264,0,0,0-7.444,7.444L3.33,11.5l7.444,7.444L18.218,11.5l1.014-1.014a5.262,5.262,0,0,0,0-7.444Z"
-                                    transform="translate(0.226 -0.499)"
-                                />
-                            </svg>
-                        </button>
-                    </div>
-
-                    <div class="product_info_wrapper">
-                        <ul class="product_info_actions">
-                            <li class="product_info_action">
-                                <a class="size_guide" href="#tabla_de_talles">Tabla de talles</a>
-                            </li>
-                            <li class="product_info_action">
-                                <a class="re_stock" href="#avisarme_cuando_llegue_mi_talle"
-                                    >Avisarme cuando llegue mi talle</a
-                                >
-                            </li>
-                            <li class="product_info_action">
-                                <a class="product_description" href="#descripcion"
-                                    >Descripcion del producto</a
-                                >
-                            </li>
-                            <li class="product_info_action">
-                                <a class="product_composition" href="#material_y_cuidado"
-                                    >Material y cuidados</a
-                                >
-                            </li>
-                            <li class="product_info_action">
-                                <a class="product_payments_methods" href="#formas_de_pago"
-                                    >Envio y formas de pago</a
-                                >
-                            </li>
-                            <li class="product_info_action">
-                                <a class="product_share" href="#compartir">Compartir</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </article>
+                </article>
+            </form>
         </main>
 
         <!-- productos recomendados -->
-        <%- include('../components/sliders/featured_slider/index') %>
+        <%- //include('../components/sliders/featured_slider/index') %>
 
         <!-- Footer -->
         <%- include('../partials/footer') %>
-
-        <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
-        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-
         <script>
 
             const producto = document.querySelector('#product-<%= id %>');
             let swiper_photos = new Swiper(producto.querySelector('.swiper-container'), {
+                zoom: true,
                 loop: true,
                 pagination: {
                     el: '.swiper-pagination',

@@ -19,6 +19,31 @@ window.addEventListener('load', async () => {
 
     // FICHA PRODUCTO
     const catalog_product_view = document.querySelector('.catalog_product_view');
+    if (catalog_product_view) {
+        const form = catalog_product_view.querySelector('form');
+
+        form.addEventListener('submit', () => {
+            var FD = new FormData(form);
+
+            for (let [k, v] of FD.entries()) {
+                if (k == 'selectedSize' && v == 'default') {
+                    let sizeTableContainer = form.querySelector('.product_attribute_sizes');
+
+                    sizeTableContainer.innerHTML += `
+                        <div class="errors_container">
+                            <ul>
+                                <li>Tenes que seleccionar un talle</li>
+                            </ul>
+                            
+                            <button onclick="handleRemoveErrors(this);">x</button>
+                        </div>
+                    `;
+
+                    return window.location.reload();
+                }
+            }
+        });
+    }
 
     // SLIDER PRODUCTOS RECOMENDADOS
     const slider_featured_products = document.querySelector('.slider_featured_products');

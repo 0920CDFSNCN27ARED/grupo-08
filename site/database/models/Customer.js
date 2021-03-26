@@ -8,54 +8,57 @@ module.exports = (sequelize, DataTypes) => {
             type: d.INTEGER,
             autoIncrement: true,
             primaryKey: true,
-            allowNull: false
+            allowNull: false,
         },
         isActive: {
             type: d.INTEGER,
-            allowNull: false
+            allowNull: false,
         },
         firstName: {
             type: d.STRING,
-            allowNull: false
+            allowNull: false,
         },
         lastName: {
             type: d.STRING,
-            allowNull: false
+            allowNull: false,
         },
         email: {
             type: d.STRING,
-            allowNull: false
+            allowNull: false,
         },
         emailVerified: {
             type: d.INTEGER,
-            allowNull: false
+            allowNull: false,
         },
         userPassword: {
             type: d.STRING,
-            allowNull: false
+            allowNull: false,
         },
         dob: {
             type: d.INTEGER,
-            allowNull: false
+            allowNull: false,
         },
         gender: {
             type: d.STRING,
-            allowNull: false
+            allowNull: false,
         },
         createdAt: {
             type: d.DATE,
-            allowNull: false
+            allowNull: false,
         },
         updatedAt: {
             type: d.DATE,
-            allowNull: false
-        }
+            allowNull: false,
+        },
+        inCart: {
+            type: d.STRING,
+        },
     };
     config = {
         timestamps: true,
-    }
+    };
 
     const Customer = sequelize.define(alias, cols, config);
 
     return Customer;
-}
+};

@@ -8,6 +8,7 @@ const getCategories = require('./middlewares/categories/getAllCategories');
 const withCookiesAuth = require('./middlewares/auth/withCookiesAuth');
 const withAuth = require('./middlewares/auth/withAuth');
 const withAdminAuth = require('./middlewares/auth/withAdminAuth');
+const productsInCart = require('./middlewares/checkout/productsInCart');
 
 // SETTINGS
 const app = express();
@@ -42,6 +43,9 @@ app.use(
 );
 app.use(cookieParser());
 
+app.use(withCookiesAuth);
+app.use(productsInCart);
+
 app.use((req, res, next) => {
     console.log('app md fin \n\n');
 
@@ -67,8 +71,6 @@ app.use((req, res, next) => {
 
     next();
 });
-
-app.use(withCookiesAuth);
 
 // Load Routes
 const mainRoutes = require('./routes/mainRoutes');

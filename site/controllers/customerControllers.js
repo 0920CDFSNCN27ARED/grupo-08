@@ -56,6 +56,11 @@ const customerControllers = {
     logout: (req, res) => {
         delete req.session.customer;
         res.clearCookie('cookieCustomer');
+        delete req.session.productsInCart;
+
+        delete req.session.customer;
+        res.clearCookie('cookieCustomer');
+        delete req.session.productsInCart;
 
         return res.redirect(301, '/');
     },

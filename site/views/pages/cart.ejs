@@ -1,3 +1,12 @@
+<% 
+    const exists = locals._exists;
+
+    let totalCart = cartProductsFormated.reduce((acc, cur) => {
+        return acc + cur.priceTotal
+    }, 0);
+%> 
+
+
 <!DOCTYPE html>
 <html lang="es" class="checkout_cart">
     <head>
@@ -33,7 +42,7 @@
                             <td>Subtotal</td>
                             <td>Quitar</td>
                         </tr>
-                        <tr>
+                        <tr class="dnone">
                             <td class="product_image">
                                 <img
                                     src="/images/catalog/category/img_producto-4.png"
@@ -84,6 +93,73 @@
                                 </button>
                             </td>
                         </tr>
+
+                        <% for( let i = 0; i < cartProductsFormated.length; i++ ) { %>
+                            <% 
+                                let {
+                                    id,
+                                    name,
+                                    color,
+                                    image,
+                                    size,
+                                    qty,
+                                    price,
+                                    priceTotal
+                                } = cartProductsFormated[i];
+                            %> 
+
+                            <tr>
+                                <td class="product_image">
+                                    <img
+                                        src="/images/catalog/products<%= image %>"
+                                        alt="<%= name %>"
+                                    />
+                                </td>
+                                <td class="product_description">
+                                    <h4 class="product_name"><%= name %></h4>
+                                    <div class="product_info">
+                                        <h5>Color:</h5>
+                                        <p><%= color %></p>
+                                    </div>
+                                    <div class="product_info">
+                                        <h5>Talle:</h5>
+                                        <p><%= size %></p>
+                                    </div>
+                                </td>
+                                <td class="product_single_price">
+                                    <p>$<%= price %></p>
+                                </td>
+                                <td class="product_quantity">
+                                    <div>
+                                        <p id="current_quantity"><%= qty %></p>
+                                    </div>
+                                </td>
+                                <td class="product_subtotal">
+                                    <p>$<%= priceTotal %></p>
+                                </td>
+                                <td class="product_remove">
+                                    <button
+                                        class="remove_product remove_button"
+                                        title="Quitar producto de la bolsa"
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="12"
+                                            height="12"
+                                            viewBox="0 0 12 12"
+                                        >
+                                            <path
+                                                class="a"
+                                                d="M19.5,8.709,18.291,7.5,13.5,12.291,8.709,7.5,7.5,8.709,12.291,13.5,7.5,18.291,8.709,19.5,13.5,14.709,18.291,19.5,19.5,18.291,14.709,13.5Z"
+                                                transform="translate(-7.5 -7.5)"
+                                            />
+                                        </svg>
+                                    </button>
+                                </td>
+                            </tr>
+
+                        <% } %>
+
                     </table>
                     <!--  -->
                     <!--  -->
@@ -106,7 +182,7 @@
                         </div>
                     </div>
 
-                    <div class="details_subtotal">
+                    <div class="details_subtotal dnone">
                         <ul>
                             <li>
                                 Nombre de descuento
@@ -128,19 +204,15 @@
                                     </button>
                                 </span>
                             </li>
-                            <li>
-                                Subtotal productos
-                                <span id="products_subtotal">$91.200</span>
-                            </li>
                         </ul>
                     </div>
 
                     <div class="details_total">
-                        <h4>Total general: <span id="details_total_total">$91.000</span></h4>
+                        <h4>Total general: <span id="details_total_total">$<%= totalCart %></span></h4>
                     </div>
 
                     <div class="details_buy">
-                        <button id="proceed_checkout" class="button_main_action">
+                        <button id="proceed_checkout" class="button_main_action" onclick="alert('algun dia')">
                             Completar compra
                         </button>
                     </div>
@@ -161,8 +233,6 @@
         <!-- Footer -->
         <%- include('../partials/footer') %>
 
-        <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
-        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
         <script src="/scripts/functions.js"></script>
         <script src="/scripts/main.js"></script>
     </body>
