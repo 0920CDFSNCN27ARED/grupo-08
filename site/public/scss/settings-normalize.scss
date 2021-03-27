@@ -102,12 +102,20 @@ button {
 
 .form_row {
     position: relative;
+
+    .errors_container {
+        position: absolute;
+        top: 75%;
+        left: 0;
+        width: 100%;
+        z-index: 10;
+    }
 }
 
 .showHide_password {
     position: absolute;
     bottom: -2px;
-    right: .5rem;
+    right: 0.5rem;
     width: 30px;
     height: 30px;
     cursor: pointer;
@@ -140,5 +148,4 @@ button {
             opacity: 1;
         }
     }
-
 }

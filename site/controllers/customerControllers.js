@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const db = require('../database/models');
+const { validationResult } = require('express-validator');
 
 const customerControllers = {
     login: (req, res) => {
@@ -70,6 +71,12 @@ const customerControllers = {
     },
     registered: async (req, res) => {
         const errors = [];
+        const evErrors = validationResult(req);
+
+        if (!evErrors.isEmpty()) {
+            return res.render('pages/register', { errors: evErrors.errors });
+        }
+
         let {
             first_name,
             last_name,

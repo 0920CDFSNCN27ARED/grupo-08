@@ -17,6 +17,59 @@ window.addEventListener('load', async () => {
         }
     }
 
+    // CUSTOMER REGISTER
+    const register_view = document.querySelector('.register_view');
+    if (register_view) {
+        let formRows = document.querySelectorAll('.form_row');
+        formRows.forEach((formRow) => {
+            let input = formRow.querySelector('input');
+
+            if (input && input.type == 'text') {
+                input.addEventListener('keyup', (e) => {
+                    let str = e.target.value;
+
+                    if (str.length < 3) {
+                        handleFormRowError(
+                            formRow,
+                            'El campo debe de tener al menos 3 caracteres',
+                            true
+                        );
+                    } else {
+                        handleFormRowError(formRow, false);
+                    }
+                });
+            }
+
+            if (input && input.type == 'email') {
+                input.addEventListener('keyup', (e) => {
+                    let str = e.target.value;
+
+                    if (!str.match(/^[^\s@]+@[^\s@]+$/)) {
+                        handleFormRowError(formRow, 'El email no es valido', true);
+                    } else {
+                        handleFormRowError(formRow, false);
+                    }
+                });
+            }
+
+            if (input && input.type == 'password') {
+                input.addEventListener('keyup', (e) => {
+                    let str = e.target.value;
+
+                    if (str.length < 8) {
+                        handleFormRowError(
+                            formRow,
+                            'El campo debe de tener al menos 8 caracteres',
+                            true
+                        );
+                    } else {
+                        handleFormRowError(formRow, false);
+                    }
+                });
+            }
+        });
+    }
+
     // FICHA PRODUCTO
     const catalog_product_view = document.querySelector('.catalog_product_view');
     if (catalog_product_view) {

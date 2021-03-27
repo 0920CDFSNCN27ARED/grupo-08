@@ -267,3 +267,18 @@ function formatString(str) {
         .toLowerCase()
         .replaceAll(' ', '_');
 }
+
+function handleFormRowError(formRow, errMsg = '', showHide) {
+    let input = formRow.querySelector('input');
+    let errContainer = formRow.querySelector('.errors_container');
+
+    if (showHide) {
+        errContainer.classList.remove('dnone');
+        errContainer.querySelector('li').innerText = errMsg;
+        input.style.border = '1px solid #e74c3c';
+    } else {
+        errContainer.classList.add('dnone');
+        errContainer.querySelector('li').innerText = '';
+        input.style.border = '1px solid #2ecc71';
+    }
+}
