@@ -282,3 +282,21 @@ function handleFormRowError(formRow, errMsg = '', showHide) {
         input.style.border = '1px solid #2ecc71';
     }
 }
+
+async function removeFromCart(el) {
+    let tr = el.parentNode.parentNode;
+    let { id, size, customerid } = tr.dataset;
+
+    let url = `/checkout/carrito/borrar/${id}/${size}/${customerid}`;
+
+    fetchData('POST', url, {}).then((res) => {
+        if (res.status === 200) {
+            tr.remove();
+            window.location.reload();
+        }
+
+        if (res.status === 400) {
+            alert('Hubo un error interno y no se a quitado el producto');
+        }
+    });
+}

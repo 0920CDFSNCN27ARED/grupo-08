@@ -137,6 +137,12 @@
                             </g>
                         </g>
                     </svg>
+                    <span id="cart-count">
+                        <%- exists(locals.customerCartNavCounter) && customerCartNavCounter != 0 
+                            ? customerCartNavCounter 
+                            : '' 
+                        %> 
+                    </span>
                 </a>
             </li>
         </ul>

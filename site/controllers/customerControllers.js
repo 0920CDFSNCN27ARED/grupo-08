@@ -8,17 +8,23 @@ const customerControllers = {
     },
     logged: async (req, res) => {
         const errors = [];
+
+        const evErrors = validationResult(req);
+        if (!evErrors.isEmpty()) {
+            return res.render('pages/login', { errors: evErrors.errors });
+        }
+
         const { email, password, persist } = req.body;
 
         const customer = await db.Customer.findOne({ where: { email: email } });
 
         if (customer === null) {
-            errors.push('Credenciales incorrectas');
+            errors.push({ msg: 'Credenciales incorrectas' });
             return res.render('pages/login', { errors });
         }
 
         if (!bcrypt.compareSync(password, customer.dataValues.userPassword)) {
-            errors.push('Credenciales incorrectas');
+            errors.push({ msg: 'Credenciales incorrectas' });
             return res.render('pages/login', { errors });
         }
 
@@ -123,7 +129,7 @@ const customerControllers = {
             });
 
             req.session.customer = newCustomer.dataValues.id;
-            return res.redirect(200, '/clientes/mi-cuenta');
+            return res.redirect(301, '/clientes/mi-cuenta');
         } catch (err) {
             console.log('Hubo un error al crear un rol');
             console.log('\n\n' + err + '\n\n');
@@ -137,8 +143,12 @@ const customerControllers = {
         res.redirect(301, '/clientes/login');
     },
 
-    account: (req, res) => {
-        res.render('pages/customer');
+    account: async (req, res) => {
+        const customer = await db.Customer.findOne({ where: { id: req.session.customer } });
+
+        res.render('pages/customer', {
+            customer: customer.dataValues,
+        });
     },
 };
 

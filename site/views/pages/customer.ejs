@@ -1,3 +1,9 @@
+<% 
+    const exists = locals._exists;
+    console.log(customer);
+%> 
+
+
 <!DOCTYPE html>
 <html lang="es" class="customer_account_view">
     <head>
@@ -40,9 +46,14 @@
 
             </section>
 
-            <section ID="customer-home" class="form_tab content_data dnone">
+            <section id="customer-home" class="form_tab content_data">
                 <div class="user">
-                    <h2>Bienvenido ${usuario}</h2>
+                    <h2>
+                        Bienvenido 
+                        <strong>
+                            <%= customer.firstName + ' ' + customer.lastName %>!
+                        </strong>
+                    </h2>
                 </div>
 
                 <div class="data pedidos-recientes">
@@ -104,10 +115,10 @@
                     </h2>
                     <div class="datos">
                         <p class="datos-nombre">
-                            Leandro Muzzupappa
+                            <%= customer.firstName + ' ' + customer.lastName %>
                         </p>
                         <p class="datos-email">
-                            lmuzzupappa@gmail.com
+                            <%= customer.email %> 
                         </p>
                         <p class="datos-password">
                             <a href="#">Cambiar contraseña</a>
@@ -137,7 +148,7 @@
             <section id="customer-account-data" class="form_tab dnone">
                 <%- include('../layouts/customer-account-data.ejs')  %> 
             </section>
-            <section id="customer-addresses" class="form_tab">
+            <section id="customer-addresses" class="form_tab dnone">
                 <%- include('../layouts/customer-addresses')  %> 
             </section>
             <section id="customer-sales" class="form_tab dnone">

@@ -20,7 +20,12 @@
         <main>
             <h1>
                 Mi bolsa
-                <a onclick="window.location.href = document.referrer">Continuar comprando</a>
+                <a 
+                    onclick="window.location.href = document.referrer" 
+                    style="cursor: pointer;"
+                >
+                    Continuar comprando
+                </a>
             </h1>
 
             <section class="cart">
@@ -108,7 +113,7 @@
                                 } = cartProductsFormated[i];
                             %> 
 
-                            <tr>
+                            <tr data-id="<%= id %>" data-size="<%= size %>" data-customerId="<%= customerId %>">
                                 <td class="product_image">
                                     <img
                                         src="/images/catalog/products<%= image %>"
@@ -141,12 +146,14 @@
                                     <button
                                         class="remove_product remove_button"
                                         title="Quitar producto de la bolsa"
+                                        onclick="removeFromCart(this)"
                                     >
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             width="12"
                                             height="12"
                                             viewBox="0 0 12 12"
+                                            style="pointer-events: none;"
                                         >
                                             <path
                                                 class="a"
@@ -232,8 +239,5 @@
 
         <!-- Footer -->
         <%- include('../partials/footer') %>
-
-        <script src="/scripts/functions.js"></script>
-        <script src="/scripts/main.js"></script>
     </body>
 </html>

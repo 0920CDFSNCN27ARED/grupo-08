@@ -36,6 +36,39 @@ const customerValidations = {
                 });
             }),
     ],
+    logged: [
+        check('email').isEmail().withMessage('El email no es valido'),
+        body('email')
+            .exists()
+            .trim()
+            .escape()
+            .custom(async (customerEmail) => {
+                return new Promise(async (resolve, reject) => {
+                    const emailExist = await db.Customer.findOne({
+                        where: { email: customerEmail },
+                    });
+
+                    if (emailExist !== null) {
+                        resolve(true);
+                    } else reject(new Error('Las credenciales son incorrectas'));
+                });
+            }),
+        body('email')
+            .exists()
+            .trim()
+            .escape()
+            .custom(async (customerEmail) => {
+                return new Promise(async (resolve, reject) => {
+                    const emailExist = await db.Customer.findOne({
+                        where: { email: customerEmail },
+                    });
+
+                    if (emailExist !== null) {
+                        resolve(true);
+                    } else reject(new Error('Las credenciales son incorrectas'));
+                });
+            }),
+    ],
 };
 
 module.exports = customerValidations;

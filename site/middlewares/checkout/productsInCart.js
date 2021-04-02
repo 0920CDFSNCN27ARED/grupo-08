@@ -15,7 +15,11 @@ module.exports = async (req, res, next) => {
         customer = customer.dataValues;
 
         let customerCart = customer.inCart == null ? [] : JSON.parse(customer.inCart);
+        let customerCartNavCounter = customerCart.reduce((accum, product) => {
+            return product.qty + accum;
+        }, 0);
 
+        res.locals.customerCartNavCounter = customerCartNavCounter;
         req.session.productsInCart = customerCart;
     }
 

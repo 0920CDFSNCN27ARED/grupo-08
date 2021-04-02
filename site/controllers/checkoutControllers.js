@@ -61,6 +61,7 @@ const checkoutControllers = {
 
             return res.render('pages/cart', {
                 cartProductsFormated,
+                customerId: req.session.customer,
             });
         } catch (err) {
             console.log('lenny error -> ', err);
@@ -136,9 +137,51 @@ const checkoutControllers = {
 
             req.session.productsInCart.push(selectedProduct);
 
-            //return res.redirect(301, '/checkout/carrito');
+            return res.redirect(301, '/checkout/carrito');
         } catch (err) {
             console.log('Hubo un problema -> ', err);
+        }
+    },
+    removeFromCart: async (req, res) => {
+        let { id, size, customerId } = req.params;
+
+        try {
+            let customer = await db.Customer.findOne({
+                where: {
+                    id: customerId,
+                },
+            });
+            customer = customer.dataValues;
+
+            let customerCart = customer.inCart == null ? [] : JSON.parse(customer.inCart);
+
+            if (customerCart.length > 0) {
+                let customerCartUpdated = customerCart.filter((item) => {
+                    if (!(item.pid == id && item.selectedSize == `selectedSize-${size}`)) {
+                        console.log('entro');
+                        return item;
+                    }
+                });
+
+                customerCart = customerCartUpdated;
+            }
+
+            let updatedCustomer = await db.Customer.update(
+                {
+                    inCart: JSON.stringify(customerCart),
+                },
+                {
+                    where: {
+                        id: customer.id,
+                    },
+                }
+            );
+
+            res.locals.customerCartNavCounter = customerCart.length;
+            return res.send({ status: 200, msg: 'Elemento borrado' });
+        } catch (err) {
+            console.log('Hubo un error -> ', err);
+            return res.send({ status: 400, msg: 'error' });
         }
     },
 };

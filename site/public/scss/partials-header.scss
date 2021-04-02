@@ -121,6 +121,7 @@ header {
         }
 
         #links__cart {
+            position: relative;
             svg {
                 .cls-1,
                 .cls-2,
@@ -140,6 +141,15 @@ header {
                 .cls-4 {
                     fill: $white;
                 }
+            }
+
+            #cart-count {
+                position: absolute;
+                top: -1px;
+                left: 50%;
+                transform: translateX(-50%);
+                color: $gray5;
+                @include font-size(12);
             }
         }
     }

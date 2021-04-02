@@ -8,7 +8,7 @@ const customerValidations = require('../middlewares/validations/customers.valida
 
 routes.get('/', (req, res) => res.redirect(301, '/clientes/mi-cuenta'));
 routes.get('/login', customerControllers.login);
-routes.post('/logged', customerControllers.logged);
+routes.post('/logged', customerValidations.logged, customerControllers.logged);
 routes.get('/logout', customerControllers.logout);
 
 routes.get('/registro', customerControllers.register);
