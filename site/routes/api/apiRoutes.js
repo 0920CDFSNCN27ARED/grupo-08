@@ -20,6 +20,7 @@ const validations = require('../../middlewares/validations/admin.customer.valida
 // Controllers
 const customerController = require('../../controllers/api/customerControllers');
 const productControllers = require('../../controllers/api/productControllers');
+const categoryController = require('../../controllers/api/categoryController');
 
 // ROUTES --> Customer
 routes.get('/customers', customerController.getAll);
@@ -40,5 +41,14 @@ routes.post('/products/created', upload.any(), productControllers.created);
 routes.get('/products/:id', productControllers.getOne);
 routes.put('/products/:id/edit', upload.any(), productControllers.update);
 routes.delete('/products/:id/delete', productControllers.delete);
+
+// ROUTES --> Categories
+routes.get('/categories', categoryController.getAll);
+
+routes.post('/categories/create', upload.any(), categoryController.create);
+
+routes.get('/categories/:id', categoryController.getOne);
+routes.put('/categories/:id/edit', upload.any(), categoryController.update);
+routes.delete('/categories/:id/delete', categoryController.delete);
 
 module.exports = routes;
