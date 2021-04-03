@@ -23,6 +23,7 @@ const productControllers = require('../../controllers/api/productControllers');
 const categoryControllers = require('../../controllers/api/categoryControllers');
 const brandControllers = require('../../controllers/api/brandControllers');
 const colorControllers = require('../../controllers/api/colorControllers');
+const sizeControllers = require('../../controllers/api/sizeControllers');
 
 // ROUTES --> Customer
 routes.get('/customers', customerControllers.getAll);
@@ -70,5 +71,14 @@ routes.post('/colors/create', upload.any(), colorControllers.create);
 routes.get('/colors/:id', colorControllers.getOne);
 routes.put('/colors/:id/edit', upload.any(), colorControllers.update);
 routes.delete('/colors/:id/delete', colorControllers.delete);
+
+// ROUTES --> Sizes
+routes.get('/sizes', sizeControllers.getAll);
+
+routes.post('/sizes/create', upload.any(), sizeControllers.create);
+
+routes.get('/sizes/:id', sizeControllers.getOne);
+routes.put('/sizes/:id/edit', upload.any(), sizeControllers.update);
+routes.delete('/sizes/:id/delete', sizeControllers.delete);
 
 module.exports = routes;
