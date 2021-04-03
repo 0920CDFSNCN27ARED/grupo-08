@@ -6,16 +6,16 @@ const errRes = (err) => ({
     error: String(err),
 });
 
-const categoriesControllers = {
+const colorControllers = {
     getOne: async (req, res) => {
         const { id } = req.params;
 
         try {
-            let brand = await db.Brand.findOne({
+            let color = await db.Color.findOne({
                 where: { id: id },
             });
 
-            if (!brand) {
+            if (!color) {
                 return res.send({
                     status: 404,
                     statusText: 'Not Found',
@@ -27,9 +27,9 @@ const categoriesControllers = {
             });
 
             let products = allProducts.filter((product) => {
-                let pBrand = product.dataValues.brandId;
+                let pColor = product.dataValues.colorId;
 
-                if (pBrand == id) {
+                if (pColor == id) {
                     return product;
                 }
             });
@@ -37,7 +37,7 @@ const categoriesControllers = {
             return res.send({
                 status: 200,
                 statusText: 'OK',
-                brand,
+                color,
                 productsCount: products.length,
                 products: products,
             });
@@ -47,43 +47,43 @@ const categoriesControllers = {
     },
     getAll: async (req, res) => {
         try {
-            const brands = await db.Brand.findAll();
+            const colors = await db.Color.findAll();
 
             return res.send({
                 status: 200,
                 statusText: 'OK',
-                count: brands.length,
-                brands,
+                count: colors.length,
+                colors,
             });
         } catch (err) {
             return res.send(errRes(err));
         }
     },
     create: async (req, res) => {
-        const { brandName } = req.body;
+        const { colorName } = req.body;
 
         try {
-            const brand = await db.Brand.create({
-                brandName,
+            const color = await db.Color.create({
+                colorName,
             });
 
             return res.send({
                 status: 201,
                 statusText: 'Created',
-                brand,
+                color,
             });
         } catch (err) {
             return res.send(errRes(err));
         }
     },
     update: async (req, res) => {
-        const { id, brandName } = req.body;
+        const { id, colorName } = req.body;
 
         try {
-            await db.Brand.update(
+            await db.Color.update(
                 {
                     id,
-                    brandName,
+                    colorName,
                 },
                 {
                     where: { id: id },
@@ -105,15 +105,15 @@ const categoriesControllers = {
             let allProducts = await db.Product.findAll();
 
             let hasProducts = allProducts.filter((prod) => {
-                let pBrandId = prod.dataValues.brandId;
+                let pColorId = prod.dataValues.colorId;
 
-                if (pBrandId == id) {
+                if (pColorId == id) {
                     return prod;
                 }
             });
 
             if (hasProducts && hasProducts.length == 0) {
-                await db.Brand.destroy({
+                await db.Color.destroy({
                     where: {
                         id: id,
                     },
@@ -126,7 +126,7 @@ const categoriesControllers = {
                 return res.send({
                     status: 406,
                     statusText: 'Not Acceptable',
-                    message: 'Can not remove the current brand because it has products in it',
+                    message: 'Can not remove the current color because it has products in it',
                 });
             }
         } catch (err) {
@@ -135,4 +135,4 @@ const categoriesControllers = {
     },
 };
 
-module.exports = categoriesControllers;
+module.exports = colorControllers;

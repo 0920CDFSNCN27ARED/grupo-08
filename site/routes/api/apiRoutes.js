@@ -18,19 +18,20 @@ const upload = multer({ storage: storage });
 const validations = require('../../middlewares/validations/admin.customer.validations');
 
 // Controllers
-const customerController = require('../../controllers/api/customerControllers');
+const customerControllers = require('../../controllers/api/customerControllers');
 const productControllers = require('../../controllers/api/productControllers');
-const categoryController = require('../../controllers/api/categoryController');
-const brandController = require('../../controllers/api/brandController');
+const categoryControllers = require('../../controllers/api/categoryControllers');
+const brandControllers = require('../../controllers/api/brandControllers');
+const colorControllers = require('../../controllers/api/colorControllers');
 
 // ROUTES --> Customer
-routes.get('/customers', customerController.getAll);
+routes.get('/customers', customerControllers.getAll);
 
-routes.post('/customers/create', validations.create, customerController.create);
+routes.post('/customers/create', validations.create, customerControllers.create);
 
-routes.get('/customers/:id', customerController.getOne);
-routes.put('/customers/:id/edit', customerController.update);
-routes.delete('/customers/:id/delete', customerController.delete);
+routes.get('/customers/:id', customerControllers.getOne);
+routes.put('/customers/:id/edit', customerControllers.update);
+routes.delete('/customers/:id/delete', customerControllers.delete);
 
 // ROUTES --> Products
 routes.get('/products', productControllers.getAll);
@@ -44,21 +45,30 @@ routes.put('/products/:id/edit', upload.any(), productControllers.update);
 routes.delete('/products/:id/delete', productControllers.delete);
 
 // ROUTES --> Categories
-routes.get('/categories', categoryController.getAll);
+routes.get('/categories', categoryControllers.getAll);
 
-routes.post('/categories/create', upload.any(), categoryController.create);
+routes.post('/categories/create', upload.any(), categoryControllers.create);
 
-routes.get('/categories/:id', categoryController.getOne);
-routes.put('/categories/:id/edit', upload.any(), categoryController.update);
-routes.delete('/categories/:id/delete', categoryController.delete);
+routes.get('/categories/:id', categoryControllers.getOne);
+routes.put('/categories/:id/edit', upload.any(), categoryControllers.update);
+routes.delete('/categories/:id/delete', categoryControllers.delete);
 
 // ROUTES --> Brands
-routes.get('/brands', brandController.getAll);
+routes.get('/brands', brandControllers.getAll);
 
-routes.post('/brands/create', upload.any(), brandController.create);
+routes.post('/brands/create', upload.any(), brandControllers.create);
 
-routes.get('/brands/:id', brandController.getOne);
-routes.put('/brands/:id/edit', upload.any(), brandController.update);
-routes.delete('/brands/:id/delete', brandController.delete);
+routes.get('/brands/:id', brandControllers.getOne);
+routes.put('/brands/:id/edit', upload.any(), brandControllers.update);
+routes.delete('/brands/:id/delete', brandControllers.delete);
+
+// ROUTES --> Colors
+routes.get('/colors', colorControllers.getAll);
+
+routes.post('/colors/create', upload.any(), colorControllers.create);
+
+routes.get('/colors/:id', colorControllers.getOne);
+routes.put('/colors/:id/edit', upload.any(), colorControllers.update);
+routes.delete('/colors/:id/delete', colorControllers.delete);
 
 module.exports = routes;
