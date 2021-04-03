@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const moment = require('moment');
 const db = require('../../../database/models');
+const { validationResult } = require('express-validator');
 
 const customersControllers = {
     getOne: async (req, res) => {
@@ -42,6 +43,14 @@ const customersControllers = {
         const errors = [];
         const { isActive, firstName, lastName, email, userPassword, dob, gender } = req.body;
 
+        const evErrors = validationResult(req);
+
+        if (!evErrors.isEmpty()) {
+            return res.render('admin/pages/customers/customers-create', {
+                errors: evErrors.errors,
+            });
+        }
+
         try {
             const customer = await db.Customer.create({
                 isActive,
@@ -55,18 +64,23 @@ const customersControllers = {
             });
 
             if (customer) {
-                console.log('entro al try');
-                //return res.redirect(301, '/admin/clientes');
+                return res.redirect(301, '/admin/clientes');
             }
         } catch (err) {
-            errors.push('Hubo un error al crear el cliente.');
-            console.log('controller', errors);
-
+            errors.push({ msg: 'Hubo un error al crear el cliente.' });
             return res.render('admin/pages/customers/customers-create', { errors });
         }
     },
     update: async (req, res) => {
         const { id, isActive, firstName, lastName, email, userPassword, dob, gender } = req.body;
+
+        const evErrors = validationResult(req);
+
+        if (!evErrors.isEmpty()) {
+            return res.render('admin/pages/customers/customers-create', {
+                errors: evErrors.errors,
+            });
+        }
 
         let uCustomerData =
             userPassword.length > 2
@@ -91,14 +105,12 @@ const customersControllers = {
 
             return res.redirect(301, `/admin/clientes/${id}`);
         } catch (error) {
-            console.log('Hubo un error al actualizar el cliente');
             res.locals.queryErr = 'Hubo un problema! Por favor refresca la página';
-            res.redirect(500, `/admin/clientes/${id}`);
+            res.redirect(301, `/admin/clientes/${id}`);
         }
     },
     delete: async (req, res) => {
         let { id } = req.params;
-
         try {
             await db.Customer.destroy({
                 where: {
@@ -106,7 +118,7 @@ const customersControllers = {
                 },
             });
 
-            return res.send({ status: 200 });
+            return res.redirect(301, '/admin/clientes');
         } catch (err) {
             console.log('Hubo un error al borrar un cliente', err);
             res.locals.queryErr = 'Hubo un problema! Por favor refresca la página';

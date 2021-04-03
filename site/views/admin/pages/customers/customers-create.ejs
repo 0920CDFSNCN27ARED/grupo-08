@@ -88,20 +88,6 @@
                 <!-- Datos producto -->
                 <div class="form_tab" id="tab_data">
                     <div class="form_data">
-
-                        <!-- 
-                            id INT
-                            isActive INT
-                            firstName VARCHAR
-                            lastName VARCHAR
-                            email VARCHAR
-                            emailVerified INT
-                            userPassword VARCHAR
-                            dob timestamp
-                            gender VARCHAR
-                            createdAt timestamp
-                            updatedAt timestamp
-                        -->
                     
                         <%- include('../../../components/forms/form_select/index', {
                             is_required: true,
@@ -117,7 +103,7 @@
                                     value: 0,
                                 },
                             ],
-                            default_option: exists(isActive) ? isActive : false,
+                            default_option: exists(isActive) ? isActive : 1,
                         }) %> 
             
                         <%- include('../../../components/forms/form_input/index', {

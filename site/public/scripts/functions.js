@@ -72,6 +72,10 @@ function deleteData(el, redirectPath) {
             if (res.status === 200) {
                 location.href = redirectPath;
             }
+            if (res.status == 406) {
+                alert('La categoria no ha sido borrada porque tiene productos dentro');
+                location.reload();
+            }
         });
     });
 }

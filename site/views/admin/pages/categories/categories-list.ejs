@@ -110,7 +110,7 @@
                                         value: 0
                                     },
                                 ],
-                                default_option: exists(isActive) ? isActive : false,
+                                default_option: exists(isActive) ? isActive : 1,
                             }) %> 
 
                             <%- include('../../../components/forms/form_select/index', {
@@ -128,7 +128,7 @@
                                         value: 0
                                     },
                                 ],
-                                default_option: exists(showMenu) ? showMenu : false,
+                                default_option: exists(showMenu) ? showMenu : 1,
                             }) %> 
 
                             <%- include('../../../components/forms/form_input/index', {
@@ -150,7 +150,7 @@
                             }) %> 
 
                             <%- include('../../../components/forms/form_input/index', {
-                                is_required: true,
+                                is_required: false,
                                 label: 'Meta description',
                                 type: 'text',
                                 name: 'meta_description',
@@ -159,7 +159,7 @@
                             }) %> 
 
                             <%- include('../../../components/forms/form_input/index', {
-                                is_required: true,
+                                is_required: false,
                                 label: 'Meta keywords',
                                 type: 'text',
                                 name: 'meta_keywords',

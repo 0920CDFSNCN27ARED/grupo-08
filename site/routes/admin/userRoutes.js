@@ -7,11 +7,7 @@ routes.get('/login', userControllers.login);
 routes.post('/login', userControllers.logged);
 routes.get('/logout', userControllers.logout);
 
-
 routes.get('/register', userControllers.register);
 routes.post('/register', userControllers.create);
-
-
-
 
 module.exports = routes;

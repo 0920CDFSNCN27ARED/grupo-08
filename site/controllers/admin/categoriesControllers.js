@@ -114,12 +114,28 @@ const categoriesControllers = {
         let { id } = req.params;
 
         try {
-            await db.Category.destroy({
-                where: {
-                    id: id,
-                },
+            let allProducts = await db.Product.findAll();
+
+            let hasProducts = allProducts.filter((prod) => {
+                let pCategoriesIds = prod.dataValues.categories.split(',');
+
+                if (pCategoriesIds.indexOf(id) > -1) {
+                    return prod;
+                }
             });
-            res.send({ status: 200 });
+
+            console.log(hasProducts);
+
+            if (hasProducts && hasProducts.length == 0) {
+                await db.Category.destroy({
+                    where: {
+                        id: id,
+                    },
+                });
+                res.send({ status: 200 });
+            } else {
+                res.send({ status: 406 });
+            }
         } catch (err) {
             console.log('Hubo un error al borrar las categorias --> ', err);
             return res.redirect('/admin/?error_al_borrar_categoria_' + id);

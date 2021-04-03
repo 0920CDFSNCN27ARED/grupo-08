@@ -13,7 +13,6 @@
         const rolesArr = exists(locals.roles) ? locals.roles : {};
         const { id, roleName } = exists(locals.role) ? role : {};
 
-        console.log(exists(locals.role))
     %> 
     
 
@@ -71,6 +70,12 @@
                         ? `/admin/employees/role/${id}/update?_method=PUT` 
                         : '/admin/employees/role/created';
                 %> 
+
+                <% if (exists(locals.errors)) { %>
+                    <%- include('../../../components/listErrors/index', {
+                        errors
+                    })  %> 
+                <% } %>
 
                 <form action="<%= formURL %>" method="POST">
 

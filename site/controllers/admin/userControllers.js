@@ -22,7 +22,9 @@ const userControllers = {
         });
 
         if (!user) {
-            errors.push('Credenciales incorrectas');
+            errors.push({
+                msg: 'Credenciales incorrectas',
+            });
             res.render('admin/pages/user/login.ejs', { errors });
             return;
         }
@@ -64,14 +66,16 @@ const userControllers = {
         } = req.body;
 
         if (password !== password_confirm) {
-            errors.push('Las contraseñas no son iguales');
+            errors.push({
+                msg: 'Las contraseñas no son iguales',
+            });
             res.render('admin/pages/user/register.ejs', { errors });
         }
 
         const allUsers = jsonFile.read('../db/admin_users.json');
         allUsers.forEach((user) => {
-            if (user.email === email) errors.push('El email ya esta registrado');
-            if (user.username === username) errors.push('El username ya esta registrado');
+            if (user.email === email) errors.push({ msg: 'El email ya esta registrado' });
+            if (user.username === username) errors.push({ msg: 'El username ya esta registrado' });
         });
 
         if (errors.length > 0) {

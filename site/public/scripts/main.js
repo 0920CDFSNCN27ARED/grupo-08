@@ -189,6 +189,28 @@ window.addEventListener('load', async () => {
     if (employee_create_view) {
         let borrarRolBtn = document.querySelector('#role_form_delete_btn');
         if (borrarRolBtn) deleteData(borrarRolBtn, '/admin/employees/crear-rol');
+
+        // Form validation
+        let formRows = document.querySelectorAll('.form_row');
+        formRows.forEach((formRow) => {
+            let input = formRow.querySelector('input');
+
+            if (input && input.type == 'text') {
+                input.addEventListener('keyup', (e) => {
+                    let str = e.target.value;
+
+                    if (str.length < 3) {
+                        handleFormRowError(
+                            formRow,
+                            'El campo debe de tener al menos 3 caracteres',
+                            true
+                        );
+                    } else {
+                        handleFormRowError(formRow, false);
+                    }
+                });
+            }
+        });
     }
 
     // ADMIN CREATE BRAND
@@ -281,5 +303,58 @@ window.addEventListener('load', async () => {
         // Delete
         let borrarSizeTableBtn = document.querySelector('#sizeTable_create_form_delete_btn');
         if (borrarSizeTableBtn) deleteData(borrarSizeTableBtn, '/admin/c/tabla-de-talles');
+    }
+
+    // ADMIN CUSTOMER CREATE
+    const customer_create_view = document.querySelector('.customer_create_view');
+    if (customer_create_view) {
+        let formRows = document.querySelectorAll('.form_row');
+        formRows.forEach((formRow) => {
+            let input = formRow.querySelector('input');
+
+            if (input && input.type == 'text') {
+                input.addEventListener('keyup', (e) => {
+                    let str = e.target.value;
+
+                    if (str.length < 3) {
+                        handleFormRowError(
+                            formRow,
+                            'El campo debe de tener al menos 3 caracteres',
+                            true
+                        );
+                    } else {
+                        handleFormRowError(formRow, false);
+                    }
+                });
+            }
+
+            if (input && input.type == 'email') {
+                input.addEventListener('keyup', (e) => {
+                    let str = e.target.value;
+
+                    if (!str.match(/^[^\s@]+@[^\s@]+$/)) {
+                        handleFormRowError(formRow, 'El email no es valido', true);
+                    } else {
+                        handleFormRowError(formRow, false);
+                    }
+                });
+            }
+
+            if (input && input.type == 'password') {
+                input.addEventListener('keyup', (e) => {
+                    let str = e.target.value;
+
+                    if (str.length < 5) {
+                        handleFormRowError(
+                            formRow,
+                            'El campo debe de tener al menos 5 caracteres',
+                            true
+                        );
+                    } else {
+                        handleFormRowError(formRow, false);
+                    }
+                });
+            }
+        });
     }
 });
