@@ -12,7 +12,7 @@ const productsInCart = require('./middlewares/checkout/productsInCart');
 
 // SETTINGS
 const app = express();
-const PORT = 3000;
+const PORT = 3001;
 
 // prettier-ignore
 app.listen(PORT, () => {
@@ -77,6 +77,7 @@ const mainRoutes = require('./routes/mainRoutes');
 const productRoutes = require('./routes/productRoutes');
 const checkoutRoutes = require('./routes/checkoutRoutes');
 const customerRoutes = require('./routes/customerRoutes');
+const apiRoutes = require('./routes/api/apiRoutes');
 
 // Admin
 const adminRoutes = require('./routes/admin/adminRoutes');
@@ -86,6 +87,7 @@ app.use('/', getCategories, mainRoutes);
 app.use('/c', productRoutes);
 app.use('/clientes', withAuth, customerRoutes);
 app.use('/checkout', checkoutRoutes);
+app.use('/api/v1', apiRoutes);
 
 // Admin
 app.use('/admin', withAdminAuth, adminRoutes);
