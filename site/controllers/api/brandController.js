@@ -11,11 +11,11 @@ const categoriesControllers = {
         const { id } = req.params;
 
         try {
-            let category = await db.Category.findOne({
+            let brand = await db.Brand.findOne({
                 where: { id: id },
             });
 
-            if (!category) {
+            if (!brand) {
                 return res.send({
                     status: 404,
                     statusText: 'Not Found',
@@ -26,10 +26,10 @@ const categoriesControllers = {
                 include: ['sizeTable', 'color', 'brand'],
             });
 
-            let productsInCategory = allProducts.filter((product) => {
-                let pCategories = product.dataValues.categories.split(',');
+            let products = allProducts.filter((product) => {
+                let pBrand = product.dataValues.brandId;
 
-                if (pCategories.indexOf(id) > -1) {
+                if (pBrand == id) {
                     return product;
                 }
             });
@@ -37,9 +37,9 @@ const categoriesControllers = {
             return res.send({
                 status: 200,
                 statusText: 'OK',
-                category,
-                productsCount: productsInCategory.length,
-                products: productsInCategory,
+                brand,
+                productsCount: products.length,
+                products: products,
             });
         } catch (err) {
             return res.send(errRes(err));
@@ -60,59 +60,30 @@ const categoriesControllers = {
         }
     },
     create: async (req, res) => {
-        const {
-            status,
-            showMenu,
-            categoryName,
-            pageTitle,
-            metaDescription,
-            metaKeywords,
-            imagenes,
-        } = req.body;
+        const { brandName } = req.body;
 
         try {
-            const category = await db.Category.create({
-                isActive: Number(status),
-                showMenu: Number(showMenu),
-                categoryName: categoryName,
-                pageTitle: pageTitle,
-                metaDescription: metaDescription,
-                metaKeyWords: metaKeywords,
-                parentCategory: '0',
-                subCategories: '',
+            const brand = await db.Brand.create({
+                brandName,
             });
 
             return res.send({
                 status: 201,
                 statusText: 'Created',
-                category: category,
+                brand,
             });
         } catch (err) {
             return res.send(errRes(err));
         }
     },
     update: async (req, res) => {
-        const {
-            id,
-            status,
-            showMenu,
-            categoryName,
-            pageTitle,
-            metaDescription,
-            metaKeywords,
-            imagenes,
-        } = req.body;
+        const { id, brandName } = req.body;
 
         try {
-            await db.Category.update(
+            await db.Brand.update(
                 {
-                    id: id,
-                    isActive: Number(status),
-                    showMenu: Number(showMenu),
-                    categoryName: categoryName,
-                    pageTitle: pageTitle,
-                    metaDescription: metaDescription,
-                    metaKeyWords: metaKeywords,
+                    id,
+                    brandName,
                 },
                 {
                     where: { id: id },
@@ -134,15 +105,15 @@ const categoriesControllers = {
             let allProducts = await db.Product.findAll();
 
             let hasProducts = allProducts.filter((prod) => {
-                let pCategoriesIds = prod.dataValues.categories.split(',');
+                let pBrandId = prod.dataValues.brandId;
 
-                if (pCategoriesIds.indexOf(id) > -1) {
+                if (pBrandId == id) {
                     return prod;
                 }
             });
 
             if (hasProducts && hasProducts.length == 0) {
-                await db.Category.destroy({
+                await db.Brand.destroy({
                     where: {
                         id: id,
                     },
@@ -155,7 +126,7 @@ const categoriesControllers = {
                 return res.send({
                     status: 406,
                     statusText: 'Not Acceptable',
-                    message: 'Can not remove the current category because it has products in it',
+                    message: 'Can not remove the current brand because it has products in it',
                 });
             }
         } catch (err) {
