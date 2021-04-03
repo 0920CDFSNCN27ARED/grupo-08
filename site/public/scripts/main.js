@@ -108,6 +108,20 @@ window.addEventListener('load', async () => {
         let tablaTalles = document.querySelector('#sizeTableId');
         eventFire(tablaTalles, 'click');
 
+        // Muestro imagenes al subir
+        let filesInput = document.querySelector('#form_files_upload');
+        let filesArray = handleImagesUploaded(filesInput, '#form_preview_files');
+
+        function removeCurrentFile(target) {
+            // Remuevo la imagen del array
+            let deletedFileIndex = filesArray.findIndex((file) => file.name === target);
+            filesArray.splice(deletedFileIndex, 1);
+
+            // Remuevo la imagen del front
+            document.querySelector(`[id*="${target}"]`).remove();
+            filesInput.value = '';
+        }
+
         // Guardar producto
         let form = document.querySelector('#product_create_form');
 

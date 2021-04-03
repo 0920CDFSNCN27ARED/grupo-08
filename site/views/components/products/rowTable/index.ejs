@@ -22,7 +22,13 @@
         $<%= locals.price %>
     </th>
     <td>
-        $<%= locals.special_price %>
+        <% if (locals.special_price) { %>
+            $<% locals.special_price %>
+
+        <% } else { %>
+            -
+            
+        <% } %>
     </th>
     <td>
         <%= locals.stock %>

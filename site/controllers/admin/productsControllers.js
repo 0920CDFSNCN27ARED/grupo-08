@@ -57,7 +57,9 @@ const productsControllers = {
     getAll: async (req, res) => {
         try {
             const allProducts = await db.Product.findAll();
-            const handleTotalStock = (arr) => {
+            const handleTotalStock = (stock) => {
+                let arr = stock.split(',');
+
                 return arr.reduce((a, b) => {
                     [a, b] = [parseInt(a), parseInt(b)];
                     return a + b;
@@ -74,7 +76,7 @@ const productsControllers = {
                         name: prod.productName,
                         price: prod.productPrice,
                         special_price: prod.productPriceSpecial,
-                        stock: 1,
+                        stock: handleTotalStock(prod.stock),
                         status: prod.isActive,
                     });
                 });
