@@ -9,7 +9,7 @@ main {
     background: $white;
     position: sticky;
     top: 4.5rem;
-    z-index: 10;
+    z-index: 99;
 
     #breadcrumb {
         ul {
@@ -89,7 +89,6 @@ main {
     }
 
     .slider_full {
-    
         .swiper-container {
             height: auto;
         }
@@ -206,10 +205,10 @@ main {
     }
 }
 
-
-
 @media screen and (max-width: 1000px) {
     #toolbar {
+        top: 3rem;
+
         #toolbar_filters-open {
             display: block;
         }

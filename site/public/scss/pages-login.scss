@@ -149,7 +149,7 @@
     .login_view {
         main {
             flex-direction: column-reverse;
-            margin-top: 5rem;
+            margin-top: 4rem;
             border: 0;
 
             .register_section,
@@ -159,10 +159,16 @@
 
             .login_section {
                 margin-bottom: 2rem;
+
+                p {
+                    @include font-size(14);
+                }
+
                 form {
                     select,
                     input {
                         padding: 1.3rem 1;
+                        margin-bottom: 1.5rem;
                         @include font-size(16);
                     }
                 }

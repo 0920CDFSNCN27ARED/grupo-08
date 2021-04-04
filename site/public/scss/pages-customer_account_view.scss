@@ -44,6 +44,23 @@
             justify-content: flex-start;
             align-items: center;
 
+            i {
+                margin-right: 0.5rem;
+                pointer-events: none;
+
+                svg {
+                    width: 25px;
+
+                    .cls-1 {
+                        fill: none;
+                        stroke: $gray5;
+                        stroke-linecap: round;
+                        stroke-linejoin: round;
+                        stroke-width: 2px;
+                    }
+                }
+            }
+
             &::before {
                 content: '';
                 width: 0rem;
@@ -56,6 +73,14 @@
             &.active,
             &:hover {
                 color: $gray5;
+
+                i {
+                    svg {
+                        .cls-1 {
+                            stroke-width: 3px;
+                        }
+                    }
+                }
 
                 &::before {
                     width: 1rem;
@@ -98,6 +123,7 @@
     }
 
     .pedidos-recientes {
+        overflow-x: scroll;
         table {
             width: 100%;
             text-align: left;
@@ -158,6 +184,102 @@
             padding: 0.8rem 1rem;
             border-radius: 0.5rem;
             border: 1px solid $gray1;
+        }
+    }
+}
+
+@media (max-width: 1000px) {
+    .customer_account_view {
+        main {
+            margin-top: 5rem;
+            padding: 0;
+            flex-direction: column;
+
+            section:not(.navigation) {
+                padding: 0 1rem;
+            }
+        }
+
+        .navigation {
+            width: 100%;
+            padding: 0.5rem 0;
+            position: fixed;
+            top: unset;
+            bottom: 0;
+
+            z-index: 10;
+
+            background: $white;
+            border-top: 1px solid $gray2;
+            border-radius: 0;
+
+            h4 {
+                display: none;
+            }
+
+            ul {
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                li {
+                    width: calc(100vw / 6);
+                    text-align: center;
+                }
+            }
+
+            a {
+                flex-direction: column;
+                justify-content: center;
+                margin: 0;
+                padding-bottom: 0.5rem;
+                position: relative;
+                * {
+                    transition: all 0.1s;
+                }
+
+                i {
+                    margin-right: 0;
+                    svg {
+                        width: 30px;
+                    }
+                }
+
+                span {
+                    width: 100%;
+                    position: absolute;
+                    bottom: 0.5rem;
+                    left: 50%;
+                    transform-origin: bottom center;
+                    transform: translateX(-50%);
+                    @include font-size(8);
+                    opacity: 0;
+                }
+
+                &::before {
+                    display: none;
+                }
+                &:active {
+                    background: red;
+                }
+
+                &.active {
+                    span {
+                        opacity: 1;
+                        bottom: 0;
+                    }
+                }
+            }
+        }
+
+        .pedidos-recientes {
+            h2 {
+                position: absolute;
+            }
+
+            table {
+                width: 800px;
+                margin-top: 2rem;
+            }
         }
     }
 }

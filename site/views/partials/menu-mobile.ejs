@@ -1,0 +1,13 @@
+<% const exists = locals._exists; %> 
+
+<div id="menu-mobile-panel">
+
+    <h4>Categorías</h4>
+
+    <nav>
+        <ul>
+            <%- exists(locals.formatedCategories) ? formatedCategories : '' %> 
+        </ul>
+    </nav>
+
+</div>

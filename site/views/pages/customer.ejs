@@ -25,22 +25,52 @@
                 </h4>
                 <ul>
                     <li>
-                        <a href="javascript:void(0)" class="form_tab_btn active" onclick="changeTab(this, 'customer-home')">Inicio</a>
+                        <a href="javascript:void(0)" class="form_tab_btn active" onclick="changeTab(this, 'customer-home')">
+                            <i>
+                                <%- include('../partials/navigationIcons/icon-home.ejs') %> 
+                            </i>
+                            <span>Inicio</span>
+                        </a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)" class="form_tab_btn" onclick="changeTab(this, 'customer-account-data')">Información de la cuenta</a>
+                        <a href="javascript:void(0)" class="form_tab_btn" onclick="changeTab(this, 'customer-account-data')">
+                            <i>
+                                <%- include('../partials/navigationIcons/icon-user2.ejs') %> 
+                            </i>
+                            <span>Mis datos</span>
+                        </a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)" class="form_tab_btn" onclick="changeTab(this, 'customer-addresses')">Mis direcciones</a>
+                        <a href="javascript:void(0)" class="form_tab_btn" onclick="changeTab(this, 'customer-addresses')">
+                            <i>
+                                <%- include('../partials/navigationIcons/icon-map.ejs') %> 
+                            </i>
+                            <span>Mis direcciones</span>
+                        </a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)" class="form_tab_btn" onclick="changeTab(this, 'customer-sales')">Mis pedidos</a>
+                        <a href="javascript:void(0)" class="form_tab_btn" onclick="changeTab(this, 'customer-sales')">
+                            <i>
+                                <%- include('../partials/navigationIcons/icon-clip.ejs') %> 
+                            </i>
+                            <span>Mis pedidos</span>
+                        </a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)" class="form_tab_btn" onclick="changeTab(this, 'customer-wishlist')">Mi wishlist</a>
+                        <a href="javascript:void(0)" class="form_tab_btn" onclick="changeTab(this, 'customer-wishlist')">
+                            <i>
+                                <%- include('../partials/navigationIcons/icon-like.ejs') %> 
+                            </i>    
+                            <span>Mi wishlist</span>
+                        </a>
                     </li>
                     <li class="navigation-logout">
-                        <a href="/clientes/logout">Cerrar sesión</a>
+                        <a href="/clientes/logout">
+                            <i>
+                                <%- include('../partials/navigationIcons/icon-coffee.ejs') %> 
+                            </i>
+                            <span>Cerrar sesión</span>
+                        </a>
                     </li>
                 </ul>
 

@@ -1,9 +1,28 @@
 window.addEventListener('load', async () => {
     // Header
-    const header = document.querySelector('header');
-    window.addEventListener('scroll', () =>
-        window.scrollY > 33 ? header.classList.add('compacto') : header.classList.remove('compacto')
-    );
+    const header = document.querySelector('.header');
+    if (header) {
+        window.addEventListener('scroll', () =>
+            window.scrollY > 33
+                ? header.classList.add('compacto')
+                : header.classList.remove('compacto')
+        );
+
+        if (esMobile()) {
+            let menuMobileBtn = document.querySelector('#menu_mobile--btn');
+            if (menuMobileBtn) {
+                menuMobileBtn.addEventListener('click', (e) => {
+                    header.classList.toggle('open');
+
+                    if (header.classList.contains('open')) {
+                        document.body.style.overflow = 'hidden';
+                    } else {
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            }
+        }
+    }
 
     // HOME
     const home_view = document.querySelector('.home_view');
