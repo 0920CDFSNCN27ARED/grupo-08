@@ -140,6 +140,7 @@ const checkoutControllers = {
             return res.redirect(301, '/checkout/carrito');
         } catch (err) {
             console.log('Hubo un problema -> ', err);
+            return res.redirect(req.get('referer'));
         }
     },
     removeFromCart: async (req, res) => {
