@@ -1,0 +1,153 @@
+@import "settings.scss";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-weight: 400;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+body {
+    font-family: $opensans;
+    font-size: 16px;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    width: 100%;
+    border: 0;
+    display: block;
+}
+
+input {
+    // Chrome, Safari, Edge, Opera
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    // Firefox
+    &[type="number"] {
+        -moz-appearance: textfield;
+    }
+}
+
+button {
+    cursor: pointer;
+}
+
+.large {
+    display: block;
+    width: 100%;
+    height: 2000px;
+    background: gray;
+}
+
+.dnone {
+    display: none !important;
+}
+
+.remove_button {
+    border: 0px;
+    padding: 0.3rem 0.3rem 0.2rem;
+    background: $white;
+    cursor: pointer;
+    @include transition(0.2s);
+
+    .a {
+        fill: $gray3;
+    }
+
+    &:hover {
+        .a {
+            fill: red;
+        }
+    }
+    &:active {
+        .a {
+            fill: $black;
+        }
+    }
+}
+
+.button_main_action {
+    border: 0;
+    background: $gray5;
+    color: $white;
+    @include font-size(14);
+    font-weight: 700;
+    padding: 0.8rem;
+    cursor: pointer;
+
+    &:hover {
+        background: $black;
+        @include shadow(0px, 10px, 20px, $gray5, 0.1);
+    }
+    &:active {
+        background: $gray4;
+    }
+}
+
+.form_row {
+    position: relative;
+
+    .errors_container {
+        position: absolute;
+        top: 75%;
+        left: 0;
+        width: 100%;
+        z-index: 10;
+    }
+}
+
+.showHide_password {
+    position: absolute;
+    bottom: -2px;
+    right: 0.5rem;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    z-index: 99;
+
+    &::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: url("../images/pw_show.svg") center center no-repeat;
+        background-size: contain;
+        opacity: 1;
+    }
+    &::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: url("../images/pw_hide.svg") center center no-repeat;
+        background-size: contain;
+        opacity: 0;
+    }
+
+    &.ocultar {
+        &::before {
+            opacity: 0;
+        }
+        &::after {
+            opacity: 1;
+        }
+    }
+}

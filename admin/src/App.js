@@ -1,9 +1,21 @@
-import "./styles.scss";
+import './assets/scss/normalize.scss';
+
+import { Route, Switch } from 'react-router-dom';
+import Header from './components/Header';
 
 const App = (props) => {
     return (
         <>
-            <h1>Lenny was here</h1>
+            <Header />
+            <Switch>
+                <Route
+                    exact
+                    path="/"
+                    render={() => {
+                        'sadsadsa';
+                    }}
+                />
+            </Switch>
         </>
     );
 };
