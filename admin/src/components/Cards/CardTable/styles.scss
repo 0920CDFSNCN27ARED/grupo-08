@@ -1,0 +1,57 @@
+@import '../../../assets/scss/settings.scss';
+
+.cardTable {
+    border: 1px solid $gray2;
+    border-radius: 0.5rem;
+    padding: 1rem;
+
+    h2 {
+        margin-bottom: 1rem;
+    }
+
+    table {
+        width: 100%;
+        text-align: left;
+        border-collapse: collapse;
+
+        th {
+            border-bottom: 1px solid $gray2;
+            padding-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        td {
+            padding: 0.5rem 0.3rem;
+            color: $gray4;
+        }
+
+        tr {
+            &:nth-child(2n + 2) {
+                td {
+                    background: $gray1;
+                }
+            }
+        }
+    }
+}
+
+.cardTable-productsInCart {
+    width: 35%;
+    table {
+        th,
+        td {
+            &:nth-child(2),
+            &:nth-child(3) {
+                text-align: center;
+            }
+        }
+
+        td {
+            &:nth-child(3) {
+                &::before {
+                    content: '$';
+                }
+            }
+        }
+    }
+}

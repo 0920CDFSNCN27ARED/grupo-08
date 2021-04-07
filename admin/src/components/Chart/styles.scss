@@ -1,0 +1,14 @@
+@import '../../assets/scss/settings.scss';
+
+.lennychart {
+    flex-grow: 1;
+    border: 1px solid $gray2;
+    border-radius: 0.5rem;
+    padding: 1rem 2rem;
+
+    canvas {
+        color: $white !important;
+        width: 100%;
+        max-width: 100%;
+    }
+}
