@@ -1,0 +1,17 @@
+@import '../../../assets/scss/settings.scss';
+
+.cardMini {
+    width: 100%;
+    border: 1px solid $gray2;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    @include shadow(0, 10px, 20px, $gray1, 0.5);
+    transition: all 0.2s;
+
+    &:hover {
+        @include shadow(0, 5px, 10px, $gray2, 0.8);
+    }
+}

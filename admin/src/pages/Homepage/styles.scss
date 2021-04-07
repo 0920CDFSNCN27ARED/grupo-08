@@ -1,0 +1,11 @@
+.welcomeMessage {
+    margin-top: 1rem;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-top: 2rem;
+}

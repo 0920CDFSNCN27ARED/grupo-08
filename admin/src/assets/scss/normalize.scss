@@ -1,4 +1,4 @@
-@import "settings.scss";
+@import 'settings.scss';
 
 * {
     margin: 0;
@@ -41,7 +41,7 @@ input {
     }
 
     // Firefox
-    &[type="number"] {
+    &[type='number'] {
         -moz-appearance: textfield;
     }
 }
@@ -124,20 +124,20 @@ button {
     z-index: 99;
 
     &::before {
-        content: "";
+        content: '';
         position: absolute;
         width: 100%;
         height: 100%;
-        background: url("../images/pw_show.svg") center center no-repeat;
+        background: url('../images/pw_show.svg') center center no-repeat;
         background-size: contain;
         opacity: 1;
     }
     &::after {
-        content: "";
+        content: '';
         position: absolute;
         width: 100%;
         height: 100%;
-        background: url("../images/pw_hide.svg") center center no-repeat;
+        background: url('../images/pw_hide.svg') center center no-repeat;
         background-size: contain;
         opacity: 0;
     }
@@ -150,4 +150,15 @@ button {
             opacity: 1;
         }
     }
+}
+
+#root {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.layouts {
+    margin-left: 2rem;
+    width: calc(100% - 250px - 4rem);
 }
