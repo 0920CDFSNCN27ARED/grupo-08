@@ -8,19 +8,3 @@ export const getCustomerInCartTotalProductsQty = (customer) => {
 
     return customerCartCounter;
 };
-
-export const getCustomerInCartTotalProductPrice = async (customer) => {
-    let customerCart = customer.inCart == null ? [] : JSON.parse(customer.inCart);
-
-    let pr = [
-        {
-            pid: 8,
-            qty: 1,
-        },
-    ];
-    customerCart.forEach((item) => {
-        // ya no se que estoy haciendo!
-        // Lenny palmaditas inout
-    });
-    console.log(products);
-};
