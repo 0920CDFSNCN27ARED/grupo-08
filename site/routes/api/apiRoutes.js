@@ -24,6 +24,7 @@ const categoryControllers = require('../../controllers/api/categoryControllers')
 const brandControllers = require('../../controllers/api/brandControllers');
 const colorControllers = require('../../controllers/api/colorControllers');
 const sizeControllers = require('../../controllers/api/sizeControllers');
+const roleControllers = require('../../controllers/api/roleControllers');
 
 // ROUTES --> Customer
 routes.get('/customers', customerControllers.getAll);
@@ -82,5 +83,14 @@ routes.post('/sizes/create', upload.any(), sizeControllers.create);
 routes.get('/sizes/:id', sizeControllers.getOne);
 routes.put('/sizes/:id/edit', upload.any(), sizeControllers.update);
 routes.delete('/sizes/:id/delete', sizeControllers.delete);
+
+// ROUTES --> Roles
+routes.get('/roles', roleControllers.getAll);
+
+routes.post('/roles/create', roleControllers.created);
+
+routes.get('/roles/:id', roleControllers.getOne);
+routes.put('/roles/:id/edit', roleControllers.update);
+routes.delete('/roles/:id/delete', roleControllers.delete);
 
 module.exports = routes;
