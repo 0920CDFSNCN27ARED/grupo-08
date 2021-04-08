@@ -3,6 +3,7 @@ const methodOverride = require('method-override');
 const opn = require('open');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
+var cors = require('cors');
 const getCategories = require('./middlewares/categories/getAllCategories');
 
 const withCookiesAuth = require('./middlewares/auth/withCookiesAuth');
@@ -30,6 +31,7 @@ app.set('view engine', 'ejs');
 app.locals._exists = (item) => (item !== undefined ? true : false);
 
 // Middlewares
+app.use(cors('*'));
 app.use(express.static('public'));
 app.use(methodOverride('_method'));
 app.use(express.urlencoded({ extended: false }));

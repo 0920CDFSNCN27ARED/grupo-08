@@ -34,6 +34,8 @@ routes.get('/customers/:id', customerControllers.getOne);
 routes.put('/customers/:id/edit', customerControllers.update);
 routes.delete('/customers/:id/delete', customerControllers.delete);
 
+routes.get('/customers/:id/cart', customerControllers.cartData);
+
 // ROUTES --> Products
 routes.get('/products', productControllers.getAll);
 

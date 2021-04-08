@@ -176,6 +176,42 @@ const customerControllers = {
             return res.send(errRes(err));
         }
     },
+    cartData: async (req, res) => {
+        const { id } = req.params;
+
+        let customer = await db.Customer.findOne({
+            where: {
+                id: id,
+            },
+        });
+        let allProducts = await db.Product.findAll();
+
+        customer = customer.dataValues;
+
+        let customerCart = customer.inCart == null ? [] : JSON.parse(customer.inCart);
+        let cartQty = customerCart.reduce((accum, product) => {
+            return product.qty + accum;
+        }, 0);
+
+        let cartTotal = 0;
+        customerCart.forEach((pCart) => {
+            allProducts.forEach((product) => {
+                if (product.id == pCart.pid) {
+                    cartTotal = cartTotal + product.productPrice * pCart.qty;
+                }
+            });
+        });
+
+        return res.send({
+            status: 200,
+            statusText: 'OK',
+            data: {
+                cartQty,
+                cartTotal,
+                algo: 'entre',
+            },
+        });
+    },
 };
 
 module.exports = customerControllers;
