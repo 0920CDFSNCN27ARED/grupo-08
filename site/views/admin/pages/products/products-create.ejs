@@ -43,6 +43,9 @@
 
             if(exists(locals.product)) {
                 images = images.split(',');
+                images = images.map(item => {
+                    return item.trim()
+                } )
             }
 
         %> 
@@ -284,7 +287,7 @@
                                     const handleImageName = str => str.split('/')[3];
                                 %> 
                                 <div id="<%= handleImageName(images[i]) %>" class="form_images_card from_product">
-                                    <img src="/images/catalog/products/<%= images[i] %> " alt="<%= handleImageName(images[i]) %>" class="form_images_card_image">
+                                    <img src="/images/catalog/products/<%= images[i] %>" alt="<%= handleImageName(images[i]) %>" class="form_images_card_image">
                                     <span class="form_images_card_name"><%= handleImageName(images[i]) %></span>
                                     <button disabled class="form_images_card_delete button_main_action" onclick="removeCurrentFile(handleImageName(imagenes[i]))">Borrar</button>
                                 </div>

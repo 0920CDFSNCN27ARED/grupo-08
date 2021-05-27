@@ -6,10 +6,14 @@
 <tr
     <%= exists(locals.idAttr) ? `id=${locals.idAttr}` : '' // ID %>  
     <%= exists(locals.clases) ? `class=${handleClases(locals.clases)}` : '' // CLASS %>
+
+    <% 
+        let images = locals.image.split(',')[0];
+    %> 
 >
     <td>
         <img 
-            src="/images/catalog/products/<%= locals.image %>"
+            src="/images/catalog/products/<%= images %>"
             alt="<%= locals.name %>">
     </th>
     <td>

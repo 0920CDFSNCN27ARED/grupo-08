@@ -49,7 +49,7 @@ const Homepage = (props) => {
 
                 qqqqq.push(algo);
 
-                if (customers.customers.length - 1 == i) {
+                if (customers.customers.length - 1 === i) {
                     setClientsCart(qqqqq);
                 }
             });

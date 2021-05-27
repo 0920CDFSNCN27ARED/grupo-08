@@ -1,43 +1,82 @@
-# GRUPO 8
+# Alaska 👚✨
 
-## **Propuesta**
-Desarrollar un outlet online para una marca en particular, a definir.
+## Requirements
 
-## **Segmentacion y mercado**
-Apuntamos a un mercado Outlet semi high-end, cuya principal audiencia van a ser hombres y mujeres de entre 20 y 35 años con un poder adquisitivo mediano y alto; uno de los aspectos beneficiosos de los outlets es el amplio espectro de audiencia, pudiendo atraer consumidores pertenecientes al mercado low-cost, tanto como aquellos que buscan un mercado más high-end. Otros beneficios son el poder comercializar distintos tipos de marcas y no sesgarse a una sola, ofrecer productos atemporales y temporales, ediciones limitadas y una gran variedad de ofertas.
+-   [Node and NPM](https://nodejs.org/en/)
+-   MySQL
+-   ...
 
-## Referencias
+<br>
 
-* [Zara](https://www.zara.com/ar/es/shop/cart-v2)
-* [Rapsodia](https://www.rapsodia.com.ar/checkout/cart)
-* [Dior](https://www.dior.com/en_us/products/beauty-Y0785220-sauvage-eau-de-parfum)
-* [Prada](https://www.prada.com/us/en/checkout-login-alt.html)
-* [Sarkany]()
-* [Armani](https://www.armani.com/us/OnePageCheckout/Cart)
-* [Hermes](https://www.hermes.com/us/en/cart/)
-* [Polo](https://www.ralphlauren.com/)
-* [Club Monaco](https://www.clubmonaco.com/en/women-shops-new-arrivals)
+## API Routes
 
+### Customers routes
 
-<br><hr><br>
+```
+/customers
+/customers/create
+/customers/:id
+/customers/:id/edit
+/customers/:id/delete
+/customers/:id/cart
+```
 
-## **Integrantes**
+### Products routes
 
-<br> **Leandro Canton**: <br>
-Me llamo Leandro Canton, trabajo en un estudio contable hace 11 años y estoy aprendiendo pogramación porque hoy en día es muy útil y creo que puede ayudar en casi cualquier trabajo o emprendimiento.
+```
+/products
+/products/create
+/products/:id
+/products/:id/edit
+/products/:id/delete
+```
 
-<br> **Lenny**: <br>
-Soy *Leandro Muzzupappa*, me gradué como diseñador multimedia y me especialicé en multimedia e interacción; también, con el tiempo, fui aprendiendo un poco de UX. Hace unos años empecé a aprender a programar por mi cuenta y esta es la primera vez tomando un curso en una institución; hoy en día trabajo como Front End para una empresa y con el curso busco poder cambiar de posición y/o encontrar trabajo como Full Stack en JS.
+### Categories routes
 
-<br> **Martin Zeballos**: <br>
-Insertar descripción
+```
+/categories
+/categories/create
+/categories/:id
+/categories/:id/edit
+/categories/:id/delete
+```
 
-<br><br>
+### Brands routes
 
-# Links útiles
+```
+/brands
+/brands/create
+/brands/:id
+/brands/:id/edit
+/brands/:id/delete
+```
 
-### **Tablero de trabajo en Trello**
-https://trello.com/b/KMbYCxzJ/0920-grupo08-lo-que-quieran
+### Colors routes
 
-### **Diseño**
-[Wireframes -- editables](https://xd.adobe.com/view/cdc44122-a87f-4b28-72a3-cb3c9dacecd3-bbf5/screen/93e4c968-19e3-421a-9769-db74776a588f/specs/)
+```
+/colors
+/colors/create
+/colors/:id
+/colors/:id/edit
+/colors/:id/delete
+```
+
+### Sizes routes
+
+```
+/sizes
+/sizes/create
+/sizes/:id
+/sizes/:id/edit
+/sizes/:id/delete
+```
+
+### Roles routes
+
+```
+/roles
+/roles/create
+/roles/:id
+/roles/:id/edit
+/roles/:id/delete
+```

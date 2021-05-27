@@ -1,0 +1,41 @@
+@import '../../assets/scss/settings.scss';
+
+.data_list {
+    border-right: 1px solid $gray1;
+    padding-right: 2rem;
+    overflow-x: auto;
+    width: 210px;
+
+    h4 {
+        @include font-size(16);
+        font-weight: 700;
+        margin-bottom: 1rem;
+        padding-top: 1rem;
+    }
+
+    ul {
+        border-left: 1px solid $gray2;
+        padding-left: 1rem;
+    }
+
+    li {
+        padding: 0.2rem 0;
+
+        &.active {
+            & > a {
+                color: $blue;
+                font-weight: 700;
+            }
+        }
+    }
+
+    a {
+        @include font-size(12);
+        color: $gray4;
+        width: 100%;
+        display: block;
+        &:hover {
+            color: $blue;
+        }
+    }
+}
